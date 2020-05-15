@@ -2,10 +2,8 @@
     "tasks": [
         {
             "label": "build directory",
-            "command": "mkdir",
-            "args": [
-                "build"
-            ],
+            "type": "shell",
+            "command": "if [ ! -d build ]; then mkdir build; fi",
             "options": {
                 "cwd": "${workspaceFolder}/"
             }
