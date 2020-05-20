@@ -14,7 +14,7 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-g",
-                "-Og",
+                "-std=c++17",
                 "-fsanitize=address",
                 "${file}",
                 "-o",
