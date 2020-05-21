@@ -2,15 +2,9 @@
 #include <vector>
 #include <cstdio>
 
-using namespace std;
+#include "helpers.h"
 
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+using namespace std;
 
 class Solution {
 public:
@@ -56,13 +50,7 @@ public:
 int main() {
     vector<int> inputs = {1,2,3,4,5};
 
-    ListNode list, *head = &list;
-    for (auto& e : inputs) {
-        head->next = new ListNode(e);
-        head = head->next;
-    }
-
-    auto h = Solution().reverseKGroup(list.next, 3);
+    auto h = Solution().reverseKGroup(parse_singly_linked_list(inputs), 3);
     while (h) {
         printf("%d ", h->val);
         h = h->next;

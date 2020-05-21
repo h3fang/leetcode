@@ -4,6 +4,9 @@
         "unordered_map": "cpp",
         "unordered_set": "cpp",
         "random": "cpp",
-        "cstdio": "cpp"
+        "cstdio": "cpp",
+        "stack": "cpp",
+        "queue": "cpp",
+        "algorithm": "cpp"
     }
 }
