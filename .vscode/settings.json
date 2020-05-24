@@ -7,6 +7,19 @@
         "cstdio": "cpp",
         "stack": "cpp",
         "queue": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "thread": "cpp",
+        "functional": "cpp",
+        "atomic": "cpp",
+        "condition_variable": "cpp",
+        "chrono": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "vector": "cpp",
+        "mutex": "cpp",
+        "new": "cpp",
     }
 }
