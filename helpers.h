@@ -68,4 +68,32 @@ TreeNode* parse_tree(vector<int>& inputs) {
     return root;
 }
 
+void print_tree(TreeNode *r) {
+    queue<TreeNode*> nodes;
+    nodes.push(r);
+    printf("%d ", r->val);
+    while (!nodes.empty()) {
+        auto n = nodes.front();
+        nodes.pop();
+        if (!n->left && !n->right) {
+            continue;
+        }
+        if (!n->left) {
+            printf("null ");
+        }
+        else {
+            printf("%d ", n->left->val);
+            nodes.push(n->left);
+        }
+        if (!n->right) {
+            printf("null ");
+        }
+        else {
+            printf("%d ", n->right->val);
+            nodes.push(n->right);
+        }
+    }
+    printf("\n");
+}
+
 #endif

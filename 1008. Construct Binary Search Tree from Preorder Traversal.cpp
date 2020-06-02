@@ -36,31 +36,6 @@ public:
 
 int main() {
     vector<int> inputs = {8,5,1,7,10,12};
-    auto r = Solution().bstFromPreorder(inputs);
-    queue<TreeNode*> nodes;
-    nodes.push(r);
-    printf("%d ", r->val);
-    while (!nodes.empty()) {
-        auto n = nodes.front();
-        nodes.pop();
-        if (!n->left && !n->right) {
-            continue;
-        }
-        if (!n->left) {
-            printf("null ");
-        }
-        else {
-            printf("%d ", n->left->val);
-            nodes.push(n->left);
-        }
-        if (!n->right) {
-            printf("null ");
-        }
-        else {
-            printf("%d ", n->right->val);
-            nodes.push(n->right);
-        }
-    }
-    printf("\n");
+    print_tree(Solution().bstFromPreorder(inputs));
     return 0;
 }
