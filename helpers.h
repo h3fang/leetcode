@@ -1,6 +1,7 @@
 #ifndef HELPERS_H
 #define HELPERS_H
 
+#include <cstdio>
 #include <cstdint>
 #include <vector>
 #include <queue>
