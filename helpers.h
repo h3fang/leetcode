@@ -27,7 +27,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-ListNode* parse_singly_linked_list(vector<int>& inputs) {
+ListNode* parse_singly_linked_list(const vector<int>& inputs) {
     ListNode list, *head = &list;
     for (auto& v : inputs) {
         head->next = new ListNode(v);
@@ -38,7 +38,7 @@ ListNode* parse_singly_linked_list(vector<int>& inputs) {
 
 const int NULL_NODE = INT32_MAX;
 
-TreeNode* parse_tree(vector<int>& inputs) {
+TreeNode* parse_tree(const vector<int>& inputs) {
     TreeNode* root = nullptr;
     queue<TreeNode*> nodes;
     for (int i=0; i<inputs.size(); i++) {

@@ -21,13 +21,14 @@ public:
     }
 
     int numSquares(int n) {
+        const int sqrt_n = int(sqrt(n));
+
         // 1
-        if (int(sqrt(n) * int(sqrt(n))) == n) {
+        if (sqrt_n * sqrt_n == n) {
             return 1;
         }
 
         // 2
-        int sqrt_n = int(sqrt(n));
         for (int i=0; i<=sqrt_n; i++) {
             int r = n - i*i;
             if (int(sqrt(r)) * int(sqrt(r)) == r) {
