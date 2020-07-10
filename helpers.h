@@ -97,4 +97,14 @@ void print_tree(TreeNode *r) {
     printf("\n");
 }
 
+template<typename T>
+void print_list(T* root) {
+    printf("[");
+    while (root) {
+        printf("%d,", root->val);
+        root = root->next;
+    }
+    printf("\b]\n");
+}
+
 #endif
