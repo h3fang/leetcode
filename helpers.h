@@ -73,6 +73,7 @@ void print_tree(TreeNode *r) {
     queue<TreeNode*> nodes;
     if (!r) {
         printf("[]\n");
+        return;
     }
     nodes.push(r);
     printf("[%d,", r->val);
@@ -102,6 +103,11 @@ void print_tree(TreeNode *r) {
 
 template<typename T>
 void print_list(T* root) {
+    if (!root) {
+        printf("[]\n");
+        return;
+    }
+
     printf("[");
     while (root) {
         printf("%d,", root->val);
