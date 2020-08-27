@@ -17,12 +17,12 @@ public:
                 b = c;
             }
         }
-        return N-b;
+        return min(N-b, citations[b]);
     }
 };
 
 int main() {
-    vector<int> citations = {2};//{0,1,3,5,6};//{3,4,5,8,10};
+    vector<int> citations = {3,3,5,8,10};
     printf("%d\n", Solution().hIndex(citations));
     return 0;
 }
