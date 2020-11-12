@@ -36,7 +36,7 @@ ListNode* parse_singly_linked_list(const vector<int>& inputs) {
     return list.next;
 }
 
-const int NULL_NODE = INT32_MAX;
+const int null = INT32_MAX;
 
 TreeNode* parse_tree(const vector<int>& inputs) {
     TreeNode* root = nullptr;
@@ -50,7 +50,7 @@ TreeNode* parse_tree(const vector<int>& inputs) {
             auto r = nodes.front();
             nodes.pop();
 
-            if (inputs[i] != NULL_NODE) {
+            if (inputs[i] != null) {
                 auto n = new TreeNode(inputs[i]);
                 r->left = n;
                 nodes.push(n);
@@ -58,7 +58,7 @@ TreeNode* parse_tree(const vector<int>& inputs) {
 
             i++;
             if (i<inputs.size()) {
-                if (inputs[i] != NULL_NODE) {
+                if (inputs[i] != null) {
                     auto n = new TreeNode(inputs[i]);
                     r->right = n;
                     nodes.push(n);

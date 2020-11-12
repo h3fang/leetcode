@@ -48,7 +48,7 @@ Node *parse_doubly_linked_list(const vector<int> nums, int &i) {
     Node n;
     Node *head = &n;
     for (; i < nums.size(); i++) {
-        if (nums[i] == NULL_NODE) {
+        if (nums[i] == null) {
             break;
         }
         head->next = new Node{nums[i], head, nullptr, nullptr};
@@ -63,7 +63,7 @@ Node *parse_multilevel_doubly_linked_list(const vector<int> nums) {
     Node *current_level = parse_doubly_linked_list(nums, i), *r = current_level;
     while (i < nums.size() - 1) {
         i++;
-        while (nums[i] == NULL_NODE) {
+        while (nums[i] == null) {
             i++;
             current_level = current_level->next;
         }
@@ -74,7 +74,7 @@ Node *parse_multilevel_doubly_linked_list(const vector<int> nums) {
 }
 
 int main() {
-    vector<int> nums = {1, 2, 3, 4, 5, 6, NULL_NODE, NULL_NODE, NULL_NODE, 7, 8, 9, 10, NULL_NODE, NULL_NODE, 11, 12};
+    vector<int> nums = {1, 2, 3, 4, 5, 6, null, null, null, 7, 8, 9, 10, null, null, 11, 12};
     Node *root = parse_multilevel_doubly_linked_list(nums);
     print_list<Node>(Solution().flatten(root));
     return 0;

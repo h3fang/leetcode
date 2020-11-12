@@ -22,7 +22,7 @@ public:
 };
 
 int main() {
-    vector<int> nodes = {10,5,-3,3,2,NULL_NODE,11,3,-2,NULL_NODE,1};
+    vector<int> nodes = {10,5,-3,3,2,null,11,3,-2,null,1};
     const int sum = 8;
     auto root =parse_tree(nodes);
     printf("%d\n", Solution().pathSum(root, sum));

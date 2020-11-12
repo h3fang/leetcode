@@ -26,7 +26,7 @@ public:
 };
 
 int main() {
-    vector<int> inputs = {3, 1, 4, NULL_NODE, 2};
+    vector<int> inputs = {3, 1, 4, null, 2};
     int k = 3;
 
     printf("%d\n", Solution().kthSmallest(parse_tree(inputs), k));

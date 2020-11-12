@@ -50,7 +50,7 @@ public:
 };
 
 int main() {
-    vector<int> nodes = {3,9,20,NULL_NODE,NULL_NODE,15,7};
+    vector<int> nodes = {3,9,20,null,null,15,7};
     auto root = parse_tree(nodes);
     auto r = Solution().verticalTraversal(root);
 

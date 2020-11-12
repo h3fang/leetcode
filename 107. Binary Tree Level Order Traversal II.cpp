@@ -31,7 +31,7 @@ public:
 };
 
 int main() {
-    auto t = parse_tree({3,9,20,NULL_NODE,NULL_NODE,15,7});
+    auto t = parse_tree({3,9,20,null,null,15,7});
     auto r = Solution().levelOrderBottom(t);
     printf("{\n");
     for (auto& l : r) {

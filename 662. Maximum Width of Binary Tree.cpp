@@ -41,7 +41,7 @@ public:
 };
 
 int main() {
-    vector<int> nums = {1, 3, 2, 5, 3, NULL_NODE, 9};
+    vector<int> nums = {1, 3, 2, 5, 3, null, 9};
     TreeNode *root = parse_tree(nums);
     printf("%d\n", Solution().widthOfBinaryTree(root));
     return 0;
