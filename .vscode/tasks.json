@@ -10,8 +10,8 @@
         },
         {
             "type": "shell",
-            "label": "g++ build active file",
-            "command": "/usr/bin/g++",
+            "label": "build active file",
+            "command": "/usr/bin/clang++",
             "args": [
                 "-g",
                 "-std=c++17",
@@ -32,7 +32,7 @@
             "label": "Build",
             "dependsOn": [
                 "make build directory",
-                "g++ build active file"
+                "build active file"
             ],
             "dependsOrder": "sequence",
             "problemMatcher": [],
