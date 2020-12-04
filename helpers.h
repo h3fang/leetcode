@@ -71,32 +71,41 @@ TreeNode* parse_tree(const vector<int>& inputs) {
 }
 
 void print_tree(TreeNode *r) {
-    queue<TreeNode*> nodes;
     if (!r) {
         printf("[]\n");
         return;
     }
+
+    // bfs
+    queue<TreeNode*> nodes;
     nodes.push(r);
-    printf("[%d,", r->val);
+    vector<TreeNode*> result;
     while (!nodes.empty()) {
         auto n = nodes.front();
         nodes.pop();
-        if (!n->left && !n->right) {
-            continue;
-        }
-        if (!n->left) {
-            printf("null,");
-        }
-        else {
-            printf("%d,", n->left->val);
+        result.push_back(n);
+        if (n) {
             nodes.push(n->left);
+            nodes.push(n->right);
         }
-        if (!n->right) {
-            printf("null,");
+    }
+
+    // remove trailing nulls
+    int end = result.size() - 1;
+    for (; end >= 0; end--) {
+        if (result[end]) {
+            break;
+        }
+    }
+
+    // output
+    printf("[");
+    for (int i = 0; i <= end; i++) {
+        if (result[i]) {
+            printf("%d,", result[i]->val);
         }
         else {
-            printf("%d,", n->right->val);
-            nodes.push(n->right);
+            printf("null,");
         }
     }
     printf("\b]\n");
