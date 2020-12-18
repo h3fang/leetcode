@@ -11,7 +11,7 @@
         {
             "type": "shell",
             "label": "build active file",
-            "command": "/usr/bin/clang++",
+            "command": "/usr/bin/g++",
             "args": [
                 "-g",
                 "-std=c++17",
@@ -21,15 +21,12 @@
                 "-o",
                 "${workspaceFolder}/build/${fileBasenameNoExtension}"
             ],
-            "options": {
-                "cwd": "/usr/bin"
-            },
             "problemMatcher": [
                 "$gcc"
             ]
         },
         {
-            "label": "Build",
+            "label": "build solution",
             "dependsOn": [
                 "make build directory",
                 "build active file"
