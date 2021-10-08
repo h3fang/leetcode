@@ -22,6 +22,7 @@ pub mod p69;
 pub mod p70;
 pub mod p703;
 pub mod p704;
+pub mod p71;
 pub mod p717;
 pub mod p74;
 pub mod p79;
