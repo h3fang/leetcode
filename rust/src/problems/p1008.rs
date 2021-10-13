@@ -6,40 +6,21 @@ pub struct Solution;
 
 impl Solution {
     pub fn bst_from_preorder(preorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
-        fn dfs(node: &mut TreeNode, nums: &[i32], i: &mut usize, stack: &mut Vec<i32>) {
-            if let Some(n1) = nums.get(*i) {
-                if *n1 < node.val {
-                    let mut left = TreeNode::new(*n1);
-                    stack.push(node.val);
-                    *i += 1;
-                    dfs(&mut left, nums, i, stack);
-                    node.left = Some(Rc::new(RefCell::new(left)));
-                    stack.pop();
-
-                    if let Some(n2) = nums.get(*i) {
-                        if stack.is_empty() || (n2 > &node.val && n2 < stack.last().unwrap()) {
-                            let mut right = TreeNode::new(*n2);
-                            *i += 1;
-                            dfs(&mut right, nums, i, stack);
-                            node.right = Some(Rc::new(RefCell::new(right)));
-                        }
-                    }
-                } else if stack.is_empty() || n1 < stack.last().unwrap() {
-                    let mut right = TreeNode::new(*n1);
-                    *i += 1;
-                    dfs(&mut right, nums, i, stack);
-                    node.right = Some(Rc::new(RefCell::new(right)));
-                }
+        fn dfs(nums: &[i32], i: &mut usize, bound: i32) -> Option<Rc<RefCell<TreeNode>>> {
+            if *i >= nums.len() || nums[*i] > bound {
+                return None;
             }
+            let n = nums[*i];
+            let mut node = TreeNode::new(n);
+            *i += 1;
+
+            node.left = dfs(nums, i, n);
+            node.right = dfs(nums, i, bound);
+            Some(Rc::new(RefCell::new(node)))
         }
-        let mut stack = vec![];
-        let root = preorder.first().map(|n| {
-            let mut node = TreeNode::new(*n);
-            let mut i = 1;
-            dfs(&mut node, &preorder, &mut i, &mut stack);
-            Rc::new(RefCell::new(node))
-        });
-        root
+
+        let mut i = 0;
+        dfs(&preorder, &mut i, i32::MAX)
     }
 }
 
