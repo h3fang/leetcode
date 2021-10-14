@@ -9,11 +9,11 @@ impl Solution {
                 bt(s, i + 1, result);
                 let c = s[i];
                 if c.is_uppercase() {
-                    s[i] = c.to_lowercase().next().unwrap();
+                    s[i] = c.to_ascii_lowercase();
                     bt(s, i + 1, result);
                     s[i] = c;
                 } else if c.is_lowercase() {
-                    s[i] = c.to_uppercase().next().unwrap();
+                    s[i] = c.to_ascii_uppercase();
                     bt(s, i + 1, result);
                     s[i] = c;
                 }
