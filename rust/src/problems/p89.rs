@@ -1,0 +1,41 @@
+pub struct Solution;
+
+impl Solution {
+    pub fn gray_code(n: i32) -> Vec<i32> {
+        let mut result = vec![0, 1];
+        result.reserve(2usize.pow(n as u32));
+        for i in 1..n {
+            let next = result
+                .iter()
+                .rev()
+                .map(|r| r | (1 << i))
+                .collect::<Vec<_>>();
+            result.extend(next);
+        }
+
+        result
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn case1() {
+        assert_eq!(vec![0, 1], Solution::gray_code(1));
+    }
+
+    #[test]
+    fn case2() {
+        assert_eq!(vec![0, 1, 3, 2], Solution::gray_code(2));
+    }
+
+    #[test]
+    fn case3() {
+        assert_eq!(
+            vec![0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, 10, 11, 9, 8],
+            Solution::gray_code(4)
+        );
+    }
+}
