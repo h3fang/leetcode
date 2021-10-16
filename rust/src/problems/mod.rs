@@ -80,6 +80,7 @@ pub mod p896;
 pub mod p90;
 pub mod p91;
 pub mod p917;
+pub mod p92;
 pub mod p949;
 pub mod p958;
 pub mod p977;
