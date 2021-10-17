@@ -43,7 +43,7 @@ mod tests {
     fn case2() {
         let preorder = vec![1, 2, 3];
         let root = Solution::bst_from_preorder(preorder);
-        let expected = TreeNode::from_vec(&[1, null, 2, null, null, null, 3]);
+        let expected = TreeNode::from_vec(&[1, null, 2, null, 3]);
         assert_eq!(
             expected.unwrap().borrow().to_string(),
             root.unwrap().borrow().to_string()

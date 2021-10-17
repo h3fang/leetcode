@@ -40,6 +40,9 @@ impl TreeNode {
                     if nums[i] != null {
                         node.borrow_mut().left =
                             Some(Rc::new(RefCell::new(TreeNode::new(nums[i]))));
+                        unsafe {
+                            next_level.push((*node.as_ptr()).left.as_mut());
+                        }
                     }
                     i += 1;
                     if i == nums.len() {
@@ -48,21 +51,11 @@ impl TreeNode {
                     if nums[i] != null {
                         node.borrow_mut().right =
                             Some(Rc::new(RefCell::new(TreeNode::new(nums[i]))));
+                        unsafe {
+                            next_level.push((*node.as_ptr()).right.as_mut());
+                        }
                     }
                     i += 1;
-                    unsafe {
-                        next_level.push((*node.as_ptr()).left.as_mut());
-                        next_level.push((*node.as_ptr()).right.as_mut());
-                    }
-                } else {
-                    if i == nums.len() {
-                        break;
-                    }
-                    assert_eq!(null, nums[i]);
-                    assert_eq!(null, nums[i + 1]);
-                    i += 2;
-                    next_level.push(None);
-                    next_level.push(None);
                 }
             }
             level = next_level;
@@ -70,7 +63,7 @@ impl TreeNode {
         root
     }
 
-    pub fn traverse(&self) -> Vec<i32> {
+    pub fn inorder_traversal(&self) -> Vec<i32> {
         let mut r = Vec::new();
         let dummy = Some(Rc::new(RefCell::new((*self).clone())));
         let mut level = vec![&dummy];
@@ -87,8 +80,6 @@ impl TreeNode {
                     }
                     None => {
                         r.push(null);
-                        next_level.push(&None);
-                        next_level.push(&None);
                     }
                 }
             }
@@ -110,7 +101,7 @@ impl TreeNode {
 
 impl fmt::Display for TreeNode {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let nodes = self.traverse();
+        let nodes = self.inorder_traversal();
         let mut s = "[".to_string();
         for n in nodes {
             match n {
@@ -148,7 +139,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn to_string() {
+    fn to_string1() {
         let root = Some(Rc::new(RefCell::new(TreeNode {
             val: 1,
             left: Some(Rc::new(RefCell::new(TreeNode {
@@ -159,6 +150,34 @@ mod tests {
             right: Some(Rc::new(RefCell::new(TreeNode::new(3)))),
         })));
         assert_eq!("[1,2,3,4,5]", root.unwrap().borrow().to_string());
+    }
+
+    #[test]
+    fn to_string2() {
+        let root = Some(Rc::new(RefCell::new(TreeNode {
+            val: 1,
+            left: None,
+            right: Some(Rc::new(RefCell::new(TreeNode {
+                val: 2,
+                left: None,
+                right: Some(Rc::new(RefCell::new(TreeNode::new(3)))),
+            }))),
+        })));
+        assert_eq!("[1,null,2,null,3]", root.unwrap().borrow().to_string());
+    }
+
+    #[test]
+    fn to_string3() {
+        let root = Some(Rc::new(RefCell::new(TreeNode {
+            val: 1,
+            left: None,
+            right: Some(Rc::new(RefCell::new(TreeNode {
+                val: 2,
+                left: Some(Rc::new(RefCell::new(TreeNode::new(3)))),
+                right: None,
+            }))),
+        })));
+        assert_eq!("[1,null,2,3]", root.unwrap().borrow().to_string());
     }
 
     #[test]
@@ -182,9 +201,25 @@ mod tests {
     #[test]
     fn tree_from_vec3() {
         let nodes = LeetCodeTreeNodes {
-            nums: vec![
-                2, 1, 3, null, 4, null, 7, null, null, 5, null, null, null, 8,
-            ],
+            nums: vec![2, 1, 3, null, 4, null, 7, null, null, 5, null, null, 8],
+        };
+        let root = TreeNode::from_vec(&nodes.nums);
+        assert_eq!(nodes.to_string(), root.unwrap().borrow().to_string());
+    }
+
+    #[test]
+    fn tree_from_vec4() {
+        let nodes = LeetCodeTreeNodes {
+            nums: vec![1, null, 2, 3],
+        };
+        let root = TreeNode::from_vec(&nodes.nums);
+        assert_eq!(nodes.to_string(), root.unwrap().borrow().to_string());
+    }
+
+    #[test]
+    fn tree_from_vec5() {
+        let nodes = LeetCodeTreeNodes {
+            nums: vec![1, null, 2, null, 3],
         };
         let root = TreeNode::from_vec(&nodes.nums);
         assert_eq!(nodes.to_string(), root.unwrap().borrow().to_string());
