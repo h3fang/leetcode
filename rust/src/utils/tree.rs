@@ -32,31 +32,27 @@ impl TreeNode {
         let mut level = vec![root.as_mut()];
         while !level.is_empty() {
             let mut next_level = Vec::new();
-            for n in level {
-                if let Some(node) = n {
-                    if i == nums.len() {
-                        break;
-                    }
-                    if nums[i] != null {
-                        node.borrow_mut().left =
-                            Some(Rc::new(RefCell::new(TreeNode::new(nums[i]))));
-                        unsafe {
-                            next_level.push((*node.as_ptr()).left.as_mut());
-                        }
-                    }
-                    i += 1;
-                    if i == nums.len() {
-                        break;
-                    }
-                    if nums[i] != null {
-                        node.borrow_mut().right =
-                            Some(Rc::new(RefCell::new(TreeNode::new(nums[i]))));
-                        unsafe {
-                            next_level.push((*node.as_ptr()).right.as_mut());
-                        }
-                    }
-                    i += 1;
+            for node in level.into_iter().flatten() {
+                if i == nums.len() {
+                    break;
                 }
+                if nums[i] != null {
+                    node.borrow_mut().left = Some(Rc::new(RefCell::new(TreeNode::new(nums[i]))));
+                    unsafe {
+                        next_level.push((*node.as_ptr()).left.as_mut());
+                    }
+                }
+                i += 1;
+                if i == nums.len() {
+                    break;
+                }
+                if nums[i] != null {
+                    node.borrow_mut().right = Some(Rc::new(RefCell::new(TreeNode::new(nums[i]))));
+                    unsafe {
+                        next_level.push((*node.as_ptr()).right.as_mut());
+                    }
+                }
+                i += 1;
             }
             level = next_level;
         }
