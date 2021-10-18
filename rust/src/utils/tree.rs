@@ -111,8 +111,8 @@ impl fmt::Display for TreeNode {
     }
 }
 
-struct LeetCodeTreeNodes {
-    nums: Vec<i32>,
+pub struct LeetCodeTreeNodes {
+    pub nums: Vec<i32>,
 }
 
 impl fmt::Display for LeetCodeTreeNodes {
