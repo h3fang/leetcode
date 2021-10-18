@@ -90,6 +90,7 @@ pub mod p90;
 pub mod p91;
 pub mod p917;
 pub mod p92;
+pub mod p93;
 pub mod p949;
 pub mod p95;
 pub mod p958;
