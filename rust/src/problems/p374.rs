@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+// unsafe is required by the problem definition
 
 pub struct Solution;
 

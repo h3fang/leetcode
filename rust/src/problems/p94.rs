@@ -22,21 +22,18 @@ impl Solution {
         result
     }
 
-    pub fn inorder_traversal_iterative(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    pub fn inorder_traversal_iterative(mut root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut stack = Vec::new();
         let mut result = Vec::new();
-        let mut r = root.as_ref();
-        while r.is_some() || !stack.is_empty() {
-            while let Some(node) = r {
-                stack.push(r);
-                unsafe {
-                    r = (*node.as_ptr()).left.as_ref();
-                }
+        while root.is_some() || !stack.is_empty() {
+            while let Some(node) = root {
+                stack.push(Some(Rc::clone(&node)));
+                root = node.borrow().left.clone();
             }
-            r = stack.pop().unwrap();
-            result.push(r.unwrap().borrow_mut().val);
-            unsafe {
-                r = (*r.unwrap().as_ptr()).right.as_ref();
+            if let Some(node) = stack.pop().unwrap() {
+                let n = node.borrow();
+                result.push(n.val);
+                root = n.right.clone();
             }
         }
         result

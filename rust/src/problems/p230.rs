@@ -5,24 +5,19 @@ use std::rc::Rc;
 pub struct Solution;
 
 impl Solution {
-    pub fn kth_smallest_iterative(root: Option<Rc<RefCell<TreeNode>>>, mut k: i32) -> i32 {
+    pub fn kth_smallest_iterative(mut root: Option<Rc<RefCell<TreeNode>>>, mut k: i32) -> i32 {
         let mut stack = Vec::new();
-        let mut r = root.as_ref();
         loop {
-            while let Some(node) = r {
-                stack.push(node);
-                unsafe {
-                    r = (*node.as_ptr()).left.as_ref();
-                }
+            while let Some(node) = root {
+                stack.push(Rc::clone(&node));
+                root = node.borrow().left.clone();
             }
             let node = stack.pop().unwrap();
             k -= 1;
             if k == 0 {
                 return node.borrow_mut().val;
             }
-            unsafe {
-                r = (*node.as_ptr()).right.as_ref();
-            }
+            root = node.borrow().right.clone();
         }
     }
 

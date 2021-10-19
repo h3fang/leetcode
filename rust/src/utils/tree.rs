@@ -26,31 +26,28 @@ impl TreeNode {
 
     pub fn from_vec(nums: &[i32]) -> Option<Rc<RefCell<TreeNode>>> {
         let mut i = 1;
-        let mut root = nums
+        let root = nums
             .first()
             .map(|n| Rc::new(RefCell::new(TreeNode::new(*n))));
-        let mut level = vec![root.as_mut()];
+        let mut level = vec![root.clone()];
         while !level.is_empty() {
             let mut next_level = Vec::new();
             for node in level.into_iter().flatten() {
+                let mut n = node.borrow_mut();
                 if i == nums.len() {
                     break;
                 }
                 if nums[i] != null {
-                    node.borrow_mut().left = Some(Rc::new(RefCell::new(TreeNode::new(nums[i]))));
-                    unsafe {
-                        next_level.push((*node.as_ptr()).left.as_mut());
-                    }
+                    n.left = Some(Rc::new(RefCell::new(TreeNode::new(nums[i]))));
+                    next_level.push(n.left.clone());
                 }
                 i += 1;
                 if i == nums.len() {
                     break;
                 }
                 if nums[i] != null {
-                    node.borrow_mut().right = Some(Rc::new(RefCell::new(TreeNode::new(nums[i]))));
-                    unsafe {
-                        next_level.push((*node.as_ptr()).right.as_mut());
-                    }
+                    n.right = Some(Rc::new(RefCell::new(TreeNode::new(nums[i]))));
+                    next_level.push(n.right.clone());
                 }
                 i += 1;
             }
@@ -62,17 +59,16 @@ impl TreeNode {
     pub fn inorder_traversal(&self) -> Vec<i32> {
         let mut r = Vec::new();
         let dummy = Some(Rc::new(RefCell::new((*self).clone())));
-        let mut level = vec![&dummy];
+        let mut level = vec![dummy];
         while !level.is_empty() {
             let mut next_level = Vec::new();
             for node in level {
                 match node {
                     Some(n) => {
-                        r.push(n.borrow().val);
-                        unsafe {
-                            next_level.push(&(*n.as_ptr()).left);
-                            next_level.push(&(*n.as_ptr()).right);
-                        }
+                        let n = n.borrow();
+                        r.push(n.val);
+                        next_level.push(n.left.clone());
+                        next_level.push(n.right.clone());
                     }
                     None => {
                         r.push(null);
