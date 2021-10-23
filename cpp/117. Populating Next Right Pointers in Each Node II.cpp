@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <vector>
+#include <queue>
 
 #include "helpers.h"
 
@@ -9,7 +10,7 @@ using Node = TreeNode;
 
 class Solution {
 public:
-    Node* connect(Node* root) {
+    Node* connect2(Node* root) {
         if (!root) {
             return root;
         }
@@ -31,6 +32,33 @@ public:
             }
             pre->next = nullptr;
             level = next_level;
+        }
+        return root;
+    }
+
+    Node* connect(Node* root) {
+        if (!root) {
+            return root;
+        }
+        queue<Node *> q;
+        q.push(root);
+        while (!q.empty()) {
+            Node* pre = nullptr;
+            auto m = q.size();
+            for (int i=0; i<m; i++) {
+                auto n = q.front();
+                q.pop();
+                if (n->left) {
+                    q.push(n->left);
+                }
+                if (n->right) {
+                    q.push(n->right);
+                }
+                if (pre) {
+                    pre->next = n;
+                }
+                pre = n;
+            }
         }
         return root;
     }
