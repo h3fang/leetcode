@@ -36,6 +36,7 @@ pub mod p2043;
 pub mod p2044;
 pub mod p2045;
 pub mod p2047;
+pub mod p2048;
 pub mod p2049;
 pub mod p2050;
 pub mod p206;
