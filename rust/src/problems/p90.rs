@@ -5,10 +5,6 @@ impl Solution {
         fn helper(nums: &[i32], i: usize, current: &mut Vec<i32>, result: &mut Vec<Vec<i32>>) {
             result.push(current.clone());
 
-            if i >= nums.len() {
-                return;
-            }
-
             let mut j = i;
             while j < nums.len() {
                 if j == i || nums[j] != nums[j - 1] {
