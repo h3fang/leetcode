@@ -1,3 +1,3 @@
-A repository to save all my leetcode solutions.
+A repository for my [leetcode](https://leetcode.com) solutions.
 
-Each solution can be compiled and debugged locally.
+Each solution can be debugged locally.
