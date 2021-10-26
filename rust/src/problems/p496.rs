@@ -7,8 +7,12 @@ impl Solution {
         let mut pos = HashMap::new();
         let mut stack = Vec::new();
         for n in nums2 {
-            while !stack.is_empty() && n > *stack.last().unwrap() {
-                pos.insert(stack.pop().unwrap(), n);
+            while let Some(&e) = stack.last() {
+                if n < e {
+                    break;
+                }
+                stack.pop();
+                pos.insert(e, n);
             }
             stack.push(n);
         }
