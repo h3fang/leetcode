@@ -104,6 +104,7 @@ pub mod p695;
 pub mod p70;
 pub mod p703;
 pub mod p704;
+pub mod p706;
 pub mod p71;
 pub mod p713;
 pub mod p717;
