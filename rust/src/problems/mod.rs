@@ -50,6 +50,7 @@ pub mod p208;
 pub mod p209;
 pub mod p21;
 pub mod p212;
+pub mod p22;
 pub mod p222;
 pub mod p226;
 pub mod p230;
