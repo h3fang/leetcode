@@ -13,11 +13,11 @@ impl Solution {
             while left < right {
                 match (nums[left] + nums[right]).cmp(&-target) {
                     std::cmp::Ordering::Less => left += 1,
-                    std::cmp::Ordering::Greater => right = right.saturating_sub(1),
+                    std::cmp::Ordering::Greater => right -= 1,
                     std::cmp::Ordering::Equal => {
                         result.push(vec![target, nums[left], nums[right]]);
                         left += 1;
-                        right = right.saturating_sub(1);
+                        right -= 1;
                         while left < right && nums[left - 1] == nums[left] {
                             left += 1;
                         }
