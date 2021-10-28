@@ -2,14 +2,13 @@ pub struct Solution;
 
 impl Solution {
     pub fn can_jump(nums: Vec<i32>) -> bool {
-        let n = nums.len() as i32;
-        let mut reach: i32 = 1;
+        let n = nums.len();
+        let mut reach = 1;
         for (i, a) in nums.iter().enumerate() {
-            let i = i as i32;
             if reach <= i {
                 return false;
             }
-            reach = reach.max(i + 1 + a);
+            reach = reach.max(i + 1 + *a as usize);
             if reach >= n {
                 return true;
             }
