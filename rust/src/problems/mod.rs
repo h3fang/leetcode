@@ -92,6 +92,7 @@ pub mod p451;
 pub mod p46;
 pub mod p47;
 pub mod p496;
+pub mod p5;
 pub mod p509;
 pub mod p542;
 pub mod p543;
