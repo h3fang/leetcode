@@ -12,13 +12,7 @@ impl Solution {
             match bytes[i] {
                 b'0' => dp[i] = 0,
                 b'1' => dp[i] = dp[i + 1] + dp[i + 2],
-                b'2' => {
-                    if bytes[i + 1] <= b'6' {
-                        dp[i] = dp[i + 1] + dp[i + 2];
-                    } else {
-                        dp[i] = dp[i + 1];
-                    }
-                }
+                b'2' if bytes[i + 1] <= b'6' => dp[i] = dp[i + 1] + dp[i + 2],
                 _ => dp[i] = dp[i + 1],
             }
         }
