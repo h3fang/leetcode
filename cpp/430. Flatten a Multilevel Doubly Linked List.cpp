@@ -16,7 +16,7 @@ public:
 
 class Solution {
 public:
-    Node *flatten(Node *head) {
+    Node *flatten_queue(Node *head) {
         stack<Node *> branches;
         Node *r = head;
         while (true) {
@@ -41,6 +41,37 @@ public:
             head = head->next;
         }
         return r;
+    }
+
+    Node* flatten(Node* head) {
+        flatten_sub(head);
+        return head;
+    }
+
+    Node* flatten_sub(Node* head) {
+        while (head) {
+            if (head->child) {
+                auto next = head->next;
+                head->next = head->child;
+                head->child->prev = head;
+                auto tail = flatten_sub(head->child);
+                head->child = nullptr;
+                if (!next) {
+                    return tail;
+                } else {
+                    tail->next = next;
+                    next->prev = tail;
+                    head = next;
+                }
+            } else {
+                if (!head->next) {
+                    return head;
+                } else {
+                    head = head->next;
+                }
+            }
+        }
+        return nullptr;
     }
 };
 
