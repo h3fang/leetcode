@@ -56,6 +56,7 @@ pub mod p2050;
 pub mod p2053;
 pub mod p2054;
 pub mod p2055;
+pub mod p2056;
 pub mod p2057;
 pub mod p2058;
 pub mod p2059;
