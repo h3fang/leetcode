@@ -1,16 +1,11 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn range_bitwise_and(mut left: i32, mut right: i32) -> i32 {
-        let mut i = 0;
-
-        while left != right {
-            left >>= 1;
-            right >>= 1;
-            i += 1;
+    pub fn range_bitwise_and(left: i32, mut right: i32) -> i32 {
+        while left < right {
+            right &= right - 1;
         }
-
-        left << i
+        right
     }
 }
 
