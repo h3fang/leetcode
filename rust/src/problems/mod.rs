@@ -1,3 +1,4 @@
+pub mod o47;
 pub mod p1002;
 pub mod p1008;
 pub mod p1027;
