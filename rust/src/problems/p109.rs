@@ -57,8 +57,6 @@ mod tests {
             .collect::<Vec<_>>();
         let result = Solution::sorted_list_to_bst(head);
         let result = result.unwrap().borrow().to_string();
-        println!("{:?}", expected);
-        println!("{}", result);
         assert!(expected.contains(&result));
     }
 
@@ -72,8 +70,6 @@ mod tests {
             .collect::<Vec<_>>();
         let result = Solution::sorted_list_to_bst(head);
         let result = result.unwrap().borrow().to_string();
-        println!("{:?}", expected);
-        println!("{}", result);
         assert!(expected.contains(&result));
     }
 }

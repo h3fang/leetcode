@@ -67,8 +67,6 @@ impl Solution {
 
         let mut min_times = vec![i32::MAX; values.len()];
         dijkstra(&g, &mut min_times);
-        println!("{:?}", min_times);
-
         let mut result = 0;
         dfs(&g, 0, 0, max_time, 0, &min_times, &mut values, &mut result);
         result

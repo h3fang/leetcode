@@ -25,7 +25,6 @@ mod tests {
     #[test]
     fn case1() {
         let result = Solution::frequency_sort("tree".to_string());
-        println!("{}", result);
         assert!(["eert", "eetr"].contains(&result.as_str()));
     }
 
