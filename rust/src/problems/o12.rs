@@ -12,9 +12,9 @@ impl Solution {
                 && board[i][j] == w[0] as char
             {
                 board[i][j] = '#';
-                let r = dfs(board, i - 1, j, &w[1..])
+                let r = dfs(board, i.overflowing_sub(1).0, j, &w[1..])
                     || dfs(board, i + 1, j, &w[1..])
-                    || dfs(board, i, j - 1, &w[1..])
+                    || dfs(board, i, j.overflowing_sub(1).0, &w[1..])
                     || dfs(board, i, j + 1, &w[1..]);
                 board[i][j] = w[0] as char;
                 r
