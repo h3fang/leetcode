@@ -124,6 +124,7 @@ pub mod p45;
 pub mod p451;
 pub mod p46;
 pub mod p47;
+pub mod p488;
 pub mod p496;
 pub mod p5;
 pub mod p500;
