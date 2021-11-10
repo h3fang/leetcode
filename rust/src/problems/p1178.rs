@@ -1,19 +1,14 @@
-use std::{
-    cell::RefCell,
-    collections::{HashMap, HashSet},
-    rc::Rc,
-};
+use std::collections::{HashMap, HashSet};
 
 pub struct Solution;
-
 struct Trie {
-    next: [Option<Rc<RefCell<Trie>>>; 26],
+    next: [Option<Box<Trie>>; 26],
     count: i32,
 }
 
 impl Trie {
     fn new() -> Self {
-        const VAL: Option<Rc<RefCell<Trie>>> = None;
+        const VAL: Option<Box<Trie>> = None;
         Self {
             next: [VAL; 26],
             count: 0,
@@ -26,10 +21,9 @@ impl Trie {
         } else {
             let c = (w[0] - b'a') as usize;
             if self.next[c].is_none() {
-                self.next[c] = Some(Rc::new(RefCell::new(Trie::new())));
+                self.next[c] = Some(Box::new(Trie::new()));
             }
-            if let Some(n) = &self.next[c] {
-                let mut n = n.borrow_mut();
+            if let Some(n) = &mut self.next[c] {
                 n.insert(&w[1..]);
             }
         }
@@ -45,10 +39,7 @@ impl Trie {
                 r += self.search(&s[1..], first);
             }
             match &self.next[(b - b'a') as usize] {
-                Some(next) => {
-                    let next = next.borrow();
-                    r + next.search(&s[1..], first)
-                }
+                Some(next) => r + next.search(&s[1..], first),
                 None => r,
             }
         }
