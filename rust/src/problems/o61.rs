@@ -7,10 +7,8 @@ impl Solution {
         for i in 0..nums.len() {
             if nums[i] == 0 {
                 zeros += 1;
-            } else if i > 0 {
-                if nums[i] == nums[i-1] {
-                    return false;
-                }
+            } else if i > 0 && nums[i] == nums[i - 1] {
+                return false;
             }
         }
         nums[4] - nums[zeros] < 5
