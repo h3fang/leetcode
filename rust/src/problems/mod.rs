@@ -88,6 +88,7 @@ pub mod p2065;
 pub mod p2068;
 pub mod p2069;
 pub mod p2070;
+pub mod p2073;
 pub mod p208;
 pub mod p209;
 pub mod p21;
