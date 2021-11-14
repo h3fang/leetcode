@@ -35,7 +35,7 @@ impl DisjointSetUnion {
             std::cmp::Ordering::Less => self.parent[px] = py,
             std::cmp::Ordering::Equal => {
                 self.parent[px] = py;
-                self.rank[px] += 1;
+                self.rank[py] += 1;
             }
             std::cmp::Ordering::Greater => self.parent[py] = px,
         }
