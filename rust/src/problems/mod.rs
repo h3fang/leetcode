@@ -172,6 +172,7 @@ pub mod p63;
 pub mod p64;
 pub mod p65;
 pub mod p673;
+pub mod p677;
 pub mod p68;
 pub mod p69;
 pub mod p695;
