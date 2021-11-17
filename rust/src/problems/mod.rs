@@ -8,6 +8,7 @@ pub mod o47;
 pub mod o56_i;
 pub mod o56_ii;
 pub mod o61;
+pub mod o65;
 pub mod o66;
 pub mod p1002;
 pub mod p1008;
