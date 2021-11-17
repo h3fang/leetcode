@@ -6,6 +6,7 @@ pub mod o41;
 pub mod o45;
 pub mod o47;
 pub mod o61;
+pub mod o66;
 pub mod p1002;
 pub mod p1008;
 pub mod p1027;
