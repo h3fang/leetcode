@@ -2,15 +2,15 @@ pub struct Solution;
 
 impl Solution {
     pub fn unique_paths(m: i32, n: i32) -> i32 {
-        let mut dp = vec![1; n as usize];
-
-        for _ in 1..m as usize {
-            for j in 1..n as usize {
-                dp[j] += dp[j - 1];
-            }
+        let mut result = 1i64;
+        let mut x = n;
+        let mut y = 1;
+        while y < m {
+            result = result * x as i64 / y as i64;
+            y += 1;
+            x += 1;
         }
-
-        dp[n as usize - 1]
+        result as i32
     }
 }
 
