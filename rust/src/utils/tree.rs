@@ -107,6 +107,21 @@ impl fmt::Display for TreeNode {
     }
 }
 
+#[allow(dead_code)]
+pub fn find_node(val: i32, root: Option<&Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+    match root {
+        Some(n) => {
+            let n = n.borrow();
+            if n.val == val {
+                root.cloned()
+            } else {
+                find_node(val, n.left.as_ref()).or_else(|| find_node(val, n.right.as_ref()))
+            }
+        }
+        None => None,
+    }
+}
+
 pub struct LeetCodeTreeNodes {
     pub nums: Vec<i32>,
 }
