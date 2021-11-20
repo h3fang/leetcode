@@ -3,16 +3,15 @@ pub struct Solution;
 impl Solution {
     pub fn find_disappeared_numbers(mut nums: Vec<i32>) -> Vec<i32> {
         for i in 0..nums.len() {
-            let mut j = nums[i] as usize - 1;
-            while nums[j] != nums[i] {
-                nums.swap(i, j);
-                j = nums[i] as usize - 1;
+            let j = nums[i].abs() as usize - 1;
+            if nums[j] > 0 {
+                nums[j] *= -1;
             }
         }
 
         let mut result = Vec::with_capacity(nums.len());
         for (i, n) in nums.iter().enumerate() {
-            if i != *n as usize - 1 {
+            if *n > 0 {
                 result.push(i as i32 + 1);
             }
         }
