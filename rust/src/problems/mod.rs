@@ -4,6 +4,7 @@ pub mod o13;
 pub mod o26;
 pub mod o3;
 pub mod o32_i;
+pub mod o32_ii;
 pub mod o33;
 pub mod o4;
 pub mod o40;
