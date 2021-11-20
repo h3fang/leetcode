@@ -1,6 +1,7 @@
 pub mod o10_i;
 pub mod o12;
 pub mod o13;
+pub mod o26;
 pub mod o3;
 pub mod o33;
 pub mod o4;
