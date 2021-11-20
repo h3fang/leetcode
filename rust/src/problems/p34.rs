@@ -1,35 +1,36 @@
-use std::vec;
-
 pub struct Solution;
 
 impl Solution {
     pub fn search_range(nums: Vec<i32>, target: i32) -> Vec<i32> {
-        let mut left = 0i32;
-        let mut right = nums.len() as i32 - 1;
+        if nums.is_empty() {
+            return vec![-1, -1];
+        }
+        let mut left = 0;
+        let mut right = nums.len() - 1;
         while left < right {
             let mid = left + (right - left) / 2;
-            if nums[mid as usize] < target {
+            if nums[mid] < target {
                 left = mid + 1;
             } else {
                 right = mid;
             }
         }
-        if nums.is_empty() || nums[left as usize] != target {
+        if nums[left] != target {
             return vec![-1, -1];
         }
-        let r_l = left;
+        let r_l = left as i32;
 
-        right = nums.len() as i32 - 1;
+        right = nums.len() - 1;
         while left < right {
             let mid = left + (right - left) / 2 + 1;
-            if nums[mid as usize] > target {
+            if nums[mid] > target {
                 right = mid - 1;
             } else {
                 left = mid;
             }
         }
 
-        vec![r_l, right]
+        vec![r_l, right as i32]
     }
 }
 
