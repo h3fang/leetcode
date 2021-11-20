@@ -1,15 +1,12 @@
+#[derive(Default)]
 pub struct MinStack {
     arr: Vec<i64>,
     min: i32,
 }
 
 impl MinStack {
-    #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
-        Self {
-            arr: Vec::new(),
-            min: i32::MAX,
-        }
+        Self::default()
     }
 
     pub fn push(&mut self, val: i32) {
