@@ -12,6 +12,7 @@ pub mod o5;
 pub mod o56_i;
 pub mod o56_ii;
 pub mod o57_ii;
+pub mod o6;
 pub mod o61;
 pub mod o62;
 pub mod o64;
