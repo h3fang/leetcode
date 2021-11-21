@@ -2,10 +2,6 @@ pub struct Solution;
 
 impl Solution {
     pub fn length_of_longest_substring(s: String) -> i32 {
-        if s.is_empty() {
-            return 0;
-        }
-
         let mut left = 0;
         let mut result = 0;
         let mut prev = vec![usize::MAX; 256];
