@@ -7,29 +7,24 @@ impl Solution {
         l1: Option<Box<ListNode>>,
         l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        #[allow(clippy::borrowed_box)]
-        fn helper(l1: Option<&Box<ListNode>>, l2: Option<&Box<ListNode>>) -> Option<Box<ListNode>> {
-            match (l1, l2) {
-                (Some(n1), Some(n2)) => {
-                    if n1.val < n2.val {
-                        Some(Box::new(ListNode {
-                            val: n1.val,
-                            next: helper(n1.next.as_ref(), l2),
-                        }))
-                    } else {
-                        Some(Box::new(ListNode {
-                            val: n2.val,
-                            next: helper(l1, n2.next.as_ref()),
-                        }))
-                    }
+        match (l1, l2) {
+            (Some(n1), Some(n2)) => {
+                if n1.val < n2.val {
+                    Some(Box::new(ListNode {
+                        val: n1.val,
+                        next: Self::merge_two_lists(n1.next, Some(n2)),
+                    }))
+                } else {
+                    Some(Box::new(ListNode {
+                        val: n2.val,
+                        next: Self::merge_two_lists(Some(n1), n2.next),
+                    }))
                 }
-                (Some(n1), None) => Some(n1.to_owned()),
-                (None, Some(n2)) => Some(n2.to_owned()),
-                (None, None) => None,
             }
+            (Some(n1), None) => Some(n1),
+            (None, Some(n2)) => Some(n2),
+            (None, None) => None,
         }
-
-        helper(l1.as_ref(), l2.as_ref())
     }
 }
 
