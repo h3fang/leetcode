@@ -31,6 +31,7 @@ pub mod o64;
 pub mod o65;
 pub mod o66;
 pub mod o9;
+pub mod p10;
 pub mod p1002;
 pub mod p1008;
 pub mod p101;
