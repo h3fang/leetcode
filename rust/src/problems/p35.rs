@@ -2,23 +2,24 @@ pub struct Solution;
 
 impl Solution {
     pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
-        let mut a = 0i32;
-        let mut b = nums.len() as i32 - 1;
+        let mut a = 0;
+        let mut b = nums.len() - 1;
 
-        let mut result = b + 1;
-
-        while a <= b {
-            let m = a + (b - a) / 2;
-            let n = nums[m as usize];
+        while a < b {
+            let m = (b + a) / 2;
+            let n = nums[m];
             if n >= target {
-                result = m;
-                b = m - 1;
+                b = m;
             } else {
                 a = m + 1;
             }
         }
 
-        result
+        if nums[a] < target {
+            a as i32 + 1
+        } else {
+            a as i32
+        }
     }
 }
 
