@@ -4,13 +4,13 @@ impl Solution {
     pub fn min_sub_array_len(target: i32, nums: Vec<i32>) -> i32 {
         let mut left = 0;
         let mut result = usize::MAX;
-        let mut s = 0u64;
+        let mut s = 0u32;
 
         for (right, n) in nums.iter().enumerate() {
-            s += *n as u64;
-            while s >= target as u64 {
+            s += *n as u32;
+            while s >= target as u32 {
                 result = result.min(right - left + 1);
-                s -= nums[left] as u64;
+                s -= nums[left] as u32;
                 left += 1;
             }
         }
