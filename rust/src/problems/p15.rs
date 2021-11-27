@@ -3,12 +3,12 @@ pub struct Solution;
 impl Solution {
     pub fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
         fn two_sum(nums: &[i32], target: i32, result: &mut Vec<Vec<i32>>) {
-            if target > 0 {
+            if nums.len() < 2 {
                 return;
             }
             let n = nums.len();
             let mut left = 0;
-            let mut right = n.saturating_sub(1);
+            let mut right = n - 1;
 
             while left < right {
                 match (nums[left] + nums[right]).cmp(&-target) {
@@ -29,6 +29,9 @@ impl Solution {
         let mut result = Vec::new();
         nums.sort_unstable();
         for i in 0..nums.len() {
+            if nums[i] > 0 {
+                break;
+            }
             if i == 0 || nums[i - 1] != nums[i] {
                 two_sum(&nums[i + 1..], nums[i], &mut result);
             }
