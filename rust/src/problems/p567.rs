@@ -2,7 +2,7 @@ pub struct Solution;
 
 impl Solution {
     pub fn check_inclusion(s1: String, s2: String) -> bool {
-        fn index(c: char) -> usize {
+        fn index(c: u8) -> usize {
             (c as u8 - b'a') as usize
         }
 
@@ -11,24 +11,37 @@ impl Solution {
         }
 
         let mut sig = vec![0i32; 26];
-        for c in s1.chars() {
+        for &c in s1.as_bytes() {
             sig[index(c)] += 1;
         }
 
-        let s2 = s2.chars().collect::<Vec<_>>();
+        let s2 = s2.as_bytes();
 
-        for c in &s2[..s1.len()] {
-            sig[index(*c)] -= 1;
+        for &c in &s2[..s1.len()] {
+            sig[index(c)] -= 1;
         }
 
-        if sig.iter().all(|c| c == &0) {
+        let mut mismatch = sig.iter().filter(|&&s| s != 0).count();
+        if mismatch == 0 {
             return true;
         }
 
         for left in 1..s2.len() - s1.len() + 1 {
+            let s = sig[index(s2[left - 1])];
+            if s == -1 {
+                mismatch -= 1;
+            } else if s == 0 {
+                mismatch += 1;
+            }
             sig[index(s2[left - 1])] += 1;
+            let s = sig[index(s2[left + s1.len() - 1])];
+            if s == 1 {
+                mismatch -= 1;
+            } else if s == 0 {
+                mismatch += 1;
+            }
             sig[index(s2[left + s1.len() - 1])] -= 1;
-            if sig.iter().all(|c| c == &0) {
+            if mismatch == 0 {
                 return true;
             }
         }
