@@ -306,6 +306,7 @@ pub mod p78;
 pub mod p784;
 pub mod p786;
 pub mod p79;
+pub mod p790;
 pub mod p794;
 pub mod p797;
 pub mod p82;
