@@ -1,5 +1,3 @@
-const MOD: i64 = 10_0000_0007;
-
 pub struct Solution;
 
 impl Solution {
@@ -12,26 +10,25 @@ impl Solution {
             }
         }
 
-        let l = a / gcd(a, b) * b;
-        let m = l / a + l / b - 1;
-        let q = n / m;
-        let r = n % m;
+        let g = gcd(a, b);
+        let a = (a / g) as i64;
+        let b = (b / g) as i64;
+        let m = a + b - 1;
+        let q = n as i64 / m;
+        let r = n as i64 % m;
 
-        let mut ans: i64 = q as i64 * l as i64 % MOD;
-        if r == 0 {
-            return ans as i32;
-        }
-        let mut heads = (a, b);
-        for _ in 0..r - 1 {
-            if heads.0 <= heads.1 {
-                heads.0 += a;
+        let mut left = 0;
+        let mut right = a * b;
+        while left < right {
+            let mid = (left + right) / 2;
+            if mid / a + mid / b < r {
+                left = mid + 1;
             } else {
-                heads.1 += b;
+                right = mid;
             }
         }
 
-        ans += heads.0.min(heads.1) as i64;
-        (ans % MOD) as i32
+        (((left + q * a * b) * g as i64) % 10_0000_0007) as i32
     }
 }
 
@@ -40,5 +37,17 @@ mod tests {
     use super::*;
 
     #[test]
-    fn case1() {}
+    fn case1() {
+        assert_eq!(2, Solution::nth_magical_number(1, 2, 3));
+    }
+
+    #[test]
+    fn case2() {
+        assert_eq!(10, Solution::nth_magical_number(5, 2, 4));
+    }
+
+    #[test]
+    fn case3() {
+        assert_eq!(8, Solution::nth_magical_number(3, 6, 4));
+    }
 }
