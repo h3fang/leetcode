@@ -326,6 +326,7 @@ pub mod p832;
 pub mod p84;
 pub mod p844;
 pub mod p85;
+pub mod p851;
 pub mod p859;
 pub mod p86;
 pub mod p869;
