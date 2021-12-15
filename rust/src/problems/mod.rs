@@ -172,6 +172,7 @@ pub mod p2102;
 pub mod p2103;
 pub mod p2104;
 pub mod p2105;
+pub mod p2106;
 pub mod p212;
 pub mod p213;
 pub mod p22;
