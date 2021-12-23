@@ -10,8 +10,20 @@ impl Solution {
             s.iter().fold(0, |acc, b| (acc * 26 + *b as i64) % MODULUS)
         }
 
+        fn pow(mut base: i64, mut exp: usize) -> i64 {
+            let mut result = 1;
+            while exp > 0 {
+                if exp & 1 > 0 {
+                    result = (result * base) % MODULUS;
+                }
+                exp >>= 1;
+                base = (base * base) % MODULUS;
+            }
+            result
+        }
+
         fn is_valid(s: &[u8], k: usize) -> (bool, usize) {
-            let m = (0..k).fold(1, |acc, _| (acc * 26) % MODULUS);
+            let m = pow(26, k);
             let mut h = hash(&s[..k]);
 
             let mut sub_strs = HashMap::new();
