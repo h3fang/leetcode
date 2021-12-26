@@ -1,4 +1,5 @@
 use std::cell::RefCell;
+use std::collections::VecDeque;
 use std::rc::Rc;
 
 use crate::utils::tree::TreeNode;
@@ -10,34 +11,34 @@ impl Solution {
         if root.is_none() {
             return false;
         }
-        let mut row = vec![root.unwrap()];
+        let mut q = VecDeque::from([root.unwrap()]);
         let mut odd = false;
-        while !row.is_empty() {
-            if !row
-                .iter()
-                .all(|n| n.borrow().val % 2 == if odd { 0 } else { 1 })
-            {
-                return false;
+        while !q.is_empty() {
+            let n = q.len();
+            let mut prev = 0;
+            for i in 0..n {
+                let node = q.pop_front().unwrap();
+                let mut curr = node.borrow_mut();
+                if curr.val % 2 != if odd { 0 } else { 1 } {
+                    return false;
+                }
+                if i > 0 {
+                    if odd {
+                        if curr.val >= prev {
+                            return false;
+                        }
+                    } else if curr.val <= prev {
+                        return false;
+                    }
+                }
+                prev = curr.val;
+                if let Some(left) = curr.left.take() {
+                    q.push_back(left);
+                }
+                if let Some(right) = curr.right.take() {
+                    q.push_back(right);
+                }
             }
-            if !row.windows(2).all(|w| {
-                if odd {
-                    w[1].borrow().val < w[0].borrow().val
-                } else {
-                    w[1].borrow().val > w[0].borrow().val
-                }
-            }) {
-                return false;
-            }
-            row = row.iter().fold(vec![], |mut acc, n| {
-                let mut n = n.borrow_mut();
-                if let Some(left) = n.left.take() {
-                    acc.push(left);
-                }
-                if let Some(right) = n.right.take() {
-                    acc.push(right);
-                }
-                acc
-            });
             odd = !odd;
         }
         true
