@@ -221,6 +221,7 @@ pub mod p304;
 pub mod p307;
 pub mod p309;
 pub mod p310;
+pub mod p312;
 pub mod p318;
 pub mod p319;
 pub mod p322;
