@@ -2,22 +2,23 @@ pub struct Solution;
 
 impl Solution {
     pub fn partition(s: String) -> Vec<Vec<String>> {
-        fn recursive(
-            s: &str,
+        fn recursive<'a>(
+            s: &'a str,
             i: usize,
             dp: &mut [Vec<bool>],
-            curr: &mut Vec<String>,
+            curr: &mut Vec<&'a str>,
             result: &mut Vec<Vec<String>>,
         ) {
             if i == s.len() {
-                result.push(curr.clone());
+                result.push(curr.iter().map(|s| s.to_string()).collect());
                 return;
             }
 
+            let bytes = s.as_bytes();
             for j in i..s.len() {
-                if s[i..i + 1] == s[j..j + 1] && (j - i < 2 || dp[i + 1][j - 1]) {
+                if bytes[i] == bytes[j] && (j - i < 2 || dp[i + 1][j - 1]) {
                     dp[i][j] = true;
-                    curr.push(s[i..=j].to_string());
+                    curr.push(&s[i..=j]);
                     recursive(s, j + 1, dp, curr, result);
                     curr.pop();
                 }
