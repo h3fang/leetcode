@@ -2,18 +2,7 @@ pub struct Solution;
 
 impl Solution {
     pub fn gray_code(n: i32) -> Vec<i32> {
-        let mut result = vec![0, 1];
-        result.reserve(2usize.pow(n as u32));
-        for i in 1..n {
-            let next = result
-                .iter()
-                .rev()
-                .map(|r| r | (1 << i))
-                .collect::<Vec<_>>();
-            result.extend(next);
-        }
-
-        result
+        (0..1 << n).map(|i| (i >> 1) ^ i).collect()
     }
 }
 
