@@ -247,6 +247,7 @@ pub mod p372;
 pub mod p374;
 pub mod p375;
 pub mod p380;
+pub mod p382;
 pub mod p383;
 pub mod p384;
 pub mod p39;
