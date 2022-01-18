@@ -305,6 +305,7 @@ pub mod p519;
 pub mod p520;
 pub mod p525;
 pub mod p53;
+pub mod p539;
 pub mod p54;
 pub mod p540;
 pub mod p542;
