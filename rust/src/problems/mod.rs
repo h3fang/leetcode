@@ -323,6 +323,7 @@ pub mod p575;
 pub mod p583;
 pub mod p594;
 pub mod p598;
+pub mod p605;
 pub mod p61;
 pub mod p617;
 pub mod p62;
