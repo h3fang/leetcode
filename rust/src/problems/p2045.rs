@@ -1,43 +1,45 @@
-use std::collections::BinaryHeap;
+use std::{cmp::Reverse, collections::BinaryHeap};
 
 pub struct Solution;
 
 impl Solution {
     pub fn second_minimum(n: i32, edges: Vec<Vec<i32>>, time: i32, change: i32) -> i32 {
-        let mut g = vec![vec![]; n as usize + 1];
+        let n = n as usize;
+        let mut g = vec![vec![]; n + 1];
         for e in edges {
             g[e[0] as usize].push(e[1]);
             g[e[1] as usize].push(e[0]);
         }
 
-        let mut dist = vec![[0, 0]; n as usize + 1];
+        let mut dist = vec![[i32::MAX; 2]; n + 1];
         let mut queue = BinaryHeap::new();
-        queue.push((0, 1));
+        queue.push((Reverse(0), 1));
         while let Some((curr, node)) = queue.pop() {
-            if node == n && dist[n as usize][1] > 0 {
-                return dist[n as usize][1];
+            if node == n && dist[n][1] < i32::MAX {
+                break;
             }
 
-            let curr = -curr;
+            let curr = curr.0;
 
-            let next_time = if (curr / change) % 2 == 0 {
-                curr + time
-            } else {
-                (curr / change + 1) * change + time
-            };
-
-            for &next in &g[node as usize] {
-                let d = dist.get_mut(next as usize).unwrap();
-                if d[0] == 0 {
-                    d[0] = next_time;
-                    queue.push((-next_time, next));
-                } else if d[1] == 0 && next_time > d[0] {
-                    d[1] = next_time;
-                    queue.push((-next_time, next));
+            for &next in &g[node] {
+                let next = next as usize;
+                if curr + 1 < dist[next][0] {
+                    dist[next][0] = curr + 1;
+                    queue.push((Reverse(curr + 1), next));
+                } else if curr + 1 > dist[next][0] && curr + 1 < dist[next][1] {
+                    dist[next][1] = curr + 1;
+                    queue.push((Reverse(curr + 1), next));
                 }
             }
         }
-        panic!("impossible");
+        let mut result = 0;
+        for _ in 0..dist[n][1] {
+            if result % (2 * change) >= change {
+                result += 2 * change - result % (2 * change);
+            }
+            result += time;
+        }
+        result
     }
 }
 
