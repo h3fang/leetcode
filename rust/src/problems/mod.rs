@@ -304,6 +304,7 @@ pub mod p45;
 pub mod p450;
 pub mod p451;
 pub mod p452;
+pub mod p454;
 pub mod p458;
 pub mod p46;
 pub mod p461;
