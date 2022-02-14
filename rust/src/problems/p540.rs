@@ -6,20 +6,10 @@ impl Solution {
         let mut right = nums.len() - 1;
         while left < right {
             let mid = (left + right) / 2;
-            if mid > 0 && nums[mid] == nums[mid - 1] {
-                if mid % 2 == 1 {
-                    left = mid + 1;
-                } else {
-                    right = mid - 2;
-                }
-            } else if mid < nums.len() - 1 && nums[mid] == nums[mid + 1] {
-                if (mid + 1) % 2 == 1 {
-                    left = mid + 2;
-                } else {
-                    right = mid - 1;
-                }
+            if nums[mid] == nums[mid ^ 1] {
+                left = mid + 1;
             } else {
-                return nums[mid];
+                right = mid;
             }
         }
         nums[left]
