@@ -246,6 +246,7 @@ pub mod p235;
 pub mod p236;
 pub mod p238;
 pub mod p239;
+pub mod p24;
 pub mod p240;
 pub mod p258;
 pub mod p260;
