@@ -447,6 +447,7 @@ pub mod p95;
 pub mod p952;
 pub mod p958;
 pub mod p96;
+pub mod p969;
 pub mod p97;
 pub mod p973;
 pub mod p977;
