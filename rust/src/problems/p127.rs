@@ -30,14 +30,12 @@ impl Solution {
                     for alphabet in b'a'..=b'z' {
                         if alphabet != original {
                             bytes[i] = alphabet;
-                            unsafe {
-                                let next = std::str::from_utf8_unchecked(&bytes);
-                                if let Some(&n) = words.get(next) {
-                                    if other.contains(&n) {
-                                        return dist;
-                                    }
-                                    next_set.insert(n);
+                            let next = unsafe { std::str::from_utf8_unchecked(&bytes) };
+                            if let Some(&n) = words.get(next) {
+                                if other.contains(&n) {
+                                    return dist;
                                 }
+                                next_set.insert(n);
                             }
                         }
                     }
