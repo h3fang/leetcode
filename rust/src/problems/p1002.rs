@@ -19,12 +19,11 @@ impl Solution {
             }
         });
         (0..26)
-            .map(|i| {
+            .flat_map(|i| {
                 let c = (i + b'a') as char;
                 let n = sig[i as usize];
                 vec![c.to_string(); n]
             })
-            .flatten()
             .collect()
     }
 }

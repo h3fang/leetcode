@@ -28,8 +28,7 @@ impl Solution {
     pub fn max_two_events(events: Vec<Vec<i32>>) -> i32 {
         let mut timepoints = events
             .iter()
-            .map(|e| [(e[0], 0, e[2]), (e[1], 1, e[2])])
-            .flatten()
+            .flat_map(|e| [(e[0], 0, e[2]), (e[1], 1, e[2])])
             .collect::<Vec<_>>();
         timepoints.sort_unstable();
         let mut best_first = 0;
