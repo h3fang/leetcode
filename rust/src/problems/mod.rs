@@ -377,6 +377,7 @@ pub mod p630;
 pub mod p64;
 pub mod p647;
 pub mod p65;
+pub mod p662;
 pub mod p668;
 pub mod p67;
 pub mod p673;
