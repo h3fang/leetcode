@@ -16,11 +16,11 @@ impl Solution {
         while !forward.is_empty() && !backward.is_empty() {
             let m = forward.len();
             let n = backward.len();
-            let q = &mut forward;
-            let other = &mut backward;
-            if n < m {
-                std::mem::swap(q, other);
-            }
+            let (q, other) = if n < m {
+                (&mut backward, &mut forward)
+            } else {
+                (&mut forward, &mut backward)
+            };
             let mut next_set = HashSet::new();
             for w in q.iter() {
                 let mut bytes = w.to_string().into_bytes();
