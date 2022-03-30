@@ -2,26 +2,29 @@ pub struct Solution;
 
 impl Solution {
     pub fn max_consecutive_answers(answer_key: String, k: i32) -> i32 {
-        fn max_answers(key: &str, k: i32, ans: u8) -> i32 {
-            let key = key.as_bytes();
-            let mut result = 0;
-            let mut sum = 0;
-            let mut left = 0;
-            for (i, &c) in key.iter().enumerate() {
-                if c != ans {
-                    sum += 1;
-                }
-                while sum > k {
-                    if key[left] != ans {
-                        sum -= 1;
-                    }
-                    left += 1;
-                }
-                result = result.max(i - left + 1);
+        let mut count = [0; 2];
+        let mut left = 0;
+        let mut max = 0;
+        let key = answer_key.as_bytes();
+        for (right, &c) in key.iter().enumerate() {
+            if c == b'T' {
+                count[0] += 1;
+                max = max.max(count[0]);
+            } else {
+                count[1] += 1;
+                max = max.max(count[1]);
             }
-            result as i32
+            if right - left + 1 > max + k as usize {
+                let c = key[left];
+                if c == b'T' {
+                    count[0] -= 1;
+                } else {
+                    count[1] -= 1;
+                }
+                left += 1;
+            }
         }
-        max_answers(&answer_key, k, b'T').max(max_answers(&answer_key, k, b'F'))
+        (answer_key.len() - left) as i32
     }
 }
 
