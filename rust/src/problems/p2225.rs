@@ -1,31 +1,24 @@
-use std::collections::HashSet;
+use std::collections::BTreeMap;
 
 pub struct Solution;
 
 impl Solution {
     pub fn find_winners(matches: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-        let mut winners = HashSet::new();
-        let mut lost_once = HashSet::new();
-        let mut lost_ntimes = HashSet::new();
+        let mut winners = BTreeMap::new();
         for m in matches {
-            if !lost_once.contains(&m[0]) && !lost_ntimes.contains(&m[0]) {
-                winners.insert(m[0]);
-            }
-            if !lost_ntimes.contains(&m[1]) {
-                if lost_once.contains(&m[1]) {
-                    lost_once.remove(&m[1]);
-                    lost_ntimes.insert(m[1]);
-                } else {
-                    winners.remove(&m[1]);
-                    lost_once.insert(m[1]);
-                }
+            let _ = winners.entry(m[0]).or_insert(0);
+            *winners.entry(m[1]).or_default() += 1;
+        }
+        let mut win = vec![];
+        let mut lost = vec![];
+        for (k, v) in winners {
+            if v == 0 {
+                win.push(k);
+            } else if v == 1 {
+                lost.push(k);
             }
         }
-        let mut winners = winners.into_iter().collect::<Vec<_>>();
-        winners.sort_unstable();
-        let mut lost_once = lost_once.into_iter().collect::<Vec<_>>();
-        lost_once.sort_unstable();
-        vec![winners, lost_once]
+        vec![win, lost]
     }
 }
 
