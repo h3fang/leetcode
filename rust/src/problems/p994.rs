@@ -2,8 +2,8 @@ pub struct Solution;
 
 impl Solution {
     pub fn oranges_rotting(mut grid: Vec<Vec<i32>>) -> i32 {
-        fn step(grid: &mut Vec<Vec<i32>>) -> bool {
-            let old = grid.clone();
+        fn step(grid: &mut [Vec<i32>]) -> bool {
+            let old = grid.to_vec();
             let m = old.len();
             let n = old[0].len();
             let mut changed = false;

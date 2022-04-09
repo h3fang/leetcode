@@ -1,6 +1,7 @@
 pub struct Solution;
 
 impl Solution {
+    #[allow(clippy::ptr_arg)]
     pub fn sort_colors(nums: &mut Vec<i32>) {
         let mut left = 0;
         let mut right = nums.len() - 1;

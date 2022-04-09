@@ -39,7 +39,7 @@ impl Solution {
             }
         }
 
-        fn dijkstra(g: &HashMap<i32, Vec<(i32, i32)>>, min_times: &mut Vec<i32>) {
+        fn dijkstra(g: &HashMap<i32, Vec<(i32, i32)>>, min_times: &mut [i32]) {
             let mut q = BinaryHeap::new();
             let mut visited = vec![false; min_times.len()];
             q.push((0, 0));

@@ -1,6 +1,7 @@
 pub struct Solution;
 
 impl Solution {
+    #[allow(clippy::ptr_arg)]
     pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
         let mut last = i32::MIN;
         let mut count = 0;
