@@ -7,10 +7,10 @@ impl Solution {
         let total = m * n;
         let k = k as usize % total;
         let mut result = vec![vec![0; n]; m];
-        for i in 0..m {
-            for j in 0..n {
-                let idx = (total + i * n + j - k) % total;
-                result[i][j] = grid[idx / n][idx % n];
+        for (i, row) in grid.iter().enumerate() {
+            for (j, &g) in row.iter().enumerate() {
+                let idx = (i * n + j + k) % total;
+                result[idx / n][idx % n] = g;
             }
         }
         result
