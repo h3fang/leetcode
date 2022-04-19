@@ -21,9 +21,7 @@ impl Solution {
                         if first.is_none() {
                             *first = Some(p.clone());
                         }
-                        if first.is_some() {
-                            *second = Some(node.clone());
-                        }
+                        *second = Some(node.clone());
                     }
                 }
                 *prev = Some(node.clone());
