@@ -1,3 +1,4 @@
+pub mod lcp50;
 pub mod o10_i;
 pub mod o12;
 pub mod o13;
