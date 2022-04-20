@@ -2,20 +2,20 @@ pub struct Solution;
 
 impl Solution {
     pub fn length_longest_path(input: String) -> i32 {
-        let mut path: Vec<&str> = vec![];
+        let mut dirs: Vec<&str> = vec![];
         let mut result = 0;
         let mut prefix_length = 0;
         for line in input.lines() {
             let entry = line.trim_start_matches('\t');
             let depth = line.len() - entry.len();
-            while path.len() > depth {
-                prefix_length -= path.pop().unwrap().len();
+            while dirs.len() > depth {
+                prefix_length -= dirs.pop().unwrap().len() + 1;
             }
             if entry.contains('.') {
-                result = result.max(prefix_length + entry.len() + path.len());
+                result = result.max(prefix_length + entry.len());
             } else {
-                path.push(entry);
-                prefix_length += entry.len();
+                dirs.push(entry);
+                prefix_length += entry.len() + 1;
             }
         }
         result as i32
