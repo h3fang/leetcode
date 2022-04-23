@@ -428,6 +428,7 @@ pub mod p521;
 pub mod p525;
 pub mod p53;
 pub mod p532;
+pub mod p535;
 pub mod p537;
 pub mod p538;
 pub mod p539;
