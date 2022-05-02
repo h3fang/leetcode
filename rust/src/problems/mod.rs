@@ -314,6 +314,7 @@ pub mod p2255;
 pub mod p2256;
 pub mod p2257;
 pub mod p2258;
+pub mod p2259;
 pub mod p226;
 pub mod p227;
 pub mod p228;
