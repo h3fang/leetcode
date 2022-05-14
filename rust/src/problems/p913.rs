@@ -1,58 +1,81 @@
 pub struct Solution;
 
+use std::collections::VecDeque;
+
+const DRAW: u8 = 0;
+const MOUSE_WIN: u8 = 1;
+const CAT_WIN: u8 = 2;
+
+const MOUSE: u8 = 0;
+const CAT: u8 = 1;
+
 impl Solution {
     pub fn cat_mouse_game(graph: Vec<Vec<i32>>) -> i32 {
-        fn dfs(
-            cache: &mut [Vec<Vec<u8>>],
-            graph: &[Vec<i32>],
-            mouse: u8,
-            cat: u8,
-            moves: u8,
-        ) -> u8 {
-            if mouse == 0 {
-                return 1;
-            } else if mouse == cat {
-                return 2;
-            } else if moves as usize == 2 * graph.len() {
-                return 0;
+        let n = graph.len();
+        let mut states = [[[(DRAW, 0i8); 2]; 50]; 50];
+        let mut q = VecDeque::new();
+        for c in 1..n as u8 {
+            for m in 0..n as u8 {
+                let winning = if m == 0 {
+                    MOUSE_WIN
+                } else if c == m {
+                    CAT_WIN
+                } else {
+                    DRAW
+                };
+                if winning == DRAW {
+                    states[m as usize][c as usize][0].1 = graph[m as usize].len() as i8;
+                    states[m as usize][c as usize][1].1 =
+                        graph[c as usize].iter().filter(|e| **e != 0).count() as i8;
+                } else {
+                    states[m as usize][c as usize][0].0 = winning;
+                    states[m as usize][c as usize][1].0 = winning;
+                    q.push_back((m, c, MOUSE));
+                    q.push_back((m, c, CAT));
+                }
             }
-            let r = cache[mouse as usize][cat as usize][moves as usize];
-            if r != u8::MAX {
-                return r;
-            }
-            let mouse_move = moves % 2 == 0;
-            let mut expect = 1;
-            let mut result = 2;
-            let node = if mouse_move {
-                mouse
-            } else {
-                expect = 2;
-                result = 1;
-                cat
-            };
-            for &next in &graph[node as usize] {
-                if !mouse_move && next == 0 {
+        }
+        while let Some((m, c, turn)) = q.pop_front() {
+            let winning = states[m as usize][c as usize][turn as usize].0;
+            let prev_turn = 1 - turn;
+            let node = if prev_turn == MOUSE { m } else { c };
+            for &prev in &graph[node as usize] {
+                if prev == 0 && prev_turn == CAT {
                     continue;
                 }
-                let r = if mouse_move {
-                    dfs(cache, graph, next as u8, cat, moves + 1)
+                let prev_state = if prev_turn == MOUSE {
+                    &mut states[prev as usize][c as usize][prev_turn as usize]
                 } else {
-                    dfs(cache, graph, mouse, next as u8, moves + 1)
+                    &mut states[m as usize][prev as usize][prev_turn as usize]
                 };
-                if r == expect {
-                    result = r;
-                    break;
-                } else if r == 0 {
-                    result = 0;
+                if prev_state.0 > 0 {
+                    continue;
+                }
+                if winning - 1 == prev_turn {
+                    prev_state.0 = winning;
+                    q.push_back(if prev_turn == MOUSE {
+                        (prev as u8, c, prev_turn)
+                    } else {
+                        (m, prev as u8, prev_turn)
+                    });
+                } else {
+                    prev_state.1 -= 1;
+                    if prev_state.1 == 0 {
+                        prev_state.0 = if prev_turn == MOUSE {
+                            CAT_WIN
+                        } else {
+                            MOUSE_WIN
+                        };
+                        q.push_back(if prev_turn == MOUSE {
+                            (prev as u8, c, prev_turn)
+                        } else {
+                            (m, prev as u8, prev_turn)
+                        });
+                    }
                 }
             }
-            cache[mouse as usize][cat as usize][moves as usize] = result;
-            result
         }
-
-        let n = graph.len();
-        let mut cache = vec![vec![vec![u8::MAX; 2 * n]; n]; n];
-        dfs(&mut cache, &graph, 1, 2, 0) as i32
+        states[1][2][0].0 as i32
     }
 }
 
