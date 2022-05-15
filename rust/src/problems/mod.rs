@@ -333,6 +333,7 @@ pub mod p2267;
 pub mod p2269;
 pub mod p227;
 pub mod p2270;
+pub mod p2271;
 pub mod p228;
 pub mod p23;
 pub mod p230;
