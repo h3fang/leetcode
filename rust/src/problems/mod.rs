@@ -578,6 +578,7 @@ pub mod p804;
 pub mod p806;
 pub mod p807;
 pub mod p81;
+pub mod p812;
 pub mod p819;
 pub mod p82;
 pub mod p821;
