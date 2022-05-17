@@ -25,17 +25,6 @@ public:
     }
 };
 
-TreeNode *find_node(TreeNode *root, int val) {
-    if (!root || root->val == val) {
-        return root;
-    }
-    auto l = find_node(root->left, val);
-    if (l) {
-        return l;
-    }
-    return find_node(root->right, val);
-}
-
 int main() {
     auto root = parse_tree({2, 1, 3});
     auto p = find_node(root, 1);

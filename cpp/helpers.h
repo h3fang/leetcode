@@ -70,6 +70,17 @@ TreeNode* parse_tree(const vector<int>& inputs) {
     return root;
 }
 
+TreeNode *find_node(TreeNode *root, int val) {
+    if (!root || root->val == val) {
+        return root;
+    }
+    auto l = find_node(root->left, val);
+    if (l) {
+        return l;
+    }
+    return find_node(root->right, val);
+}
+
 void print_tree(TreeNode *r) {
     if (!r) {
         printf("[]\n");
