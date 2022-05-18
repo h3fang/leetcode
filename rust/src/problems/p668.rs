@@ -3,9 +3,9 @@ pub struct Solution;
 impl Solution {
     pub fn find_kth_number(m: i32, n: i32, k: i32) -> i32 {
         fn valid(mid: i32, m: i32, n: i32, k: i32) -> bool {
-            let mut r = 0;
-            for i in 1..=m {
-                r += n.min(mid / i);
+            let mut r = mid / n * n;
+            for i in mid / n + 1..=m {
+                r += mid / i;
                 if r >= k {
                     return true;
                 }
