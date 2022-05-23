@@ -457,6 +457,7 @@ pub mod p462;
 pub mod p464;
 pub mod p47;
 pub mod p472;
+pub mod p474;
 pub mod p475;
 pub mod p476;
 pub mod p479;
