@@ -12,7 +12,7 @@ impl Solution {
             }
             if s[i - 1] == b'(' {
                 dp[i] = if i >= 2 { dp[i - 2] } else { 0 } + 2;
-            } else if i >= 1 + dp[i - 1] && s[i - 1 - dp[i - 1]] == b'(' {
+            } else if i > dp[i - 1] && s[i - 1 - dp[i - 1]] == b'(' {
                 let prev = if i >= 2 + dp[i - 1] {
                     dp[i - 2 - dp[i - 1]]
                 } else {
