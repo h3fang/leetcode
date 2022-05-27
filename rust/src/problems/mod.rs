@@ -662,3 +662,4 @@ pub mod p993;
 pub mod p994;
 pub mod p997;
 pub mod r0105;
+pub mod r1711;
