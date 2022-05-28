@@ -6,13 +6,13 @@ impl Solution {
         let mut result = 0;
         let mut stack = vec![(-1, 0)];
 
-        for (i, h) in heights.iter().enumerate() {
-            while *h < stack.last().unwrap().1 {
+        for (i, h) in heights.into_iter().enumerate() {
+            while h < stack.last().unwrap().1 {
                 let height = stack.pop().unwrap().1;
                 let width = i as i32 - stack.last().unwrap().0 - 1;
                 result = result.max(height * width);
             }
-            stack.push((i as i32, *h));
+            stack.push((i as i32, h));
         }
 
         result
