@@ -342,6 +342,7 @@ pub mod p2273;
 pub mod p2274;
 pub mod p2275;
 pub mod p2276;
+pub mod p2278;
 pub mod p228;
 pub mod p23;
 pub mod p230;
