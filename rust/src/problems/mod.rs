@@ -625,6 +625,7 @@ pub mod p851;
 pub mod p856;
 pub mod p859;
 pub mod p86;
+pub mod p867;
 pub mod p868;
 pub mod p869;
 pub mod p87;
