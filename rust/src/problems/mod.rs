@@ -508,6 +508,7 @@ pub mod p500;
 pub mod p504;
 pub mod p506;
 pub mod p507;
+pub mod p508;
 pub mod p509;
 pub mod p51;
 pub mod p519;
