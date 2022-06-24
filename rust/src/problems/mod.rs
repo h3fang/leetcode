@@ -120,6 +120,7 @@ pub mod p134;
 pub mod p1342;
 pub mod p1345;
 pub mod p135;
+pub mod p1354;
 pub mod p1359;
 pub mod p136;
 pub mod p137;
