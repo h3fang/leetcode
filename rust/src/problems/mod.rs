@@ -470,6 +470,7 @@ pub mod p40;
 pub mod p400;
 pub mod p402;
 pub mod p404;
+pub mod p406;
 pub mod p407;
 pub mod p410;
 pub mod p413;
