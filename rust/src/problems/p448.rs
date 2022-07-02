@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn find_disappeared_numbers(mut nums: Vec<i32>) -> Vec<i32> {
         for i in 0..nums.len() {
-            let j = nums[i].abs() as usize - 1;
+            let j = nums[i].unsigned_abs() as usize - 1;
             if nums[j] > 0 {
                 nums[j] *= -1;
             }

@@ -9,7 +9,7 @@ impl Solution {
                 lower = 1;
             } else if ch.is_uppercase() {
                 upper = 1;
-            } else if ch.is_digit(10) {
+            } else if ch.is_ascii_digit() {
                 digit = 1;
             }
         }

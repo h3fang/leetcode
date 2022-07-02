@@ -2,6 +2,7 @@
 
 use std::cell::RefCell;
 use std::fmt;
+use std::fmt::Write;
 use std::rc::Rc;
 
 pub const null: i32 = i32::MAX;
@@ -98,7 +99,9 @@ impl fmt::Display for TreeNode {
         for n in nodes {
             match n {
                 null => s += "null,",
-                x => s += &format!("{},", x),
+                x => {
+                    let _ = write!(s, "{},", x);
+                }
             }
         }
         s.pop();
@@ -132,7 +135,9 @@ impl fmt::Display for LeetCodeTreeNodes {
         for n in &self.nums {
             match *n {
                 null => s += "null,",
-                x => s += &format!("{},", x),
+                x => {
+                    let _ = write!(s, "{},", x);
+                }
             }
         }
         s.pop();

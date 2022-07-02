@@ -1,6 +1,7 @@
 pub struct Solution;
 
 use std::cell::RefCell;
+use std::fmt::Write;
 use std::rc::Rc;
 
 use crate::utils::tree::TreeNode;
@@ -15,13 +16,13 @@ impl Solution {
                     match (&n.left, &n.right) {
                         (None, None) => {}
                         (None, Some(r)) => {
-                            s.push_str(&format!("()({})", dfs(Some(r))));
+                            let _ = write!(s, "()({})", dfs(Some(r)));
                         }
                         (Some(l), None) => {
-                            s.push_str(&format!("({})", dfs(Some(l))));
+                            let _ = write!(s, "({})", dfs(Some(l)));
                         }
                         (Some(l), Some(r)) => {
-                            s.push_str(&format!("({})({})", dfs(Some(l)), dfs(Some(r))));
+                            let _ = write!(s, "({})({})", dfs(Some(l)), dfs(Some(r)));
                         }
                     }
                     s
