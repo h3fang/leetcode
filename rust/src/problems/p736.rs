@@ -64,7 +64,6 @@ impl Solution {
                             break;
                         }
                         vars.push(v);
-                        skip_spaces(exp, i);
                         let b = eval(exp, i, stack);
                         stack.entry(v.to_vec()).or_default().push(b);
                         skip_spaces(exp, i);
