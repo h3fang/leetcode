@@ -182,6 +182,7 @@ pub mod p1688;
 pub mod p1689;
 pub mod p169;
 pub mod p1695;
+pub mod p1696;
 pub mod p17;
 pub mod p1705;
 pub mod p1706;
