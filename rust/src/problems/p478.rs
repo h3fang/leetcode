@@ -39,7 +39,7 @@ mod tests {
         let x0 = 2.0;
         let y0 = 1.0;
         let s = Solution::new(r, x0, y0);
-        let points = (0..100000).map(|_| s.rand_point()).collect::<Vec<_>>();
+        let points = (0..20000).map(|_| s.rand_point()).collect::<Vec<_>>();
         let mut x_mean = 0.0;
         let mut y_mean = 0.0;
         for p in &points {
@@ -50,7 +50,7 @@ mod tests {
         }
         x_mean /= points.len() as f64;
         y_mean /= points.len() as f64;
-        assert!((x_mean - x0).abs() < 1e-2);
-        assert!((y_mean - y0).abs() < 1e-2);
+        assert!((x_mean - x0).abs() < 5e-2);
+        assert!((y_mean - y0).abs() < 5e-2);
     }
 }
