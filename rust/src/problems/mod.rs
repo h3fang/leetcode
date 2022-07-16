@@ -397,6 +397,7 @@ pub mod p231;
 pub mod p2310;
 pub mod p2311;
 pub mod p2312;
+pub mod p2325;
 pub mod p233;
 pub mod p2331;
 pub mod p2332;
