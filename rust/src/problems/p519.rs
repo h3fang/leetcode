@@ -52,7 +52,7 @@ mod tests {
         let m = 5;
         let n = 10;
         let mut s = Solution::new(m, n);
-        for _ in 0..1000 {
+        for _ in 0..100 {
             let mut flipped: HashSet<(i32, i32)> = HashSet::new();
             for _ in 0..1000.min(m * n) {
                 let r = s.flip();

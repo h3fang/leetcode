@@ -43,7 +43,7 @@ mod tests {
         let rects = vec![vec![-2, -2, -1, -1], vec![1, 0, 3, 0]];
         let mut s = Solution::new(rects.clone());
         let mut freqs = HashMap::new();
-        const N: usize = 100000;
+        const N: usize = 10000;
         for _ in 0..N {
             let p = s.pick();
             *freqs.entry([p[0], p[1]]).or_insert(0) += 1;
@@ -61,6 +61,6 @@ mod tests {
         }
         let expected = 1.0 / points.len() as f64;
         println!("{:?}", points);
-        assert!(points.iter().all(|p| { (p - expected).abs() < 1e-2 }));
+        assert!(points.iter().all(|p| { (p - expected).abs() < 5e-2 }));
     }
 }

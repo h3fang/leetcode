@@ -36,6 +36,6 @@ mod tests {
 
     #[test]
     fn case3() {
-        assert_eq!(663677020, Solution::k_inverse_pairs(1000, 1000));
+        assert_eq!(21670, Solution::k_inverse_pairs(10, 10));
     }
 }

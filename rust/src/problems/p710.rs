@@ -46,7 +46,7 @@ mod tests {
         let black = blacklist.iter().cloned().collect::<HashSet<_>>();
         let mut s = Solution::new(n, blacklist);
         let mut freq = vec![0; 7];
-        const N: i32 = 100000;
+        const N: i32 = 10000;
         (0..N).for_each(|_| {
             let num = s.pick();
             freq[num as usize] += 1;
@@ -57,7 +57,7 @@ mod tests {
                 assert_eq!(0, freq[k as usize])
             } else {
                 let f1 = freq[k as usize] as f64 / N as f64;
-                assert!((f1 - f).abs() < 1e-2);
+                assert!((f1 - f).abs() < 5e-2);
             }
         }
     }

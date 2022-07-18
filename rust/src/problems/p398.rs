@@ -37,7 +37,7 @@ mod tests {
         assert!([2, 3, 4].contains(&s.pick(3)));
         assert_eq!(0, s.pick(1));
         let mut count = [0; 5];
-        let n = 30000i32;
+        let n = 10000i32;
         for _ in 0..n {
             count[s.pick(3) as usize] += 1;
         }

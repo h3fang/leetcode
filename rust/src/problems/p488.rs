@@ -154,7 +154,6 @@ mod tests {
     fn case1() {
         let board = "WRRBBW".to_string();
         let hand = "RB".to_string();
-        assert_eq!(-1, Solution::find_min_step_bfs(board.clone(), hand.clone()));
         assert_eq!(-1, Solution::find_min_step(board, hand));
     }
 
@@ -162,7 +161,6 @@ mod tests {
     fn case2() {
         let board = "WWRRBBWW".to_string();
         let hand = "WRBRW".to_string();
-        assert_eq!(2, Solution::find_min_step_bfs(board.clone(), hand.clone()));
         assert_eq!(2, Solution::find_min_step(board, hand));
     }
 
@@ -170,7 +168,6 @@ mod tests {
     fn case3() {
         let board = "G".to_string();
         let hand = "GGGGG".to_string();
-        assert_eq!(2, Solution::find_min_step_bfs(board.clone(), hand.clone()));
         assert_eq!(2, Solution::find_min_step(board, hand));
     }
 
@@ -178,7 +175,6 @@ mod tests {
     fn case4() {
         let board = "RBYYBBRRB".to_string();
         let hand = "YRBGB".to_string();
-        assert_eq!(3, Solution::find_min_step_bfs(board.clone(), hand.clone()));
         assert_eq!(3, Solution::find_min_step(board, hand));
     }
 
@@ -186,7 +182,6 @@ mod tests {
     fn case5() {
         let board = "RRWWRRBBRR".to_string();
         let hand = "WB".to_string();
-        assert_eq!(2, Solution::find_min_step_bfs(board.clone(), hand.clone()));
         assert_eq!(2, Solution::find_min_step(board, hand));
     }
 
@@ -194,7 +189,6 @@ mod tests {
     fn case6() {
         let board = "RRYGGYYRRYGGYYRR".to_string();
         let hand = "GGBBB".to_string();
-        assert_eq!(5, Solution::find_min_step_bfs(board.clone(), hand.clone()));
         assert_eq!(5, Solution::find_min_step(board, hand));
     }
 }
