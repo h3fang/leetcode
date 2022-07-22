@@ -11,7 +11,7 @@ fn gcd(a: i32, b: i32) -> i32 {
 impl Solution {
     pub fn min_operations(mut nums: Vec<i32>, nums_divide: Vec<i32>) -> i32 {
         let g = nums_divide[0];
-        let g = nums_divide.into_iter().fold(g, |g, n| gcd(g, n));
+        let g = nums_divide.into_iter().fold(g, gcd);
 
         nums.sort_unstable();
         for (i, &n) in nums.iter().enumerate() {
