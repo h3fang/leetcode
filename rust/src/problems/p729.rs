@@ -11,16 +11,7 @@ impl MyCalendar {
     }
 
     pub fn book(&mut self, start: i32, end: i32) -> bool {
-        if let Some((&l1, _)) = self.cal.range(end..).next() {
-            if end > l1 {
-                return false;
-            }
-            if let Some((_, &r2)) = self.cal.range(..l1).last() {
-                if r2 > start {
-                    return false;
-                }
-            }
-        } else if let Some((_, &r2)) = self.cal.iter().last() {
+        if let Some((_, &r2)) = self.cal.range(..end).last() {
             if r2 > start {
                 return false;
             }
