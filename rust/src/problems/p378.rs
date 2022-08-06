@@ -49,6 +49,6 @@ mod tests {
         let matrix = [[-5, -4], [-5, -4]];
         let matrix = matrix.iter().map(|r| r.to_vec()).collect();
         let k = 2;
-        assert_eq!(13, Solution::kth_smallest(matrix, k));
+        assert_eq!(-5, Solution::kth_smallest(matrix, k));
     }
 }
