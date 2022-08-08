@@ -725,6 +725,7 @@ pub mod p749;
 pub mod p75;
 pub mod p757;
 pub mod p76;
+pub mod p761;
 pub mod p762;
 pub mod p763;
 pub mod p77;
