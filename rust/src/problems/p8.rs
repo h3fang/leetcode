@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn my_atoi(s: String) -> i32 {
         let s = s.trim().as_bytes();
-        if let Some(first) = s.get(0) {
+        if let Some(first) = s.first() {
             let mut num = 0i64;
             let sign = match first {
                 b'+' => 1,
