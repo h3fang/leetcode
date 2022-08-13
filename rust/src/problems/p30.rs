@@ -65,7 +65,9 @@ mod tests {
         let s = "barfoothefoobarman".to_string();
         let words = ["foo", "bar"];
         let words = words.iter().map(|w| w.to_string()).collect();
-        assert_eq!(vec![0, 9], Solution::find_substring(s, words));
+        let mut result = Solution::find_substring(s, words);
+        result.sort_unstable();
+        assert_eq!(vec![0, 9], result);
     }
 
     #[test]
@@ -73,6 +75,8 @@ mod tests {
         let s = "wordgoodgoodgoodbestword".to_string();
         let words = ["word", "good", "best", "word"];
         let words = words.iter().map(|w| w.to_string()).collect();
-        assert_eq!(vec![0; 0], Solution::find_substring(s, words));
+        let mut result = Solution::find_substring(s, words);
+        result.sort_unstable();
+        assert_eq!(vec![0; 0], result);
     }
 }
