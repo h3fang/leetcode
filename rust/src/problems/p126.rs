@@ -1,11 +1,6 @@
-use std::collections::{HashMap, HashSet, VecDeque};
-
 pub struct Solution;
 
-const ALPHABETS: [u8; 26] = [
-    b'a', b'b', b'c', b'd', b'e', b'f', b'g', b'h', b'i', b'j', b'k', b'l', b'm', b'n', b'o', b'p',
-    b'q', b'r', b's', b't', b'u', b'v', b'w', b'x', b'y', b'z',
-];
+use std::collections::{HashMap, HashSet, VecDeque};
 
 impl Solution {
     pub fn find_ladders(
@@ -14,43 +9,54 @@ impl Solution {
         word_list: Vec<String>,
     ) -> Vec<Vec<String>> {
         let mut result = Vec::new();
-        let words = word_list.iter().map(|w| w.as_str()).collect::<HashSet<_>>();
+        let mut words = word_list.iter().map(|w| w.as_str()).collect::<HashSet<_>>();
         if !words.contains(end_word.as_str()) {
             return result;
         }
+        words.remove(begin_word.as_str());
         let mut g: HashMap<&str, HashSet<&str>> = HashMap::new();
-        let mut q = VecDeque::new();
         let mut dist = HashMap::with_capacity(words.len());
+        let mut q = VecDeque::with_capacity(words.len());
+        q.push_back(begin_word.as_str());
         dist.insert(begin_word.as_str(), 0);
-        q.push_back((begin_word.as_str(), 0));
+        let mut d = 0;
         let mut reachable = false;
-        while let Some((w, c)) = q.pop_front() {
-            if w == end_word {
-                reachable = true;
-                break;
-            }
-            let mut bytes = w.to_owned().into_bytes();
-            for i in 0..bytes.len() {
-                let original = bytes[i];
-                for &alphabet in &ALPHABETS {
-                    if original != alphabet {
+        while !q.is_empty() {
+            d += 1;
+            let n = q.len();
+            for _ in 0..n {
+                let w = q.pop_front().unwrap();
+                let mut bytes = w.as_bytes().to_vec();
+                for i in 0..bytes.len() {
+                    let original = bytes[i];
+                    for alphabet in b'a'..=b'z' {
+                        if original == alphabet {
+                            continue;
+                        }
                         bytes[i] = alphabet;
                         unsafe {
                             let neighbor = std::str::from_utf8_unchecked(&bytes);
-                            if let Some(d) = dist.get(neighbor) {
-                                if *d < c + 1 {
-                                    continue;
+                            if let Some(&d1) = dist.get(neighbor) {
+                                if d1 == d {
+                                    g.get_mut(neighbor).unwrap().insert(w);
                                 }
                             }
-                            if let Some(&n) = words.get(neighbor) {
-                                dist.insert(n, c + 1);
-                                q.push_back((n, c + 1));
-                                g.entry(w).or_default().insert(n);
+                            if let Some(n) = words.get(neighbor) {
+                                if n == &end_word {
+                                    reachable = true;
+                                }
+                                dist.insert(n, d);
+                                q.push_back(n);
+                                g.entry(n).or_default().insert(w);
+                                words.remove(neighbor);
                             }
                         }
                     }
+                    bytes[i] = original;
                 }
-                bytes[i] = original;
+            }
+            if reachable {
+                break;
             }
         }
 
@@ -59,26 +65,25 @@ impl Solution {
         }
 
         fn dfs<'a>(
-            g: &HashMap<&str, HashSet<&'a str>>,
-            dist: &HashMap<&str, i32>,
+            g: &HashMap<&'a str, HashSet<&'a str>>,
             result: &mut Vec<Vec<String>>,
-            end_word: &str,
+            target: &str,
             curr: &mut Vec<&'a str>,
         ) {
             let last = *curr.last().unwrap();
-            if last == end_word {
-                result.push(curr.iter().map(|s| s.to_string()).collect());
+            if last == target {
+                result.push(curr.iter().rev().map(|s| s.to_string()).collect());
             } else if let Some(children) = g.get(last) {
-                for next in children {
-                    curr.push(*next);
-                    dfs(g, dist, result, end_word, curr);
+                for &next in children {
+                    curr.push(next);
+                    dfs(g, result, target, curr);
                     curr.pop();
                 }
             }
         }
 
-        let mut curr = vec![begin_word.as_str()];
-        dfs(&g, &dist, &mut result, &end_word, &mut curr);
+        let mut curr = vec![end_word.as_str()];
+        dfs(&g, &mut result, &begin_word, &mut curr);
         result
     }
 }
