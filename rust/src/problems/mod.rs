@@ -104,6 +104,7 @@ pub mod p1219;
 pub mod p122;
 pub mod p1220;
 pub mod p1221;
+pub mod p1224;
 pub mod p123;
 pub mod p124;
 pub mod p1249;
