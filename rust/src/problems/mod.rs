@@ -522,6 +522,7 @@ pub mod p337;
 pub mod p338;
 pub mod p34;
 pub mod p341;
+pub mod p342;
 pub mod p343;
 pub mod p344;
 pub mod p347;
