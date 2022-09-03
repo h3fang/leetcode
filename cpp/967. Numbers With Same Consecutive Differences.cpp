@@ -33,7 +33,7 @@ public:
     // }
 
     vector<int> numsSameConsecDiff(int N, int K) {
-        vector<int> ans, level(9);
+        vector<int> level(9);
         for (int i = 1; i < 10; i++) {
             level[i-1] = i;
         }
