@@ -34,6 +34,7 @@ public:
         while (!q.empty()) {
             int level_size = q.size();
             vector<int> level;
+            level.reserve(level_size);
             for (int i = 0; i < level_size; i++) {
                 auto n = q.front();
                 q.pop_front();
