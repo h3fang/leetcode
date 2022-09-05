@@ -704,6 +704,7 @@ pub mod p646;
 pub mod p647;
 pub mod p648;
 pub mod p65;
+pub mod p652;
 pub mod p653;
 pub mod p654;
 pub mod p655;
