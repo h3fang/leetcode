@@ -1,21 +1,20 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn num_special(mat: Vec<Vec<i32>>) -> i32 {
+    pub fn num_special(mut mat: Vec<Vec<i32>>) -> i32 {
         let m = mat.len();
         let n = mat[0].len();
-        let mut result = 0;
         for i in 0..m {
-            for j in 0..n {
-                if mat[i][j] == 1
-                    && (0..m).all(|k| k == i || mat[k][j] == 0)
-                    && (0..n).all(|k| k == j || mat[i][k] == 0)
-                {
-                    result += 1;
+            let sum = mat[i].iter().sum::<i32>() - if i == 0 { 1 } else { 0 };
+            if sum > 0 {
+                for j in 0..n {
+                    if mat[i][j] == 1 {
+                        mat[0][j] += sum;
+                    }
                 }
             }
         }
-        result
+        mat[0].iter().filter(|&&e| e == 1).count() as i32
     }
 }
 
