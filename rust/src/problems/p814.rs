@@ -9,14 +9,13 @@ impl Solution {
     pub fn prune_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
         match root {
             Some(node) => {
-                let v = node.borrow().val;
-                let l = Self::prune_tree(node.borrow_mut().left.take());
-                node.borrow_mut().left = l;
-                let r = Self::prune_tree(node.borrow_mut().right.take());
-                node.borrow_mut().right = r;
-                if v == 0 && node.borrow().left.is_none() && node.borrow().right.is_none() {
+                let mut n = node.borrow_mut();
+                n.left = Self::prune_tree(n.left.take());
+                n.right = Self::prune_tree(n.right.take());
+                if n.val == 0 && n.left.is_none() && n.right.is_none() {
                     None
                 } else {
+                    drop(n);
                     Some(node)
                 }
             }
