@@ -714,6 +714,7 @@ pub mod p659;
 pub mod p661;
 pub mod p662;
 pub mod p665;
+pub mod p667;
 pub mod p668;
 pub mod p669;
 pub mod p67;
