@@ -513,6 +513,7 @@ pub mod p2401;
 pub mod p2402;
 pub mod p2404;
 pub mod p2405;
+pub mod p2406;
 pub mod p241;
 pub mod p242;
 pub mod p258;
