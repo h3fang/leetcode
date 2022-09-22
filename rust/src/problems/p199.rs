@@ -8,17 +8,14 @@ use std::rc::Rc;
 impl Solution {
     pub fn right_side_view(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         fn dfs(root: Option<&Rc<RefCell<TreeNode>>>, depth: usize, rs: &mut Vec<i32>) {
-            match root {
-                Some(node) => {
-                    let n = node.borrow();
-                    if depth + 1 > rs.len() {
-                        rs.push(0);
-                    }
-                    rs[depth] = n.val;
-                    dfs(n.left.as_ref(), depth + 1, rs);
-                    dfs(n.right.as_ref(), depth + 1, rs);
+            if let Some(node) = root {
+                let n = node.borrow();
+                if depth + 1 > rs.len() {
+                    rs.push(0);
                 }
-                None => {}
+                rs[depth] = n.val;
+                dfs(n.left.as_ref(), depth + 1, rs);
+                dfs(n.right.as_ref(), depth + 1, rs);
             }
         }
         let mut result = vec![];

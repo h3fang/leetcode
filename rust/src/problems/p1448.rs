@@ -8,18 +8,15 @@ use std::rc::Rc;
 impl Solution {
     pub fn good_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         fn dfs(root: Option<Rc<RefCell<TreeNode>>>, max: i32, result: &mut i32) {
-            match root {
-                Some(node) => {
-                    let mut n = node.borrow_mut();
-                    let v = n.val;
-                    if max <= v {
-                        *result += 1;
-                    }
-                    let max = max.max(v);
-                    dfs(n.left.take(), max, result);
-                    dfs(n.right.take(), max, result);
+            if let Some(node) = root {
+                let mut n = node.borrow_mut();
+                let v = n.val;
+                if max <= v {
+                    *result += 1;
                 }
-                None => {}
+                let max = max.max(v);
+                dfs(n.left.take(), max, result);
+                dfs(n.right.take(), max, result);
             }
         }
         let mut result = 0;

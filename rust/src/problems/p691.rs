@@ -26,10 +26,7 @@ impl Solution {
                     continue 'outter;
                 }
             }
-            counts = counts
-                .into_iter()
-                .filter(|c| !dominate(&count, c))
-                .collect();
+            counts.retain(|c| !dominate(&count, c));
             counts.push(count);
         }
 

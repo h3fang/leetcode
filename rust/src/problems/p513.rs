@@ -8,17 +8,14 @@ use std::rc::Rc;
 impl Solution {
     pub fn find_bottom_left_value(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         fn dfs(root: Option<&Rc<RefCell<TreeNode>>>, depth: i32, bl: &mut (i32, i32)) {
-            match root {
-                Some(node) => {
-                    let n = node.borrow();
-                    if depth > bl.1 {
-                        bl.0 = n.val;
-                        bl.1 = depth;
-                    }
-                    dfs(n.left.as_ref(), depth + 1, bl);
-                    dfs(n.right.as_ref(), depth + 1, bl);
+            if let Some(node) = root {
+                let n = node.borrow();
+                if depth > bl.1 {
+                    bl.0 = n.val;
+                    bl.1 = depth;
                 }
-                None => {}
+                dfs(n.left.as_ref(), depth + 1, bl);
+                dfs(n.right.as_ref(), depth + 1, bl);
             }
         }
         let mut bl = (-1, -1);

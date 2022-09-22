@@ -19,14 +19,14 @@ impl Solution {
             if !dp[s] {
                 continue;
             }
-            for i in 0..n {
-                if sum[s] + nums[i] > p {
+            for (i, e) in nums.iter().enumerate() {
+                if sum[s] + e > p {
                     break;
                 }
                 if (s >> i) & 1 == 0 {
                     let s1 = s | (1 << i);
                     if !dp[s1] {
-                        sum[s1] = (sum[s] + nums[i]) % p;
+                        sum[s1] = (sum[s] + e) % p;
                         dp[s1] = true;
                     }
                 }
