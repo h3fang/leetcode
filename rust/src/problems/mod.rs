@@ -773,6 +773,7 @@ pub mod p710;
 pub mod p713;
 pub mod p715;
 pub mod p717;
+pub mod p718;
 pub mod p719;
 pub mod p72;
 pub mod p720;
