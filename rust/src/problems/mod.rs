@@ -816,6 +816,7 @@ pub mod p782;
 pub mod p784;
 pub mod p785;
 pub mod p786;
+pub mod p788;
 pub mod p79;
 pub mod p790;
 pub mod p792;
