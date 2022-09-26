@@ -842,6 +842,7 @@ pub mod p821;
 pub mod p823;
 pub mod p824;
 pub mod p825;
+pub mod p827;
 pub mod p828;
 pub mod p829;
 pub mod p832;
