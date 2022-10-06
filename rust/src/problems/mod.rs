@@ -543,6 +543,7 @@ pub mod p242;
 pub mod p2420;
 pub mod p2421;
 pub mod p2423;
+pub mod p2424;
 pub mod p258;
 pub mod p260;
 pub mod p264;
