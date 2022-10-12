@@ -961,6 +961,7 @@ pub mod p968;
 pub mod p969;
 pub mod p97;
 pub mod p973;
+pub mod p976;
 pub mod p977;
 pub mod p98;
 pub mod p980;
