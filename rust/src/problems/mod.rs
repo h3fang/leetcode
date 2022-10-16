@@ -917,6 +917,7 @@ pub mod p88;
 pub mod p881;
 pub mod p883;
 pub mod p884;
+pub mod p886;
 pub mod p89;
 pub mod p890;
 pub mod p895;
