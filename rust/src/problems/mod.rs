@@ -798,6 +798,7 @@ pub mod p688;
 pub mod p689;
 pub mod p69;
 pub mod p691;
+pub mod p692;
 pub mod p693;
 pub mod p695;
 pub mod p698;
