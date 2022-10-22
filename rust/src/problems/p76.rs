@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 pub struct Solution;
 
 impl Solution {
@@ -8,17 +6,17 @@ impl Solution {
             return "".to_string();
         }
 
-        let mut sig = HashMap::new();
-        for c in t.as_bytes() {
-            *sig.entry(*c).or_insert(0) += 1;
+        let mut sig = [0; 256];
+        for &c in t.as_bytes() {
+            sig[c as usize] += 1;
         }
 
+        let required = sig.iter().filter(|e| **e > 0).count();
+
         let mut filtered = Vec::new();
-        let mut bytes = Vec::new();
-        for (i, c) in s.as_bytes().iter().enumerate() {
-            if sig.contains_key(c) {
-                filtered.push(i);
-                bytes.push(*c);
+        for (i, &c) in s.as_bytes().iter().enumerate() {
+            if sig[c as usize] > 0 {
+                filtered.push((i, c));
             }
         }
 
@@ -26,23 +24,34 @@ impl Solution {
         let mut min = usize::MAX;
         let mut result = None;
 
-        for right in 0..bytes.len() {
-            *sig.entry(bytes[right]).or_default() -= 1;
+        let mut window = [0; 256];
+        let mut valid = 0;
 
-            while sig.values().all(|v| v <= &0) {
-                let len = filtered[right] - filtered[left] + 1;
+        for (right, &(i, c)) in filtered.iter().enumerate() {
+            window[c as usize] += 1;
+
+            if sig[c as usize] > 0 && window[c as usize] == sig[c as usize] {
+                valid += 1;
+            }
+
+            while valid == required {
+                let len = i - filtered[left].0 + 1;
                 if len < min {
                     min = len;
                     result = Some((left, right));
                 }
-                *sig.entry(bytes[left]).or_default() += 1;
+                let c = filtered[left].1 as usize;
+                window[c] -= 1;
+                if sig[c as usize] > 0 && window[c as usize] < sig[c as usize] {
+                    valid -= 1;
+                }
                 left += 1;
             }
         }
 
         if let Some((left, right)) = result {
-            let left = filtered[left];
-            let right = filtered[right];
+            let left = filtered[left].0;
+            let right = filtered[right].0;
             s[left..=right].to_string()
         } else {
             "".to_string()
