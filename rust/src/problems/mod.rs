@@ -863,6 +863,7 @@ pub mod p76;
 pub mod p761;
 pub mod p762;
 pub mod p763;
+pub mod p766;
 pub mod p768;
 pub mod p769;
 pub mod p77;
