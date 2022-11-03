@@ -19,7 +19,7 @@ impl Solution {
                 let mid = a + (b - a + 1) / 2;
                 let left = build_tree(head, a, mid - 1);
                 let h = head.unwrap();
-                let val = (*h).val;
+                let val = h.val;
                 *head = h.next.as_deref();
                 let right = build_tree(head, mid + 1, b);
 

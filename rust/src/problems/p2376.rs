@@ -13,7 +13,7 @@ impl Solution {
             is_start: bool,
         ) -> i32 {
             if i == dp.len() {
-                return if is_start { 0 } else { 1 };
+                return i32::from(!is_start);
             }
             if is_smaller && !is_start && dp[i][mask as usize] >= 0 {
                 return dp[i][mask as usize];
@@ -22,7 +22,7 @@ impl Solution {
             if is_start {
                 result = dfs(dp, digits, i + 1, mask, true, true);
             }
-            let lb = if is_start { 1 } else { 0 };
+            let lb = u8::from(is_start);
             let digit = digits[i] - b'0';
             let ub = if is_smaller { 9 } else { digit };
             for d in lb..=ub {

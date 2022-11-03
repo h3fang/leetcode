@@ -22,7 +22,7 @@ impl Solution {
         let month = parts.next().unwrap().parse::<i32>().unwrap();
         let day = parts.next().unwrap().parse::<i32>().unwrap();
         let leap_year = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
-        DAYS[month as usize - 1] + day + if month >= 3 && leap_year { 1 } else { 0 }
+        DAYS[month as usize - 1] + day + i32::from(month >= 3 && leap_year)
     }
 }
 

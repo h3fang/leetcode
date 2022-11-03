@@ -2,7 +2,7 @@ pub struct Solution;
 
 impl Solution {
     pub fn distribute_cookies(mut cookies: Vec<i32>, k: i32) -> i32 {
-        fn distribute(cookies: &[i32], i: usize, dist: &mut [i32], k: i32, max: i32) -> bool {
+        fn distribute(cookies: &[i32], i: usize, dist: &mut [i32], max: i32) -> bool {
             if i == cookies.len() {
                 return true;
             }
@@ -10,7 +10,7 @@ impl Solution {
             for j in 0..dist.len() {
                 if dist[j] + c <= max {
                     dist[j] += c;
-                    if distribute(cookies, i + 1, dist, k, max) {
+                    if distribute(cookies, i + 1, dist, max) {
                         return true;
                     }
                     dist[j] -= c;
@@ -25,7 +25,7 @@ impl Solution {
         while left <= right {
             let mid = left + (right - left) / 2;
             let mut dist = vec![0; k as usize];
-            if distribute(&cookies, 0, &mut dist, k, mid) {
+            if distribute(&cookies, 0, &mut dist, mid) {
                 result = mid;
                 right = mid - 1;
             } else {

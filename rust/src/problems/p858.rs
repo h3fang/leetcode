@@ -15,11 +15,7 @@ impl Solution {
         let m = lcm / p;
         let n = lcm / q;
         if n % 2 == 1 {
-            if m % 2 == 1 {
-                1
-            } else {
-                0
-            }
+            i32::from(m % 2 == 1)
         } else {
             2
         }

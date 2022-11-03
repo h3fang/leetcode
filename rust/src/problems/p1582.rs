@@ -5,7 +5,7 @@ impl Solution {
         let m = mat.len();
         let n = mat[0].len();
         for i in 0..m {
-            let sum = mat[i].iter().sum::<i32>() - if i == 0 { 1 } else { 0 };
+            let sum = mat[i].iter().sum::<i32>() - i32::from(i == 0);
             if sum > 0 {
                 for j in 0..n {
                     if mat[i][j] == 1 {

@@ -4,7 +4,7 @@ impl Solution {
     pub fn max_score(s: String) -> i32 {
         let s = s.as_bytes();
         let mut score =
-            if s[0] == b'0' { 1 } else { 0 } + s[1..].iter().filter(|&&b| b == b'1').count() as i32;
+            i32::from(s[0] == b'0') + s[1..].iter().filter(|&&b| b == b'1').count() as i32;
         let mut result = score;
         for &b in &s[1..s.len() - 1] {
             if b == b'1' {

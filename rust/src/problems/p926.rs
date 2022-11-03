@@ -6,8 +6,8 @@ impl Solution {
         let mut dp0 = 0;
         let mut dp1 = 0;
         for &b in s {
-            let d0 = dp0 + if b == b'1' { 1 } else { 0 };
-            let d1 = dp0.min(dp1 + if b == b'1' { 0 } else { 1 });
+            let d0 = dp0 + i32::from(b == b'1');
+            let d1 = dp0.min(dp1 + i32::from(b == b'0'));
             dp0 = d0;
             dp1 = d1;
         }

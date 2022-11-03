@@ -43,22 +43,22 @@ impl LRUCache {
             unsafe {
                 let node = node.as_mut();
                 // is head
-                if (*(*node).prev).key == -1 {
-                    return (*node).value;
+                if (*node.prev).key == -1 {
+                    return node.value;
                 }
 
                 // remove node
-                (*(*node).prev).next = (*node).next;
-                (*(*node).next).prev = (*node).prev;
+                (*node.prev).next = node.next;
+                (*node.next).prev = node.prev;
 
                 // insert head
                 let head = self.dummy_head.next;
                 self.dummy_head.next = node;
-                (*node).prev = self.dummy_head.as_mut();
+                node.prev = self.dummy_head.as_mut();
                 (*head).prev = node;
-                (*node).next = head;
+                node.next = head;
 
-                (*node).value
+                node.value
             }
         } else {
             -1
@@ -68,22 +68,22 @@ impl LRUCache {
     pub fn put(&mut self, key: i32, value: i32) {
         if let Some(node) = self.map.get_mut(&key) {
             unsafe {
-                (*node).value = value;
+                node.value = value;
                 // is head
-                if (*(*node).prev).key == -1 {
+                if (*node.prev).key == -1 {
                     return;
                 }
 
                 // remove node
-                (*(*node).prev).next = (*node).next;
-                (*(*node).next).prev = (*node).prev;
+                (*node.prev).next = node.next;
+                (*node.next).prev = node.prev;
 
                 // insert head
                 let head = self.dummy_head.next;
                 self.dummy_head.next = node.as_mut();
-                (*node).prev = self.dummy_head.as_mut();
+                node.prev = self.dummy_head.as_mut();
                 (*head).prev = node.as_mut();
-                (*node).next = head;
+                node.next = head;
             }
         } else {
             if self.map.len() == self.capacity {

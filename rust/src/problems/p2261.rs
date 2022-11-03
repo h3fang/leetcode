@@ -6,7 +6,7 @@ impl Solution {
     pub fn count_distinct(nums: Vec<i32>, k: i32, p: i32) -> i32 {
         let valid = nums
             .iter()
-            .map(|&n| if n % p == 0 { 1 } else { 0 })
+            .map(|&n| i32::from(n % p == 0))
             .collect::<Vec<_>>();
         let mut s = HashSet::new();
         for left in 0..nums.len() {

@@ -16,8 +16,8 @@ impl MyCalendarTwo {
         }
         if start <= l && end >= r {
             let e = self.tree.entry(idx).or_default();
-            (*e).0 += val;
-            (*e).1 += val;
+            e.0 += val;
+            e.1 += val;
         } else {
             let mid = l + (r - l) / 2;
             self.update(start, end, val, l, mid, 2 * idx);

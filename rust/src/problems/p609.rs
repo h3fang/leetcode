@@ -4,7 +4,7 @@ use std::collections::HashMap;
 
 impl Solution {
     pub fn find_duplicate(paths: Vec<String>) -> Vec<Vec<String>> {
-        let mut m = HashMap::new();
+        let mut m: HashMap<String, Vec<String>> = HashMap::new();
         for dir in paths {
             let mut parts = dir.split_ascii_whitespace();
             let d = parts.next().unwrap();
@@ -12,7 +12,7 @@ impl Solution {
                 let (name, content) = file.split_once('(').unwrap();
                 let p = d.to_string() + "/" + name;
                 let content = content[..content.len() - 1].to_string();
-                m.entry(content).or_insert(vec![]).push(p);
+                m.entry(content).or_default().push(p);
             }
         }
         m.into_values().filter(|g| g.len() > 1).collect()

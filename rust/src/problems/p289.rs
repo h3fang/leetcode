@@ -10,7 +10,7 @@ impl Solution {
                 let neighbors = (i.saturating_sub(1)..=(i + 1).min(m - 1))
                     .map(|i1| {
                         (j.saturating_sub(1)..=(j + 1).min(n - 1))
-                            .map(|j1| if board[i1][j1].abs() == 1 { 1 } else { 0 })
+                            .map(|j1| i32::from(board[i1][j1].abs() == 1))
                             .sum::<i32>()
                     })
                     .sum::<i32>()

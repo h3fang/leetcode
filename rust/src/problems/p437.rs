@@ -11,7 +11,7 @@ impl Solution {
                 None => 0,
                 Some(node) => {
                     let n = node.borrow();
-                    let r = if n.val == target_sum { 1 } else { 0 };
+                    let r = i32::from(n.val == target_sum);
                     r + dfs(n.left.as_ref(), target_sum - n.val)
                         + dfs(n.right.as_ref(), target_sum - n.val)
                 }
