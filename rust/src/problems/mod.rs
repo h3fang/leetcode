@@ -582,6 +582,7 @@ pub mod p2433;
 pub mod p2434;
 pub mod p2435;
 pub mod p258;
+pub mod p26;
 pub mod p260;
 pub mod p264;
 pub mod p268;
