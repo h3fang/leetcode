@@ -893,6 +893,7 @@ pub mod p786;
 pub mod p788;
 pub mod p79;
 pub mod p790;
+pub mod p791;
 pub mod p792;
 pub mod p793;
 pub mod p794;
