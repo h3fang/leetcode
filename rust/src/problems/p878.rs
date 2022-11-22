@@ -2,7 +2,7 @@ pub struct Solution;
 
 impl Solution {
     pub fn nth_magical_number(n: i32, a: i32, b: i32) -> i32 {
-        fn gcd(x: i32, y: i32) -> i32 {
+        fn gcd(x: i64, y: i64) -> i64 {
             if x == 0 {
                 y
             } else {
@@ -10,25 +10,24 @@ impl Solution {
             }
         }
 
-        let g = gcd(a, b);
-        let a = (a / g) as i64;
-        let b = (b / g) as i64;
-        let m = a + b - 1;
-        let q = n as i64 / m;
-        let r = n as i64 % m;
+        let n = n as i64;
+        let a = a as i64;
+        let b = b as i64;
+        let c = a * b / gcd(a, b);
 
         let mut left = 0;
-        let mut right = a * b;
+        let mut right = a.min(b) * n;
         while left < right {
             let mid = (left + right) / 2;
-            if mid / a + mid / b < r {
+            let count = mid / a + mid / b - mid / c;
+            if count < n {
                 left = mid + 1;
             } else {
                 right = mid;
             }
         }
 
-        (((left + q * a * b) * g as i64) % 10_0000_0007) as i32
+        (right % 10_0000_0007) as i32
     }
 }
 
