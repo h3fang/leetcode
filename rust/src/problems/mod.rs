@@ -263,6 +263,7 @@ pub mod p173;
 pub mod p1732;
 pub mod p1742;
 pub mod p1748;
+pub mod p1752;
 pub mod p1763;
 pub mod p1765;
 pub mod p1768;
