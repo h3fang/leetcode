@@ -1,24 +1,26 @@
-use std::collections::BTreeMap;
-
 pub struct Solution;
+
+use std::collections::HashMap;
 
 impl Solution {
     pub fn find_winners(matches: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-        let mut winners = BTreeMap::new();
+        let mut lost = HashMap::new();
         for m in matches {
-            let _ = winners.entry(m[0]).or_insert(0);
-            *winners.entry(m[1]).or_default() += 1;
+            lost.entry(m[0]).or_insert(0);
+            *lost.entry(m[1]).or_default() += 1;
         }
-        let mut win = vec![];
-        let mut lost = vec![];
-        for (k, v) in winners {
+        let mut win = Vec::with_capacity(lost.len());
+        let mut lost_once = Vec::with_capacity(lost.len());
+        for (k, v) in lost {
             if v == 0 {
                 win.push(k);
             } else if v == 1 {
-                lost.push(k);
+                lost_once.push(k);
             }
         }
-        vec![win, lost]
+        win.sort_unstable();
+        lost_once.sort_unstable();
+        vec![win, lost_once]
     }
 }
 
