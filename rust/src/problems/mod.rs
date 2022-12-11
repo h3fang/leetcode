@@ -290,6 +290,7 @@ pub mod p1812;
 pub mod p1816;
 pub mod p1822;
 pub mod p1823;
+pub mod p1827;
 pub mod p1832;
 pub mod p187;
 pub mod p188;
