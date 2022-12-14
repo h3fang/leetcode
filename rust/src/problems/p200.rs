@@ -32,12 +32,12 @@ impl DisjointSetUnion {
         self.merged += 1;
 
         match self.rank[px].cmp(&self.rank[py]) {
-            std::cmp::Ordering::Less => self.parent[px] = py,
+            std::cmp::Ordering::Less => self.parent[py] = px,
             std::cmp::Ordering::Equal => {
                 self.parent[px] = py;
                 self.rank[py] += 1;
             }
-            std::cmp::Ordering::Greater => self.parent[py] = px,
+            std::cmp::Ordering::Greater => self.parent[px] = py,
         }
     }
 }
