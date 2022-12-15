@@ -301,6 +301,7 @@ pub mod p19;
 pub mod p190;
 pub mod p191;
 pub mod p1926;
+pub mod p1945;
 pub mod p198;
 pub mod p1984;
 pub mod p199;
