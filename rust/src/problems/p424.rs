@@ -10,7 +10,7 @@ impl Solution {
             count[i] += 1;
             max = max.max(count[i]);
             if right - left + 1 > max + k as usize {
-                let j = (s.as_bytes()[left] as u8 - b'A') as usize;
+                let j = (s.as_bytes()[left] - b'A') as usize;
                 count[j] -= 1;
                 left += 1;
             }

@@ -17,7 +17,7 @@ impl Solution {
             .into_iter()
             .enumerate()
             .rev()
-            .fold(0i64, |acc, (i, (d, _))| acc + d as i64 * (i + 1) as i64) as i64
+            .fold(0i64, |acc, (i, (d, _))| acc + d as i64 * (i + 1) as i64)
     }
 }
 

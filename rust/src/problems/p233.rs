@@ -5,7 +5,7 @@ impl Solution {
         let mut result = 0;
         let mut k = 1;
         while n >= k {
-            result += (n / (k * 10)) * k + (n % (k * 10) - k + 1).max(0).min(k);
+            result += (n / (k * 10)) * k + (n % (k * 10) - k + 1).clamp(0, k);
             k *= 10;
         }
         result

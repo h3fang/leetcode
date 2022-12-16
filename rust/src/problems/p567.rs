@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn check_inclusion(s1: String, s2: String) -> bool {
         fn index(c: u8) -> usize {
-            (c as u8 - b'a') as usize
+            (c - b'a') as usize
         }
 
         if s2.len() < s1.len() {

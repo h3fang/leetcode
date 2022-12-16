@@ -30,7 +30,7 @@ impl Solution {
             if let Some(node) = root {
                 let n = node.borrow();
                 result[row as usize][col as usize] = n.val.to_string();
-                let p = 1 << (h - row - 1).min(10).max(0);
+                let p = 1 << (h - row - 1).clamp(0, 10);
                 dfs(n.left.as_ref(), result, h, row + 1, col - p);
                 dfs(n.right.as_ref(), result, h, row + 1, col + p);
             }

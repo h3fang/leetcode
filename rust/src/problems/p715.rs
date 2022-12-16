@@ -10,12 +10,12 @@ struct Node {
 
 impl Node {
     fn push_down(&mut self) {
-        let left = self.left.get_or_insert_with(|| Box::new(Node::default()));
+        let left = self.left.get_or_insert_with(Box::default);
         if self.lazy != 0 {
             left.covered = self.lazy == 1;
             left.lazy = self.lazy;
         }
-        let right = self.right.get_or_insert_with(|| Box::new(Node::default()));
+        let right = self.right.get_or_insert_with(Box::default);
         if self.lazy != 0 {
             right.covered = self.lazy == 1;
             right.lazy = self.lazy;

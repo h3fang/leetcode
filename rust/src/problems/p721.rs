@@ -145,8 +145,8 @@ impl Solution {
         }
 
         result
-            .into_iter()
-            .map(|(_, mut emails)| {
+            .into_values()
+            .map(|mut emails| {
                 emails.sort_unstable();
                 let name = email_names.get(&emails[0]).unwrap();
                 emails.insert(0, name.to_string());

@@ -15,7 +15,7 @@ impl SuffixTrie {
             let i = (c - b'a') as usize;
             if t.next[i].is_none() {
                 t.n_children += 1;
-                t.next[i] = Some(Box::new(SuffixTrie::default()));
+                t.next[i] = Some(Box::default());
             }
             t = t.next[i].as_mut().unwrap();
         }

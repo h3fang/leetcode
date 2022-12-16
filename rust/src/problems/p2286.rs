@@ -82,7 +82,7 @@ impl BookMyShow {
 
     pub fn scatter(&mut self, mut k: i32, max_row: i32) -> bool {
         let total = self.m as i64 * (max_row as i64 + 1);
-        if (total - self.query(0, max_row) as i64) < (k as i64) {
+        if (total - self.query(0, max_row)) < (k as i64) {
             return false;
         }
         let mut i = self.index(max_row, 0, self.n - 1, 1, self.m - 1);

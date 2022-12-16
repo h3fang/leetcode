@@ -16,8 +16,8 @@ impl Solution {
             let mut result = 0;
             let mut h = [0; 7];
             for (i, (n1, n2)) in f1.iter().zip(f2).enumerate().skip(1) {
-                h[6 - i as usize] += n1;
-                h[i as usize - 1] += n2;
+                h[6 - i] += n1;
+                h[i - 1] += n2;
             }
             for i in (0..6).rev() {
                 if diff <= 0 {

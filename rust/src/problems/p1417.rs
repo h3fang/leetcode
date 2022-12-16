@@ -15,7 +15,7 @@ impl Solution {
                 result.push(b);
             }
             if digits.len() < lower.len() {
-                result.push(*lower.last().unwrap() as char);
+                result.push(*lower.last().unwrap());
             }
             result
         }

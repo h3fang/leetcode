@@ -13,12 +13,12 @@ impl Solution {
         let mut j = 0;
         for i in 0..s.len() as i32 {
             let k = if j > 0 {
-                (pos[j] - i).abs().min((pos[j - 1] - i as i32).abs())
+                (pos[j] - i).abs().min((pos[j - 1] - i).abs())
             } else {
-                (pos[j] - i as i32).abs()
+                (pos[j] - i).abs()
             };
             result.push(k);
-            if i as i32 == pos[j] && j + 1 < pos.len() {
+            if i == pos[j] && j + 1 < pos.len() {
                 j += 1;
             }
         }

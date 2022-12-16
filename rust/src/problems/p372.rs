@@ -21,7 +21,7 @@ impl Solution {
         for n in b {
             result = ((pow(result, 10) * pow(a, n)) % MOD) as i32;
         }
-        result as i32
+        result
     }
 }
 

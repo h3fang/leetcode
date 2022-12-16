@@ -11,7 +11,7 @@ impl Solution {
         };
         let start = start as usize;
         for (i, d) in distance.iter().enumerate() {
-            if i >= start as usize && i < dest as usize {
+            if i >= start && i < dest as usize {
                 cw += d;
             }
             sum += d;

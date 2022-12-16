@@ -12,7 +12,7 @@ impl Solution {
                 None => 0,
                 Some(node) => {
                     let n = node.borrow();
-                    let curr = curr * 10 + n.val as i32;
+                    let curr = curr * 10 + n.val;
                     if n.left.is_none() && n.right.is_none() {
                         curr
                     } else {

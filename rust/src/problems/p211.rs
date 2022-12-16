@@ -9,7 +9,7 @@ impl Trie {
         if let Some(b) = word.first() {
             let i = (b - b'a') as usize;
             if self.next[i].is_none() {
-                self.next[i] = Some(Box::new(Trie::default()));
+                self.next[i] = Some(Box::default());
             }
             if let Some(t) = &mut self.next[i] {
                 t.insert(&word[1..]);

@@ -11,7 +11,7 @@ impl Solution {
             }
             boxes[j as usize] += 1;
         });
-        *boxes.iter().max().unwrap() as i32
+        *boxes.iter().max().unwrap()
     }
 }
 

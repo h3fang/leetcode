@@ -22,7 +22,7 @@ impl Solution {
                 result += 1;
             }
         }
-        result as i32
+        result
     }
 }
 

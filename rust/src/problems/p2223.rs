@@ -13,7 +13,7 @@ impl Solution {
                     z[i] = z[i - l];
                 } else {
                     z[i] = if r + 1 < i { 0 } else { r + 1 - i };
-                    while i + z[i] < n && s[z[i] as usize] == s[i + z[i] as usize] {
+                    while i + z[i] < n && s[z[i]] == s[i + z[i]] {
                         z[i] += 1;
                     }
                 }

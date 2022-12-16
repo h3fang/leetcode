@@ -17,7 +17,7 @@ impl Solution {
                     let mut outside = HashSet::new();
                     let mut edge = 0;
                     let mut q = VecDeque::new();
-                    q.push_back((i as i8, j as i8));
+                    q.push_back((i, j));
                     while let Some((i, j)) = q.pop_front() {
                         if g[i as usize][j as usize] != 1 {
                             if g[i as usize][j as usize] == 0 {

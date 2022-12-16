@@ -72,7 +72,7 @@ impl Solution {
                 &nums1[zero[0] + negative[0]..],
                 &nums2[..negative[1]],
                 &nums2[zero[1] + negative[1]..],
-                ne - k as usize + 1,
+                ne - k + 1,
             )
         } else {
             helper(
@@ -80,7 +80,7 @@ impl Solution {
                 &nums1[..negative[0]],
                 &nums2[..negative[1]],
                 &nums2[zero[1] + negative[1]..],
-                k as usize - (ne + ze),
+                k - (ne + ze),
             )
         }
     }

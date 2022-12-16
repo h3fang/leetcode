@@ -14,7 +14,7 @@ impl Trie {
     fn insert(&mut self, w: &[u8]) {
         let mut t = self;
         for b in w {
-            t = t.next[(b - b'a') as usize].get_or_insert_with(|| Box::new(Trie::default()));
+            t = t.next[(b - b'a') as usize].get_or_insert_with(Box::default);
             t.score += 1;
         }
     }

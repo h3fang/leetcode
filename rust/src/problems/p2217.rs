@@ -4,7 +4,7 @@ impl Solution {
     pub fn kth_palindrome(queries: Vec<i32>, int_length: i32) -> Vec<i64> {
         fn helper(q: i32, len: i32, inner: bool) -> i64 {
             let c = 10i32.pow((len + 1) as u32 / 2 - 1);
-            let i = (q - 1) / c + if inner { 0 } else { 1 };
+            let i = (q - 1) / c + i32::from(!inner);
             if i > 9 {
                 return -1;
             }
@@ -18,7 +18,7 @@ impl Solution {
                 }
                 2 => {
                     let q = if inner { q as i64 - 1 } else { q as i64 };
-                    (q * 10 + q) as i64
+                    q * 10 + q
                 }
                 len => {
                     i as i64 * 10i64.pow(len as u32 - 1)

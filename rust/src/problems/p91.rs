@@ -6,7 +6,7 @@ impl Solution {
         let n = s.len();
         let mut dp = vec![0; n + 1];
         dp[n] = 1;
-        dp[n - 1] = if bytes[n - 1] == b'0' { 0 } else { 1 };
+        dp[n - 1] = i32::from(bytes[n - 1] != b'0');
 
         for i in (0..n - 1).rev() {
             match bytes[i] {

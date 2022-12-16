@@ -8,7 +8,7 @@ impl Solution {
             let i = (b + a) / 2;
             match nums[i as usize].cmp(&target) {
                 std::cmp::Ordering::Less => a = i + 1,
-                std::cmp::Ordering::Equal => return i as i32,
+                std::cmp::Ordering::Equal => return i,
                 std::cmp::Ordering::Greater => b = i - 1,
             }
         }

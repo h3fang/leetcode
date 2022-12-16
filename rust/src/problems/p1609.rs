@@ -19,7 +19,7 @@ impl Solution {
             for i in 0..n {
                 let node = q.pop_front().unwrap();
                 let mut curr = node.borrow_mut();
-                if curr.val % 2 != if odd { 0 } else { 1 } {
+                if curr.val % 2 != i32::from(!odd) {
                     return false;
                 }
                 if i > 0 {

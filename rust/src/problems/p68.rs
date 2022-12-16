@@ -9,7 +9,7 @@ impl Solution {
         while i < words.len() {
             if row_width == 0 || row_width + 1 + words[i].len() <= max_width as usize {
                 row.push(words[i].as_str());
-                row_width += if row_width == 0 { 0 } else { 1 };
+                row_width += usize::from(row_width != 0);
                 row_width += words[i].len();
                 i += 1;
             } else {

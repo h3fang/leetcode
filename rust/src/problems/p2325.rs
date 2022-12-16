@@ -10,7 +10,7 @@ impl Solution {
             }
             let j = (b - b'a') as usize;
             if map[j] == -1 {
-                map[j] = i as i32;
+                map[j] = i;
                 i += 1;
             }
         }

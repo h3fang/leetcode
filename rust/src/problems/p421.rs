@@ -12,10 +12,10 @@ impl Trie {
         for i in (0..=30).rev() {
             let bit = (num >> i) & 1;
             if bit == 0 {
-                t.left = Some(t.left.take().unwrap_or_else(|| Box::new(Trie::default())));
+                t.left = Some(t.left.take().unwrap_or_default());
                 t = t.left.as_mut().unwrap();
             } else {
-                t.right = Some(t.right.take().unwrap_or_else(|| Box::new(Trie::default())));
+                t.right = Some(t.right.take().unwrap_or_default());
                 t = t.right.as_mut().unwrap();
             }
         }

@@ -9,9 +9,9 @@ impl Solution {
             let mut x = 3u64;
             while a > 0 {
                 if a % 2 == 1 {
-                    r = (r * x) % P as u64;
+                    r = (r * x) % P;
                 }
-                x = (x * x) % P as u64;
+                x = (x * x) % P;
                 a /= 2;
             }
             r

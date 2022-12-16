@@ -42,7 +42,7 @@ impl Solution {
                 }
                 let c = filtered[left].1 as usize;
                 window[c] -= 1;
-                if sig[c as usize] > 0 && window[c as usize] < sig[c as usize] {
+                if sig[c] > 0 && window[c] < sig[c] {
                     valid -= 1;
                 }
                 left += 1;

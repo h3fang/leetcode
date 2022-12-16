@@ -18,7 +18,7 @@ impl Solution {
                 }
             }
         }
-        dp[m as usize][n as usize]
+        dp[m][n]
     }
 }
 

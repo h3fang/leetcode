@@ -12,7 +12,7 @@ impl Solution {
             let mut q = vec![i];
             while let Some(node) = q.pop() {
                 let c = colors[node];
-                for &next in &graph[node as usize] {
+                for &next in &graph[node] {
                     let next = next as usize;
                     if colors[next] == c {
                         return false;

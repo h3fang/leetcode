@@ -16,7 +16,7 @@ impl Solution {
                 let mut p = 0;
                 while a <= b {
                     let mid = a + (b - a) / 2;
-                    match d[mid as usize].cmp(&e) {
+                    match d[mid].cmp(&e) {
                         std::cmp::Ordering::Less => {
                             p = mid;
                             a = mid + 1;

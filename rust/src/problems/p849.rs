@@ -19,7 +19,7 @@ impl Solution {
             }
         }
 
-        result as i32
+        result
     }
 }
 

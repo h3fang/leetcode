@@ -35,7 +35,7 @@ impl Solution {
         let mut j = flowers.len() - 1;
         while flowers[j] == target {
             if j == 0 {
-                return full as i64 * n;
+                return full * n;
             }
             j -= 1;
         }
@@ -54,8 +54,7 @@ impl Solution {
             let idx = j.min(bisec_right(&cost, new_flowers) - 1);
             let top = (flowers[idx] as i64 + (new_flowers - cost[idx]) / (idx as i64 + 1))
                 .min(target as i64 - 1);
-            result =
-                result.max(full as i64 * (flowers.len() - j - 1) as i64 + partial as i64 * top);
+            result = result.max(full * (flowers.len() - j - 1) as i64 + partial * top);
             new_flowers -= (target - flowers[j]) as i64;
             if j == 0 {
                 break;

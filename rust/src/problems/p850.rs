@@ -41,7 +41,7 @@ impl Solution {
             let h: i64 = seg
                 .iter()
                 .enumerate()
-                .map(|(k, &s)| (s.max(0).min(1) * (ys[k + 1] - ys[k])) as i64)
+                .map(|(k, &s)| (s.clamp(0, 1) * (ys[k + 1] - ys[k])) as i64)
                 .sum();
             result += h * (sweep_lines[j + 1].0 - sweep_lines[j].0) as i64;
             i = j + 1;

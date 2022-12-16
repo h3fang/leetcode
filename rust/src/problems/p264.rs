@@ -21,7 +21,7 @@ impl Solution {
                 five += 1;
             }
         }
-        dp[n as usize] as i32
+        dp[n]
     }
 }
 

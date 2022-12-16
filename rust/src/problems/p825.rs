@@ -12,9 +12,9 @@ impl Solution {
         }
         let mut result = 0;
         for age in 15..=120 {
-            if count[age as usize] > 0 {
+            if count[age] > 0 {
                 let lb = age / 2 + 7 + 1;
-                result += (prefix[age] - prefix[lb - 1] - 1) * count[age as usize];
+                result += (prefix[age] - prefix[lb - 1] - 1) * count[age];
             }
         }
         result

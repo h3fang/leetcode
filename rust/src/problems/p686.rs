@@ -23,7 +23,7 @@ impl Solution {
             j = 0;
             while i - j < m {
                 while j > 0 && a[i % m] != b[j] {
-                    j = p[(j - 1) as usize];
+                    j = p[j - 1];
                 }
                 if a[i % m] == b[j] {
                     j += 1;

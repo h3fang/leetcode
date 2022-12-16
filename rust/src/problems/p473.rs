@@ -11,7 +11,7 @@ impl Solution {
             return false;
         }
         let n_states = 1 << matchsticks.len();
-        let mut dp = vec![-1; n_states as usize];
+        let mut dp = vec![-1; n_states];
         dp[0] = 0;
 
         for s in 1..n_states {
@@ -26,7 +26,7 @@ impl Solution {
                 }
             }
         }
-        dp[n_states as usize - 1] == 0
+        dp[n_states - 1] == 0
     }
 }
 

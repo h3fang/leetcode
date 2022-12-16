@@ -54,7 +54,7 @@ impl Solution {
                 result = result.max(two.min(five));
             }
         }
-        result as i32
+        result
     }
 }
 
