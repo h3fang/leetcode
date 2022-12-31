@@ -24,31 +24,20 @@ impl Solution {
                 _ => {}
             }
         }
-        let mut result = 0;
-        let mut i = 0;
-        let mut j = 0;
-        'outter: for a in 0..grid.len() {
-            for b in 0..grid[0].len() {
-                if grid[a][b] == 1 {
-                    i = a;
-                    j = b;
-                    break 'outter;
+        fn find_start(grid: &mut [Vec<i32>]) -> (usize, usize) {
+            for (i, row) in grid.iter_mut().enumerate() {
+                for (j, c) in row.iter_mut().enumerate() {
+                    if *c == 1 {
+                        *c = 0;
+                        return (i, j);
+                    }
                 }
             }
+            unreachable!()
         }
-
-        if i > 0 {
-            dfs(&mut grid, i - 1, j, &mut result);
-        }
-        if i + 1 < grid.len() {
-            dfs(&mut grid, i + 1, j, &mut result);
-        }
-        if j > 0 {
-            dfs(&mut grid, i, j - 1, &mut result);
-        }
-        if j + 1 < grid[0].len() {
-            dfs(&mut grid, i, j + 1, &mut result);
-        }
+        let mut result = 0;
+        let (i, j) = find_start(&mut grid);
+        dfs(&mut grid, i, j, &mut result);
         result
     }
 }
