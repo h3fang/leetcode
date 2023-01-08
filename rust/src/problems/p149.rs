@@ -21,9 +21,6 @@ impl Solution {
             let dx = p2[0] - p1[0];
 
             for (k, p3) in points.iter().enumerate().skip(j + 1) {
-                if k == i || k == j {
-                    continue;
-                }
                 if (result + points.len() - k) < curr_max {
                     break;
                 }
