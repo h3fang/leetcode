@@ -6,7 +6,6 @@ impl Solution {
         for b in text.as_bytes() {
             c[(b - b'a') as usize] += 1;
         }
-        println!("{:?}", c);
         let mut n = c[1];
         n = n.min(c[0]);
         n = n.min(c[(b'l' - b'a') as usize] / 2);

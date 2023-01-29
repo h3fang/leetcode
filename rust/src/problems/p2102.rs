@@ -44,8 +44,6 @@ impl SORTracker {
         } else {
             self.right.push(s);
         }
-
-        println!("{}", self);
     }
 
     pub fn get(&mut self) -> String {

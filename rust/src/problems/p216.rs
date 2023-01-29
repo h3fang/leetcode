@@ -17,7 +17,6 @@ impl Solution {
                 return;
             }
             bt(k, n, i + 1, used, result);
-            println!("{} {} {:b}", k, n, used);
             bt(k, n - i, i + 1, used | (1 << i), result);
         }
         let mut result = vec![];
