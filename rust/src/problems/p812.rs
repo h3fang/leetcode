@@ -88,7 +88,7 @@ mod tests {
     }
 
     fn assert_close(a: f64, b: f64) {
-        println!("{} {}", a, b);
+        println!("{a} {b}");
         assert!((a - b).abs() < 1e-6)
     }
 

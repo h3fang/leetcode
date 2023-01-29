@@ -38,7 +38,7 @@ mod tests {
     use super::*;
 
     fn is_valid(s: &str) -> bool {
-        println!("{}", s);
+        println!("{s}");
         let mut left = 0;
         for c in s.chars() {
             match c {

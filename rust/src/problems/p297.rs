@@ -58,7 +58,7 @@ impl Codec {
                 } else {
                     Some(
                         t.parse::<i32>()
-                            .unwrap_or_else(|_| panic!("invalid node: {}", t)),
+                            .unwrap_or_else(|_| panic!("invalid node: {t}")),
                     )
                 }
             })

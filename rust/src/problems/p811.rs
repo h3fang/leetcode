@@ -16,7 +16,7 @@ impl Solution {
                 }
             }
         }
-        m.into_iter().map(|(k, v)| format!("{} {}", v, k)).collect()
+        m.into_iter().map(|(k, v)| format!("{v} {k}")).collect()
     }
 }
 

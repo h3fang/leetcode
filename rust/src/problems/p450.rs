@@ -66,9 +66,9 @@ mod tests {
             .unwrap()
             .borrow()
             .to_string();
-        println!("{}", result);
-        println!("{}", expected1);
-        println!("{}", expected2);
+        println!("{result}");
+        println!("{expected1}");
+        println!("{expected2}");
         assert!(result == expected1 || result == expected2);
     }
 
@@ -84,8 +84,8 @@ mod tests {
             .unwrap()
             .borrow()
             .to_string();
-        println!("{}", result);
-        println!("{}", expected1);
+        println!("{result}");
+        println!("{expected1}");
         assert!(result == expected1);
     }
 }

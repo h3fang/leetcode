@@ -26,7 +26,7 @@ impl Solution {
                 let ms = [arr[m1] * 10 + arr[m2], arr[m2] * 10 + arr[m1]];
                 for m in &ms {
                     if (0..60).contains(m) {
-                        return format!("{:02}:{:02}", h, m);
+                        return format!("{h:02}:{m:02}");
                     }
                 }
             }

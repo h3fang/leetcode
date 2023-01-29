@@ -100,13 +100,13 @@ impl fmt::Display for TreeNode {
             match n {
                 null => s += "null,",
                 x => {
-                    let _ = write!(s, "{},", x);
+                    let _ = write!(s, "{x},");
                 }
             }
         }
         s.pop();
         s.push(']');
-        write!(f, "{}", s)
+        write!(f, "{s}")
     }
 }
 
@@ -136,13 +136,13 @@ impl fmt::Display for LeetCodeTreeNodes {
             match *n {
                 null => s += "null,",
                 x => {
-                    let _ = write!(s, "{},", x);
+                    let _ = write!(s, "{x},");
                 }
             }
         }
         s.pop();
         s.push(']');
-        write!(f, "{}", s)
+        write!(f, "{s}")
     }
 }
 

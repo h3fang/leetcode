@@ -60,7 +60,7 @@ mod tests {
             }
         }
         let expected = 1.0 / points.len() as f64;
-        println!("{:?}", points);
+        println!("{points:?}");
         assert!(points.iter().all(|p| { (p - expected).abs() < 5e-2 }));
     }
 }

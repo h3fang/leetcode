@@ -38,7 +38,7 @@ mod tests {
         });
         for c in &count[1..] {
             let p = *c as f64 / N as f64;
-            println!("{}", p);
+            println!("{p}");
             assert!((p - 1.0 / 3.0).abs() < 5e-2);
         }
     }

@@ -61,7 +61,7 @@ mod tests {
     use super::*;
 
     fn assert_valid(s: &str, t: &str, ops: &[i32]) {
-        println!("{:?}", ops);
+        println!("{ops:?}");
         let s = s.as_bytes();
         let mut bytes = vec![0; t.len()];
         for &i in ops {

@@ -47,7 +47,7 @@ mod tests {
         let prerequisites = prerequisites.iter().map(|p| p.to_vec()).collect();
         let num_courses = 4;
         let result = Solution::find_order(num_courses, prerequisites);
-        println!("result {:?}", result);
+        println!("result {result:?}");
         assert!([vec![0, 2, 1, 3], vec![0, 1, 2, 3]].contains(&result));
     }
 }

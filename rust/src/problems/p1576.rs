@@ -23,7 +23,7 @@ mod tests {
     use super::*;
 
     fn is_valid(s: &str) -> bool {
-        println!("{}", s);
+        println!("{s}");
         !s.contains('?') && s.as_bytes().windows(2).all(|w| w[0] != w[1])
     }
 

@@ -59,10 +59,10 @@ impl SORTracker {
 impl std::fmt::Display for SORTracker {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         for s in self.left.iter().rev() {
-            write!(f, "{:?}", s)?
+            write!(f, "{s:?}")?
         }
         for s in &self.right {
-            write!(f, "{:?}", s)?
+            write!(f, "{s:?}")?
         }
         Ok(())
     }

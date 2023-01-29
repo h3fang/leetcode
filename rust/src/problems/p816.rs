@@ -26,7 +26,7 @@ impl Solution {
                     } else {
                         Cow::Borrowed(&s[c..n - 1])
                     };
-                    result.push(format!("({}, {})", x, y));
+                    result.push(format!("({x}, {y})"));
                 }
             }
         }
