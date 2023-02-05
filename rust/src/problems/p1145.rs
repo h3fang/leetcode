@@ -24,7 +24,7 @@ impl Solution {
         let mut a = [0; 3];
         dfs(root, &mut a, x, 0);
         let sum: i32 = a.iter().sum();
-        a.iter().fold(false, |ans, &i| ans || i > sum - i)
+        a.iter().any(|&i| i > sum - i)
     }
 }
 
