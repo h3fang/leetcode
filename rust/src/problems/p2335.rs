@@ -1,18 +1,12 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn fill_cups(mut amount: Vec<i32>) -> i32 {
-        amount.sort_unstable();
-        if amount[2] == 0 {
-            return 0;
-        }
-        if amount[1] > 0 {
-            amount[1] -= 1;
-            amount[2] -= 1;
-            1 + Self::fill_cups(amount)
+    pub fn fill_cups(mut a: Vec<i32>) -> i32 {
+        a.sort_unstable();
+        if a[0] + a[1] <= a[2] {
+            a[2]
         } else {
-            amount[2] -= 1;
-            1 + Self::fill_cups(amount)
+            (a[0] + a[1] + a[2] + 1) / 2
         }
     }
 }
