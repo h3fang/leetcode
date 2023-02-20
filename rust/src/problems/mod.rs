@@ -314,6 +314,7 @@ pub mod p1785;
 pub mod p179;
 pub mod p1790;
 pub mod p1791;
+pub mod p1792;
 pub mod p1796;
 pub mod p1797;
 pub mod p1798;
