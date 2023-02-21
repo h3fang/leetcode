@@ -152,6 +152,7 @@ pub mod p1306;
 pub mod p131;
 pub mod p132;
 pub mod p1323;
+pub mod p1326;
 pub mod p1328;
 pub mod p1329;
 pub mod p1331;
