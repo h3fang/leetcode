@@ -50,6 +50,7 @@ pub mod p1008;
 pub mod p1009;
 pub mod p101;
 pub mod p1010;
+pub mod p1011;
 pub mod p1015;
 pub mod p102;
 pub mod p1020;
