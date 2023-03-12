@@ -1153,6 +1153,7 @@ pub mod r0105;
 pub mod r0108;
 pub mod r0109;
 pub mod r0502;
+pub mod r1705;
 pub mod r1709;
 pub mod r1711;
 pub mod r1719;
