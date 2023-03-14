@@ -240,6 +240,7 @@ pub mod p1599;
 pub mod p16;
 pub mod p1601;
 pub mod p1604;
+pub mod p1605;
 pub mod p1606;
 pub mod p1608;
 pub mod p1609;
