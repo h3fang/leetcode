@@ -10,13 +10,7 @@ impl Solution {
         fn helper(inorder: &[i32], postorder: &[i32]) -> Option<Rc<RefCell<TreeNode>>> {
             postorder.last().map(|&root| {
                 let n = inorder.len();
-                let mut i = 0;
-                while i < n {
-                    if inorder[i] == root {
-                        break;
-                    }
-                    i += 1;
-                }
+                let i = inorder.iter().position(|&x| x == root).unwrap();
                 let left = helper(&inorder[..i], &postorder[..i]);
                 let right = helper(&inorder[i + 1..], &postorder[i..n - 1]);
                 Rc::new(RefCell::new(TreeNode {
