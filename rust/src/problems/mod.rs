@@ -42,6 +42,7 @@ pub mod o66;
 pub mod o9;
 pub mod p10;
 pub mod p100;
+pub mod p1000;
 pub mod p1001;
 pub mod p1002;
 pub mod p1005;
