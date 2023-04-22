@@ -1,24 +1,17 @@
-use std::collections::HashMap;
-
 pub struct Solution;
 
 impl Solution {
     pub fn longest_arith_seq_length(nums: Vec<i32>) -> i32 {
         let n = nums.len();
         let mut r = 0i32;
-        let mut dp = vec![HashMap::new(); n];
+        let mut dp = vec![[-1; 1001]; n];
         for i in 1..n {
             for j in 0..i {
                 let delta = nums[i] - nums[j];
-                let count = if dp[j].contains_key(&delta) {
-                    dp[j][&delta] + 1
-                } else {
-                    2
-                };
-                let e = dp[i].entry(delta).or_insert(0);
-                *e = (*e).max(count);
-
-                r = r.max(*e);
+                let d = (delta + 500) as usize;
+                let count = if dp[j][d] != -1 { dp[j][d] + 1 } else { 2 };
+                dp[i][d] = dp[i][d].max(count);
+                r = r.max(dp[i][d]);
             }
         }
         r
