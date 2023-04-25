@@ -1,27 +1,40 @@
-use std::collections::HashSet;
+use std::collections::BTreeSet;
 
-#[derive(Default)]
 pub struct SmallestInfiniteSet {
-    removed: HashSet<i32>,
+    min: i32,
+    added: BTreeSet<i32>,
 }
 
 impl SmallestInfiniteSet {
+    #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
-        Default::default()
+        Self {
+            min: 1,
+            added: Default::default(),
+        }
     }
 
     pub fn pop_smallest(&mut self) -> i32 {
-        for i in 1.. {
-            if !self.removed.contains(&i) {
-                self.removed.insert(i);
-                return i;
+        if let Some(i) = self.added.pop_first() {
+            match i.cmp(&self.min) {
+                std::cmp::Ordering::Less => i,
+                std::cmp::Ordering::Equal => {
+                    self.min += 1;
+                    i
+                }
+                std::cmp::Ordering::Greater => {
+                    self.min += 1;
+                    self.min - 1
+                }
             }
+        } else {
+            self.min += 1;
+            self.min - 1
         }
-        unreachable!()
     }
 
     pub fn add_back(&mut self, num: i32) {
-        self.removed.remove(&num);
+        self.added.insert(num);
     }
 }
 
