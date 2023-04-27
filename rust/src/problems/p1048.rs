@@ -1,25 +1,25 @@
-use std::collections::HashMap;
-
 pub struct Solution;
+
+use std::collections::HashMap;
 
 impl Solution {
     pub fn longest_str_chain(mut words: Vec<String>) -> i32 {
         words.sort_unstable_by_key(|w| w.as_bytes().len());
-        let mut dp: HashMap<&str, usize> = HashMap::new();
+        let mut dp: HashMap<&str, i32> = HashMap::new();
         let mut result = 0;
         for w in &words {
             let n = w.len();
+            let mut max = 0;
             for i in 0..n {
                 let mut w1 = String::with_capacity(n - 1);
                 w1 += &w[..i];
                 w1 += &w[i + 1..];
-                let len = *dp.get(&w1.as_str()).unwrap_or(&0) + 1;
-                let e = dp.entry(w).or_default();
-                *e = (*e).max(len);
+                max = max.max(dp.get(&w1.as_str()).cloned().unwrap_or(0));
             }
-            result = result.max(*dp.get(&w.as_str()).unwrap());
+            dp.insert(w, max + 1);
+            result = result.max(max + 1);
         }
-        result as i32
+        result
     }
 }
 
