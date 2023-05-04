@@ -2,55 +2,24 @@ pub struct Solution;
 
 impl Solution {
     pub fn max_total_fruits(fruits: Vec<Vec<i32>>, start_pos: i32, k: i32) -> i32 {
-        let n = fruits.len() as i32;
-        let curr = fruits.binary_search_by_key(&start_pos, |e| e[0]);
-        let p = curr.unwrap_or_else(|e| e);
+        fn step(fruits: &[Vec<i32>], start_pos: i32, left: usize, right: usize) -> i32 {
+            fruits[right][0] - fruits[left][0]
+                + (fruits[right][0] - start_pos)
+                    .abs()
+                    .min((start_pos - fruits[left][0]).abs())
+        }
+
+        let mut sum = 0;
         let mut result = 0;
-
-        // left then right
-        let mut lv = 0;
-        let mut rv = 0;
-        let mut l = p as i32 - 1;
-        let mut r = p as i32;
-        while l >= 0 && (k >= 2 * (start_pos - fruits[l as usize][0])) {
-            lv += fruits[l as usize][1];
-            l -= 1;
-        }
-        l += 1;
-        result = result.max(lv);
-        while r < n && (fruits[r as usize][0] - start_pos) <= k {
-            rv += fruits[r as usize][1];
-            let left = k - (fruits[r as usize][0] - start_pos);
-            r += 1;
-            while 2 * (start_pos - fruits[l as usize][0]) > left {
-                lv -= fruits[l as usize][1];
-                l += 1;
+        let mut left = 0;
+        for (right, f) in fruits.iter().enumerate() {
+            sum += f[1];
+            while left <= right && step(&fruits, start_pos, left, right) > k {
+                sum -= fruits[left][1];
+                left += 1;
             }
-            result = result.max(lv + rv);
+            result = result.max(sum);
         }
-
-        // right then left
-        lv = 0;
-        rv = 0;
-        l = p as i32 - 1;
-        r = p as i32;
-        while r < n && (k >= 2 * (fruits[r as usize][0] - start_pos)) {
-            rv += fruits[r as usize][1];
-            r += 1;
-        }
-        r -= 1;
-        result = result.max(rv);
-        while l >= 0 && (start_pos - fruits[l as usize][0]) <= k {
-            lv += fruits[l as usize][1];
-            let right = k - (start_pos - fruits[l as usize][0]);
-            l -= 1;
-            while 2 * (fruits[r as usize][0] - start_pos) > right {
-                rv -= fruits[r as usize][1];
-                r -= 1;
-            }
-            result = result.max(lv + rv);
-        }
-
         result
     }
 }
