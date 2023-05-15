@@ -90,6 +90,7 @@ pub mod p1053;
 pub mod p1054;
 pub mod p106;
 pub mod p1061;
+pub mod p1072;
 pub mod p1074;
 pub mod p1078;
 pub mod p108;
