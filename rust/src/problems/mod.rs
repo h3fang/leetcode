@@ -1060,6 +1060,7 @@ pub mod p783;
 pub mod p784;
 pub mod p785;
 pub mod p786;
+pub mod p787;
 pub mod p788;
 pub mod p79;
 pub mod p790;
