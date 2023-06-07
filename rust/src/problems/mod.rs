@@ -776,6 +776,7 @@ pub mod p2559;
 pub mod p258;
 pub mod p26;
 pub mod p260;
+pub mod p2611;
 pub mod p263;
 pub mod p264;
 pub mod p268;
