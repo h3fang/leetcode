@@ -13,34 +13,23 @@ impl ListNode {
         ListNode { next: None, val }
     }
 
-    pub fn append(&mut self, val: i32) {
-        match self.next {
-            Some(ref mut next) => next.append(val),
-            None => {
-                let node = Some(Box::new(ListNode::new(val)));
-                self.next = node;
-            }
-        }
-    }
-
     pub fn from_vec(vec: &[i32]) -> Option<Box<Self>> {
-        let mut head = ListNode::new(0);
-        for n in vec {
-            head.append(*n);
+        let mut tail = None;
+        for &val in vec.iter().rev() {
+            tail = Some(Box::new(ListNode { val, next: tail }));
         }
-        head.next
+        tail
     }
 }
 
 impl fmt::Display for ListNode {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let r = write!(f, "{}", self.val);
-        match self.next {
-            Some(ref next) => {
-                write!(f, "->")?;
-                next.fmt(f)
-            }
-            None => r,
+        write!(f, "{}", self.val)?;
+        if let Some(next) = &self.next {
+            write!(f, "->")?;
+            next.fmt(f)
+        } else {
+            Ok(())
         }
     }
 }
