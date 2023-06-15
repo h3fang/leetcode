@@ -141,6 +141,7 @@ pub mod p1170;
 pub mod p1171;
 pub mod p1172;
 pub mod p1175;
+pub mod p1177;
 pub mod p1178;
 pub mod p118;
 pub mod p1184;
