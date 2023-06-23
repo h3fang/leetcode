@@ -787,6 +787,7 @@ pub mod p2477;
 pub mod p2481;
 pub mod p2488;
 pub mod p2492;
+pub mod p2496;
 pub mod p2517;
 pub mod p2542;
 pub mod p2559;
