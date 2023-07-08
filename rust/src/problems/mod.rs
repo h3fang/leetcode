@@ -805,6 +805,7 @@ pub mod p2496;
 pub mod p2517;
 pub mod p2532;
 pub mod p2542;
+pub mod p2551;
 pub mod p2559;
 pub mod p258;
 pub mod p26;
