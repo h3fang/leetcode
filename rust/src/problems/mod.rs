@@ -1135,6 +1135,7 @@ pub mod p766;
 pub mod p768;
 pub mod p769;
 pub mod p77;
+pub mod p771;
 pub mod p775;
 pub mod p777;
 pub mod p779;
