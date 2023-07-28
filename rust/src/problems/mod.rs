@@ -967,6 +967,7 @@ pub mod p478;
 pub mod p479;
 pub mod p48;
 pub mod p481;
+pub mod p486;
 pub mod p488;
 pub mod p49;
 pub mod p491;
