@@ -2,23 +2,21 @@ pub struct Solution;
 
 impl Solution {
     pub fn max_dist_to_closest(seats: Vec<i32>) -> i32 {
-        let n = seats.len() as i32;
-        let mut left = -1;
-        let mut right = 0;
-        let mut result = 0;
-        for (i, &s) in seats.iter().enumerate() {
-            if s == 1 {
-                left = i as i32;
-            } else {
-                while (right < n && seats[right as usize] == 0) || right < i as i32 {
-                    right += 1;
-                }
-                let left = if left == -1 { n } else { i as i32 - left };
-                let right = if right == n { n } else { right - i as i32 };
-                result = result.max(left.min(right));
-            }
+        let n = seats.len();
+        let mut l = 0;
+        while l < n && seats[l] == 0 {
+            l += 1;
         }
-
+        let mut result = l as i32;
+        while l < n {
+            let mut r = l + 1;
+            while r < n && seats[r] == 0 {
+                r += 1;
+            }
+            let d = if r == n { n - l - 1 } else { (r - l) / 2 };
+            result = result.max(d as i32);
+            l = r;
+        }
         result
     }
 }
