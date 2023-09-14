@@ -1,53 +1,33 @@
-use std::collections::HashMap;
-
 pub struct Solution;
+
+use std::{
+    cmp::Reverse,
+    collections::{BinaryHeap, HashMap},
+};
 
 impl Solution {
     pub fn find_itinerary(tickets: Vec<Vec<String>>) -> Vec<String> {
-        let mut map: HashMap<&str, Vec<&str>> = HashMap::new();
+        let mut map: HashMap<&str, BinaryHeap<Reverse<&str>>> = HashMap::new();
         for t in &tickets {
-            (*map.entry(&t[0]).or_default()).push(&t[1]);
+            (*map.entry(&t[0]).or_default()).push(Reverse(&t[1]));
         }
-        for v in map.values_mut() {
-            v.sort_unstable();
-        }
-
-        let n = tickets.len();
 
         fn dfs(
-            map: &mut HashMap<&str, Vec<&str>>,
+            map: *mut HashMap<&str, BinaryHeap<Reverse<&str>>>,
             apt: &str,
             result: &mut Vec<String>,
-            n_apt: usize,
-        ) -> bool {
-            result.push(apt.to_string());
-
-            if map.contains_key(apt) {
-                for i in 0..map.get(apt).unwrap().len() {
-                    let e = map.get_mut(apt).unwrap().get_mut(i).unwrap();
-                    if e.is_empty() {
-                        continue;
-                    }
-                    let old = <&str>::clone(e);
-                    *e = "";
-                    if dfs(map, old, result, n_apt) {
-                        return true;
-                    } else {
-                        map.get_mut(apt).unwrap()[i] = old;
-                    }
+        ) {
+            if let Some(apts) = unsafe { (*map).get_mut(apt) } {
+                while let Some(Reverse(next)) = apts.pop() {
+                    dfs(map, next, result);
                 }
             }
-
-            if result.len() == n_apt {
-                true
-            } else {
-                result.pop();
-                false
-            }
+            result.push(apt.to_string());
         }
 
         let mut result = Vec::new();
-        dfs(&mut map, "JFK", &mut result, n + 1);
+        dfs(&mut map, "JFK", &mut result);
+        result.reverse();
 
         result
     }
