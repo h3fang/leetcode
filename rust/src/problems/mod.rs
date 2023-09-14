@@ -170,6 +170,7 @@ pub mod p1219;
 pub mod p122;
 pub mod p1220;
 pub mod p1221;
+pub mod p1222;
 pub mod p1223;
 pub mod p1224;
 pub mod p123;
