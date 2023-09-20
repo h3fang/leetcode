@@ -1,3 +1,4 @@
+pub mod lcp06;
 pub mod lcp33;
 pub mod lcp41;
 pub mod lcp50;
