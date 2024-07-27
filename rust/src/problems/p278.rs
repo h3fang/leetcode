@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 pub struct Solution {
     bad: i32,
 }
