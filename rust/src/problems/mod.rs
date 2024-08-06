@@ -1091,6 +1091,7 @@ pub mod p594;
 pub mod p598;
 pub mod p599;
 pub mod p6;
+pub mod p600;
 pub mod p605;
 pub mod p606;
 pub mod p609;
