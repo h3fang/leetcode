@@ -876,6 +876,7 @@ pub mod p273;
 pub mod p2740;
 pub mod p2769;
 pub mod p2770;
+pub mod p2771;
 pub mod p278;
 pub mod p279;
 pub mod p28;
