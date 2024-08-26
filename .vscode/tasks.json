@@ -14,12 +14,11 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-g",
-                "-std=c++17",
-                "-fsanitize=address",
+                "-std=c++23",
                 "-pthread",
                 "${file}",
                 "-o",
-                "${workspaceFolder}/build/${fileBasenameNoExtension}"
+                "${workspaceFolder}/cpp/build/${fileBasenameNoExtension}"
             ],
             "problemMatcher": [
                 "$gcc"
