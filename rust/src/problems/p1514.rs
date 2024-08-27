@@ -7,6 +7,7 @@ struct Float(f64);
 
 impl Eq for Float {}
 
+#[allow(clippy::non_canonical_partial_ord_impl)]
 impl PartialOrd for Float {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
         self.0.partial_cmp(&other.0)
