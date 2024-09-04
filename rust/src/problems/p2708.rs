@@ -6,10 +6,8 @@ impl Solution {
         nums.sort_unstable();
         let k = nums.partition_point(|&x| x < 0);
         let mut result = nums[..k - k % 2].iter().map(|&x| x as i64).product();
-        if k < 2 {
-            if nums[n - 1] <= 0 {
-                return nums[n - 1] as i64;
-            }
+        if k < 2 && nums[n - 1] <= 0 {
+            return nums[n - 1] as i64;
         }
         for &x in &nums[k..] {
             if x > 0 {
