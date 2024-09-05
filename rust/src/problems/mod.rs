@@ -936,6 +936,7 @@ pub mod p3152;
 pub mod p3153;
 pub mod p3154;
 pub mod p316;
+pub mod p3174;
 pub mod p318;
 pub mod p319;
 pub mod p32;
