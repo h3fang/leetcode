@@ -13,11 +13,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::has_alternating_bits(5));
+        assert!(Solution::has_alternating_bits(5));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::has_alternating_bits(7));
+        assert!(!Solution::has_alternating_bits(7));
     }
 }

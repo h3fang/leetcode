@@ -45,7 +45,7 @@ mod tests {
         let blacklist = vec![2, 3, 5];
         let black = blacklist.iter().cloned().collect::<HashSet<_>>();
         let mut s = Solution::new(n, blacklist);
-        let mut freq = vec![0; 7];
+        let mut freq = [0; 7];
         const N: i32 = 10000;
         (0..N).for_each(|_| {
             let num = s.pick();

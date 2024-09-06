@@ -50,11 +50,11 @@ mod tests {
     #[test]
     fn case1() {
         let mut mct = MyCalendarTwo::new();
-        assert_eq!(true, mct.book(10, 20));
-        assert_eq!(true, mct.book(50, 60));
-        assert_eq!(true, mct.book(10, 40));
-        assert_eq!(false, mct.book(5, 15));
-        assert_eq!(true, mct.book(5, 10));
-        assert_eq!(true, mct.book(25, 55));
+        assert!(mct.book(10, 20));
+        assert!(mct.book(50, 60));
+        assert!(mct.book(10, 40));
+        assert!(!mct.book(5, 15));
+        assert!(mct.book(5, 10));
+        assert!(mct.book(25, 55));
     }
 }

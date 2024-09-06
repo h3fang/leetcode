@@ -49,7 +49,7 @@ mod tests {
 
     #[test]
     fn case1() {
-        let words = vec![
+        let words = [
             "This",
             "is",
             "an",
@@ -67,7 +67,7 @@ mod tests {
 
     #[test]
     fn case2() {
-        let words = vec!["What", "must", "be", "acknowledgment", "shall", "be"];
+        let words = ["What", "must", "be", "acknowledgment", "shall", "be"];
         let words = words.iter().map(|s| s.to_string()).collect::<Vec<_>>();
         assert_eq!(
             vec!["What   must   be", "acknowledgment  ", "shall be        "],

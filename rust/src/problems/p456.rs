@@ -29,16 +29,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(false, Solution::find132pattern(vec![1, 2, 3, 4]));
+        assert!(!Solution::find132pattern(vec![1, 2, 3, 4]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::find132pattern(vec![3, 1, 4, 2]));
+        assert!(Solution::find132pattern(vec![3, 1, 4, 2]));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::find132pattern(vec![3, 5, 0, 3, 4]));
+        assert!(Solution::find132pattern(vec![3, 5, 0, 3, 4]));
     }
 }

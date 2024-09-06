@@ -31,11 +31,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::has_all_codes("00110110".into(), 2));
+        assert!(Solution::has_all_codes("00110110".into(), 2));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::has_all_codes("0110".into(), 2));
+        assert!(!Solution::has_all_codes("0110".into(), 2));
     }
 }

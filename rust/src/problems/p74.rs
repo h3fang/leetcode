@@ -29,12 +29,12 @@ mod tests {
     #[test]
     fn case1() {
         let matrix = vec![vec![1, 3, 5, 7], vec![10, 11, 16, 20], vec![23, 30, 34, 60]];
-        assert_eq!(true, Solution::search_matrix(matrix, 3));
+        assert!(Solution::search_matrix(matrix, 3));
     }
 
     #[test]
     fn case2() {
         let matrix = vec![vec![1]];
-        assert_eq!(false, Solution::search_matrix(matrix, 0));
+        assert!(!Solution::search_matrix(matrix, 0));
     }
 }

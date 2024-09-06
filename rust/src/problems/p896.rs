@@ -34,26 +34,26 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_monotonic(vec![1, 2, 2, 3]));
+        assert!(Solution::is_monotonic(vec![1, 2, 2, 3]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::is_monotonic(vec![6, 5, 4, 4]));
+        assert!(Solution::is_monotonic(vec![6, 5, 4, 4]));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::is_monotonic(vec![1, 3, 2]));
+        assert!(!Solution::is_monotonic(vec![1, 3, 2]));
     }
 
     #[test]
     fn case4() {
-        assert_eq!(true, Solution::is_monotonic(vec![1]));
+        assert!(Solution::is_monotonic(vec![1]));
     }
 
     #[test]
     fn case5() {
-        assert_eq!(true, Solution::is_monotonic(vec![1, 1, 1]));
+        assert!(Solution::is_monotonic(vec![1, 1, 1]));
     }
 }

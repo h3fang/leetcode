@@ -40,16 +40,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::valid_utf8(vec![197, 130, 1]));
+        assert!(Solution::valid_utf8(vec![197, 130, 1]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::valid_utf8(vec![235, 140, 4]));
+        assert!(!Solution::valid_utf8(vec![235, 140, 4]));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::valid_utf8(vec![230, 136, 145]));
+        assert!(Solution::valid_utf8(vec![230, 136, 145]));
     }
 }

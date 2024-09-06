@@ -5,6 +5,7 @@ use crate::utils::tree::TreeNode;
 
 pub struct Solution;
 
+#[allow(clippy::assigning_clones)]
 impl Solution {
     pub fn flatten(root: &mut Option<Rc<RefCell<TreeNode>>>) {
         match root {

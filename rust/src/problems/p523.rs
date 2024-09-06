@@ -31,19 +31,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::check_subarray_sum(vec![23, 2, 4, 6, 7], 6));
+        assert!(Solution::check_subarray_sum(vec![23, 2, 4, 6, 7], 6));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::check_subarray_sum(vec![23, 2, 6, 4, 7], 6));
+        assert!(Solution::check_subarray_sum(vec![23, 2, 6, 4, 7], 6));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(
-            false,
-            Solution::check_subarray_sum(vec![23, 2, 6, 4, 7], 13)
-        );
+        assert!(!Solution::check_subarray_sum(vec![23, 2, 6, 4, 7], 13));
     }
 }

@@ -25,17 +25,17 @@ mod tests {
 
     #[test]
     fn case1() {
-        let head = ListNode::from_vec(&vec![1, 2, 3, 4, 5]);
+        let head = ListNode::from_vec(&[1, 2, 3, 4, 5]);
         let result = Solution::middle_node(head);
-        let expected = ListNode::from_vec(&vec![3, 4, 5]);
+        let expected = ListNode::from_vec(&[3, 4, 5]);
         assert_eq!(expected, result);
     }
 
     #[test]
     fn case2() {
-        let head = ListNode::from_vec(&vec![1, 2, 3, 4, 5, 6]);
+        let head = ListNode::from_vec(&[1, 2, 3, 4, 5, 6]);
         let result = Solution::middle_node(head);
-        let expected = ListNode::from_vec(&vec![4, 5, 6]);
+        let expected = ListNode::from_vec(&[4, 5, 6]);
         assert_eq!(expected, result);
     }
 }

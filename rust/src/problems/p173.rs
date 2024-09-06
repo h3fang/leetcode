@@ -6,6 +6,7 @@ pub struct BSTIterator {
     stack: Vec<Rc<RefCell<TreeNode>>>,
 }
 
+#[allow(clippy::assigning_clones)]
 impl BSTIterator {
     pub fn new(mut root: Option<Rc<RefCell<TreeNode>>>) -> Self {
         let mut stack = vec![];
@@ -44,12 +45,12 @@ mod tests {
         let mut iter = BSTIterator::new(TreeNode::from_vec(&[7, 3, 15, null, null, 9, 20]));
         assert_eq!(3, iter.next());
         assert_eq!(7, iter.next());
-        assert_eq!(true, iter.has_next());
+        assert!(iter.has_next());
         assert_eq!(9, iter.next());
-        assert_eq!(true, iter.has_next());
+        assert!(iter.has_next());
         assert_eq!(15, iter.next());
-        assert_eq!(true, iter.has_next());
+        assert!(iter.has_next());
         assert_eq!(20, iter.next());
-        assert_eq!(false, iter.has_next());
+        assert!(!iter.has_next());
     }
 }

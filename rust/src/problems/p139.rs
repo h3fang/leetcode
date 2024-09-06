@@ -31,7 +31,7 @@ mod tests {
         let s = "leetcode".to_string();
         let word_dict = ["leet", "code"];
         let word_dict = word_dict.iter().map(|s| s.to_string()).collect::<Vec<_>>();
-        assert_eq!(true, Solution::word_break(s, word_dict));
+        assert!(Solution::word_break(s, word_dict));
     }
 
     #[test]
@@ -39,7 +39,7 @@ mod tests {
         let s = "applepenapple".to_string();
         let word_dict = ["apple", "pen"];
         let word_dict = word_dict.iter().map(|s| s.to_string()).collect::<Vec<_>>();
-        assert_eq!(true, Solution::word_break(s, word_dict));
+        assert!(Solution::word_break(s, word_dict));
     }
 
     #[test]
@@ -47,6 +47,6 @@ mod tests {
         let s = "catsandog".to_string();
         let word_dict = ["cats", "dog", "sand", "and", "cat"];
         let word_dict = word_dict.iter().map(|s| s.to_string()).collect::<Vec<_>>();
-        assert_eq!(false, Solution::word_break(s, word_dict));
+        assert!(!Solution::word_break(s, word_dict));
     }
 }

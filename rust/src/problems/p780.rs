@@ -28,16 +28,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::reaching_points(1, 1, 3, 5));
+        assert!(Solution::reaching_points(1, 1, 3, 5));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::reaching_points(1, 1, 2, 2));
+        assert!(!Solution::reaching_points(1, 1, 2, 2));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::reaching_points(1, 1, 1, 1));
+        assert!(Solution::reaching_points(1, 1, 1, 1));
     }
 }

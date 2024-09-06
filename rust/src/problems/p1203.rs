@@ -88,14 +88,14 @@ mod tests {
 
     use super::*;
 
-    fn check(n: i32, group: &Vec<i32>, before_items: &Vec<Vec<i32>>, result: &Vec<i32>) {
+    fn check(n: i32, group: &[i32], before_items: &[Vec<i32>], result: &[i32]) {
         assert!(result.len() == n as usize);
 
         let mut group_indices: HashMap<i32, Vec<usize>> = HashMap::new();
         for (i, &item) in result.iter().enumerate() {
             group_indices
                 .entry(group[item as usize])
-                .or_insert(Vec::new())
+                .or_default()
                 .push(i);
         }
 

@@ -17,8 +17,9 @@ impl Solution {
         let mut cnt = HashMap::new();
         for num in nums {
             let rev = reverse(num);
-            let v = *cnt.entry(num - rev).or_insert(0);
-            cnt.insert(num - rev, v + 1);
+            let e = cnt.entry(num - rev).or_insert(0);
+            let v = *e;
+            *e += 1;
             result = (result + v) % 1_000_000_007
         }
         result

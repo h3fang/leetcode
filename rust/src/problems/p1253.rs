@@ -61,7 +61,7 @@ mod tests {
     fn case2() {
         let upper = 2;
         let lower = 3;
-        let colsum = vec![2, 2, 1, 1];
+        let colsum = [2, 2, 1, 1];
         let result = Solution::reconstruct_matrix(upper, lower, colsum.to_vec());
         assert!(result.is_empty());
     }

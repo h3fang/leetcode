@@ -44,10 +44,10 @@ mod tests {
         assert_eq!(2, s.top());
         assert_eq!(2, s.pop());
         assert_eq!(1, s.top());
-        assert_eq!(false, s.empty());
+        assert!(!s.empty());
         s.push(3);
         assert_eq!(3, s.pop());
         assert_eq!(1, s.pop());
-        assert_eq!(true, s.empty());
+        assert!(s.empty());
     }
 }

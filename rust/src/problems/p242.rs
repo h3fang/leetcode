@@ -28,9 +28,6 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::is_anagram("anagram".into(), "nagaram".into())
-        );
+        assert!(Solution::is_anagram("anagram".into(), "nagaram".into()));
     }
 }

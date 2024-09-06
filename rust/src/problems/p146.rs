@@ -126,6 +126,7 @@ pub struct SafeLRUCache {
     capacity: usize,
 }
 
+#[allow(clippy::assigning_clones)]
 impl SafeLRUCache {
     pub fn new(capacity: i32) -> Self {
         let head = Rc::new(RefCell::new(SafeNode {

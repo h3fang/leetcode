@@ -25,17 +25,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::contains_nearby_duplicate(vec![1, 2, 3, 1], 3)
-        );
+        assert!(Solution::contains_nearby_duplicate(vec![1, 2, 3, 1], 3));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            true,
-            Solution::contains_nearby_duplicate(vec![1, 0, 1, 1], 1)
-        );
+        assert!(Solution::contains_nearby_duplicate(vec![1, 0, 1, 1], 1));
     }
 }

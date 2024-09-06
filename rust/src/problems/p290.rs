@@ -35,17 +35,17 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::word_pattern("abba".to_string(), "dog cat cat dog".to_string())
-        );
+        assert!(Solution::word_pattern(
+            "abba".to_string(),
+            "dog cat cat dog".to_string()
+        ));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            false,
-            Solution::word_pattern("abba".to_string(), "dog cat cat fish".to_string())
-        );
+        assert!(!Solution::word_pattern(
+            "abba".to_string(),
+            "dog cat cat fish".to_string()
+        ));
     }
 }

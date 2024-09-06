@@ -51,7 +51,7 @@ mod tests {
                     }
                     _ => return false,
                 }
-                if cx < 0 || cx > 5 || cy < 0 || cy > 4 {
+                if !(0..=5).contains(&cx) || !(0..=4).contains(&cy) {
                     return false;
                 }
                 if cx == 5 && cy != 0 {

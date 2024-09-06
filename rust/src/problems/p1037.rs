@@ -16,17 +16,19 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::is_boomerang(vec![vec![1, 1], vec![2, 3], vec![3, 2]])
-        );
+        assert!(Solution::is_boomerang(vec![
+            vec![1, 1],
+            vec![2, 3],
+            vec![3, 2]
+        ]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            false,
-            Solution::is_boomerang(vec![vec![1, 1], vec![2, 2], vec![3, 3]])
-        );
+        assert!(!Solution::is_boomerang(vec![
+            vec![1, 1],
+            vec![2, 2],
+            vec![3, 3]
+        ]));
     }
 }

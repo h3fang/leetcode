@@ -93,8 +93,8 @@ mod tests {
         let mut rm = RangeModule::new();
         rm.add_range(10, 20);
         rm.remove_range(14, 16);
-        assert_eq!(true, rm.query_range(10, 14));
-        assert_eq!(false, rm.query_range(13, 15));
-        assert_eq!(true, rm.query_range(16, 17));
+        assert!(rm.query_range(10, 14));
+        assert!(!rm.query_range(13, 15));
+        assert!(rm.query_range(16, 17));
     }
 }

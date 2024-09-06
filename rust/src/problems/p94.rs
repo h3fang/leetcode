@@ -22,6 +22,7 @@ impl Solution {
         result
     }
 
+    #[allow(clippy::assigning_clones)]
     pub fn inorder_traversal_iterative(mut root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut stack = Vec::new();
         let mut result = Vec::new();
@@ -33,7 +34,7 @@ impl Solution {
             if let Some(node) = stack.pop().unwrap() {
                 let n = node.borrow();
                 result.push(n.val);
-                root = n.right.clone();
+                root.clone_from(&n.right);
             }
         }
         result

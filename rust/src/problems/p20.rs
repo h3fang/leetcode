@@ -28,16 +28,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_valid("()".to_string()));
+        assert!(Solution::is_valid("()".to_string()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::is_valid("()[]{}".to_string()));
+        assert!(Solution::is_valid("()[]{}".to_string()));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::is_valid("(}".to_string()));
+        assert!(!Solution::is_valid("(}".to_string()));
     }
 }

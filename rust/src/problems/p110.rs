@@ -41,18 +41,18 @@ mod tests {
     #[test]
     fn case1() {
         let root = TreeNode::from_vec(&[3, 9, 20, null, null, 15, 7]);
-        assert_eq!(true, Solution::is_balanced(root));
+        assert!(Solution::is_balanced(root));
     }
 
     #[test]
     fn case2() {
         let root = TreeNode::from_vec(&[1, 2, 2, 3, 3, null, null, 4, 4]);
-        assert_eq!(false, Solution::is_balanced(root));
+        assert!(!Solution::is_balanced(root));
     }
 
     #[test]
     fn case3() {
         let root = TreeNode::from_vec(&[]);
-        assert_eq!(true, Solution::is_balanced(root));
+        assert!(Solution::is_balanced(root));
     }
 }

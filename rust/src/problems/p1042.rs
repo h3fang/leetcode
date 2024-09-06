@@ -10,7 +10,7 @@ impl Solution {
         }
         let mut result = vec![0; n];
         for i in 0..n {
-            let mut colored = vec![false; 5];
+            let mut colored = [false; 5];
             for &next in &g[i] {
                 colored[result[next as usize] as usize] = true;
             }

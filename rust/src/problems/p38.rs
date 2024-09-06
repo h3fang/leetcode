@@ -7,7 +7,7 @@ impl Solution {
             let mut next = String::new();
             let mut last = curr.as_bytes()[0];
             let mut count = 1;
-            for &b in curr.as_bytes().iter().chain(&[b' ']).skip(1) {
+            for &b in curr.as_bytes().iter().chain(b" ").skip(1) {
                 if b != last {
                     next += &count.to_string();
                     next.push(last as char);

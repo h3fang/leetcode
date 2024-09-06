@@ -36,18 +36,18 @@ mod tests {
     #[test]
     fn case1() {
         let s = "A man, a plan, a canal: Panama".to_string();
-        assert_eq!(true, Solution::is_palindrome(s));
+        assert!(Solution::is_palindrome(s));
     }
 
     #[test]
     fn case2() {
         let s = "A*".to_string();
-        assert_eq!(true, Solution::is_palindrome(s));
+        assert!(Solution::is_palindrome(s));
     }
 
     #[test]
     fn case3() {
         let s = "OP".to_string();
-        assert_eq!(false, Solution::is_palindrome(s));
+        assert!(!Solution::is_palindrome(s));
     }
 }

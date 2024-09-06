@@ -48,13 +48,13 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(false, Solution::verify_postorder_dc(vec![1, 6, 3, 2, 5]));
-        assert_eq!(false, Solution::verify_postorder(vec![1, 6, 3, 2, 5]));
+        assert!(!Solution::verify_postorder_dc(vec![1, 6, 3, 2, 5]));
+        assert!(!Solution::verify_postorder(vec![1, 6, 3, 2, 5]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::verify_postorder_dc(vec![1, 3, 2, 6, 5]));
-        assert_eq!(true, Solution::verify_postorder(vec![1, 3, 2, 6, 5]));
+        assert!(Solution::verify_postorder_dc(vec![1, 3, 2, 6, 5]));
+        assert!(Solution::verify_postorder(vec![1, 3, 2, 6, 5]));
     }
 }

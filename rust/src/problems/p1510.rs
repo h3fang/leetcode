@@ -25,26 +25,26 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::winner_square_game(1));
+        assert!(Solution::winner_square_game(1));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::winner_square_game(2));
+        assert!(!Solution::winner_square_game(2));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::winner_square_game(4));
+        assert!(Solution::winner_square_game(4));
     }
 
     #[test]
     fn case4() {
-        assert_eq!(false, Solution::winner_square_game(7));
+        assert!(!Solution::winner_square_game(7));
     }
 
     #[test]
     fn case5() {
-        assert_eq!(true, Solution::winner_square_game(99));
+        assert!(Solution::winner_square_game(99));
     }
 }

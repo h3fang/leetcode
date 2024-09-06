@@ -10,7 +10,7 @@ impl Solution {
         let s = s.as_bytes();
         let mut ops = vec![];
         let mut curr = None;
-        for &c in [b'('].iter().chain(s).chain(&[b')']) {
+        for &c in [b'('].iter().chain(s).chain(b")") {
             match c {
                 b'+' | b'-' | b'(' => {
                     if let Some(curr) = curr.take() {

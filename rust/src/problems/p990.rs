@@ -66,12 +66,12 @@ mod tests {
     #[test]
     fn case1() {
         let equations = ["a==b", "b!=a"].iter().map(|e| e.to_string()).collect();
-        assert_eq!(false, Solution::equations_possible(equations));
+        assert!(!Solution::equations_possible(equations));
     }
 
     #[test]
     fn case2() {
         let equations = ["b==a", "a==b"].iter().map(|e| e.to_string()).collect();
-        assert_eq!(true, Solution::equations_possible(equations));
+        assert!(Solution::equations_possible(equations));
     }
 }

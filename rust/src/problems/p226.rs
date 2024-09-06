@@ -7,15 +7,12 @@ pub struct Solution;
 
 impl Solution {
     pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
-        root.map(|node| {
-            {
-                let mut n = node.borrow_mut();
-                let left = Self::invert_tree(n.right.take());
-                let right = Self::invert_tree(n.left.take());
-                n.left = left;
-                n.right = right;
-            }
-            node
+        root.inspect(|node| {
+            let mut n = node.borrow_mut();
+            let left = Self::invert_tree(n.right.take());
+            let right = Self::invert_tree(n.left.take());
+            n.left = left;
+            n.right = right;
         })
     }
 }

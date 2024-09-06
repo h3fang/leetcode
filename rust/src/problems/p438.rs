@@ -2,7 +2,7 @@ pub struct Solution;
 
 impl Solution {
     pub fn find_anagrams(s: String, p: String) -> Vec<i32> {
-        let mut sig = vec![0; 26];
+        let mut sig = [0; 26];
         for b in p.as_bytes() {
             sig[(b - b'a') as usize] += 1;
         }

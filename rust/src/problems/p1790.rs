@@ -30,25 +30,25 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::are_almost_equal("bank".to_string(), "kanb".to_string())
-        );
+        assert!(Solution::are_almost_equal(
+            "bank".to_string(),
+            "kanb".to_string()
+        ));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            false,
-            Solution::are_almost_equal("attack".to_string(), "defend".to_string())
-        );
+        assert!(!Solution::are_almost_equal(
+            "attack".to_string(),
+            "defend".to_string()
+        ));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(
-            true,
-            Solution::are_almost_equal("bank".to_string(), "bank".to_string())
-        );
+        assert!(Solution::are_almost_equal(
+            "bank".to_string(),
+            "bank".to_string()
+        ));
     }
 }

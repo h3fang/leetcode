@@ -5,7 +5,7 @@ impl Solution {
         let n = start_time.len();
         let mut jobs = start_time
             .into_iter()
-            .zip(end_time.into_iter().zip(profit.into_iter()))
+            .zip(end_time.into_iter().zip(profit))
             .map(|(a, (b, c))| (a, b, c))
             .collect::<Vec<_>>();
         jobs.sort_unstable_by_key(|e| e.1);

@@ -11,10 +11,7 @@ impl Solution {
                 h * 60 + m
             })
             .collect::<Vec<_>>();
-        let mut kvs = key_name
-            .into_iter()
-            .zip(key_time.into_iter())
-            .collect::<Vec<_>>();
+        let mut kvs = key_name.into_iter().zip(key_time).collect::<Vec<_>>();
         kvs.sort_unstable();
         let mut start = usize::MAX;
         let mut result = vec![];

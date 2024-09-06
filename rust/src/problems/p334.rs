@@ -24,16 +24,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::increasing_triplet(vec![1, 2, 3, 4, 5]));
+        assert!(Solution::increasing_triplet(vec![1, 2, 3, 4, 5]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::increasing_triplet(vec![5, 4, 3, 2, 1]));
+        assert!(!Solution::increasing_triplet(vec![5, 4, 3, 2, 1]));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::increasing_triplet(vec![2, 1, 5, 0, 4, 6]));
+        assert!(Solution::increasing_triplet(vec![2, 1, 5, 0, 4, 6]));
     }
 }

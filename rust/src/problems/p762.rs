@@ -2,7 +2,7 @@ pub struct Solution;
 
 impl Solution {
     pub fn count_prime_set_bits(left: i32, right: i32) -> i32 {
-        let mut primes = vec![false; 20];
+        let mut primes = [false; 20];
         for p in [2, 3, 5, 7, 11, 13, 17, 19] {
             primes[p] = true;
         }

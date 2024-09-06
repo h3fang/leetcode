@@ -23,12 +23,12 @@ mod tests {
     #[test]
     fn case1() {
         let bits = vec![1, 0, 0];
-        assert_eq!(true, Solution::is_one_bit_character(bits));
+        assert!(Solution::is_one_bit_character(bits));
     }
 
     #[test]
     fn case2() {
         let bits = vec![1, 1, 1, 0];
-        assert_eq!(false, Solution::is_one_bit_character(bits));
+        assert!(!Solution::is_one_bit_character(bits));
     }
 }

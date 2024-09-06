@@ -41,7 +41,7 @@ impl WordFilter {
         for c in suffix
             .as_bytes()
             .iter()
-            .chain(&[b'{'])
+            .chain(b"{")
             .chain(prefix.as_bytes())
         {
             let i = (c - b'a') as usize;

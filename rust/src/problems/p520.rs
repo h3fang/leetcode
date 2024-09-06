@@ -13,11 +13,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::detect_capital_use("USA".to_string()));
+        assert!(Solution::detect_capital_use("USA".to_string()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::detect_capital_use("FlaG".to_string()));
+        assert!(!Solution::detect_capital_use("FlaG".to_string()));
     }
 }

@@ -48,7 +48,7 @@ mod tests {
         let nums = vec![1, 2, 3];
         let sequences = [[1, 2], [1, 3]];
         let sequences = sequences.iter().map(|s| s.to_vec()).collect();
-        assert_eq!(false, Solution::sequence_reconstruction(nums, sequences));
+        assert!(!Solution::sequence_reconstruction(nums, sequences));
     }
 
     #[test]
@@ -56,7 +56,7 @@ mod tests {
         let nums = vec![1, 2, 3];
         let sequences = [[1, 2]];
         let sequences = sequences.iter().map(|s| s.to_vec()).collect();
-        assert_eq!(false, Solution::sequence_reconstruction(nums, sequences));
+        assert!(!Solution::sequence_reconstruction(nums, sequences));
     }
 
     #[test]
@@ -64,6 +64,6 @@ mod tests {
         let nums = vec![1, 2, 3];
         let sequences = [[1, 2], [1, 3], [2, 3]];
         let sequences = sequences.iter().map(|s| s.to_vec()).collect();
-        assert_eq!(true, Solution::sequence_reconstruction(nums, sequences));
+        assert!(Solution::sequence_reconstruction(nums, sequences));
     }
 }

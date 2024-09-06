@@ -18,7 +18,7 @@ impl Solution {
                     dp_prev[j].max(dp[j - 1])
                 };
             }
-            dp_prev = dp.clone();
+            dp_prev.clone_from(&dp);
         }
         n as i32 - dp[n]
     }

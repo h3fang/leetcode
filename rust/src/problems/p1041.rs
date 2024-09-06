@@ -30,16 +30,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_robot_bounded("GGLLGG".to_string()));
+        assert!(Solution::is_robot_bounded("GGLLGG".to_string()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::is_robot_bounded("GG".to_string()));
+        assert!(!Solution::is_robot_bounded("GG".to_string()));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::is_robot_bounded("GL".to_string()));
+        assert!(Solution::is_robot_bounded("GL".to_string()));
     }
 }

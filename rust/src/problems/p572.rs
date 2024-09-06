@@ -51,13 +51,13 @@ mod tests {
     fn case1() {
         let root = TreeNode::from_vec(&[3, 4, 5, 1, 2]);
         let sub_root = TreeNode::from_vec(&[4, 1, 2]);
-        assert_eq!(true, Solution::is_subtree(root, sub_root));
+        assert!(Solution::is_subtree(root, sub_root));
     }
 
     #[test]
     fn case2() {
         let root = TreeNode::from_vec(&[3, 4, 5, 1, 2, null, null, null, null, 0]);
         let sub_root = TreeNode::from_vec(&[4, 1, 2]);
-        assert_eq!(false, Solution::is_subtree(root, sub_root));
+        assert!(!Solution::is_subtree(root, sub_root));
     }
 }

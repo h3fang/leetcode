@@ -36,7 +36,7 @@ mod tests {
 
     #[test]
     fn case1() {
-        let head = ListNode::from_vec(&vec![1, 2, 3, 3, 4, 4, 5]);
+        let head = ListNode::from_vec(&[1, 2, 3, 3, 4, 4, 5]);
         let result = Solution::delete_duplicates(head);
         let expected = ListNode::from_vec(&[1, 2, 5]).unwrap().to_string();
         assert_eq!(expected, result.unwrap().to_string());
@@ -44,7 +44,7 @@ mod tests {
 
     #[test]
     fn case2() {
-        let head = ListNode::from_vec(&vec![1, 1, 1, 2, 3]);
+        let head = ListNode::from_vec(&[1, 1, 1, 2, 3]);
         let result = Solution::delete_duplicates(head);
         let expected = ListNode::from_vec(&[2, 3]).unwrap().to_string();
         assert_eq!(expected, result.unwrap().to_string());

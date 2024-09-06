@@ -6,7 +6,7 @@ impl Solution {
     #[allow(clippy::needless_range_loop)]
     pub fn min_path_sum(grid: Vec<Vec<i32>>) -> i32 {
         let n = grid[0].len();
-        let mut dp = vec![vec![0; n], vec![0; n]];
+        let mut dp = [vec![0; n], vec![0; n]];
         dp[0][0] = grid[0][0];
         for j in 1..n {
             dp[0][j] = dp[0][j - 1] + grid[0][j];

@@ -25,16 +25,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::check_perfect_number(28));
+        assert!(Solution::check_perfect_number(28));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::check_perfect_number(496));
+        assert!(Solution::check_perfect_number(496));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::check_perfect_number(2));
+        assert!(!Solution::check_perfect_number(2));
     }
 }

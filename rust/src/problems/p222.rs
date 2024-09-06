@@ -6,6 +6,7 @@ use crate::utils::tree::TreeNode;
 pub struct Solution;
 
 impl Solution {
+    #[allow(clippy::assigning_clones)]
     pub fn count_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         fn d_left(mut root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
             let mut d = 0;

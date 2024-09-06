@@ -43,16 +43,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_possible(vec![1, 2, 3, 3, 4, 5]));
+        assert!(Solution::is_possible(vec![1, 2, 3, 3, 4, 5]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::is_possible(vec![1, 2, 3, 3, 4, 4, 5, 5]));
+        assert!(Solution::is_possible(vec![1, 2, 3, 3, 4, 4, 5, 5]));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::is_possible(vec![1, 2, 3, 4, 4, 5]));
+        assert!(!Solution::is_possible(vec![1, 2, 3, 4, 4, 5]));
     }
 }

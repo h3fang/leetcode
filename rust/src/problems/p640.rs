@@ -9,7 +9,7 @@ impl Solution {
             let mut b = 0;
             let mut sign = 1;
             let mut num = 0;
-            for (i, &c) in exp.as_bytes().iter().chain(&[b'+']).enumerate() {
+            for (i, &c) in exp.as_bytes().iter().chain(b"+").enumerate() {
                 match c {
                     b'+' => {
                         b += sign * num;

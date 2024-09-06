@@ -71,9 +71,9 @@ mod tests {
     fn case1() {
         let mut md = MagicDictionary::new();
         md.build_dict(vec!["hello".to_string(), "leetcode".to_string()]);
-        assert_eq!(false, md.search("hello".into()));
-        assert_eq!(true, md.search("hhllo".into()));
-        assert_eq!(false, md.search("hell".into()));
-        assert_eq!(false, md.search("leetcoded".into()));
+        assert!(!md.search("hello".into()));
+        assert!(md.search("hhllo".into()));
+        assert!(!md.search("hell".into()));
+        assert!(!md.search("leetcoded".into()));
     }
 }

@@ -21,21 +21,21 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_straight(vec![1, 2, 3, 4, 5]));
+        assert!(Solution::is_straight(vec![1, 2, 3, 4, 5]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::is_straight(vec![0, 0, 1, 2, 5]));
+        assert!(Solution::is_straight(vec![0, 0, 1, 2, 5]));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::is_straight(vec![0, 0, 2, 2, 5]));
+        assert!(!Solution::is_straight(vec![0, 0, 2, 2, 5]));
     }
 
     #[test]
     fn case4() {
-        assert_eq!(true, Solution::is_straight(vec![0, 0, 8, 5, 4]));
+        assert!(Solution::is_straight(vec![0, 0, 8, 5, 4]));
     }
 }

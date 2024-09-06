@@ -28,11 +28,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_happy(19));
+        assert!(Solution::is_happy(19));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::is_happy(2));
+        assert!(!Solution::is_happy(2));
     }
 }

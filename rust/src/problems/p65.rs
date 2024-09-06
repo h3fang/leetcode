@@ -26,26 +26,26 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(Solution::is_number("0".into()), true);
+        assert!(Solution::is_number("0".into()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(Solution::is_number("e".into()), false);
+        assert!(!Solution::is_number("e".into()));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(Solution::is_number("inf".into()), false);
+        assert!(!Solution::is_number("inf".into()));
     }
 
     #[test]
     fn case4() {
-        assert_eq!(Solution::is_number("-8115e957".into()), true);
+        assert!(Solution::is_number("-8115e957".into()));
     }
 
     #[test]
     fn case5() {
-        assert_eq!(Solution::is_number("0e".into()), false);
+        assert!(!Solution::is_number("0e".into()));
     }
 }

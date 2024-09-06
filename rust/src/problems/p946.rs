@@ -27,13 +27,13 @@ mod tests {
     fn case1() {
         let pushed = vec![1, 2, 3, 4, 5];
         let popped = vec![4, 5, 3, 2, 1];
-        assert_eq!(true, Solution::validate_stack_sequences(pushed, popped));
+        assert!(Solution::validate_stack_sequences(pushed, popped));
     }
 
     #[test]
     fn case2() {
         let pushed = vec![1, 2, 3, 4, 5];
         let popped = vec![4, 3, 5, 1, 2];
-        assert_eq!(false, Solution::validate_stack_sequences(pushed, popped));
+        assert!(!Solution::validate_stack_sequences(pushed, popped));
     }
 }

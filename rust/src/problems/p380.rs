@@ -52,22 +52,22 @@ mod tests {
     #[test]
     fn case1() {
         let mut s = RandomizedSet::new();
-        assert_eq!(true, s.insert(1));
-        assert_eq!(false, s.remove(2));
-        assert_eq!(true, s.insert(2));
-        assert_eq!(true, [1, 2].contains(&s.get_random()));
-        assert_eq!(true, s.remove(1));
-        assert_eq!(false, s.insert(2));
+        assert!(s.insert(1));
+        assert!(!s.remove(2));
+        assert!(s.insert(2));
+        assert!([1, 2].contains(&s.get_random()));
+        assert!(s.remove(1));
+        assert!(!s.insert(2));
         assert_eq!(2, s.get_random());
     }
 
     #[test]
     fn case2() {
         let mut s = RandomizedSet::new();
-        assert_eq!(true, s.insert(1));
-        assert_eq!(true, s.remove(1));
-        assert_eq!(true, s.insert(-1));
-        assert_eq!(false, s.remove(1));
+        assert!(s.insert(1));
+        assert!(s.remove(1));
+        assert!(s.insert(-1));
+        assert!(!s.remove(1));
         assert_eq!(-1, s.get_random());
         assert_eq!(-1, s.get_random());
         assert_eq!(-1, s.get_random());

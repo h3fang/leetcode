@@ -35,7 +35,7 @@ mod tests {
         let p2 = vec![1, 1];
         let p3 = vec![1, 0];
         let p4 = vec![0, 1];
-        assert_eq!(true, Solution::valid_square(p1, p2, p3, p4));
+        assert!(Solution::valid_square(p1, p2, p3, p4));
     }
 
     #[test]
@@ -44,6 +44,6 @@ mod tests {
         let p2 = vec![1, 1];
         let p3 = vec![1, 0];
         let p4 = vec![0, 12];
-        assert_eq!(false, Solution::valid_square(p1, p2, p3, p4));
+        assert!(!Solution::valid_square(p1, p2, p3, p4));
     }
 }

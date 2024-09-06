@@ -37,14 +37,14 @@ mod tests {
             vec![18, 21, 23, 26, 30],
         ];
         let target = 5;
-        assert_eq!(true, Solution::search_matrix(matrix, target));
+        assert!(Solution::search_matrix(matrix, target));
     }
 
     #[test]
     fn case2() {
         let matrix = vec![vec![7]];
         let target = 7;
-        assert_eq!(true, Solution::search_matrix(matrix, target));
+        assert!(Solution::search_matrix(matrix, target));
     }
 
     #[test]
@@ -57,7 +57,7 @@ mod tests {
             vec![18, 21, 23, 26, 30],
         ];
         let target = 20;
-        assert_eq!(false, Solution::search_matrix(matrix, target));
+        assert!(!Solution::search_matrix(matrix, target));
     }
 
     #[test]
@@ -70,6 +70,6 @@ mod tests {
             vec![21, 22, 23, 24, 25],
         ];
         let target = 5;
-        assert_eq!(true, Solution::search_matrix(matrix, target));
+        assert!(Solution::search_matrix(matrix, target));
     }
 }

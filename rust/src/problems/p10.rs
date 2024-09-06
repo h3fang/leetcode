@@ -42,34 +42,34 @@ mod tests {
     fn case1() {
         let s = "aa".to_string();
         let p = "a".to_string();
-        assert_eq!(false, Solution::is_match(s, p));
+        assert!(!Solution::is_match(s, p));
     }
 
     #[test]
     fn case2() {
         let s = "aa".to_string();
         let p = "a*".to_string();
-        assert_eq!(true, Solution::is_match(s, p));
+        assert!(Solution::is_match(s, p));
     }
 
     #[test]
     fn case3() {
         let s = "ab".to_string();
         let p = ".*".to_string();
-        assert_eq!(true, Solution::is_match(s, p));
+        assert!(Solution::is_match(s, p));
     }
 
     #[test]
     fn case4() {
         let s = "aab".to_string();
         let p = "c*a*b".to_string();
-        assert_eq!(true, Solution::is_match(s, p));
+        assert!(Solution::is_match(s, p));
     }
 
     #[test]
     fn case5() {
         let s = "mississippi".to_string();
         let p = "mis*is*p*.".to_string();
-        assert_eq!(false, Solution::is_match(s, p));
+        assert!(!Solution::is_match(s, p));
     }
 }

@@ -35,20 +35,20 @@ mod tests {
     fn case1() {
         let b = ["XOX", " X ", "   "];
         let board = b.iter().map(|r| r.to_string()).collect();
-        assert_eq!(false, Solution::valid_tic_tac_toe(board));
+        assert!(!Solution::valid_tic_tac_toe(board));
     }
 
     #[test]
     fn case2() {
         let b = ["XXX", "XOO", "OO "];
         let board = b.iter().map(|r| r.to_string()).collect();
-        assert_eq!(false, Solution::valid_tic_tac_toe(board));
+        assert!(!Solution::valid_tic_tac_toe(board));
     }
 
     #[test]
     fn case3() {
         let b = ["XOX", "O O", "XOX"];
         let board = b.iter().map(|r| r.to_string()).collect();
-        assert_eq!(true, Solution::valid_tic_tac_toe(board));
+        assert!(Solution::valid_tic_tac_toe(board));
     }
 }

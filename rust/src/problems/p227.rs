@@ -6,7 +6,7 @@ impl Solution {
         let mut left = 0;
         let mut result = 0;
         let mut op = b'+';
-        for &c in s.as_bytes().iter().chain(&[b'+']) {
+        for &c in s.as_bytes().iter().chain(b"+") {
             if c.is_ascii_digit() {
                 curr = curr * 10 + (c - b'0') as i32;
             } else if !c.is_ascii_whitespace() {

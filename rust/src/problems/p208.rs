@@ -87,10 +87,10 @@ mod tests {
     fn case1() {
         let mut obj = Trie::new();
         obj.insert("apple".to_string());
-        assert_eq!(true, obj.search("apple".to_string()));
-        assert_eq!(false, obj.search("app".to_string()));
-        assert_eq!(true, obj.starts_with("app".to_string()));
+        assert!(obj.search("apple".to_string()));
+        assert!(!obj.search("app".to_string()));
+        assert!(obj.starts_with("app".to_string()));
         obj.insert("app".to_string());
-        assert_eq!(true, obj.search("app".to_string()));
+        assert!(obj.search("app".to_string()));
     }
 }

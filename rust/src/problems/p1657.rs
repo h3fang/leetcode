@@ -30,25 +30,22 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::close_strings("abc".to_string(), "bca".to_string())
-        );
+        assert!(Solution::close_strings(
+            "abc".to_string(),
+            "bca".to_string()
+        ));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            false,
-            Solution::close_strings("a".to_string(), "aa".to_string())
-        );
+        assert!(!Solution::close_strings("a".to_string(), "aa".to_string()));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(
-            true,
-            Solution::close_strings("cabbba".to_string(), "abbccc".to_string())
-        );
+        assert!(Solution::close_strings(
+            "cabbba".to_string(),
+            "abbccc".to_string()
+        ));
     }
 }

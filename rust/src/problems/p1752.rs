@@ -22,16 +22,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::check(vec![3, 4, 5, 1, 2]));
+        assert!(Solution::check(vec![3, 4, 5, 1, 2]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::check(vec![2, 1, 3, 4]));
+        assert!(!Solution::check(vec![2, 1, 3, 4]));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::check(vec![1, 2, 3]));
+        assert!(Solution::check(vec![1, 2, 3]));
     }
 }

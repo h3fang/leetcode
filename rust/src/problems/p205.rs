@@ -31,11 +31,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_isomorphic("egg".into(), "add".into()));
+        assert!(Solution::is_isomorphic("egg".into(), "add".into()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::is_isomorphic("egg".into(), "ada".into()));
+        assert!(!Solution::is_isomorphic("egg".into(), "ada".into()));
     }
 }

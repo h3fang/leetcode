@@ -19,12 +19,11 @@ impl TimeMap {
             .get(&key)
             .map(|m| {
                 m.range(..=timestamp)
-                    .rev()
-                    .next()
+                    .next_back()
                     .map(|e| e.1.to_string())
-                    .unwrap_or_else(|| "".to_string())
+                    .unwrap_or_default()
             })
-            .unwrap_or_else(|| "".to_string())
+            .unwrap_or_default()
     }
 }
 

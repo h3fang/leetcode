@@ -1,7 +1,6 @@
 pub struct Solution;
 
 use std::cell::RefCell;
-use std::fmt::Write;
 use std::rc::Rc;
 
 use crate::utils::tree::TreeNode;
@@ -12,20 +11,18 @@ impl Solution {
             match root {
                 Some(node) => {
                     let n = node.borrow();
-                    let mut s = n.val.to_string();
                     match (&n.left, &n.right) {
-                        (None, None) => {}
+                        (None, None) => n.val.to_string(),
                         (None, Some(r)) => {
-                            let _ = write!(s, "()({})", dfs(Some(r)));
+                            format!("{}()({})", n.val, dfs(Some(r)))
                         }
                         (Some(l), None) => {
-                            let _ = write!(s, "({})", dfs(Some(l)));
+                            format!("{}({})", n.val, dfs(Some(l)))
                         }
                         (Some(l), Some(r)) => {
-                            let _ = write!(s, "({})({})", dfs(Some(l)), dfs(Some(r)));
+                            format!("{}({})({})", n.val, dfs(Some(l)), dfs(Some(r)))
                         }
                     }
-                    s
                 }
                 _ => String::new(),
             }

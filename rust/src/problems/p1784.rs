@@ -12,11 +12,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(false, Solution::check_ones_segment("1001".to_string()));
+        assert!(!Solution::check_ones_segment("1001".to_string()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::check_ones_segment("110".to_string()));
+        assert!(Solution::check_ones_segment("110".to_string()));
     }
 }

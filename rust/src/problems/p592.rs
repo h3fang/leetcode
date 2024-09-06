@@ -17,7 +17,7 @@ impl Solution {
         let mut nume = 0;
         let mut deno = 1;
         let mut sign = true;
-        for t in expression.split_inclusive(|c| c == '+' || c == '-') {
+        for t in expression.split_inclusive(['+', '-']) {
             if t.len() == 1 {
                 sign = false;
                 continue;

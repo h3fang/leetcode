@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn max_length_between_equal_characters(s: String) -> i32 {
         let mut max = -1;
-        let mut pos = vec![0; 26];
+        let mut pos = [0; 26];
         for (i, ch) in s.as_bytes().iter().enumerate() {
             let j = (ch - b'a') as usize;
             if pos[j] > 0 {

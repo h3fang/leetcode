@@ -6,7 +6,7 @@ impl Solution {
     #[allow(clippy::needless_range_loop)]
     pub fn unique_paths_with_obstacles(obstacle_grid: Vec<Vec<i32>>) -> i32 {
         let n = obstacle_grid[0].len();
-        let mut dp = vec![vec![0; n], vec![0; n]];
+        let mut dp = [vec![0; n], vec![0; n]];
         dp[0][0] = 1 - obstacle_grid[0][0];
         for j in 1..n {
             dp[0][j] = if obstacle_grid[0][j] == 1 {

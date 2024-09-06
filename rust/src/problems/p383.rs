@@ -28,16 +28,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(false, Solution::can_construct("a".into(), "b".into()))
+        assert!(!Solution::can_construct("a".into(), "b".into()))
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::can_construct("aa".into(), "ab".into()))
+        assert!(!Solution::can_construct("aa".into(), "ab".into()))
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::can_construct("aa".into(), "aab".into()))
+        assert!(Solution::can_construct("aa".into(), "aab".into()))
     }
 }

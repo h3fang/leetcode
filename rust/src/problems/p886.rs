@@ -31,7 +31,7 @@ mod tests {
             .iter()
             .map(|d| d.to_vec())
             .collect();
-        assert_eq!(true, Solution::possible_bipartition(n, dislikes));
+        assert!(Solution::possible_bipartition(n, dislikes));
     }
 
     #[test]
@@ -41,7 +41,7 @@ mod tests {
             .iter()
             .map(|d| d.to_vec())
             .collect();
-        assert_eq!(false, Solution::possible_bipartition(n, dislikes));
+        assert!(!Solution::possible_bipartition(n, dislikes));
     }
 
     #[test]
@@ -51,6 +51,6 @@ mod tests {
             .iter()
             .map(|d| d.to_vec())
             .collect();
-        assert_eq!(false, Solution::possible_bipartition(n, dislikes));
+        assert!(!Solution::possible_bipartition(n, dislikes));
     }
 }

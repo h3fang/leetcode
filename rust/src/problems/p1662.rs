@@ -19,20 +19,20 @@ mod tests {
     fn case1() {
         let word1 = ["ab", "c"].iter().map(|w| w.to_string()).collect();
         let word2 = ["a", "bc"].iter().map(|w| w.to_string()).collect();
-        assert_eq!(true, Solution::array_strings_are_equal(word1, word2));
+        assert!(Solution::array_strings_are_equal(word1, word2));
     }
 
     #[test]
     fn case2() {
         let word1 = ["a", "cb"].iter().map(|w| w.to_string()).collect();
         let word2 = ["ab", "c"].iter().map(|w| w.to_string()).collect();
-        assert_eq!(false, Solution::array_strings_are_equal(word1, word2));
+        assert!(!Solution::array_strings_are_equal(word1, word2));
     }
 
     #[test]
     fn case3() {
         let word1 = ["abc", "d", "defg"].iter().map(|w| w.to_string()).collect();
         let word2 = ["abcddefg"].iter().map(|w| w.to_string()).collect();
-        assert_eq!(true, Solution::array_strings_are_equal(word1, word2));
+        assert!(Solution::array_strings_are_equal(word1, word2));
     }
 }

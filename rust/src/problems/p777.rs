@@ -39,9 +39,9 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::can_transform("RXXLRXRXL".to_string(), "XRLXXRRLX".to_string())
-        );
+        assert!(Solution::can_transform(
+            "RXXLRXRXL".to_string(),
+            "XRLXXRRLX".to_string()
+        ));
     }
 }

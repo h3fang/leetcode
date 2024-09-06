@@ -10,15 +10,15 @@ struct Ratio {
 
 impl PartialOrd for Ratio {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        let a = (other.total as i64 + 1) * other.total as i64 * (self.total - self.pass) as i64;
-        let b = (self.total as i64 + 1) * self.total as i64 * (other.total - other.pass) as i64;
-        a.partial_cmp(&b)
+        Some(self.cmp(other))
     }
 }
 
 impl Ord for Ratio {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        self.partial_cmp(other).unwrap()
+        let a = (other.total as i64 + 1) * other.total as i64 * (self.total - self.pass) as i64;
+        let b = (self.total as i64 + 1) * self.total as i64 * (other.total - other.pass) as i64;
+        a.cmp(&b)
     }
 }
 

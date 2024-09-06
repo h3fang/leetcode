@@ -27,6 +27,6 @@ mod tests {
     fn case1() {
         let trips = vec![vec![2, 1, 5], vec![3, 3, 7]];
         let capacity = 4;
-        assert_eq!(false, Solution::car_pooling(trips, capacity));
+        assert!(!Solution::car_pooling(trips, capacity));
     }
 }

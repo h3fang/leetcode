@@ -24,12 +24,12 @@ mod tests {
             .iter()
             .map(|r| r.to_vec())
             .collect();
-        assert_eq!(true, Solution::is_toeplitz_matrix(matrix));
+        assert!(Solution::is_toeplitz_matrix(matrix));
     }
 
     #[test]
     fn case2() {
         let matrix = [[1, 2], [2, 2]].iter().map(|r| r.to_vec()).collect();
-        assert_eq!(false, Solution::is_toeplitz_matrix(matrix));
+        assert!(!Solution::is_toeplitz_matrix(matrix));
     }
 }

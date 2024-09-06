@@ -23,33 +23,33 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::backspace_compare("ab#c".to_string(), "ad#c".to_string())
-        );
+        assert!(Solution::backspace_compare(
+            "ab#c".to_string(),
+            "ad#c".to_string()
+        ));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            true,
-            Solution::backspace_compare("ab##".to_string(), "c#d#".to_string())
-        );
+        assert!(Solution::backspace_compare(
+            "ab##".to_string(),
+            "c#d#".to_string()
+        ));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(
-            true,
-            Solution::backspace_compare("a##c".to_string(), "#a#c".to_string())
-        );
+        assert!(Solution::backspace_compare(
+            "a##c".to_string(),
+            "#a#c".to_string()
+        ));
     }
 
     #[test]
     fn case4() {
-        assert_eq!(
-            false,
-            Solution::backspace_compare("a#c".to_string(), "b".to_string())
-        );
+        assert!(!Solution::backspace_compare(
+            "a#c".to_string(),
+            "b".to_string()
+        ));
     }
 }

@@ -46,10 +46,10 @@ mod tests {
     fn case1() {
         let mut ci = CombinationIterator::new("abc".to_string(), 2);
         assert_eq!("ab".to_string(), ci.next());
-        assert_eq!(true, ci.has_next());
+        assert!(ci.has_next());
         assert_eq!("ac".to_string(), ci.next());
-        assert_eq!(true, ci.has_next());
+        assert!(ci.has_next());
         assert_eq!("bc".to_string(), ci.next());
-        assert_eq!(false, ci.has_next());
+        assert!(!ci.has_next());
     }
 }

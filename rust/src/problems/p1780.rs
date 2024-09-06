@@ -18,16 +18,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::check_powers_of_three(12));
+        assert!(Solution::check_powers_of_three(12));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::check_powers_of_three(91));
+        assert!(Solution::check_powers_of_three(91));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::check_powers_of_three(21));
+        assert!(!Solution::check_powers_of_three(21));
     }
 }

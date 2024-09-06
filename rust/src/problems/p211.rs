@@ -72,9 +72,9 @@ mod tests {
         wd.add_word("bad".to_string());
         wd.add_word("dad".to_string());
         wd.add_word("mad".to_string());
-        assert_eq!(false, wd.search("pad".to_string()));
-        assert_eq!(true, wd.search("bad".to_string()));
-        assert_eq!(true, wd.search(".ad".to_string()));
-        assert_eq!(true, wd.search("b..".to_string()));
+        assert!(!wd.search("pad".to_string()));
+        assert!(wd.search("bad".to_string()));
+        assert!(wd.search(".ad".to_string()));
+        assert!(wd.search("b..".to_string()));
     }
 }

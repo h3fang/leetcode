@@ -39,31 +39,31 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_additive_number("112358".to_string()));
+        assert!(Solution::is_additive_number("112358".to_string()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::is_additive_number("199100199".to_string()));
+        assert!(Solution::is_additive_number("199100199".to_string()));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::is_additive_number("0".to_string()));
+        assert!(!Solution::is_additive_number("0".to_string()));
     }
 
     #[test]
     fn case4() {
-        assert_eq!(false, Solution::is_additive_number("10".to_string()));
+        assert!(!Solution::is_additive_number("10".to_string()));
     }
 
     #[test]
     fn case5() {
-        assert_eq!(false, Solution::is_additive_number("1023".to_string()));
+        assert!(!Solution::is_additive_number("1023".to_string()));
     }
 
     #[test]
     fn case6() {
-        assert_eq!(true, Solution::is_additive_number("101".to_string()));
+        assert!(Solution::is_additive_number("101".to_string()));
     }
 }

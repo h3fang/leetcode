@@ -59,7 +59,7 @@ mod tests {
         let blocked = vec![vec![0, 1], vec![1, 0]];
         let source = vec![0, 0];
         let target = vec![0, 2];
-        assert_eq!(false, Solution::is_escape_possible(blocked, source, target));
+        assert!(!Solution::is_escape_possible(blocked, source, target));
     }
 
     #[test]
@@ -67,6 +67,6 @@ mod tests {
         let blocked = vec![vec![0i32; 2]; 0];
         let source = vec![0, 0];
         let target = vec![999999, 999999];
-        assert_eq!(true, Solution::is_escape_possible(blocked, source, target));
+        assert!(Solution::is_escape_possible(blocked, source, target));
     }
 }

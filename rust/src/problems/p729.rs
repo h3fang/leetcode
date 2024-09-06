@@ -28,8 +28,8 @@ mod tests {
     #[test]
     fn case1() {
         let mut c = MyCalendar::new();
-        assert_eq!(true, c.book(10, 20));
-        assert_eq!(false, c.book(15, 25));
-        assert_eq!(true, c.book(20, 30));
+        assert!(c.book(10, 20));
+        assert!(!c.book(15, 25));
+        assert!(c.book(20, 30));
     }
 }

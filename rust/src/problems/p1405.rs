@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn longest_diverse_string(a: i32, b: i32, c: i32) -> String {
         let mut s = Vec::with_capacity((a + b + c) as usize);
-        let mut chars = vec![(a, b'a'), (b, b'b'), (c, b'c')];
+        let mut chars = [(a, b'a'), (b, b'b'), (c, b'c')];
 
         loop {
             chars.sort_unstable();

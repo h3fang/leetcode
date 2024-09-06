@@ -40,12 +40,12 @@ mod tests {
     #[test]
     fn case1() {
         let root = TreeNode::from_vec(&[1, 2, 2, 3, 4, 4, 3]);
-        assert_eq!(true, Solution::is_symmetric(root));
+        assert!(Solution::is_symmetric(root));
     }
 
     #[test]
     fn case2() {
         let root = TreeNode::from_vec(&[1, 2, 2, null, 3, null, 3]);
-        assert_eq!(false, Solution::is_symmetric(root));
+        assert!(!Solution::is_symmetric(root));
     }
 }

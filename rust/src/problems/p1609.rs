@@ -52,12 +52,12 @@ mod tests {
     #[test]
     fn case1() {
         let root = TreeNode::from_vec(&[5, 9, 1, 3, 5, 7]);
-        assert_eq!(false, Solution::is_even_odd_tree(root));
+        assert!(!Solution::is_even_odd_tree(root));
     }
 
     #[test]
     fn case2() {
         let root = TreeNode::from_vec(&[11, 8, 6, 1, 3, 9, 11, 30, 20, 18, 16, 12, 10, 4, 2, 17]);
-        assert_eq!(true, Solution::is_even_odd_tree(root));
+        assert!(Solution::is_even_odd_tree(root));
     }
 }

@@ -23,11 +23,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_ideal_permutation(vec![1, 0, 2]));
+        assert!(Solution::is_ideal_permutation(vec![1, 0, 2]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::is_ideal_permutation(vec![1, 2, 0]));
+        assert!(!Solution::is_ideal_permutation(vec![1, 2, 0]));
     }
 }

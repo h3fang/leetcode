@@ -17,14 +17,14 @@ mod tests {
     #[test]
     fn case1() {
         let result = Solution::circular_permutation(2, 3);
-        let expected = vec![vec![3, 2, 0, 1], vec![3, 1, 0, 2]];
+        let expected = [vec![3, 2, 0, 1], vec![3, 1, 0, 2]];
         assert!(expected.contains(&result));
     }
 
     #[test]
     fn case2() {
         let result = Solution::circular_permutation(3, 2);
-        let expected = vec![vec![2, 6, 7, 5, 4, 0, 1, 3], vec![2, 3, 1, 0, 4, 5, 7, 6]];
+        let expected = [vec![2, 6, 7, 5, 4, 0, 1, 3], vec![2, 3, 1, 0, 4, 5, 7, 6]];
         assert!(expected.contains(&result));
     }
 }

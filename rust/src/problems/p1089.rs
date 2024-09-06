@@ -1,6 +1,7 @@
 pub struct Solution;
 
 impl Solution {
+    #[allow(clippy::ptr_arg)]
     pub fn duplicate_zeros(arr: &mut Vec<i32>) {
         let n = arr.len();
         let mut zero = arr.iter().filter(|&&a| a == 0).count();

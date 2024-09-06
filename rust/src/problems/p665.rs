@@ -24,11 +24,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::check_possibility(vec![4, 2, 3]));
+        assert!(Solution::check_possibility(vec![4, 2, 3]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::check_possibility(vec![4, 2, 1]));
+        assert!(!Solution::check_possibility(vec![4, 2, 1]));
     }
 }

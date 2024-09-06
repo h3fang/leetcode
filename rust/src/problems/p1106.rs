@@ -56,32 +56,28 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::parse_bool_expr("!(f)".to_string()));
+        assert!(Solution::parse_bool_expr("!(f)".to_string()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::parse_bool_expr("|(f,t)".to_string()));
+        assert!(Solution::parse_bool_expr("|(f,t)".to_string()));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::parse_bool_expr("&(t,f)".to_string()));
+        assert!(!Solution::parse_bool_expr("&(t,f)".to_string()));
     }
 
     #[test]
     fn case4() {
-        assert_eq!(
-            false,
-            Solution::parse_bool_expr("|(&(t,f,t),!(t))".to_string())
-        );
+        assert!(!Solution::parse_bool_expr("|(&(t,f,t),!(t))".to_string()));
     }
 
     #[test]
     fn case5() {
-        assert_eq!(
-            true,
-            Solution::parse_bool_expr("!(&(&(!(&(f)),&(t),|(f,f,t)),&(t),&(t,t,f)))".to_string())
-        );
+        assert!(Solution::parse_bool_expr(
+            "!(&(&(!(&(f)),&(t),|(f,f,t)),&(t),&(t,t,f)))".to_string()
+        ));
     }
 }

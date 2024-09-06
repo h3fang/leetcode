@@ -41,16 +41,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::valid_palindrome("aba".into()));
+        assert!(Solution::valid_palindrome("aba".into()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::valid_palindrome("abca".into()));
+        assert!(Solution::valid_palindrome("abca".into()));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::valid_palindrome("abc".into()));
+        assert!(!Solution::valid_palindrome("abc".into()));
     }
 }

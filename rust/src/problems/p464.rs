@@ -39,11 +39,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(false, Solution::can_i_win(10, 11));
+        assert!(!Solution::can_i_win(10, 11));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::can_i_win(10, 0));
+        assert!(Solution::can_i_win(10, 0));
     }
 }

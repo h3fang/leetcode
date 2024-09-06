@@ -42,12 +42,12 @@ mod tests {
     #[test]
     fn case1() {
         let root = TreeNode::from_vec(&[2, 1, 3]);
-        assert_eq!(true, Solution::is_valid_bst(root));
+        assert!(Solution::is_valid_bst(root));
     }
 
     #[test]
     fn case2() {
         let root = TreeNode::from_vec(&[5, 1, 4, null, null, 3, 6]);
-        assert_eq!(false, Solution::is_valid_bst(root));
+        assert!(!Solution::is_valid_bst(root));
     }
 }

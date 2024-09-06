@@ -6,7 +6,7 @@ impl Solution {
         let n = matrix[0].len();
 
         let mut dp = vec![vec![0; n]; m];
-        dp[m - 1] = matrix[m - 1].clone();
+        dp[m - 1].clone_from(&matrix[m - 1]);
         for i in (0..m - 1).rev() {
             for j in 0..n {
                 dp[i][j] = dp[i + 1][j];

@@ -27,16 +27,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_perfect_square(16));
+        assert!(Solution::is_perfect_square(16));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(true, Solution::is_perfect_square(1));
+        assert!(Solution::is_perfect_square(1));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::is_perfect_square(i32::MAX));
+        assert!(!Solution::is_perfect_square(i32::MAX));
     }
 }

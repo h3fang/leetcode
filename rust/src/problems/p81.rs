@@ -44,16 +44,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::search(vec![2, 5, 6, 0, 0, 1, 2], 0));
+        assert!(Solution::search(vec![2, 5, 6, 0, 0, 1, 2], 0));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::search(vec![2, 5, 6, 0, 0, 1, 2], 3));
+        assert!(!Solution::search(vec![2, 5, 6, 0, 0, 1, 2], 3));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::search(vec![1, 3], 0));
+        assert!(!Solution::search(vec![1, 3], 0));
     }
 }

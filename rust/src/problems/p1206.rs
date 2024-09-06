@@ -25,6 +25,7 @@ pub struct Skiplist {
     level: usize,
 }
 
+#[allow(clippy::assigning_clones)]
 impl Skiplist {
     #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
@@ -258,11 +259,11 @@ mod tests {
         sl.add(1);
         sl.add(2);
         sl.add(3);
-        assert_eq!(false, sl.search(0));
+        assert!(!sl.search(0));
         sl.add(4);
-        assert_eq!(true, sl.search(1));
-        assert_eq!(false, sl.erase(0));
-        assert_eq!(true, sl.erase(1));
-        assert_eq!(false, sl.search(1));
+        assert!(sl.search(1));
+        assert!(!sl.erase(0));
+        assert!(sl.erase(1));
+        assert!(!sl.search(1));
     }
 }

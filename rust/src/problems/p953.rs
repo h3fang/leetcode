@@ -37,6 +37,6 @@ mod tests {
     fn case1() {
         let words = vec!["hello".to_string(), "leetcode".to_string()];
         let order = "hlabcdefgijkmnopqrstuvwxyz".to_string();
-        assert_eq!(true, Solution::is_alien_sorted(words, order));
+        assert!(Solution::is_alien_sorted(words, order));
     }
 }

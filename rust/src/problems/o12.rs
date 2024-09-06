@@ -55,7 +55,7 @@ mod tests {
             })
             .collect::<Vec<_>>();
         let word = "ABCCED".to_string();
-        assert_eq!(true, Solution::exist(board, word));
+        assert!(Solution::exist(board, word));
     }
 
     #[test]
@@ -70,6 +70,6 @@ mod tests {
             })
             .collect::<Vec<_>>();
         let word = "abcd".to_string();
-        assert_eq!(false, Solution::exist(board, word));
+        assert!(!Solution::exist(board, word));
     }
 }

@@ -41,8 +41,8 @@ mod tests {
                 m.insert(*i, g.len() as i32);
             }
         }
-        for i in 0..group_sizes.len() {
-            assert_eq!(group_sizes[i], *m.get(&(i as i32)).unwrap());
+        for (i, &size) in group_sizes.iter().enumerate() {
+            assert_eq!(size, *m.get(&(i as i32)).unwrap());
         }
     }
 

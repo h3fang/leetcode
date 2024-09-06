@@ -12,6 +12,6 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_power_of_four(16));
+        assert!(Solution::is_power_of_four(16));
     }
 }

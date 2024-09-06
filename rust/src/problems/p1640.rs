@@ -37,9 +37,9 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            false,
-            Solution::can_form_array(vec![1, 2, 3], vec![vec![2], vec![1, 3]])
-        );
+        assert!(!Solution::can_form_array(
+            vec![1, 2, 3],
+            vec![vec![2], vec![1, 3]]
+        ));
     }
 }

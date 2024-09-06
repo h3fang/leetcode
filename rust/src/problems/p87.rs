@@ -32,25 +32,22 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::is_scramble("great".to_string(), "rgeat".to_string())
-        );
+        assert!(Solution::is_scramble(
+            "great".to_string(),
+            "rgeat".to_string()
+        ));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            false,
-            Solution::is_scramble("abcde".to_string(), "caebd".to_string())
-        );
+        assert!(!Solution::is_scramble(
+            "abcde".to_string(),
+            "caebd".to_string()
+        ));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(
-            true,
-            Solution::is_scramble("ac".to_string(), "ca".to_string())
-        );
+        assert!(Solution::is_scramble("ac".to_string(), "ca".to_string()));
     }
 }

@@ -106,44 +106,32 @@ mod tests {
             [2, 3, 3, 4],
         ];
         let rectangles = rectangles.iter().map(|r| r.to_vec()).collect::<Vec<_>>();
-        assert_eq!(
-            true,
-            Solution::is_rectangle_cover_scan_line(rectangles.clone())
-        );
-        assert_eq!(true, Solution::is_rectangle_cover(rectangles));
+        assert!(Solution::is_rectangle_cover_scan_line(rectangles.clone()));
+        assert!(Solution::is_rectangle_cover(rectangles));
     }
 
     #[test]
     fn case2() {
         let rectangles = [[1, 1, 2, 3], [1, 3, 2, 4], [3, 1, 4, 2], [3, 2, 4, 4]];
         let rectangles = rectangles.iter().map(|r| r.to_vec()).collect::<Vec<_>>();
-        assert_eq!(
-            false,
-            Solution::is_rectangle_cover_scan_line(rectangles.clone())
-        );
-        assert_eq!(false, Solution::is_rectangle_cover(rectangles));
+        assert!(!Solution::is_rectangle_cover_scan_line(rectangles.clone()));
+        assert!(!Solution::is_rectangle_cover(rectangles));
     }
 
     #[test]
     fn case3() {
         let rectangles = [[1, 1, 3, 3], [3, 1, 4, 2], [1, 3, 2, 4], [3, 2, 4, 4]];
         let rectangles = rectangles.iter().map(|r| r.to_vec()).collect::<Vec<_>>();
-        assert_eq!(
-            false,
-            Solution::is_rectangle_cover_scan_line(rectangles.clone())
-        );
-        assert_eq!(false, Solution::is_rectangle_cover(rectangles));
+        assert!(!Solution::is_rectangle_cover_scan_line(rectangles.clone()));
+        assert!(!Solution::is_rectangle_cover(rectangles));
     }
 
     #[test]
     fn case4() {
         let rectangles = [[1, 1, 3, 3], [3, 1, 4, 2], [1, 3, 2, 4], [2, 2, 4, 4]];
         let rectangles = rectangles.iter().map(|r| r.to_vec()).collect::<Vec<_>>();
-        assert_eq!(
-            false,
-            Solution::is_rectangle_cover_scan_line(rectangles.clone())
-        );
-        assert_eq!(false, Solution::is_rectangle_cover(rectangles));
+        assert!(!Solution::is_rectangle_cover_scan_line(rectangles.clone()));
+        assert!(!Solution::is_rectangle_cover(rectangles));
     }
 
     #[test]
@@ -163,10 +151,7 @@ mod tests {
             [5, 0, 6, 1],
         ];
         let rectangles = rectangles.iter().map(|r| r.to_vec()).collect::<Vec<_>>();
-        assert_eq!(
-            true,
-            Solution::is_rectangle_cover_scan_line(rectangles.clone())
-        );
-        assert_eq!(true, Solution::is_rectangle_cover(rectangles));
+        assert!(Solution::is_rectangle_cover_scan_line(rectangles.clone()));
+        assert!(Solution::is_rectangle_cover(rectangles));
     }
 }

@@ -12,17 +12,17 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::rotate_string("abcde".to_string(), "cdeab".to_string())
-        );
+        assert!(Solution::rotate_string(
+            "abcde".to_string(),
+            "cdeab".to_string()
+        ));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            false,
-            Solution::rotate_string("abcde".to_string(), "abced".to_string())
-        );
+        assert!(!Solution::rotate_string(
+            "abcde".to_string(),
+            "abced".to_string()
+        ));
     }
 }

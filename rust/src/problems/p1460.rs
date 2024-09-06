@@ -22,9 +22,6 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::can_be_equal(vec![1, 2, 3, 4], vec![2, 4, 1, 3])
-        );
+        assert!(Solution::can_be_equal(vec![1, 2, 3, 4], vec![2, 4, 1, 3]));
     }
 }

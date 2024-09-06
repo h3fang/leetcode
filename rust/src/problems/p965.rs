@@ -35,12 +35,12 @@ mod tests {
     #[test]
     fn case1() {
         let root = TreeNode::from_vec(&[1, 1, 1, 1, 1, null, 1]);
-        assert_eq!(true, Solution::is_unival_tree(root));
+        assert!(Solution::is_unival_tree(root));
     }
 
     #[test]
     fn case2() {
         let root = TreeNode::from_vec(&[2, 2, 2, 5, 2]);
-        assert_eq!(false, Solution::is_unival_tree(root));
+        assert!(!Solution::is_unival_tree(root));
     }
 }

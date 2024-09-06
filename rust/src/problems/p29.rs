@@ -14,7 +14,7 @@ impl Solution {
                     result += contrib;
                 }
                 if c > 1 {
-                    #[allow(clippy::overflow_check_conditional)]
+                    #[allow(clippy::panicking_overflow_checks)]
                     if contrib < a - contrib {
                         return false;
                     }

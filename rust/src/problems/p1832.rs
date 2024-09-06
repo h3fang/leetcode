@@ -16,14 +16,13 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::check_if_pangram("thequickbrownfoxjumpsoverthelazydog".to_string())
-        );
+        assert!(Solution::check_if_pangram(
+            "thequickbrownfoxjumpsoverthelazydog".to_string()
+        ));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::check_if_pangram("leetcode".to_string()));
+        assert!(!Solution::check_if_pangram("leetcode".to_string()));
     }
 }

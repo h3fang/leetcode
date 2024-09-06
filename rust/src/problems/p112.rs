@@ -29,12 +29,12 @@ mod tests {
     #[test]
     fn case1() {
         let root = TreeNode::from_vec(&[5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1]);
-        assert_eq!(true, Solution::has_path_sum(root, 22));
+        assert!(Solution::has_path_sum(root, 22));
     }
 
     #[test]
     fn case2() {
         let root = TreeNode::from_vec(&[1, 2, 3]);
-        assert_eq!(false, Solution::has_path_sum(root, 5));
+        assert!(!Solution::has_path_sum(root, 5));
     }
 }

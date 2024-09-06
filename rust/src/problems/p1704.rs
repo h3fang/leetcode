@@ -19,11 +19,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::halves_are_alike("book".to_string()));
+        assert!(Solution::halves_are_alike("book".to_string()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::halves_are_alike("textbook".to_string()));
+        assert!(!Solution::halves_are_alike("textbook".to_string()));
     }
 }

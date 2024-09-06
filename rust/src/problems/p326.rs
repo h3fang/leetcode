@@ -12,11 +12,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_power_of_three(27));
+        assert!(Solution::is_power_of_three(27));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::is_power_of_three(-1));
+        assert!(!Solution::is_power_of_three(-1));
     }
 }

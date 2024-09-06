@@ -6,9 +6,9 @@ impl Solution {
     pub fn number_of_arithmetic_slices(nums: Vec<i32>) -> i32 {
         let mut result = 0;
         let mut f = vec![HashMap::new(); nums.len()];
-        for i in 1..nums.len() {
-            for j in 0..i {
-                let d = nums[i] as i64 - nums[j] as i64;
+        for (i, &a) in nums.iter().enumerate().skip(1) {
+            for (j, &b) in nums[..i].iter().enumerate() {
+                let d = a as i64 - b as i64;
                 let c = f[j].get(&(d)).cloned().unwrap_or(0);
                 *f[i].entry(d).or_default() += c + 1;
                 result += c;

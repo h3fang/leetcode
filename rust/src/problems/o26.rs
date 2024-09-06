@@ -50,13 +50,13 @@ mod tests {
     fn case1() {
         let a = TreeNode::from_vec(&[1, 2, 3]);
         let b = TreeNode::from_vec(&[3, 1]);
-        assert_eq!(false, Solution::is_sub_structure(a, b));
+        assert!(!Solution::is_sub_structure(a, b));
     }
 
     #[test]
     fn case2() {
         let a = TreeNode::from_vec(&[3, 4, 5, 1, 2]);
         let b = TreeNode::from_vec(&[4, 1]);
-        assert_eq!(true, Solution::is_sub_structure(a, b));
+        assert!(Solution::is_sub_structure(a, b));
     }
 }

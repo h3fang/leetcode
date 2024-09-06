@@ -5,6 +5,7 @@ use std::rc::Rc;
 pub struct Solution;
 
 impl Solution {
+    #[allow(clippy::assigning_clones)]
     pub fn kth_smallest_iterative(mut root: Option<Rc<RefCell<TreeNode>>>, mut k: i32) -> i32 {
         let mut stack = Vec::new();
         loop {
@@ -17,7 +18,8 @@ impl Solution {
             if k == 0 {
                 return node.borrow_mut().val;
             }
-            root = node.borrow().right.clone();
+            let n = node.borrow();
+            root.clone_from(&n.right);
         }
     }
 

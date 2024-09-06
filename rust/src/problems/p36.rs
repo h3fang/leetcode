@@ -70,7 +70,7 @@ mod tests {
         .iter()
         .map(|r| r.iter().map(|c| c.chars().next().unwrap()).collect())
         .collect();
-        assert_eq!(true, Solution::is_valid_sudoku(board));
+        assert!(Solution::is_valid_sudoku(board));
     }
 
     #[test]
@@ -89,6 +89,6 @@ mod tests {
         .iter()
         .map(|r| r.iter().map(|c| c.chars().next().unwrap()).collect())
         .collect();
-        assert_eq!(false, Solution::is_valid_sudoku(board));
+        assert!(!Solution::is_valid_sudoku(board));
     }
 }

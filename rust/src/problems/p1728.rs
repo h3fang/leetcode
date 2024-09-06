@@ -179,34 +179,34 @@ mod tests {
     fn case1() {
         let grid = ["####F", "#C...", "M...."];
         let grid = grid.iter().map(|r| r.to_string()).collect();
-        assert_eq!(true, Solution::can_mouse_win(grid, 1, 2));
+        assert!(Solution::can_mouse_win(grid, 1, 2));
     }
 
     #[test]
     fn case2() {
         let grid = ["M.C...F"];
         let grid = grid.iter().map(|r| r.to_string()).collect();
-        assert_eq!(true, Solution::can_mouse_win(grid, 1, 4));
+        assert!(Solution::can_mouse_win(grid, 1, 4));
     }
 
     #[test]
     fn case3() {
         let grid = ["M.C...F"];
         let grid = grid.iter().map(|r| r.to_string()).collect();
-        assert_eq!(false, Solution::can_mouse_win(grid, 1, 3));
+        assert!(!Solution::can_mouse_win(grid, 1, 3));
     }
 
     #[test]
     fn case4() {
         let grid = ["C...#", "...#F", "....#", "M...."];
         let grid = grid.iter().map(|r| r.to_string()).collect();
-        assert_eq!(false, Solution::can_mouse_win(grid, 2, 5));
+        assert!(!Solution::can_mouse_win(grid, 2, 5));
     }
 
     #[test]
     fn case5() {
         let grid = [".M...", "..#..", "#..#.", "C#.#.", "...#F"];
         let grid = grid.iter().map(|r| r.to_string()).collect();
-        assert_eq!(true, Solution::can_mouse_win(grid, 3, 1));
+        assert!(Solution::can_mouse_win(grid, 3, 1));
     }
 }

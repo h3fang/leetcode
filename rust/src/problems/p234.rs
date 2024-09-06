@@ -22,12 +22,12 @@ mod tests {
     #[test]
     fn case1() {
         let head = ListNode::from_vec(&[1, 2, 2, 1]);
-        assert_eq!(true, Solution::is_palindrome(head));
+        assert!(Solution::is_palindrome(head));
     }
 
     #[test]
     fn case2() {
         let head = ListNode::from_vec(&[1, 2, 2]);
-        assert_eq!(false, Solution::is_palindrome(head));
+        assert!(!Solution::is_palindrome(head));
     }
 }

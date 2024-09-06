@@ -40,18 +40,18 @@ mod tests {
             vec![10, 13, 14, 17, 24],
             vec![18, 21, 23, 26, 30],
         ];
-        assert_eq!(true, Solution::find_number_in2_d_array(matrix, 5));
+        assert!(Solution::find_number_in2_d_array(matrix, 5));
     }
 
     #[test]
     fn case2() {
         let matrix = vec![vec![], vec![]];
-        assert_eq!(false, Solution::find_number_in2_d_array(matrix, 5));
+        assert!(!Solution::find_number_in2_d_array(matrix, 5));
     }
 
     #[test]
     fn case3() {
         let matrix = vec![];
-        assert_eq!(false, Solution::find_number_in2_d_array(matrix, 5));
+        assert!(!Solution::find_number_in2_d_array(matrix, 5));
     }
 }

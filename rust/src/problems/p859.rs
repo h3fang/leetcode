@@ -54,27 +54,27 @@ mod tests {
     fn case1() {
         let s = "ab".to_string();
         let goal = "ba".to_string();
-        assert_eq!(true, Solution::buddy_strings(s, goal));
+        assert!(Solution::buddy_strings(s, goal));
     }
 
     #[test]
     fn case2() {
         let s = "ab".to_string();
         let goal = "ab".to_string();
-        assert_eq!(false, Solution::buddy_strings(s, goal));
+        assert!(!Solution::buddy_strings(s, goal));
     }
 
     #[test]
     fn case3() {
         let s = "aa".to_string();
         let goal = "aa".to_string();
-        assert_eq!(true, Solution::buddy_strings(s, goal));
+        assert!(Solution::buddy_strings(s, goal));
     }
 
     #[test]
     fn case4() {
         let s = "aaaaaaabc".to_string();
         let goal = "aaaaaaacb".to_string();
-        assert_eq!(true, Solution::buddy_strings(s, goal));
+        assert!(Solution::buddy_strings(s, goal));
     }
 }

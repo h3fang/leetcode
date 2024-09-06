@@ -26,20 +26,20 @@ mod tests {
     fn case1() {
         let arr = vec![4, 2, 3, 0, 3, 1, 2];
         let start = 5;
-        assert_eq!(true, Solution::can_reach(arr, start));
+        assert!(Solution::can_reach(arr, start));
     }
 
     #[test]
     fn case2() {
         let arr = vec![4, 2, 3, 0, 3, 1, 2];
         let start = 0;
-        assert_eq!(true, Solution::can_reach(arr, start));
+        assert!(Solution::can_reach(arr, start));
     }
 
     #[test]
     fn case3() {
         let arr = vec![3, 0, 2, 1, 2];
         let start = 2;
-        assert_eq!(false, Solution::can_reach(arr, start));
+        assert!(!Solution::can_reach(arr, start));
     }
 }

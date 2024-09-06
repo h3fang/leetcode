@@ -1,8 +1,9 @@
 pub struct Solution;
 
 impl Solution {
+    #[allow(clippy::ptr_arg)]
     pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
-        fn transpose(matrix: &mut Vec<Vec<i32>>) {
+        fn transpose(matrix: &mut [Vec<i32>]) {
             let n = matrix.len();
             for i in 0..n {
                 for j in i + 1..n {

@@ -36,12 +36,12 @@ mod tests {
     #[test]
     fn case1() {
         let root = TreeNode::from_vec(&[5, 3, 6, 2, 4, null, 7]);
-        assert_eq!(true, Solution::find_target(root, 9));
+        assert!(Solution::find_target(root, 9));
     }
 
     #[test]
     fn case2() {
         let root = TreeNode::from_vec(&[5, 3, 6, 2, 4, null, 7]);
-        assert_eq!(false, Solution::find_target(root, 28));
+        assert!(!Solution::find_target(root, 28));
     }
 }

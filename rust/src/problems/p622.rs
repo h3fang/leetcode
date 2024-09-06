@@ -67,14 +67,14 @@ mod tests {
     #[test]
     fn case1() {
         let mut q = MyCircularQueue::new(3);
-        assert_eq!(true, q.en_queue(1));
-        assert_eq!(true, q.en_queue(2));
-        assert_eq!(true, q.en_queue(3));
-        assert_eq!(false, q.en_queue(4));
+        assert!(q.en_queue(1));
+        assert!(q.en_queue(2));
+        assert!(q.en_queue(3));
+        assert!(!q.en_queue(4));
         assert_eq!(3, q.rear());
-        assert_eq!(true, q.is_full());
-        assert_eq!(true, q.de_queue());
-        assert_eq!(true, q.en_queue(4));
+        assert!(q.is_full());
+        assert!(q.de_queue());
+        assert!(q.en_queue(4));
         assert_eq!(4, q.rear());
     }
 }

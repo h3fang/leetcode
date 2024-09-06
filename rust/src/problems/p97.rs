@@ -63,7 +63,7 @@ mod tests {
         let s1 = "aabcc".to_string();
         let s2 = "dbbca".to_string();
         let s3 = "aadbbcbcac".to_string();
-        assert_eq!(true, Solution::is_interleave(s1, s2, s3));
+        assert!(Solution::is_interleave(s1, s2, s3));
     }
 
     #[test]
@@ -71,7 +71,7 @@ mod tests {
         let s1 = "aabcc".to_string();
         let s2 = "dbbca".to_string();
         let s3 = "aadbbbaccc".to_string();
-        assert_eq!(false, Solution::is_interleave(s1, s2, s3));
+        assert!(!Solution::is_interleave(s1, s2, s3));
     }
 
     #[test]
@@ -79,7 +79,7 @@ mod tests {
         let s1 = "".to_string();
         let s2 = "".to_string();
         let s3 = "".to_string();
-        assert_eq!(true, Solution::is_interleave(s1, s2, s3));
+        assert!(Solution::is_interleave(s1, s2, s3));
     }
 
     #[test]
@@ -87,6 +87,6 @@ mod tests {
         let s1 = "a".to_string();
         let s2 = "b".to_string();
         let s3 = "a".to_string();
-        assert_eq!(false, Solution::is_interleave(s1, s2, s3));
+        assert!(!Solution::is_interleave(s1, s2, s3));
     }
 }

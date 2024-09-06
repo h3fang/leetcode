@@ -42,17 +42,14 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::can_partition_k_subsets(vec![4, 3, 2, 3, 5, 2, 1], 4)
-        );
+        assert!(Solution::can_partition_k_subsets(
+            vec![4, 3, 2, 3, 5, 2, 1],
+            4
+        ));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            false,
-            Solution::can_partition_k_subsets(vec![1, 2, 3, 4], 3)
-        );
+        assert!(!Solution::can_partition_k_subsets(vec![1, 2, 3, 4], 3));
     }
 }

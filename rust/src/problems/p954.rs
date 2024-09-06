@@ -47,16 +47,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(false, Solution::can_reorder_doubled(vec![3, 1, 3, 6]));
+        assert!(!Solution::can_reorder_doubled(vec![3, 1, 3, 6]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::can_reorder_doubled(vec![2, 1, 2, 6]));
+        assert!(!Solution::can_reorder_doubled(vec![2, 1, 2, 6]));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::can_reorder_doubled(vec![4, -2, 2, -4]));
+        assert!(Solution::can_reorder_doubled(vec![4, -2, 2, -4]));
     }
 }

@@ -75,27 +75,25 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::is_valid("<DIV>This is the first line <![CDATA[<div>]]></DIV>".into())
-        );
+        assert!(Solution::is_valid(
+            "<DIV>This is the first line <![CDATA[<div>]]></DIV>".into()
+        ));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            true,
-            Solution::is_valid("<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>".into())
-        );
+        assert!(Solution::is_valid(
+            "<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>".into()
+        ));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::is_valid("<A>  <B> </A>   </B>".into()));
+        assert!(!Solution::is_valid("<A>  <B> </A>   </B>".into()));
     }
 
     #[test]
     fn case4() {
-        assert_eq!(false, Solution::is_valid("<A><!A></A>".into()));
+        assert!(!Solution::is_valid("<A><!A></A>".into()));
     }
 }

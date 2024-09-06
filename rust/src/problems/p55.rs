@@ -24,12 +24,12 @@ mod tests {
     #[test]
     fn case1() {
         let nums = vec![2, 3, 1, 1, 4];
-        assert_eq!(true, Solution::can_jump(nums));
+        assert!(Solution::can_jump(nums));
     }
 
     #[test]
     fn case2() {
         let nums = vec![3, 2, 1, 0, 4];
-        assert_eq!(false, Solution::can_jump(nums));
+        assert!(!Solution::can_jump(nums));
     }
 }

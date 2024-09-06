@@ -28,6 +28,6 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::can_place_flowers(vec![1, 0, 0, 0, 1], 1));
+        assert!(Solution::can_place_flowers(vec![1, 0, 0, 0, 1], 1));
     }
 }

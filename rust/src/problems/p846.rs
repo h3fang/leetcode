@@ -39,14 +39,14 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::is_n_straight_hand(vec![1, 2, 3, 6, 2, 3, 4, 7, 8], 3)
-        )
+        assert!(Solution::is_n_straight_hand(
+            vec![1, 2, 3, 6, 2, 3, 4, 7, 8],
+            3
+        ))
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::is_n_straight_hand(vec![1, 2, 3, 4, 5], 4))
+        assert!(!Solution::is_n_straight_hand(vec![1, 2, 3, 4, 5], 4))
     }
 }

@@ -63,31 +63,31 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::reordered_power_of2_backtrack(1));
-        assert_eq!(true, Solution::reordered_power_of2(1));
+        assert!(Solution::reordered_power_of2_backtrack(1));
+        assert!(Solution::reordered_power_of2(1));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::reordered_power_of2_backtrack(10));
-        assert_eq!(false, Solution::reordered_power_of2(10));
+        assert!(!Solution::reordered_power_of2_backtrack(10));
+        assert!(!Solution::reordered_power_of2(10));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::reordered_power_of2_backtrack(16));
-        assert_eq!(true, Solution::reordered_power_of2(16));
+        assert!(Solution::reordered_power_of2_backtrack(16));
+        assert!(Solution::reordered_power_of2(16));
     }
 
     #[test]
     fn case4() {
-        assert_eq!(false, Solution::reordered_power_of2_backtrack(24));
-        assert_eq!(false, Solution::reordered_power_of2(24));
+        assert!(!Solution::reordered_power_of2_backtrack(24));
+        assert!(!Solution::reordered_power_of2(24));
     }
 
     #[test]
     fn case5() {
-        assert_eq!(true, Solution::reordered_power_of2_backtrack(46));
-        assert_eq!(true, Solution::reordered_power_of2(46));
+        assert!(Solution::reordered_power_of2_backtrack(46));
+        assert!(Solution::reordered_power_of2(46));
     }
 }

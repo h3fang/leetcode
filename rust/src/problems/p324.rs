@@ -1,6 +1,7 @@
 pub struct Solution;
 
 impl Solution {
+    #[allow(clippy::ptr_arg)]
     pub fn wiggle_sort(nums: &mut Vec<i32>) {
         let mut arr = nums.clone();
         arr.sort_unstable();

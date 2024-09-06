@@ -35,12 +35,12 @@ mod tests {
     #[test]
     fn case1() {
         let graph = vec![vec![1, 2, 3], vec![0, 2], vec![0, 1, 3], vec![0, 2]];
-        assert_eq!(false, Solution::is_bipartite(graph));
+        assert!(!Solution::is_bipartite(graph));
     }
 
     #[test]
     fn case2() {
         let graph = vec![vec![1, 3], vec![0, 2], vec![1, 3], vec![0, 2]];
-        assert_eq!(true, Solution::is_bipartite(graph));
+        assert!(Solution::is_bipartite(graph));
     }
 }

@@ -36,11 +36,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::makesquare(vec![1, 1, 2, 2, 2]));
+        assert!(Solution::makesquare(vec![1, 1, 2, 2, 2]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::makesquare(vec![3, 3, 3, 3, 4]));
+        assert!(!Solution::makesquare(vec![3, 3, 3, 3, 4]));
     }
 }

@@ -33,16 +33,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::is_self_crossing(vec![2, 1, 1, 2]));
+        assert!(Solution::is_self_crossing(vec![2, 1, 1, 2]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::is_self_crossing(vec![1, 2, 3, 4]));
+        assert!(!Solution::is_self_crossing(vec![1, 2, 3, 4]));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(true, Solution::is_self_crossing(vec![1, 1, 1, 1]));
+        assert!(Solution::is_self_crossing(vec![1, 1, 1, 1]));
     }
 }

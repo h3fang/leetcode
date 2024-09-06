@@ -49,7 +49,7 @@ mod tests {
     #[test]
     fn case1() {
         let root = TreeNode::from_vec(&[1, 2, 3, 4, null, 2, 4, null, null, 4]);
-        let expected = vec![TreeNode::from_vec(&[2, 4]), TreeNode::from_vec(&[4])];
+        let expected = [TreeNode::from_vec(&[2, 4]), TreeNode::from_vec(&[4])];
         let result = Solution::find_duplicate_subtrees(root);
         assert_eq!(expected.len(), result.len());
         for r in result {

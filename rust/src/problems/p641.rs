@@ -85,14 +85,14 @@ mod tests {
     #[test]
     fn case1() {
         let mut mcd = MyCircularDeque::new(3);
-        assert_eq!(true, mcd.insert_last(1));
-        assert_eq!(true, mcd.insert_last(2));
-        assert_eq!(true, mcd.insert_front(3));
-        assert_eq!(false, mcd.insert_front(4));
+        assert!(mcd.insert_last(1));
+        assert!(mcd.insert_last(2));
+        assert!(mcd.insert_front(3));
+        assert!(!mcd.insert_front(4));
         assert_eq!(2, mcd.get_rear());
-        assert_eq!(true, mcd.is_full());
-        assert_eq!(true, mcd.delete_last());
-        assert_eq!(true, mcd.insert_front(4));
+        assert!(mcd.is_full());
+        assert!(mcd.delete_last());
+        assert!(mcd.insert_front(4));
         assert_eq!(4, mcd.get_front());
     }
 }

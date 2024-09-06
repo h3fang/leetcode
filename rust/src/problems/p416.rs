@@ -38,11 +38,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::can_partition(vec![1, 5, 11, 5]));
+        assert!(Solution::can_partition(vec![1, 5, 11, 5]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::can_partition(vec![1, 2, 3, 5]));
+        assert!(!Solution::can_partition(vec![1, 2, 3, 5]));
     }
 }

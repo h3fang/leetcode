@@ -86,17 +86,17 @@ mod tests {
     #[test]
     fn case1() {
         let mut sc = StreamChecker::new(vec!["cd".to_string(), "f".to_string(), "kl".to_string()]);
-        assert_eq!(false, sc.query('a'));
-        assert_eq!(false, sc.query('b'));
-        assert_eq!(false, sc.query('c'));
-        assert_eq!(true, sc.query('d'));
-        assert_eq!(false, sc.query('e'));
-        assert_eq!(true, sc.query('f'));
-        assert_eq!(false, sc.query('g'));
-        assert_eq!(false, sc.query('h'));
-        assert_eq!(false, sc.query('i'));
-        assert_eq!(false, sc.query('j'));
-        assert_eq!(false, sc.query('k'));
-        assert_eq!(true, sc.query('l'));
+        assert!(!sc.query('a'));
+        assert!(!sc.query('b'));
+        assert!(!sc.query('c'));
+        assert!(sc.query('d'));
+        assert!(!sc.query('e'));
+        assert!(sc.query('f'));
+        assert!(!sc.query('g'));
+        assert!(!sc.query('h'));
+        assert!(!sc.query('i'));
+        assert!(!sc.query('j'));
+        assert!(!sc.query('k'));
+        assert!(sc.query('l'));
     }
 }

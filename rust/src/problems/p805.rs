@@ -45,14 +45,13 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::split_array_same_average(vec![1, 2, 3, 4, 5, 6, 7, 8])
-        );
+        assert!(Solution::split_array_same_average(vec![
+            1, 2, 3, 4, 5, 6, 7, 8
+        ]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::split_array_same_average(vec![3, 1]));
+        assert!(!Solution::split_array_same_average(vec![3, 1]));
     }
 }
