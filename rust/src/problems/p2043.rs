@@ -54,10 +54,10 @@ mod tests {
     #[test]
     fn case1() {
         let mut bank = Bank::new(vec![10, 100, 20, 50, 30]);
-        assert_eq!(true, bank.withdraw(3, 10));
-        assert_eq!(true, bank.transfer(5, 1, 20));
-        assert_eq!(true, bank.deposit(5, 20));
-        assert_eq!(false, bank.transfer(3, 4, 15));
-        assert_eq!(false, bank.withdraw(10, 50));
+        assert!(bank.withdraw(3, 10));
+        assert!(bank.transfer(5, 1, 20));
+        assert!(bank.deposit(5, 20));
+        assert!(!bank.transfer(3, 4, 15));
+        assert!(!bank.withdraw(10, 50));
     }
 }

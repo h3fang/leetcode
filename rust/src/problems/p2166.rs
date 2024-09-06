@@ -70,10 +70,10 @@ mod tests {
         bs.fix(3);
         bs.fix(1);
         bs.flip();
-        assert_eq!(false, bs.all());
+        assert!(!bs.all());
         bs.unfix(0);
         bs.flip();
-        assert_eq!(true, bs.one());
+        assert!(bs.one());
         bs.unfix(0);
         assert_eq!(2, bs.count());
         assert_eq!("01010", bs.to_string());

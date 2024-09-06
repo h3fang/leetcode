@@ -16,9 +16,9 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::is_fliped_string("waterbottle".to_string(), "erbottlewat".to_string())
-        );
+        assert!(Solution::is_fliped_string(
+            "waterbottle".to_string(),
+            "erbottlewat".to_string()
+        ));
     }
 }

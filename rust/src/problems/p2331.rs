@@ -31,6 +31,6 @@ mod tests {
     #[test]
     fn case1() {
         let root = TreeNode::from_vec(&[2, 1, 3, null, null, 0, 1]);
-        assert_eq!(true, Solution::evaluate_tree(root));
+        assert!(Solution::evaluate_tree(root));
     }
 }

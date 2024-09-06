@@ -39,11 +39,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::equal_frequency("abcc".to_string()));
+        assert!(Solution::equal_frequency("abcc".to_string()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::equal_frequency("aazz".to_string()));
+        assert!(!Solution::equal_frequency("aazz".to_string()));
     }
 }

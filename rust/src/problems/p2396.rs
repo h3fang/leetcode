@@ -37,11 +37,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(false, Solution::is_strictly_palindromic(9));
+        assert!(!Solution::is_strictly_palindromic(9));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::is_strictly_palindromic(4));
+        assert!(!Solution::is_strictly_palindromic(4));
     }
 }

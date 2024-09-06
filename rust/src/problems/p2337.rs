@@ -42,9 +42,6 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::can_change("_L__R__R_".into(), "L______RR".into())
-        );
+        assert!(Solution::can_change("_L__R__R_".into(), "L______RR".into()));
     }
 }

@@ -35,16 +35,16 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::winner_of_game("AAABABB".to_string()));
+        assert!(Solution::winner_of_game("AAABABB".to_string()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::winner_of_game("AA".to_string()));
+        assert!(!Solution::winner_of_game("AA".to_string()));
     }
 
     #[test]
     fn case3() {
-        assert_eq!(false, Solution::winner_of_game("AAAABBBB".to_string()));
+        assert!(!Solution::winner_of_game("AAAABBBB".to_string()));
     }
 }

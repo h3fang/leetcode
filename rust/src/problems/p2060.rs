@@ -85,21 +85,21 @@ mod tests {
     fn case1() {
         let s1 = "internationalization".into();
         let s2 = "i18n".into();
-        assert_eq!(true, Solution::possibly_equals(s1, s2));
+        assert!(Solution::possibly_equals(s1, s2));
     }
 
     #[test]
     fn case2() {
         let s1 = "l123e".into();
         let s2 = "44".into();
-        assert_eq!(true, Solution::possibly_equals(s1, s2));
+        assert!(Solution::possibly_equals(s1, s2));
     }
 
     #[test]
     fn case3() {
         let s1 = "a5b".into();
         let s2 = "c5b".into();
-        assert_eq!(false, Solution::possibly_equals(s1, s2));
+        assert!(!Solution::possibly_equals(s1, s2));
     }
 
     #[test]
@@ -107,7 +107,7 @@ mod tests {
         let s1 = "112s".into();
         let s2 = "g841".into();
 
-        assert_eq!(true, Solution::possibly_equals(s1, s2));
+        assert!(Solution::possibly_equals(s1, s2));
     }
 
     #[test]
@@ -115,6 +115,6 @@ mod tests {
         let s1 = "ab".into();
         let s2 = "a2".into();
 
-        assert_eq!(false, Solution::possibly_equals(s1, s2));
+        assert!(!Solution::possibly_equals(s1, s2));
     }
 }

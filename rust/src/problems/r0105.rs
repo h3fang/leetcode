@@ -35,11 +35,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::one_edit_away("pale".into(), "ple".into()));
+        assert!(Solution::one_edit_away("pale".into(), "ple".into()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::one_edit_away("pales".into(), "pal".into()));
+        assert!(!Solution::one_edit_away("pales".into(), "pal".into()));
     }
 }

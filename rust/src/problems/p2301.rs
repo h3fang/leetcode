@@ -41,6 +41,6 @@ mod tests {
             .iter()
             .map(|m| m.iter().map(|e| e.as_bytes()[0] as char).collect())
             .collect();
-        assert_eq!(true, Solution::match_replacement(s, sub, mappings));
+        assert!(Solution::match_replacement(s, sub, mappings));
     }
 }

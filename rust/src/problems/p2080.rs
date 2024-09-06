@@ -5,6 +5,7 @@ pub struct RangeFreqQuery {
     t: Vec<HashMap<i32, i32>>,
 }
 
+#[allow(clippy::assigning_clones)]
 impl RangeFreqQuery {
     pub fn new(arr: Vec<i32>) -> Self {
         let n = arr.len();

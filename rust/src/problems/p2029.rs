@@ -20,11 +20,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::stone_game_ix(vec![2, 1]));
+        assert!(Solution::stone_game_ix(vec![2, 1]));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::stone_game_ix(vec![5, 1, 2, 4, 3]));
+        assert!(!Solution::stone_game_ix(vec![5, 1, 2, 4, 3]));
     }
 }

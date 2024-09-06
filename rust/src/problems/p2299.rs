@@ -35,9 +35,8 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::strong_password_checker_ii("IloveLe3tcode!".into())
-        );
+        assert!(Solution::strong_password_checker_ii(
+            "IloveLe3tcode!".into()
+        ));
     }
 }

@@ -115,7 +115,7 @@ mod tests {
             if d > dis[i] {
                 continue;
             }
-            for (j, &w) in g[i as usize].iter().enumerate() {
+            for (j, &w) in g[i].iter().enumerate() {
                 if w == 0 {
                     continue;
                 }

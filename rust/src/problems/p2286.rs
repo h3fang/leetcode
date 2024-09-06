@@ -107,7 +107,7 @@ mod tests {
     fn case1() {
         let mut bms = BookMyShow::new(5, 9);
         assert_eq!(vec![0; 0], bms.gather(10, 1));
-        assert_eq!(true, bms.scatter(3, 3));
+        assert!(bms.scatter(3, 3));
         assert_eq!(vec![1, 0], bms.gather(9, 1));
         assert_eq!(vec![0; 0], bms.gather(10, 2));
         assert_eq!(vec![0, 3], bms.gather(2, 0));
@@ -118,22 +118,22 @@ mod tests {
         let mut bms = BookMyShow::new(2, 5);
         assert_eq!(vec![0, 0], bms.gather(4, 0));
         assert_eq!(vec![0; 0], bms.gather(2, 0));
-        assert_eq!(true, bms.scatter(5, 1));
-        assert_eq!(false, bms.scatter(5, 1));
+        assert!(bms.scatter(5, 1));
+        assert!(!bms.scatter(5, 1));
     }
 
     #[test]
     fn case3() {
         let mut bms = BookMyShow::new(19, 40);
-        assert_eq!(true, bms.scatter(34, 14));
-        assert_eq!(true, bms.scatter(5, 5));
+        assert!(bms.scatter(34, 14));
+        assert!(bms.scatter(5, 5));
         assert_eq!(vec![1, 0], bms.gather(20, 6));
         assert_eq!(vec![1, 20], bms.gather(3, 3));
         assert_eq!(vec![0; 0], bms.gather(50, 7));
         assert_eq!(vec![1, 23], bms.gather(16, 5));
         assert_eq!(vec![0; 0], bms.gather(12, 0));
-        assert_eq!(true, bms.scatter(23, 14));
-        assert_eq!(false, bms.scatter(36, 0));
-        assert_eq!(true, bms.scatter(25, 12));
+        assert!(bms.scatter(23, 14));
+        assert!(!bms.scatter(36, 0));
+        assert!(bms.scatter(25, 12));
     }
 }

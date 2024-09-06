@@ -24,17 +24,17 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(
-            true,
-            Solution::check_permutation("abc".to_string(), "bca".to_string())
-        );
+        assert!(Solution::check_permutation(
+            "abc".to_string(),
+            "bca".to_string()
+        ));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(
-            false,
-            Solution::check_permutation("abc".to_string(), "bad".to_string())
-        );
+        assert!(!Solution::check_permutation(
+            "abc".to_string(),
+            "bad".to_string()
+        ));
     }
 }

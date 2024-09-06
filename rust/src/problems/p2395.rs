@@ -22,6 +22,6 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::find_subarrays(vec![4, 2, 4]));
+        assert!(Solution::find_subarrays(vec![4, 2, 4]));
     }
 }

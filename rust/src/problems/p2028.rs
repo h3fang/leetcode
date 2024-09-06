@@ -25,7 +25,7 @@ mod tests {
         let rolls = vec![3, 2, 4, 3];
         let mean = 4;
         let n = 2;
-        let expected = vec![6, 6];
+        let expected = [6, 6];
         let result = Solution::missing_rolls(rolls, mean, n);
         assert_eq!(expected.len(), result.len());
         assert_eq!(expected.iter().sum::<i32>(), result.iter().sum::<i32>());
@@ -36,7 +36,7 @@ mod tests {
         let rolls = vec![1, 5, 6];
         let mean = 3;
         let n = 4;
-        let expected = vec![2, 3, 2, 2];
+        let expected = [2, 3, 2, 2];
         let result = Solution::missing_rolls(rolls, mean, n);
         assert_eq!(expected.len(), result.len());
         assert_eq!(expected.iter().sum::<i32>(), result.iter().sum::<i32>());
@@ -55,7 +55,7 @@ mod tests {
         let rolls = vec![1];
         let mean = 3;
         let n = 1;
-        let expected = vec![5];
+        let expected = [5];
         let result = Solution::missing_rolls(rolls, mean, n);
         assert_eq!(expected.len(), result.len());
         assert_eq!(expected.iter().sum::<i32>(), result.iter().sum::<i32>());

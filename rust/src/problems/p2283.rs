@@ -19,11 +19,11 @@ mod tests {
 
     #[test]
     fn case1() {
-        assert_eq!(true, Solution::digit_count("1210".into()));
+        assert!(Solution::digit_count("1210".into()));
     }
 
     #[test]
     fn case2() {
-        assert_eq!(false, Solution::digit_count("030".into()));
+        assert!(!Solution::digit_count("030".into()));
     }
 }

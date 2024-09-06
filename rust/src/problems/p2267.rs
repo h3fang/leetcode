@@ -59,7 +59,7 @@ mod tests {
             .iter()
             .map(|row| row.iter().map(|c| c.chars().next().unwrap()).collect())
             .collect();
-        assert_eq!(true, Solution::has_valid_path(grid));
+        assert!(Solution::has_valid_path(grid));
     }
 
     #[test]
@@ -69,6 +69,6 @@ mod tests {
             .iter()
             .map(|row| row.iter().map(|c| c.chars().next().unwrap()).collect())
             .collect();
-        assert_eq!(false, Solution::has_valid_path(grid));
+        assert!(!Solution::has_valid_path(grid));
     }
 }

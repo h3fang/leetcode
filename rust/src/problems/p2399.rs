@@ -29,6 +29,6 @@ mod tests {
         let distance = vec![
             1, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         ];
-        assert_eq!(true, Solution::check_distances(s, distance));
+        assert!(Solution::check_distances(s, distance));
     }
 }
