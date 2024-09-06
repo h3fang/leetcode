@@ -152,7 +152,7 @@ mod tests {
 
     #[test]
     fn to_string1() {
-        let root = Some(Rc::new(RefCell::new(TreeNode {
+        let root = Rc::new(RefCell::new(TreeNode {
             val: 1,
             left: Some(Rc::new(RefCell::new(TreeNode {
                 val: 2,
@@ -160,13 +160,13 @@ mod tests {
                 right: Some(Rc::new(RefCell::new(TreeNode::new(5)))),
             }))),
             right: Some(Rc::new(RefCell::new(TreeNode::new(3)))),
-        })));
-        assert_eq!("[1,2,3,4,5]", root.unwrap().borrow().to_string());
+        }));
+        assert_eq!("[1,2,3,4,5]", root.borrow().to_string());
     }
 
     #[test]
     fn to_string2() {
-        let root = Some(Rc::new(RefCell::new(TreeNode {
+        let root = Rc::new(RefCell::new(TreeNode {
             val: 1,
             left: None,
             right: Some(Rc::new(RefCell::new(TreeNode {
@@ -174,13 +174,13 @@ mod tests {
                 left: None,
                 right: Some(Rc::new(RefCell::new(TreeNode::new(3)))),
             }))),
-        })));
-        assert_eq!("[1,null,2,null,3]", root.unwrap().borrow().to_string());
+        }));
+        assert_eq!("[1,null,2,null,3]", root.borrow().to_string());
     }
 
     #[test]
     fn to_string3() {
-        let root = Some(Rc::new(RefCell::new(TreeNode {
+        let root = Rc::new(RefCell::new(TreeNode {
             val: 1,
             left: None,
             right: Some(Rc::new(RefCell::new(TreeNode {
@@ -188,8 +188,8 @@ mod tests {
                 left: Some(Rc::new(RefCell::new(TreeNode::new(3)))),
                 right: None,
             }))),
-        })));
-        assert_eq!("[1,null,2,3]", root.unwrap().borrow().to_string());
+        }));
+        assert_eq!("[1,null,2,3]", root.borrow().to_string());
     }
 
     #[test]
