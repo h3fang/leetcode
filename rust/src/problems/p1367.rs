@@ -8,6 +8,7 @@ use std::rc::Rc;
 
 impl Solution {
     pub fn is_sub_path(head: Option<Box<ListNode>>, root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+        #[allow(clippy::borrowed_box)]
         fn dfs(h: Option<&Box<ListNode>>, root: Option<&Rc<RefCell<TreeNode>>>) -> bool {
             match h {
                 Some(h) => match root {
