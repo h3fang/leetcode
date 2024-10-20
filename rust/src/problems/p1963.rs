@@ -2,7 +2,6 @@ pub struct Solution;
 
 impl Solution {
     pub fn min_swaps(s: String) -> i32 {
-        // let s = s.as_bytes();
         let mut c = 0;
         let mut min = 0;
         for b in s.bytes() {
