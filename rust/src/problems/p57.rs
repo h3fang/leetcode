@@ -1,11 +1,9 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn insert(intervals: Vec<Vec<i32>>, new_interval: Vec<i32>) -> Vec<Vec<i32>> {
+    pub fn insert(intervals: Vec<Vec<i32>>, mut new_interval: Vec<i32>) -> Vec<Vec<i32>> {
         let n = intervals.len();
-        let mut r = Vec::new();
-        r.reserve(n);
-        let mut new_interval = new_interval;
+        let mut r = Vec::with_capacity(n);
         let mut i = 0;
         while i < n {
             let intv = intervals[i].clone();
@@ -29,7 +27,6 @@ impl Solution {
         }
 
         r.push(new_interval);
-
         r.extend_from_slice(&intervals[i..]);
         r
     }
