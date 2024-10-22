@@ -1,38 +1,24 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn garbage_collection(garbage: Vec<String>, travel: Vec<i32>) -> i32 {
-        let mut count = vec![vec![(0, 0); 0]; 3];
+    pub fn garbage_collection(garbage: Vec<String>, mut travel: Vec<i32>) -> i32 {
+        let mut result = 0;
+        let mut right = [0; 3];
         for (i, s) in garbage.iter().enumerate() {
-            let mut m = 0;
-            let mut p = 0;
-            let mut g = 0;
+            result += s.len();
             for &c in s.as_bytes() {
                 match c {
-                    b'M' => m += 1,
-                    b'P' => p += 1,
-                    b'G' => g += 1,
+                    b'M' => right[0] = i,
+                    b'P' => right[1] = i,
+                    b'G' => right[2] = i,
                     _ => {}
                 }
             }
-            if m > 0 {
-                count[0].push((m, i));
-            }
-            if p > 0 {
-                count[1].push((p, i));
-            }
-            if g > 0 {
-                count[2].push((g, i));
-            }
         }
-        let mut result = 0;
-        for kind in count {
-            let mut curr = 0;
-            for (n, i) in kind {
-                result += n;
-                result += travel[curr..i].iter().sum::<i32>();
-                curr = i;
-            }
+        (1..travel.len()).for_each(|i| travel[i] += travel[i - 1]);
+        let mut result = result as i32;
+        for r in right {
+            result += if r == 0 { 0 } else { travel[r - 1] };
         }
         result
     }
