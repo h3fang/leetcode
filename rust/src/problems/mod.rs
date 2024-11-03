@@ -1183,6 +1183,7 @@ pub mod p630;
 pub mod p632;
 pub mod p636;
 pub mod p637;
+pub mod p638;
 pub mod p64;
 pub mod p640;
 pub mod p641;
