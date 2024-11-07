@@ -1,23 +1,11 @@
-use std::collections::HashMap;
-
 pub struct Solution;
 
 impl Solution {
     pub fn largest_combination(candidates: Vec<i32>) -> i32 {
-        let mut c = HashMap::new();
-        for n in candidates {
-            *c.entry(n).or_insert(0) += 1;
-        }
-        let kv = c.iter().map(|(k, v)| (*k, *v)).collect::<Vec<_>>();
         let mut max = 0;
         for i in 0..25 {
             let bit = 1 << i;
-            let mut c = 0;
-            for e in &kv {
-                if bit & e.0 > 0 {
-                    c += e.1;
-                }
-            }
+            let c = candidates.iter().filter(|&&e| bit & e > 0).count() as i32;
             max = max.max(c);
         }
         max
