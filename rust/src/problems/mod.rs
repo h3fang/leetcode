@@ -1000,6 +1000,7 @@ pub mod p324;
 pub mod p3242;
 pub mod p3254;
 pub mod p3255;
+pub mod p3258;
 pub mod p3259;
 pub mod p326;
 pub mod p328;
