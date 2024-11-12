@@ -2,13 +2,7 @@ pub struct Solution;
 
 impl Solution {
     pub fn maximum_beauty_nlogn_but_slow(mut items: Vec<Vec<i32>>, queries: Vec<i32>) -> Vec<i32> {
-        items.sort_unstable_by(|a, b| {
-            if a[0] == b[0] {
-                b[1].cmp(&a[1])
-            } else {
-                a[0].cmp(&b[0])
-            }
-        });
+        items.sort_unstable();
         for i in 1..items.len() {
             items[i][1] = items[i - 1][1].max(items[i][1]);
         }
