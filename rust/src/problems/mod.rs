@@ -1004,6 +1004,7 @@ pub mod p3240;
 pub mod p3242;
 pub mod p3243;
 pub mod p3244;
+pub mod p3248;
 pub mod p3249;
 pub mod p3254;
 pub mod p3255;
