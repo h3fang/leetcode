@@ -993,6 +993,7 @@ pub mod p3193;
 pub mod p3194;
 pub mod p32;
 pub mod p3200;
+pub mod p3206;
 pub mod p3211;
 pub mod p3216;
 pub mod p3217;
