@@ -48,7 +48,7 @@ mod tests {
         unsafe {
             const V: i32 = 1;
             let _x = LOCK.lock().unwrap();
-            guess = &|x| (x - V).signum();
+            guess = &|x| (V - x).signum();
             assert_eq!(V, Solution::guessNumber(1));
         }
     }
