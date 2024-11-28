@@ -7,13 +7,13 @@ struct List<'a> {
     node: &'a ListNode,
 }
 
-impl<'a> PartialOrd for List<'a> {
+impl PartialOrd for List<'_> {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
         Some(self.cmp(other))
     }
 }
 
-impl<'a> Ord for List<'a> {
+impl Ord for List<'_> {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
         self.node.val.cmp(&other.node.val)
     }
