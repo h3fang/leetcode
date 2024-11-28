@@ -1,18 +1,13 @@
 #![allow(dead_code)]
 // unsafe is required by the problem definition
 
+use std::sync::Mutex;
+
 pub struct Solution;
 
-static mut N: i32 = 10;
-static mut PICKED: i32 = 6;
-
-unsafe fn guess(n: i32) -> i32 {
-    match PICKED.cmp(&n) {
-        std::cmp::Ordering::Less => -1,
-        std::cmp::Ordering::Equal => 0,
-        std::cmp::Ordering::Greater => 1,
-    }
-}
+static LOCK: Mutex<()> = Mutex::new(());
+#[allow(non_upper_case_globals)]
+static mut guess: &dyn Fn(i32) -> i32 = &|_x| 0;
 
 impl Solution {
     #[allow(non_snake_case)]
@@ -41,18 +36,20 @@ mod tests {
     #[test]
     fn case1() {
         unsafe {
-            N = 10;
-            PICKED = 6;
-            assert_eq!(PICKED, Solution::guessNumber(N));
+            const V: i32 = 6;
+            let _x = LOCK.lock().unwrap();
+            guess = &|x| (V - x).signum();
+            assert_eq!(V, Solution::guessNumber(10));
         }
     }
 
     #[test]
     fn case2() {
         unsafe {
-            N = 1;
-            PICKED = 1;
-            assert_eq!(PICKED, Solution::guessNumber(N));
+            const V: i32 = 1;
+            let _x = LOCK.lock().unwrap();
+            guess = &|x| (x - V).signum();
+            assert_eq!(V, Solution::guessNumber(1));
         }
     }
 }
