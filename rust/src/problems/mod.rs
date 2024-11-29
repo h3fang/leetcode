@@ -883,6 +883,7 @@ pub mod p2560;
 pub mod p2563;
 pub mod p2569;
 pub mod p2576;
+pub mod p2577;
 pub mod p258;
 pub mod p2582;
 pub mod p2591;
