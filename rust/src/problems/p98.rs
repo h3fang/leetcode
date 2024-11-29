@@ -23,8 +23,7 @@ impl Solution {
                         }
                     }
 
-                    return dfs(n.left.as_ref(), lb, Some(n.val))
-                        && dfs(n.right.as_ref(), Some(n.val), ub);
+                    dfs(n.left.as_ref(), lb, Some(n.val)) && dfs(n.right.as_ref(), Some(n.val), ub)
                 }
                 None => true,
             }
