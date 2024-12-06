@@ -2,11 +2,6 @@ pub struct Solution;
 
 impl Solution {
     pub fn can_change(start: String, target: String) -> bool {
-        let s = start.replace('_', "");
-        let t = target.replace('_', "");
-        if s != t {
-            return false;
-        }
         let s = start.as_bytes();
         let t = target.as_bytes();
         if s.len() != t.len() {
@@ -23,16 +18,16 @@ impl Solution {
             while j < n && t[j] == b'_' {
                 j += 1;
             }
-            if i == n && j == n {
+            if i == n || j == n {
                 break;
             }
-            if i != j && ((s[i] == b'L' && i < j) || (s[i] == b'R' && i > j)) {
+            if s[i] != t[j] || ((s[i] == b'L' && i < j) || (s[i] == b'R' && i > j)) {
                 return false;
             }
             i += 1;
             j += 1;
         }
-        true
+        s[i..].iter().chain(&t[j..]).all(|&c| c == b'_')
     }
 }
 
