@@ -1030,6 +1030,7 @@ pub mod p3259;
 pub mod p326;
 pub mod p3261;
 pub mod p3264;
+pub mod p3266;
 pub mod p3274;
 pub mod p328;
 pub mod p329;
