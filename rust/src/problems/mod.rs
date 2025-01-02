@@ -939,6 +939,7 @@ pub mod p29;
 pub mod p290;
 pub mod p2914;
 pub mod p2931;
+pub mod p2940;
 pub mod p295;
 pub mod p2956;
 pub mod p2959;
