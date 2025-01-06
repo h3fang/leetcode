@@ -6,6 +6,7 @@ pub mod lcp40;
 pub mod lcp41;
 pub mod lcp50;
 pub mod lcp51;
+pub mod lcp61;
 pub mod o091;
 pub mod o10_i;
 pub mod o114;
