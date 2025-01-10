@@ -7,13 +7,13 @@ impl Solution {
         let mut result = i32::MIN;
         let mut q: VecDeque<(i32, i32)> = VecDeque::new();
         for p in points {
-            while q.front().map_or(false, |e| p[0] - e.1 > k) {
+            while q.front().is_some_and(|e| p[0] - e.1 > k) {
                 q.pop_front();
             }
             if let Some((a, _)) = q.front() {
                 result = result.max(a + p[0] + p[1]);
             }
-            while q.back().map_or(false, |e| p[1] - p[0] >= e.0) {
+            while q.back().is_some_and(|e| p[1] - p[0] >= e.0) {
                 q.pop_back();
             }
             q.push_back((p[1] - p[0], p[0]));

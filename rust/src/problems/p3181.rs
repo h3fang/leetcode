@@ -41,4 +41,3 @@ mod tests {
         assert_eq!(11, Solution::max_total_reward(vec![1, 6, 4, 3, 2]));
     }
 }
-

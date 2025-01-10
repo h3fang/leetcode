@@ -49,7 +49,7 @@ impl Solution {
             }
             set.insert(w.as_str());
             if trie.search(w.as_bytes()) {
-                result += w.as_bytes().len() + 1;
+                result += w.len() + 1;
             }
         }
         result as i32

@@ -4,7 +4,7 @@ use std::collections::HashMap;
 
 impl Solution {
     pub fn longest_str_chain(mut words: Vec<String>) -> i32 {
-        words.sort_unstable_by_key(|w| w.as_bytes().len());
+        words.sort_unstable_by_key(|w| w.len());
         let mut dp: HashMap<&str, i32> = HashMap::new();
         let mut result = 0;
         for w in &words {

@@ -5,7 +5,7 @@ impl Solution {
         let mut r = String::with_capacity(s.len());
         for &b in s.as_bytes() {
             if let Some(&p) = r.as_bytes().last() {
-                if p.to_ascii_lowercase() == b.to_ascii_lowercase() && p != b {
+                if p.eq_ignore_ascii_case(&b) && p != b {
                     r.pop();
                 } else {
                     r.push(b as char);

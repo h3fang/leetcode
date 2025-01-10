@@ -53,7 +53,7 @@ impl Solution {
                 t = next;
                 result.push(words);
             } else {
-                for _ in i..search_word.as_bytes().len() {
+                for _ in i..search_word.len() {
                     result.push(vec![]);
                 }
                 break;

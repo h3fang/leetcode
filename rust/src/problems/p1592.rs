@@ -5,7 +5,7 @@ impl Solution {
         let spaces = text.as_bytes().iter().filter(|b| **b == b' ').count();
         let words = text.split_ascii_whitespace().count();
         let n = if words > 1 { spaces / (words - 1) } else { 0 };
-        let mut result = String::with_capacity(text.as_bytes().len());
+        let mut result = String::with_capacity(text.len());
         for w in text.split_ascii_whitespace() {
             if !result.is_empty() {
                 result.push_str(&" ".repeat(n));

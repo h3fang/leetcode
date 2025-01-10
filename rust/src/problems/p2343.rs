@@ -4,7 +4,7 @@ impl Solution {
     pub fn smallest_trimmed_numbers(nums: Vec<String>, queries: Vec<Vec<i32>>) -> Vec<i32> {
         let mut result = Vec::with_capacity(queries.len());
         let n = nums.len();
-        let m = nums[0].as_bytes().len();
+        let m = nums[0].len();
         for q in queries {
             let k = q[0] as usize - 1;
             let trim = q[1] as usize;

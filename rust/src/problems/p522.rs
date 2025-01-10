@@ -22,7 +22,7 @@ impl Solution {
             true
         }
 
-        strs.sort_unstable_by_key(|b| std::cmp::Reverse(b.as_bytes().len()));
+        strs.sort_unstable_by_key(|b| std::cmp::Reverse(b.len()));
         for (i, s) in strs.iter().enumerate() {
             let s = s.as_bytes();
             if strs

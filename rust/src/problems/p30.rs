@@ -8,9 +8,9 @@ impl Solution {
         for w in &words {
             *f.entry(w.as_str()).or_default() += 1;
         }
-        let len = s.as_bytes().len();
+        let len = s.len();
         let m = words.len();
-        let n = words[0].as_bytes().len();
+        let n = words[0].len();
         let mut result = Vec::with_capacity(len);
         for i in 0..n {
             if i + m * n > len {
