@@ -2,15 +2,11 @@ pub struct Solution;
 
 impl Solution {
     pub fn ways_to_split_array(nums: Vec<i32>) -> i32 {
-        let mut suffix_sim = vec![0i64; nums.len() + 1];
-        for i in (0..nums.len()).rev() {
-            suffix_sim[i] = suffix_sim[i + 1] + nums[i] as i64;
-        }
-        let mut sum = 0;
-        let mut result = 0;
-        for i in 0..nums.len() - 1 {
-            sum += nums[i] as i64;
-            if sum >= suffix_sim[i + 1] {
+        let sum = nums.iter().map(|&x| x as i64).sum();
+        let (mut left, mut result) = (0, 0);
+        for &x in nums.iter().take(nums.len() - 1) {
+            left += x as i64;
+            if 2 * left >= sum {
                 result += 1;
             }
         }
