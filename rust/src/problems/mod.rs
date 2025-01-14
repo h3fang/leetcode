@@ -965,6 +965,7 @@ pub mod p3042;
 pub mod p3043;
 pub mod p3046;
 pub mod p306;
+pub mod p3065;
 pub mod p307;
 pub mod p3083;
 pub mod p309;
