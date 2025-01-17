@@ -1,29 +1,24 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn minimum_subarray_length(nums: Vec<i32>, k: i32) -> i32 {
-        let mut result = nums.len() + 1;
-        let mut ors = [(0, 0); 32];
-        let mut m = 0;
-        for (i, &x) in nums.iter().enumerate() {
-            ors[m] = (0, i);
-            m += 1;
-            let mut j = 0;
-            for p in 0..m {
-                ors[p].0 |= x;
-                if ors[p].0 >= k {
-                    result = result.min(i - ors[p].1 + 1);
-                }
-                if ors[j].0 == ors[p].0 {
-                    ors[j].1 = ors[p].1;
-                } else {
-                    j += 1;
-                    ors[j] = ors[p];
+    pub fn minimum_subarray_length(mut nums: Vec<i32>, k: i32) -> i32 {
+        let n = nums.len();
+        let (mut result, mut l, mut b, mut or) = (n + 1, 0, 0, 0);
+        for r in 0..n {
+            or |= nums[r];
+            while l <= r && nums[l] | or >= k {
+                result = result.min(r - l + 1);
+                l += 1;
+                if b < l {
+                    for i in (l..r).rev() {
+                        nums[i] |= nums[i + 1];
+                    }
+                    b = r;
+                    or = 0;
                 }
             }
-            m = j + 1;
         }
-        if result == nums.len() + 1 {
+        if result == n + 1 {
             -1
         } else {
             result as i32
