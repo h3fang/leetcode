@@ -3,19 +3,17 @@ pub struct Solution;
 impl Solution {
     pub fn jump(nums: Vec<i32>) -> i32 {
         let n = nums.len();
-        let mut furthest = nums[0] as usize;
-        let mut p = 0;
-        let mut r = 0;
-        while p < n - 1 {
-            let mut next_furthest = furthest;
-            for (i, e) in nums[..=furthest.min(n - 1)].iter().enumerate().skip(p + 1) {
-                next_furthest = next_furthest.max(i + *e as usize);
+        let mut furthest = 0;
+        let mut next_furthest = 0;
+        let mut result = 0;
+        for (i, &x) in nums[..n - 1].iter().enumerate() {
+            next_furthest = next_furthest.max(i + x as usize);
+            if i == furthest {
+                furthest = next_furthest;
+                result += 1;
             }
-            p = furthest;
-            furthest = next_furthest;
-            r += 1;
         }
-        r
+        result
     }
 }
 
