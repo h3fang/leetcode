@@ -5,7 +5,7 @@ pub struct Solution;
 impl Solution {
     pub fn get_least_numbers(mut arr: Vec<i32>, k: i32) -> Vec<i32> {
         fn partition(arr: &mut [i32], left: usize, right: usize, rng: &mut ThreadRng) -> usize {
-            arr.swap(rng.gen_range(left..=right), right);
+            arr.swap(rng.random_range(left..=right), right);
             let p = arr[right];
             let mut i = left;
             for k in left..right {
@@ -31,7 +31,7 @@ impl Solution {
             }
         }
         let n = arr.len();
-        select(&mut arr, 0, n - 1, &mut thread_rng(), k as usize);
+        select(&mut arr, 0, n - 1, &mut rand::rng(), k as usize);
         arr[..k as usize].to_vec()
     }
 }

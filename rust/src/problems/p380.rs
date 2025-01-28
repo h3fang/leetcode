@@ -40,7 +40,7 @@ impl RandomizedSet {
     }
 
     pub fn get_random(&self) -> i32 {
-        let i = rand::thread_rng().gen_range(0..self.arr.len());
+        let i = rand::rng().random_range(0..self.arr.len());
         self.arr[i]
     }
 }

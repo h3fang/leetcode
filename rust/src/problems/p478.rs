@@ -1,5 +1,3 @@
-use rand::prelude::*;
-
 pub struct Solution {
     x_center: f64,
     y_center: f64,
@@ -20,8 +18,8 @@ impl Solution {
     }
 
     pub fn rand_point(&self) -> Vec<f64> {
-        let theta = random::<f64>() * 2.0 * std::f64::consts::PI;
-        let u = random::<f64>();
+        let theta = rand::random::<f64>() * 2.0 * std::f64::consts::PI;
+        let u = rand::random::<f64>();
         let r = u.sqrt() * self.radius;
         let x = self.x_center + r * theta.cos();
         let y = self.y_center + r * theta.sin();

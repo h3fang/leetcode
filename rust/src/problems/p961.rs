@@ -5,12 +5,12 @@ use rand::prelude::*;
 impl Solution {
     pub fn repeated_n_times(nums: Vec<i32>) -> i32 {
         let n = nums.len();
-        let mut rng = thread_rng();
+        let mut rng = rand::rng();
         loop {
-            let i = rng.gen_range(0..n);
-            let mut j = rng.gen_range(0..n);
+            let i = rng.random_range(0..n);
+            let mut j = rng.random_range(0..n);
             while j == i {
-                j = rng.gen_range(0..n);
+                j = rng.random_range(0..n);
             }
             if nums[i] == nums[j] {
                 return nums[i];

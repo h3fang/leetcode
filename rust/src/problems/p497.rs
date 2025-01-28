@@ -14,14 +14,14 @@ impl Solution {
             presum[i + 1] = presum[i] + a;
         }
         Self {
-            rng: thread_rng(),
+            rng: rand::rng(),
             rects,
             presum,
         }
     }
 
     pub fn pick(&mut self) -> Vec<i32> {
-        let sum = self.rng.gen_range(0..*self.presum.last().unwrap());
+        let sum = self.rng.random_range(0..*self.presum.last().unwrap());
         let i = self.presum.partition_point(|&x| x <= sum) - 1;
         let area = sum - self.presum[i];
         let r = &self.rects[i];

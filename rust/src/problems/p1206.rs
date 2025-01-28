@@ -1,7 +1,5 @@
 use std::{cell::RefCell, rc::Rc};
 
-use rand::prelude::*;
-
 const MAX_LEVEL: usize = 20;
 const P: f64 = 0.25;
 
@@ -113,7 +111,7 @@ impl Skiplist {
 
     fn random_level() -> usize {
         let mut result = 1;
-        while random::<f64>() < P && result < MAX_LEVEL {
+        while rand::random::<f64>() < P && result < MAX_LEVEL {
             result += 1;
         }
         result

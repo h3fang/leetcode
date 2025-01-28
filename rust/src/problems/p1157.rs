@@ -48,14 +48,14 @@ impl MajorityChecker {
         Self {
             arr,
             p,
-            rng: thread_rng(),
+            rng: rand::rng(),
         }
     }
 
     pub fn query(&mut self, left: i32, right: i32, threshold: i32) -> i32 {
         let len = (right - left + 1) as usize;
         for _ in 0..K {
-            let i = self.rng.gen_range(left..=right);
+            let i = self.rng.random_range(left..=right);
             let x = self.arr[i as usize];
             let pos = self.p.get(&x).unwrap();
             let ub = upper_bound(pos, right);

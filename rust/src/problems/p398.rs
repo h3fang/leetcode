@@ -18,7 +18,7 @@ impl Solution {
             .filter(|(_, n)| **n == target)
             .enumerate()
         {
-            let r = thread_rng().gen_range(0..=i);
+            let r = rand::rng().random_range(0..=i);
             if r == 0 {
                 result = j;
             }

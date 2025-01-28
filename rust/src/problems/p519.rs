@@ -18,12 +18,12 @@ impl Solution {
             n,
             total: m * n,
             map: HashMap::new(),
-            rng: thread_rng(),
+            rng: rand::rng(),
         }
     }
 
     pub fn flip(&mut self) -> Vec<i32> {
-        let i = self.rng.gen_range(0..self.total);
+        let i = self.rng.random_range(0..self.total);
         self.total -= 1;
         let x = self.map.get(&i).cloned().unwrap_or(i);
         let r = vec![(x / self.n) as i32, (x % self.n) as i32];

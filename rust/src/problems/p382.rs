@@ -18,7 +18,7 @@ impl Solution {
     }
 
     pub fn get_random(&self) -> i32 {
-        let i = rand::thread_rng().gen_range(0..self.nodes.len());
+        let i = rand::rng().random_range(0..self.nodes.len());
         self.nodes[i]
     }
 }

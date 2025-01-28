@@ -1,4 +1,5 @@
-use rand::{distributions::Alphanumeric, Rng};
+use rand::distr::Alphanumeric;
+use rand::prelude::*;
 use std::collections::HashMap;
 
 #[derive(Default)]
@@ -13,7 +14,7 @@ impl Codec {
     }
 
     fn random_string(len: usize) -> String {
-        rand::thread_rng()
+        rand::rng()
             .sample_iter(&Alphanumeric)
             .take(len)
             .map(char::from)
@@ -50,14 +51,13 @@ impl Codec {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use rand::prelude::*;
 
     #[test]
     fn case1() {
         let mut codec = Codec::new();
 
         let long = (0..100)
-            .map(|_| Codec::random_string(thread_rng().gen_range(10..100)))
+            .map(|_| Codec::random_string(rand::rng().random_range(10..100)))
             .collect::<Vec<_>>();
         let short = long
             .iter()

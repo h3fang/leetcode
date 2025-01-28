@@ -9,7 +9,7 @@ impl Solution {
     pub fn new(nums: Vec<i32>) -> Self {
         Self {
             nums,
-            rng: thread_rng(),
+            rng: rand::rng(),
         }
     }
 
@@ -20,7 +20,7 @@ impl Solution {
     pub fn shuffle(&mut self) -> Vec<i32> {
         let mut r = self.nums.clone();
         for i in 0..r.len() {
-            let k = self.rng.gen_range(i..r.len());
+            let k = self.rng.random_range(i..r.len());
             r.swap(i, k);
         }
         r

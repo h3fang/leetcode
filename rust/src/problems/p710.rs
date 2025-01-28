@@ -30,7 +30,7 @@ impl Solution {
     }
 
     pub fn pick(&mut self) -> i32 {
-        let r = self.rng.gen_range(0..self.k);
+        let r = self.rng.random_range(0..self.k);
         self.blacklist.get(&r).cloned().unwrap_or(r)
     }
 }
