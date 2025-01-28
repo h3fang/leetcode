@@ -57,10 +57,7 @@ mod tests {
 
     #[test]
     fn case3() {
-        let n = 1;
-        let edges = [vec![]; 0];
-        let edges = edges.iter().map(|e| e.to_vec()).collect();
-        assert_eq!(vec![0], Solution::find_min_height_trees(n, edges));
+        assert_eq!(vec![0], Solution::find_min_height_trees(1, vec![]));
     }
 
     #[test]

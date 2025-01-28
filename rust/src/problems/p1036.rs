@@ -64,7 +64,7 @@ mod tests {
 
     #[test]
     fn case2() {
-        let blocked = vec![vec![0i32; 2]; 0];
+        let blocked = Vec::new();
         let source = vec![0, 0];
         let target = vec![999999, 999999];
         assert!(Solution::is_escape_possible(blocked, source, target));

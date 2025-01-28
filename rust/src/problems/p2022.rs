@@ -26,9 +26,6 @@ mod tests {
 
     #[test]
     fn case2() {
-        assert_eq!(
-            vec![vec![0; 0]; 0],
-            Solution::construct2_d_array(vec![1, 2, 3, 4], 2, 1)
-        );
+        assert!(Solution::construct2_d_array(vec![1, 2, 3, 4], 2, 1).is_empty());
     }
 }

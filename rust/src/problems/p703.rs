@@ -6,10 +6,6 @@ pub struct KthLargest {
     heap: BinaryHeap<Reverse<i32>>,
 }
 
-/**
- * `&self` means the method takes an immutable reference.
- * If you need a mutable reference, change it to `&mut self` instead.
- */
 impl KthLargest {
     pub fn new(k: i32, mut nums: Vec<i32>) -> Self {
         let k = k as usize;
@@ -30,12 +26,6 @@ impl KthLargest {
         self.heap.peek().unwrap().0
     }
 }
-
-/**
- * Your KthLargest object will be instantiated and called as such:
- * let obj = KthLargest::new(k, nums);
- * let ret_1: i32 = obj.add(val);
- */
 
 #[cfg(test)]
 mod tests {

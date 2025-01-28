@@ -55,7 +55,6 @@ mod tests {
     #[test]
     fn case2() {
         let array = ["A", "A"].iter().map(|a| a.to_string()).collect();
-        let expected = vec![String::new(); 0];
-        assert_eq!(expected, Solution::find_longest_subarray(array));
+        assert!(Solution::find_longest_subarray(array).is_empty());
     }
 }

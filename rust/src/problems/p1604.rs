@@ -94,10 +94,7 @@ mod tests {
             .iter()
             .map(|e| e.to_string())
             .collect();
-        assert_eq!(
-            vec![String::new(); 0],
-            Solution::alert_names(key_name, key_time)
-        );
+        assert!(Solution::alert_names(key_name, key_time).is_empty());
     }
 
     #[test]

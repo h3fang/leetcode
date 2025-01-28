@@ -37,7 +37,7 @@ mod tests {
     #[test]
     fn case1() {
         let mut os = OrderedStream::new(5);
-        assert_eq!(vec![String::new(); 0], os.insert(3, "ccccc".to_string()));
+        assert!(os.insert(3, "ccccc".to_string()).is_empty());
         assert_eq!(
             vec![String::from("aaaaa")],
             os.insert(1, "aaaaa".to_string())
@@ -46,7 +46,7 @@ mod tests {
             vec![String::from("bbbbb"), String::from("ccccc")],
             os.insert(2, "bbbbb".to_string())
         );
-        assert_eq!(vec![String::new(); 0], os.insert(5, "eeeee".to_string()));
+        assert!(os.insert(5, "eeeee".to_string()).is_empty());
         assert_eq!(
             vec![String::from("ddddd"), String::from("eeeee")],
             os.insert(4, "ddddd".to_string())
