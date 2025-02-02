@@ -1565,6 +1565,7 @@ pub mod p989;
 pub mod p99;
 pub mod p990;
 pub mod p991;
+pub mod p992;
 pub mod p993;
 pub mod p994;
 pub mod p995;
