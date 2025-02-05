@@ -128,6 +128,7 @@ pub mod p1108;
 pub mod p111;
 pub mod p1110;
 pub mod p112;
+pub mod p1122;
 pub mod p1123;
 pub mod p1124;
 pub mod p1125;
