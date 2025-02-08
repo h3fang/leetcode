@@ -12,12 +12,10 @@ impl NumberContainers {
     }
 
     pub fn change(&mut self, index: i32, number: i32) {
-        if let Some(&n) = self.i2n.get(&index) {
-            self.i2n.insert(index, number);
+        if let Some(n) = self.i2n.insert(index, number) {
             self.n2i.get_mut(&n).unwrap().remove(&index);
             self.n2i.entry(number).or_default().insert(index);
         } else {
-            self.i2n.insert(index, number);
             self.n2i.entry(number).or_default().insert(index);
         }
     }
