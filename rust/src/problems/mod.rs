@@ -200,6 +200,7 @@ pub mod p1239;
 pub mod p124;
 pub mod p1240;
 pub mod p1247;
+pub mod p1248;
 pub mod p1249;
 pub mod p125;
 pub mod p1250;
