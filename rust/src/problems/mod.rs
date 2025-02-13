@@ -210,6 +210,7 @@ pub mod p1254;
 pub mod p1255;
 pub mod p126;
 pub mod p1260;
+pub mod p1261;
 pub mod p1262;
 pub mod p1263;
 pub mod p1267;
