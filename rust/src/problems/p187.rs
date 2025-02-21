@@ -23,7 +23,7 @@ impl Solution {
             x = (x << 2) | binary(b);
         }
         for i in 0..=bytes.len() - 10 {
-            x = (x << 2 | binary(bytes[i + 10 - 1])) & ((1 << 20) - 1);
+            x = ((x << 2) | binary(bytes[i + 10 - 1])) & ((1 << 20) - 1);
             let e = m.entry(x).or_insert(0);
             *e += 1;
             if *e == 2 {

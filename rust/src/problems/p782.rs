@@ -3,8 +3,8 @@ pub struct Solution;
 impl Solution {
     pub fn moves_to_chessboard(board: Vec<Vec<i32>>) -> i32 {
         let n = board.len();
-        let row0 = board[0].iter().fold(0, |acc, &e| acc << 1 | e as u32);
-        let col0 = (0..n).fold(0, |acc, i| acc << 1 | board[i][0] as u32);
+        let row0 = board[0].iter().fold(0, |acc, &e| (acc << 1) | e as u32);
+        let col0 = (0..n).fold(0, |acc, i| (acc << 1) | board[i][0] as u32);
 
         let rev_row0 = ((1 << n) - 1) & !row0;
         let rev_col0 = ((1 << n) - 1) & !col0;
@@ -13,7 +13,7 @@ impl Solution {
         let mut col_cnt = 1;
 
         for i in 1..n {
-            let row = board[i].iter().fold(0, |acc, &e| acc << 1 | e as u32);
+            let row = board[i].iter().fold(0, |acc, &e| (acc << 1) | e as u32);
             if row != row0 && row != rev_row0 {
                 return -1;
             }
@@ -21,7 +21,7 @@ impl Solution {
                 row_cnt += 1;
             }
 
-            let col = (0..n).fold(0, |acc, j| acc << 1 | board[j][i] as u32);
+            let col = (0..n).fold(0, |acc, j| (acc << 1) | board[j][i] as u32);
             if col != col0 && col != rev_col0 {
                 return -1;
             }

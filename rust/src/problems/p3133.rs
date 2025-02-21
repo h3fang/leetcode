@@ -7,7 +7,7 @@ impl Solution {
         let n = n as i64 - 1;
         let mut j = 0;
         for i in 0..bits {
-            if (result >> i & 1) == 0 {
+            if (result >> i) & 1 == 0 {
                 if ((n >> j) & 1) != 0 {
                     result |= 1 << i;
                 }

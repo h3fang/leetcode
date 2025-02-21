@@ -34,7 +34,7 @@ impl Solution {
                     continue;
                 }
                 let s = if b.is_ascii_lowercase() {
-                    state | 1 << (b - b'a')
+                    state | (1 << (b - b'a'))
                 } else {
                     state
                 };
