@@ -1,29 +1,27 @@
+use std::collections::VecDeque;
+
 pub struct OrderedStream {
-    frags: Vec<String>,
-    ptr: usize,
+    frags: VecDeque<String>,
+    ptr: i32,
 }
 
 impl OrderedStream {
     pub fn new(n: i32) -> Self {
         Self {
-            frags: vec![String::new(); n as usize + 1],
-            ptr: 1,
+            frags: (0..n).map(|_| String::new()).collect(),
+            ptr: 0,
         }
     }
 
     pub fn insert(&mut self, id_key: i32, value: String) -> Vec<String> {
         let mut result = vec![];
-        if (id_key as usize) < self.ptr {
+        if id_key - 1 < self.ptr {
             result
         } else {
-            self.frags[id_key as usize] = value;
-            for (i, f) in self.frags.iter().enumerate().skip(self.ptr) {
-                if !f.is_empty() {
-                    result.push(f.to_string());
-                } else {
-                    self.ptr = i;
-                    break;
-                }
+            self.frags[(id_key - 1 - self.ptr) as usize] = value;
+            while self.frags.front().is_some_and(|s| !s.is_empty()) {
+                result.push(self.frags.pop_front().unwrap());
+                self.ptr += 1;
             }
             result
         }
