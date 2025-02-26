@@ -2,18 +2,13 @@ pub struct Solution;
 
 impl Solution {
     pub fn max_absolute_sum(nums: Vec<i32>) -> i32 {
-        let (mut max, mut min) = (0, 0);
-        let (mut p_sum, mut n_sum) = (0, 0);
+        let (mut max, mut min, mut sum) = (0, 0, 0);
         for n in nums {
-            p_sum += n;
-            max = max.max(p_sum);
-            p_sum = p_sum.max(0);
-
-            n_sum += n;
-            min = min.min(n_sum);
-            n_sum = n_sum.min(0);
+            sum += n;
+            max = max.max(sum);
+            min = min.min(sum);
         }
-        max.max(-min)
+        max - min
     }
 }
 
