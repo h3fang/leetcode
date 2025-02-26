@@ -5,16 +5,19 @@ pub struct BrowserHistory {
 
 impl BrowserHistory {
     pub fn new(homepage: String) -> Self {
+        let mut history = Vec::with_capacity(100);
+        history.push(homepage);
         Self {
             current: 0,
-            history: vec![homepage],
+            history,
         }
     }
 
     pub fn visit(&mut self, url: String) {
-        self.history.drain((self.current + 1) as usize..);
+        self.history
+            .resize(self.current as usize + 1, String::new());
         self.history.push(url);
-        self.current = self.history.len() as i32 - 1;
+        self.current += 1;
     }
 
     pub fn back(&mut self, steps: i32) -> String {
