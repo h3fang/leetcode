@@ -14,8 +14,7 @@ impl BrowserHistory {
     }
 
     pub fn visit(&mut self, url: String) {
-        self.history
-            .resize(self.current as usize + 1, String::new());
+        self.history.truncate(self.current as usize + 1);
         self.history.push(url);
         self.current += 1;
     }
