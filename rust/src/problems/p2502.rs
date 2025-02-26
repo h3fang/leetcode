@@ -1,40 +1,45 @@
+use std::collections::{BTreeMap, HashMap};
+
 pub struct Allocator {
-    mem: Vec<i32>,
+    blocks: BTreeMap<i32, i32>,
+    ids: HashMap<i32, (i32, Vec<i32>)>,
 }
 
 impl Allocator {
     pub fn new(n: i32) -> Self {
         Self {
-            mem: vec![0; n as usize],
+            blocks: [(-1, -1), (n, n)].into_iter().collect(),
+            ids: Default::default(),
         }
     }
 
     pub fn allocate(&mut self, size: i32, m_id: i32) -> i32 {
-        let mut c = 0;
-        for (i, &x) in self.mem.iter().enumerate() {
-            if x == 0 {
-                c += 1;
-            } else {
-                c = 0;
+        let first = self.blocks.first_key_value().unwrap();
+        let mut prev = (*first.0, *first.1);
+        for (&a, &b) in self.blocks.iter().skip(1) {
+            let len = a - prev.1 - 1;
+            if len >= size {
+                self.blocks.insert(prev.1 + 1, prev.1 + size);
+                let e = self.ids.entry(m_id).or_default();
+                e.0 += size;
+                e.1.push(prev.1 + 1);
+                return prev.1 + 1;
             }
-            if c == size {
-                let r = i + 1 - size as usize;
-                self.mem[r..=i].iter_mut().for_each(|x| *x = m_id);
-                return r as i32;
-            }
+            prev = (a, b);
         }
         -1
     }
 
     pub fn free_memory(&mut self, m_id: i32) -> i32 {
-        let mut result = 0;
-        for x in self.mem.iter_mut() {
-            if *x == m_id {
-                *x = 0;
-                result += 1;
-            }
-        }
-        result
+        self.ids
+            .remove(&m_id)
+            .map(|(size, pos)| {
+                pos.iter().for_each(|e| {
+                    self.blocks.remove(e);
+                });
+                size
+            })
+            .unwrap_or(0)
     }
 }
 
