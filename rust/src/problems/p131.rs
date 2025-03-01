@@ -14,10 +14,8 @@ impl Solution {
                 return;
             }
 
-            let bytes = s.as_bytes();
             for j in i..s.len() {
-                if bytes[i] == bytes[j] && (j - i < 2 || dp[i + 1][j - 1]) {
-                    dp[i][j] = true;
+                if dp[i][j] {
                     curr.push(&s[i..=j]);
                     recursive(s, j + 1, dp, curr, result);
                     curr.pop();
@@ -25,7 +23,14 @@ impl Solution {
             }
         }
 
-        let mut dp = vec![vec![false; s.len()]; s.len()];
+        let n = s.len();
+        let mut dp = vec![vec![true; n]; n];
+        let t = s.as_bytes();
+        for i in (0..n).rev() {
+            for j in i..n {
+                dp[i][j] = t[i] == t[j] && (j - i < 2 || dp[i + 1][j - 1]);
+            }
+        }
         let mut curr = Vec::new();
         let mut result = Vec::new();
         recursive(&s, 0, &mut dp, &mut curr, &mut result);
