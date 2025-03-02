@@ -1,50 +1,44 @@
 pub struct NumArray {
-    n: usize,
-    seg_tree: Vec<i32>,
+    nums: Vec<i32>,
+    t: Vec<i32>,
 }
 
-/**
- * `&self` means the method takes an immutable reference.
- * If you need a mutable reference, change it to `&mut self` instead.
- */
 impl NumArray {
     pub fn new(nums: Vec<i32>) -> Self {
         let n = nums.len();
-        let mut seg_tree = vec![0; 2 * nums.len()];
-        seg_tree[n..(2 * n)].clone_from_slice(&nums);
-        for i in (0..n).rev() {
-            seg_tree[i] = seg_tree[2 * i] + seg_tree[2 * i + 1];
+        let mut t = vec![0; n + 1];
+        for (i, x) in nums.iter().enumerate() {
+            t[i + 1] += x;
+            let j = i as i32 + 1;
+            let j = (j + (j & -j)) as usize;
+            if j <= n {
+                t[j] += t[i + 1];
+            }
         }
-        Self { n, seg_tree }
+        Self { nums, t }
     }
 
     pub fn update(&mut self, index: i32, val: i32) {
-        let mut i = index as usize + self.n;
-        self.seg_tree[i] = val;
-        while i > 0 {
-            let (left, right) = if i % 2 == 0 { (i, i + 1) } else { (i - 1, i) };
-            self.seg_tree[i / 2] = self.seg_tree[left] + self.seg_tree[right];
-            i /= 2;
+        let d = val - self.nums[index as usize];
+        self.nums[index as usize] = val;
+        let mut i = index + 1;
+        while i < self.t.len() as i32 {
+            self.t[i as usize] += d;
+            i += i & -i;
         }
     }
 
-    pub fn sum_range(&self, left: i32, right: i32) -> i32 {
-        let mut l = left as usize + self.n;
-        let mut r = right as usize + self.n;
-        let mut result = 0;
-        while l <= r {
-            if l % 2 == 1 {
-                result += self.seg_tree[l];
-                l += 1;
-            }
-            if r % 2 == 0 {
-                result += self.seg_tree[r];
-                r -= 1;
-            }
-            l /= 2;
-            r /= 2;
+    fn query(&self, mut i: i32) -> i32 {
+        let mut sum = 0;
+        while i > 0 {
+            sum += self.t[i as usize];
+            i -= i & -i;
         }
-        result
+        sum
+    }
+
+    pub fn sum_range(&self, left: i32, right: i32) -> i32 {
+        self.query(right + 1) - self.query(left)
     }
 }
 
@@ -58,5 +52,13 @@ mod tests {
         assert_eq!(9, arr.sum_range(0, 2));
         arr.update(1, 2);
         assert_eq!(8, arr.sum_range(0, 2));
+    }
+
+    #[test]
+    fn case2() {
+        let mut arr = NumArray::new(vec![-28, -39, 53, 65, 11, -56, -65, -39, -43, 97]);
+        assert_eq!(-121, arr.sum_range(5, 6));
+        arr.update(9, 27);
+        assert_eq!(118, arr.sum_range(2, 3));
     }
 }
