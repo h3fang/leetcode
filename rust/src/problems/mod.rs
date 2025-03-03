@@ -221,6 +221,7 @@ pub mod p1269;
 pub mod p127;
 pub mod p1276;
 pub mod p1277;
+pub mod p1278;
 pub mod p128;
 pub mod p1281;
 pub mod p1282;
