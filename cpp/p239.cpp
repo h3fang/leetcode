@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <cassert>
 #include <queue>
 #include <vector>
 
@@ -10,10 +10,10 @@ public:
         vector<int> r;
         deque<int> q;
         for (int i = 0; i < nums.size(); i++) {
-            if (!q.empty() && q.front() == i - k) {
+            while (!q.empty() && q.front() <= i - k) {
                 q.pop_front();
             }
-            while (!q.empty() && nums[q.back()] < nums[i]) {
+            while (!q.empty() && nums[q.back()] <= nums[i]) {
                 q.pop_back();
             }
             q.push_back(i);
@@ -26,12 +26,10 @@ public:
 };
 
 int main() {
-    vector<int> nums = {1, -1};
-    const int k = 1;
+    vector<int> nums = {1, 3, -1, -3, 5, 3, 6, 7};
+    const int k = 3;
     auto r = Solution().maxSlidingWindow(nums, k);
-    for (int n : r) {
-        printf("%d,", n);
-    }
-    printf("\b \n");
+    vector<int> expected = {3, 3, 5, 5, 6, 7};
+    assert(r == expected);
     return 0;
 }
