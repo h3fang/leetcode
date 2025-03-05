@@ -1,6 +1,6 @@
 #include <algorithm>
+#include <cassert>
 #include <vector>
-#include <cstdio>
 
 #include "helpers.h"
 
@@ -8,36 +8,28 @@ using namespace std;
 
 class Solution {
 public:
-    ListNode* swapPairs(ListNode* head) {
-        ListNode r, *h=&r;
-        h->next = head;
-        while (head) {
-            auto t = head;
-            if (head->next) {
-                h->next = head->next;
-                head = head->next->next;
-                h->next->next = t;
-                h = t;
-            }
-            else {
-                h->next = head;
-                h = head;
-                head = head->next;
-            }
+    ListNode *swapPairs(ListNode *head) {
+        ListNode r(0, head), *prev = &r;
+        while (head && head->next) {
+            auto a = head, b = head->next, c = head->next->next;
+            prev->next = b;
+            b->next = a;
+            a->next = c;
+            head = c;
+            prev = a;
         }
-        h->next = nullptr;
         return r.next;
     }
 };
 
 int main() {
-    vector<int> inputs = {1,2,3,4,5};
-
-    auto h = Solution().swapPairs(parse_singly_linked_list(inputs));
-    while (h) {
-        printf("%d ", h->val);
-        h = h->next;
+    auto r = Solution().swapPairs(parse_singly_linked_list({1, 2, 3, 4}));
+    ListNode *expected = parse_singly_linked_list({2, 1, 4, 3});
+    while (expected) {
+        assert(r && r->val == expected->val);
+        expected = expected->next;
+        r = r->next;
     }
-    printf("\n");
+    assert(!r);
     return 0;
 }
