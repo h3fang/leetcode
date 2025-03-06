@@ -1,12 +1,12 @@
-#include <cstdio>
-#include <vector>
+#include <cassert>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Solution {
 public:
-    bool bt(vector<vector<char>>& board, int i, int j, int k, const string& word) {
+    bool bt(vector<vector<char>> &board, int i, int j, int k, const string &word) {
         if (k == word.size()) {
             return true;
         }
@@ -20,34 +20,29 @@ public:
 
         board[i][j] = 0;
 
-        if (bt(board, i-1, j, k+1, word)) return true;
-        if (bt(board, i+1, j, k+1, word)) return true;
-        if (bt(board, i, j-1, k+1, word)) return true;
-        if (bt(board, i, j+1, k+1, word)) return true;
+        if (bt(board, i - 1, j, k + 1, word) || bt(board, i + 1, j, k + 1, word) ||
+            bt(board, i, j - 1, k + 1, word) || bt(board, i, j + 1, k + 1, word))
+            return true;
 
         board[i][j] = word[k];
 
         return false;
     }
 
-    bool exist(vector<vector<char>>& board, string word) {
-        for (int i=0; i<board.size(); i++) {
-            for (int j=0; j<board[0].size(); j++) {
-                if (bt(board, i, j, 0, word)) return true;
+    bool exist(vector<vector<char>> &board, string word) {
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board[0].size(); j++) {
+                if (bt(board, i, j, 0, word))
+                    return true;
             }
         }
         return false;
     }
 };
 
-
 int main() {
-    vector<vector<char>> board = {
-        {'A','B','C','E'},
-        {'S','F','C','S'},
-        {'A','D','E','E'}
-    };
+    vector<vector<char>> board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
     string word = "ESEE";
-    printf("%s\n", Solution().exist(board, word) ? "true" : "false");
+    assert(true == Solution().exist(board, word));
     return 0;
 }
