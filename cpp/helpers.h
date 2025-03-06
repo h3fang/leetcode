@@ -1,10 +1,10 @@
 #ifndef HELPERS_H
 #define HELPERS_H
 
-#include <cstdio>
 #include <cstdint>
-#include <vector>
+#include <cstdio>
 #include <queue>
+#include <vector>
 
 using namespace std;
 
@@ -28,9 +28,16 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-ListNode* parse_singly_linked_list(const vector<int>& inputs) {
+bool equal(TreeNode *l, TreeNode *r) {
+    if (!l || !r) {
+        return l == r;
+    }
+    return equal(l->left, r->left) && equal(l->right, r->right);
+}
+
+ListNode *parse_singly_linked_list(const vector<int> &inputs) {
     ListNode list, *head = &list;
-    for (auto& v : inputs) {
+    for (auto &v : inputs) {
         head->next = new ListNode(v);
         head = head->next;
     }
@@ -39,15 +46,14 @@ ListNode* parse_singly_linked_list(const vector<int>& inputs) {
 
 const int null = INT32_MAX;
 
-TreeNode* parse_tree(const vector<int>& inputs) {
-    TreeNode* root = nullptr;
-    queue<TreeNode*> nodes;
-    for (int i=0; i<inputs.size(); i++) {
+TreeNode *parse_tree(const vector<int> &inputs) {
+    TreeNode *root = nullptr;
+    queue<TreeNode *> nodes;
+    for (int i = 0; i < inputs.size(); i++) {
         if (!root) {
             root = new TreeNode(inputs[i]);
             nodes.push(root);
-        }
-        else {
+        } else {
             auto r = nodes.front();
             nodes.pop();
 
@@ -58,7 +64,7 @@ TreeNode* parse_tree(const vector<int>& inputs) {
             }
 
             i++;
-            if (i<inputs.size()) {
+            if (i < inputs.size()) {
                 if (inputs[i] != null) {
                     auto n = new TreeNode(inputs[i]);
                     r->right = n;
@@ -88,9 +94,9 @@ void print_tree(TreeNode *r) {
     }
 
     // bfs
-    queue<TreeNode*> nodes;
+    queue<TreeNode *> nodes;
     nodes.push(r);
-    vector<TreeNode*> result;
+    vector<TreeNode *> result;
     while (!nodes.empty()) {
         auto n = nodes.front();
         nodes.pop();
@@ -114,16 +120,14 @@ void print_tree(TreeNode *r) {
     for (int i = 0; i <= end; i++) {
         if (result[i]) {
             printf("%d,", result[i]->val);
-        }
-        else {
+        } else {
             printf("null,");
         }
     }
     printf("\b]\n");
 }
 
-template<typename T>
-void print_list(T* root) {
+template <typename T> void print_list(T *root) {
     if (!root) {
         printf("[]\n");
         return;
