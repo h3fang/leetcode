@@ -3,28 +3,36 @@ pub struct Solution;
 impl Solution {
     pub fn closest_primes(left: i32, right: i32) -> Vec<i32> {
         let (left, right) = (left as usize, right as usize);
+        let mut primes = Vec::with_capacity(1024);
         let mut f = vec![true; right + 1];
-        f[0] = false;
-        f[1] = false;
-        let ub = (right as f64).sqrt().round() as usize;
-        for i in 2..=ub {
-            if !f[i] {
-                continue;
+        for x in 2..=right {
+            if f[x] {
+                primes.push(x as i32);
             }
-            for j in (2 * i..=right).step_by(i) {
-                f[j] = false;
+            for &y in &primes {
+                if y as usize * x > right {
+                    break;
+                }
+                f[y as usize * x] = false;
+                if y as usize % x == 0 {
+                    break;
+                }
             }
         }
         let mut ans = vec![-1, -1];
-        let (mut prev, mut min) = (0, right - left + 1);
-        for (i, &e) in f.iter().enumerate().take(right + 1).skip(left) {
-            if e {
-                if prev > 0 && i - prev < min {
-                    min = i - prev;
-                    ans[0] = prev as i32;
-                    ans[1] = i as i32;
+        let mut min = (right - left + 1) as i32;
+        let i = primes.partition_point(|&x| x < left as i32);
+        for w in primes[i..].windows(2) {
+            if w[1] > right as i32 {
+                break;
+            }
+            if w[1] - w[0] < min {
+                min = w[1] - w[0];
+                ans[0] = w[0];
+                ans[1] = w[1];
+                if min == 2 {
+                    break;
                 }
-                prev = i;
             }
         }
         ans
