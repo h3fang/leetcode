@@ -9,7 +9,7 @@ impl Solution {
             if nums[left] <= nums[right] {
                 return nums[left];
             } else if nums[mid] < nums[left] {
-                left = 1;
+                left += 1;
                 right = mid;
             } else {
                 left = mid + 1;
