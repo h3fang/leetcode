@@ -4,9 +4,7 @@ impl Solution {
     pub fn rob(nums: Vec<i32>) -> i32 {
         let (mut robbed, mut idle) = (nums[0], 0);
         for n in nums.into_iter().skip(1) {
-            let robbed_new = idle + n;
-            idle = idle.max(robbed);
-            robbed = robbed_new;
+            (idle, robbed) = (idle.max(robbed), idle + n);
         }
 
         idle.max(robbed)
