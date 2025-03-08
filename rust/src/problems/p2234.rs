@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn maximum_beauty(
         mut flowers: Vec<i32>,
-        mut new_flowers: i64,
+        new_flowers: i64,
         target: i32,
         full: i32,
         partial: i32,
@@ -14,32 +14,29 @@ impl Solution {
         let full = full as i64;
         let partial = partial as i64;
 
-        let mut f = flowers.partition_point(|&x| x < target);
+        let f = flowers.partition_point(|&x| x < target);
         if f == 0 {
             return full * n;
         }
 
-        let mut cost = vec![0; f];
-        for i in 1..f {
-            cost[i] = cost[i - 1] + (i as i64) * (flowers[i] - flowers[i - 1]) as i64;
-        }
-        if cost[f - 1] + (target - flowers[f - 1]) as i64 * f as i64 <= new_flowers {
+        let cost: i64 = flowers[..f].iter().map(|&x| (target - x) as i64).sum();
+        if cost <= new_flowers {
             return (full * n).max(full * (n - 1) + (target as i64 - 1) * partial);
         }
+        let mut rem = new_flowers - cost;
 
-        f -= 1;
-
-        let mut result = 0;
-        while new_flowers > 0 {
-            let p = cost[..=f].partition_point(|&x| x <= new_flowers) - 1;
-            let top = (flowers[p] as i64 + (new_flowers - cost[p]) / (p as i64 + 1))
-                .min(target as i64 - 1);
-            result = result.max(full * (n - f as i64 - 1) + partial * top);
-            new_flowers -= (target - flowers[f]) as i64;
-            if f == 0 {
-                break;
+        let (mut pre, mut i, mut result) = (0, 0, 0);
+        for (j, x) in flowers[..f].iter().enumerate() {
+            rem += (target - x).max(0) as i64;
+            if rem < 0 {
+                continue;
             }
-            f -= 1;
+            while i <= j && pre + rem >= flowers[i] as i64 * i as i64 {
+                pre += flowers[i] as i64;
+                i += 1;
+            }
+            let top = ((pre + rem) / (i as i64)).min(target as i64 - 1);
+            result = result.max(full * (n - j as i64 - 1) + partial * top);
         }
         result
     }
