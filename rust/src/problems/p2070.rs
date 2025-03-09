@@ -1,44 +1,27 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn maximum_beauty_nlogn_but_slow(mut items: Vec<Vec<i32>>, queries: Vec<i32>) -> Vec<i32> {
-        items.sort_unstable();
-        for i in 1..items.len() {
-            items[i][1] = items[i - 1][1].max(items[i][1]);
-        }
-        fn helper(q: i32, items: &[Vec<i32>]) -> i32 {
-            let mut left = 0;
-            let mut right = items.len() - 1;
-            while left <= right {
-                let mid = left + (right - left) / 2;
-                match items[mid][0].cmp(&q) {
-                    std::cmp::Ordering::Greater => {
-                        if mid == 0 {
-                            return 0;
-                        }
-                        right = mid - 1;
-                    }
-                    _ => {
-                        left = mid + 1;
-                    }
-                }
-            }
-            items[right][1]
-        }
-        queries.into_iter().map(|q| helper(q, &items)).collect()
-    }
-
     pub fn maximum_beauty(mut items: Vec<Vec<i32>>, queries: Vec<i32>) -> Vec<i32> {
-        items.sort_unstable_by_key(|e| e[1]);
-        fn helper(q: i32, items: &[Vec<i32>]) -> i32 {
-            for item in items.iter().rev() {
-                if q >= item[0] {
-                    return item[1];
-                }
+        items.sort_unstable();
+        let mut c = 0;
+        for i in 1..items.len() {
+            if items[i][1] > items[c][1] {
+                c += 1;
+                items.swap(i, c);
             }
-            0
         }
-        queries.into_iter().map(|q| helper(q, &items)).collect()
+        items.truncate(c + 1);
+        queries
+            .into_iter()
+            .map(|q| {
+                let i = items.partition_point(|x| x[0] <= q);
+                if i == 0 {
+                    0
+                } else {
+                    items[i - 1][1]
+                }
+            })
+            .collect()
     }
 }
 
@@ -53,10 +36,6 @@ mod tests {
         let queries = vec![1, 2, 3, 4, 5, 6];
         assert_eq!(
             vec![2, 4, 5, 5, 6, 6],
-            Solution::maximum_beauty_nlogn_but_slow(items.clone(), queries.clone())
-        );
-        assert_eq!(
-            vec![2, 4, 5, 5, 6, 6],
             Solution::maximum_beauty(items, queries)
         );
     }
@@ -66,10 +45,6 @@ mod tests {
         let items = [[1, 2], [1, 2], [1, 3], [1, 4]];
         let items = items.iter().map(|i| i.to_vec()).collect::<Vec<_>>();
         let queries = vec![1];
-        assert_eq!(
-            vec![4],
-            Solution::maximum_beauty_nlogn_but_slow(items.clone(), queries.clone())
-        );
         assert_eq!(vec![4], Solution::maximum_beauty(items, queries));
     }
 
@@ -102,13 +77,6 @@ mod tests {
             885, 1445, 1580, 1309, 205, 1788, 1214, 1404, 572, 1170, 989, 265, 153, 151, 1479,
             1180, 875, 276, 1584,
         ];
-        assert_eq!(
-            vec![
-                962, 962, 962, 962, 746, 962, 962, 962, 946, 962, 962, 919, 746, 746, 962, 962,
-                962, 919, 962
-            ],
-            Solution::maximum_beauty_nlogn_but_slow(items.clone(), queries.clone())
-        );
         assert_eq!(
             vec![
                 962, 962, 962, 962, 746, 962, 962, 962, 946, 962, 962, 919, 746, 746, 962, 962,
