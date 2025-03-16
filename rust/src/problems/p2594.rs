@@ -2,22 +2,24 @@ pub struct Solution;
 
 impl Solution {
     pub fn repair_cars(ranks: Vec<i32>, cars: i32) -> i64 {
-        let mut ranks = ranks.into_iter().map(|r| r as i64).collect::<Vec<_>>();
-        ranks.sort_unstable_by_key(|r| -r);
-        fn f(ranks: &[i64], t: i64) -> i64 {
-            ranks.iter().map(|r| ((t / r) as f64).sqrt() as i64).sum()
+        fn f(ranks: &[i32], t: i64) -> i64 {
+            ranks
+                .iter()
+                .map(|&r| ((t / (r as i64)) as f64).sqrt() as i64)
+                .sum()
         }
         let cars = cars as i64;
-        let (mut left, mut right) = (1, *ranks.iter().max().unwrap() * cars * cars);
-        while left < right {
+        let min = *ranks.iter().min().unwrap() as i64;
+        let (mut left, mut right) = (1, min * cars * cars);
+        while left <= right {
             let m = (right - left) / 2 + left;
             if f(&ranks, m) < cars {
                 left = m + 1;
             } else {
-                right = m;
+                right = m - 1;
             }
         }
-        right
+        left
     }
 }
 
