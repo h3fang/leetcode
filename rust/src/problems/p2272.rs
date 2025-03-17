@@ -7,29 +7,32 @@ impl Solution {
         if n < 3 {
             return 0;
         }
+        let mut m = vec![vec![]; 26];
+        for (i, &b) in s.iter().enumerate() {
+            m[(b - b'a') as usize].push(i);
+        }
         let mut result = 0;
-        for a in b'a'..=b'z' {
-            for b in b'a'..=b'z' {
-                if a == b {
+        for (i, a) in m.iter().enumerate() {
+            if a.is_empty() {
+                continue;
+            }
+            for (j, b) in m.iter().enumerate() {
+                if i == j || b.is_empty() {
                     continue;
                 }
-                let mut dp0 = i32::MIN / 2;
-                let mut dp1 = i32::MIN / 2;
-                for &c in s {
-                    let v = if c == a {
-                        1
-                    } else if c == b {
-                        -1
+                let (mut i, mut j) = (0, 0);
+                let (mut f0, mut f1) = (0, i32::MIN / 2);
+                while i < a.len() || j < b.len() {
+                    if j == b.len() || (i < a.len() && a[i] < b[j]) {
+                        f0 = (f0 + 1).max(1);
+                        f1 += 1;
+                        i += 1;
                     } else {
-                        0
-                    };
-                    if c == b {
-                        dp1 = (dp0 + v).max(dp1 + v).max(v);
-                    } else {
-                        dp1 += v;
+                        f1 = (f0 - 1).max(f1 - 1).max(-1);
+                        f0 = (f0 - 1).max(-1);
+                        j += 1;
                     }
-                    dp0 = (dp0 + v).max(v);
-                    result = result.max(dp1);
+                    result = result.max(f1);
                 }
             }
         }
