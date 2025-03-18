@@ -2,24 +2,16 @@ pub struct Solution;
 
 impl Solution {
     pub fn longest_nice_subarray(nums: Vec<i32>) -> i32 {
-        let n = nums.len();
-        let mut i = 0;
-        let mut j = 1;
         let mut result = 1;
-        while i < n && j < n {
-            let a = nums[j];
-            let mut valid = true;
-            for k in (i..j).rev() {
-                let b = nums[k];
-                if a & b != 0 {
-                    valid = false;
-                    i = k + 1;
-                }
+        let mut or = 0;
+        let mut left = 0;
+        for (right, &x) in nums.iter().enumerate() {
+            while or & x > 0 {
+                or &= !nums[left];
+                left += 1;
             }
-            if valid {
-                result = result.max(j - i + 1);
-                j += 1;
-            }
+            or |= x;
+            result = result.max(right - left + 1);
         }
         result as i32
     }
