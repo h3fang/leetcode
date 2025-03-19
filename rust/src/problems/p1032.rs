@@ -14,7 +14,7 @@ impl Trie {
     fn insert(&mut self, word: String) {
         let mut t = self;
         for &b in word.as_bytes() {
-            let i = (b as u8 - b'a') as usize;
+            let i = (b - b'a') as usize;
             t = t.next[i].get_or_insert_default();
         }
         t.is_end = true;
