@@ -23,11 +23,7 @@ impl Solution {
                             return (dx + 1, px);
                         }
                         let (dx, px) = depth_parent(n.right.clone(), root.clone(), x);
-                        if dx < 0 {
-                            (-1, None)
-                        } else {
-                            (dx + 1, px)
-                        }
+                        if dx < 0 { (-1, None) } else { (dx + 1, px) }
                     }
                 }
                 None => (-1, None),

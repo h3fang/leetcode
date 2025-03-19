@@ -9,11 +9,7 @@ impl Solution {
                 (n, sum)
             }
         });
-        if n > 0 {
-            sum / n
-        } else {
-            0
-        }
+        if n > 0 { sum / n } else { 0 }
     }
 }
 

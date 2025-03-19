@@ -56,11 +56,7 @@ impl Solution {
                 next = (next - 1) & sub;
             }
         }
-        if f[m - 1] < i32::MAX {
-            f[m - 1]
-        } else {
-            -1
-        }
+        if f[m - 1] < i32::MAX { f[m - 1] } else { -1 }
     }
 }
 

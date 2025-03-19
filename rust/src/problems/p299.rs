@@ -8,7 +8,7 @@ impl Solution {
             .as_bytes()
             .iter()
             .zip(guess.as_bytes())
-            .filter(|(&c1, &c2)| {
+            .filter(|&(&c1, &c2)| {
                 freq_s[(c1 - b'0') as usize] += 1;
                 freq_g[(c2 - b'0') as usize] += 1;
                 c1 == c2

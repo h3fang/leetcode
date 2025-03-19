@@ -12,11 +12,7 @@ impl Solution {
                 sum += x;
             }
         }
-        if sum > 0 {
-            sum
-        } else {
-            max
-        }
+        if sum > 0 { sum } else { max }
     }
 }
 

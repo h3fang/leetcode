@@ -8,11 +8,7 @@ impl Solution {
             .filter(|w| !w.is_empty())
             .map(|w| {
                 let w = w.trim_start_matches('0');
-                if w.is_empty() {
-                    "0"
-                } else {
-                    w
-                }
+                if w.is_empty() { "0" } else { w }
             })
             .collect::<HashSet<_>>()
             .len() as i32

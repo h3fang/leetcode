@@ -99,9 +99,11 @@ mod tests {
                 .push(i);
         }
 
-        assert!(group_indices
-            .values()
-            .all(|v| v.windows(2).all(|w| w[0] + 1 == w[1])));
+        assert!(
+            group_indices
+                .values()
+                .all(|v| v.windows(2).all(|w| w[0] + 1 == w[1]))
+        );
 
         let mut seen = HashSet::with_capacity(n as usize);
         for &item in result {

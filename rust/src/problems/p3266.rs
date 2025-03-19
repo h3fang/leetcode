@@ -28,7 +28,7 @@ impl Solution {
             q.push((Reverse(x as i64), Reverse(i)));
         }
         let multiplier = multiplier as i64;
-        while k > 0 && q.peek().unwrap().0 .0 < max {
+        while k > 0 && q.peek().unwrap().0.0 < max {
             let (Reverse(x), i) = q.pop().unwrap();
             q.push((Reverse(x * multiplier), i));
             k -= 1;

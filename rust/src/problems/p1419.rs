@@ -36,11 +36,7 @@ impl Solution {
                 }
             }
         }
-        if frogs > 0 {
-            -1
-        } else {
-            result
-        }
+        if frogs > 0 { -1 } else { result }
     }
 }
 

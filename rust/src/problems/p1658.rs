@@ -21,11 +21,7 @@ impl Solution {
                 max = max.max(right as i32 - left as i32 + 1);
             }
         }
-        if -1 == max {
-            -1
-        } else {
-            n as i32 - max
-        }
+        if -1 == max { -1 } else { n as i32 - max }
     }
 }
 

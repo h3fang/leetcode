@@ -10,7 +10,7 @@ impl Solution {
         let mut busy: BinaryHeap<(Reverse<i32>, i32)> = BinaryHeap::new();
         let mut reqs = vec![0; k as usize];
         for (i, &arr) in arrival.iter().enumerate() {
-            while !busy.is_empty() && busy.peek().unwrap().0 .0 <= arr {
+            while !busy.is_empty() && busy.peek().unwrap().0.0 <= arr {
                 let (_, idx) = busy.pop().unwrap();
                 idle.insert(idx);
             }

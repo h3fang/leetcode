@@ -15,30 +15,21 @@ impl Solution {
             return 0;
         }
         let m = m as usize;
-        let mut f = vec![0; m + 1];
-        f[0] = 1;
-        for (i, &r1) in req.iter().enumerate().skip(1) {
-            let mx = if r1 == -1 { m } else { r1 as usize };
-            let r = req[i - 1];
-            if r >= 0 {
-                let r = r as usize;
-                for j in 0..m + 1 {
-                    f[j] = if r <= j && j <= (i + r).min(mx) {
-                        f[r]
-                    } else {
-                        0
-                    };
+        let n = n as usize;
+        let mut f = vec![vec![0; m + 1]; n];
+        f.iter_mut().for_each(|x| x[0] = 1);
+        for i in 1..n {
+            let r = req[i];
+            for j in 1..=m {
+                if r >= 0 && j as i32 != r {
+                    continue;
                 }
-            } else {
-                for j in 1..mx + 1 {
-                    f[j] = (f[j] + f[j - 1]) % MOD;
-                }
-                for j in (i + 1..=mx).rev() {
-                    f[j] = (f[j] + MOD - f[j - 1 - i]) % MOD;
+                for k in 0..=j {
+                    f[i][j] = (f[i][j] + f[i - 1][k]) % MOD;
                 }
             }
         }
-        f[*req.last().unwrap() as usize]
+        f[n - 1].iter().fold(0, |acc, x| (acc + x) % MOD)
     }
 }
 

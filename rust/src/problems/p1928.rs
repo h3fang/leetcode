@@ -31,11 +31,7 @@ impl Solution {
             }
         }
         let min = *fees[n - 1].iter().min().unwrap();
-        if min == i32::MAX {
-            -1
-        } else {
-            min
-        }
+        if min == i32::MAX { -1 } else { min }
     }
 }
 

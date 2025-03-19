@@ -5,7 +5,7 @@ impl Solution {
         start_time
             .iter()
             .zip(&end_time)
-            .filter(|(&s, &e)| (s..=e).contains(&query_time))
+            .filter(|&(&s, &e)| (s..=e).contains(&query_time))
             .count() as i32
     }
 }

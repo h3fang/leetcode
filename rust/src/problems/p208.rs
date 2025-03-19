@@ -1,5 +1,3 @@
-use std::str::Chars;
-
 pub struct Trie {
     next: Vec<Option<Box<Trie>>>,
     is_end: bool,
@@ -14,62 +12,38 @@ impl Trie {
     }
 
     pub fn insert(&mut self, word: String) {
-        self.insert_impl(word.chars());
-    }
-
-    fn insert_impl(&mut self, mut word: Chars) {
-        match word.next() {
-            Some(c) => {
-                let c = (c as u8 - b'a') as usize;
-                match self.next.get_mut(c).unwrap() {
-                    Some(ref mut t) => {
-                        t.insert_impl(word);
-                    }
-                    None => {
-                        let mut t = Trie::new();
-                        t.insert_impl(word);
-                        self.next[c] = Some(Box::new(t));
-                    }
-                }
-            }
-            None => self.is_end = true,
+        let mut t = self;
+        for &b in word.as_bytes() {
+            let i = (b - b'a') as usize;
+            t = t.next[i].get_or_insert_default();
         }
+        t.is_end = true;
     }
 
     pub fn search(&self, word: String) -> bool {
-        self.search_impl(word.chars())
-    }
-
-    fn search_impl(&self, mut word: Chars) -> bool {
-        match word.next() {
-            Some(c) => {
-                let c = (c as u8 - b'a') as usize;
-                if let Some(trie) = &self.next[c] {
-                    trie.search_impl(word)
-                } else {
-                    false
-                }
+        let mut t = self;
+        for &b in word.as_bytes() {
+            let i = (b - b'a') as usize;
+            if let Some(trie) = &t.next[i] {
+                t = trie;
+            } else {
+                return false;
             }
-            None => self.is_end,
         }
+        t.is_end
     }
 
     pub fn starts_with(&self, prefix: String) -> bool {
-        self.starts_with_impl(prefix.chars())
-    }
-
-    fn starts_with_impl(&self, mut prefix: Chars) -> bool {
-        match prefix.next() {
-            Some(c) => {
-                let c = (c as u8 - b'a') as usize;
-                if let Some(trie) = &self.next[c] {
-                    trie.starts_with_impl(prefix)
-                } else {
-                    false
-                }
+        let mut t = self;
+        for &b in prefix.as_bytes() {
+            let i = (b - b'a') as usize;
+            if let Some(trie) = &t.next[i] {
+                t = trie;
+            } else {
+                return false;
             }
-            None => true,
         }
+        true
     }
 }
 

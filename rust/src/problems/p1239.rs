@@ -15,11 +15,7 @@ impl Solution {
                         mask |= 1 << i;
                     }
                 }
-                if mask > 0 {
-                    Some(mask)
-                } else {
-                    None
-                }
+                if mask > 0 { Some(mask) } else { None }
             })
             .collect::<Vec<_>>();
 

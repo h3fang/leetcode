@@ -1,5 +1,5 @@
 use rand::prelude::*;
-use std::collections::{hash_map::Entry, HashMap};
+use std::collections::{HashMap, hash_map::Entry};
 
 pub struct RandomizedSet {
     index: HashMap<i32, usize>,

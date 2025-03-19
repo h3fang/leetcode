@@ -92,7 +92,7 @@ mod tests {
         assert_eq!(5, stock_price.current()); // return 5, the latest timestamp is 2 with the price being 5.
         assert_eq!(10, stock_price.maximum()); // return 10, the maximum price is 10 at timestamp 1.
         stock_price.update(1, 3); // The previous timestamp 1 had the wrong price, so it is updated to 3.
-                                  // Timestamps are [1,2] with corresponding prices [3,5].
+        // Timestamps are [1,2] with corresponding prices [3,5].
         assert_eq!(5, stock_price.maximum()); // return 5, the maximum price is 5 after the correction.
         stock_price.update(4, 2); // Timestamps are [1,2,4] with corresponding prices [3,5,2].
         assert_eq!(2, stock_price.minimum()); // return 2, the minimum price is 2 at timestamp 4.

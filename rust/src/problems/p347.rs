@@ -19,7 +19,7 @@ impl Solution {
                 q.pop();
             }
         }
-        q.iter().map(|v| v.0 .1).collect()
+        q.iter().map(|v| v.0.1).collect()
     }
 }
 

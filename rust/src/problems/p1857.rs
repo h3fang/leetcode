@@ -36,11 +36,7 @@ impl Solution {
                 }
             }
         }
-        if visited != n {
-            -1
-        } else {
-            result
-        }
+        if visited != n { -1 } else { result }
     }
 }
 

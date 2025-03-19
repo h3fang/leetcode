@@ -23,11 +23,7 @@ impl Solution {
                 result = result.min(c as i32);
             }
         }
-        if result == i32::MAX {
-            -1
-        } else {
-            result
-        }
+        if result == i32::MAX { -1 } else { result }
     }
 }
 

@@ -18,11 +18,7 @@ impl Solution {
                 }
             }
         }
-        if result == n + 1 {
-            -1
-        } else {
-            result as i32
-        }
+        if result == n + 1 { -1 } else { result as i32 }
     }
 }
 

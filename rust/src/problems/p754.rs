@@ -8,11 +8,7 @@ impl Solution {
             k += 1;
             t -= k;
         }
-        if t % 2 == 0 {
-            k
-        } else {
-            k + 1 + k % 2
-        }
+        if t % 2 == 0 { k } else { k + 1 + k % 2 }
     }
 }
 

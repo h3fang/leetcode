@@ -14,7 +14,7 @@ impl Solution {
         let mut occupied: BinaryHeap<(Reverse<i64>, Reverse<usize>)> = BinaryHeap::new();
         meetings.sort_unstable();
         for m in meetings {
-            while !occupied.is_empty() && occupied.peek().unwrap().0 .0 <= m[0] as i64 {
+            while !occupied.is_empty() && occupied.peek().unwrap().0.0 <= m[0] as i64 {
                 let (Reverse(t), i) = occupied.pop().unwrap();
                 empty.push((i, t));
             }

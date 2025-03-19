@@ -63,11 +63,7 @@ impl Solution {
                 right = mid - 1;
             }
         }
-        if negative {
-            -result
-        } else {
-            result
-        }
+        if negative { -result } else { result }
     }
 
     pub fn divide_v2(mut a: i32, mut b: i32) -> i32 {
@@ -101,11 +97,7 @@ impl Solution {
             b = -b;
         }
         let r = div(a, b);
-        if negative {
-            -r
-        } else {
-            r
-        }
+        if negative { -r } else { r }
     }
 }
 

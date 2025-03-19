@@ -15,11 +15,7 @@ impl Solution {
                 twice = 2 * n;
             }
         }
-        if max >= twice {
-            idx
-        } else {
-            -1
-        }
+        if max >= twice { idx } else { -1 }
     }
 }
 

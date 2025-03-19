@@ -22,11 +22,7 @@ impl Solution {
             }
         }
         let max = *times.iter().skip(1).max().unwrap();
-        if max == i32::MAX {
-            -1
-        } else {
-            max
-        }
+        if max == i32::MAX { -1 } else { max }
     }
 }
 

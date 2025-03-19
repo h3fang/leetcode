@@ -22,11 +22,7 @@ impl Solution {
                 _ => {}
             }
         }
-        if min_n == i32::MAX {
-            -1
-        } else {
-            min_n
-        }
+        if min_n == i32::MAX { -1 } else { min_n }
     }
 }
 

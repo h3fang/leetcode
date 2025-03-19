@@ -15,11 +15,7 @@ impl Solution {
             .into_iter()
             .map(|q| {
                 let i = items.partition_point(|x| x[0] <= q);
-                if i == 0 {
-                    0
-                } else {
-                    items[i - 1][1]
-                }
+                if i == 0 { 0 } else { items[i - 1][1] }
             })
             .collect()
     }

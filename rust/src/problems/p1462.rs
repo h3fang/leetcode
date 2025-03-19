@@ -19,7 +19,7 @@ impl Solution {
         in_deg
             .iter()
             .enumerate()
-            .filter(|(_, &d)| d == 0)
+            .filter(|&(_, &d)| d == 0)
             .for_each(|(i, _)| q.push_back(i));
         let mut is_req = vec![vec![false; n]; n];
         while let Some(i) = q.pop_back() {

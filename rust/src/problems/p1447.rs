@@ -3,11 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn simplified_fractions(n: i32) -> Vec<String> {
         fn gcd(a: i32, b: i32) -> i32 {
-            if a == 0 {
-                b
-            } else {
-                gcd(b % a, a)
-            }
+            if a == 0 { b } else { gcd(b % a, a) }
         }
 
         let mut result = Vec::with_capacity((n * n) as usize);

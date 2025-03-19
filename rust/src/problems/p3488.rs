@@ -27,11 +27,7 @@ impl Solution {
             .into_iter()
             .map(|q| {
                 let r = (q - left[q as usize]).min(right[q as usize] - q);
-                if r == n as i32 {
-                    -1
-                } else {
-                    r
-                }
+                if r == n as i32 { -1 } else { r }
             })
             .collect()
     }

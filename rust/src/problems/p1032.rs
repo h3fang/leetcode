@@ -1,5 +1,3 @@
-use std::str::Chars;
-
 struct Trie {
     next: Vec<Option<Box<Trie>>>,
     is_end: bool,
@@ -14,26 +12,12 @@ impl Trie {
     }
 
     fn insert(&mut self, word: String) {
-        self.insert_impl(word.chars());
-    }
-
-    fn insert_impl(&mut self, mut word: Chars) {
-        match word.next() {
-            Some(c) => {
-                let c = (c as u8 - b'a') as usize;
-                match self.next.get_mut(c).unwrap() {
-                    Some(ref mut t) => {
-                        t.insert_impl(word);
-                    }
-                    None => {
-                        let mut t = Trie::new();
-                        t.insert_impl(word);
-                        self.next[c] = Some(Box::new(t));
-                    }
-                }
-            }
-            None => self.is_end = true,
+        let mut t = self;
+        for &b in word.as_bytes() {
+            let i = (b as u8 - b'a') as usize;
+            t = t.next[i].get_or_insert_default();
         }
+        t.is_end = true;
     }
 }
 

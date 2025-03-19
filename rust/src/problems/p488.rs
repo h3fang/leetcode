@@ -85,11 +85,7 @@ impl Solution {
         }
         let mut result = i32::MAX;
         dfs(&mut board, &mut hand, 0, &mut result);
-        if result == i32::MAX {
-            -1
-        } else {
-            result
-        }
+        if result == i32::MAX { -1 } else { result }
     }
 
     pub fn find_min_step_bfs(board: String, hand: String) -> i32 {

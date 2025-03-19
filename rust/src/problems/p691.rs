@@ -57,11 +57,7 @@ impl Solution {
         let mut dp = vec![-1; 1 << m];
         dp[0] = 0;
         let r = dfs(&mut dp, m as i32, &counts, target.as_bytes(), (1 << m) - 1);
-        if r <= m as i32 {
-            r
-        } else {
-            -1
-        }
+        if r <= m as i32 { r } else { -1 }
     }
 }
 

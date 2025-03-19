@@ -21,11 +21,7 @@ impl Solution {
             .collect::<String>()
             .trim_start_matches('0')
             .to_string();
-        if r.is_empty() {
-            "0".to_string()
-        } else {
-            r
-        }
+        if r.is_empty() { "0".to_string() } else { r }
     }
 }
 

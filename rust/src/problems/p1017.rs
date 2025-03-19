@@ -9,11 +9,7 @@ impl Solution {
             v >>= 1;
         }
         unsafe { s.as_bytes_mut().reverse() };
-        if s.is_empty() {
-            "0".to_string()
-        } else {
-            s
-        }
+        if s.is_empty() { "0".to_string() } else { s }
     }
 }
 

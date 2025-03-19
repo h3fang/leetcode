@@ -28,7 +28,7 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::utils::tree::{null, LeetCodeTreeNodes};
+    use crate::utils::tree::{LeetCodeTreeNodes, null};
 
     #[test]
     fn case1() {

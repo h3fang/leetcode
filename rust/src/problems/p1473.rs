@@ -37,11 +37,7 @@ impl Solution {
         for j in 0..n {
             result = result.min(dp[m - 1][j][target - 1]);
         }
-        if result == INF {
-            -1
-        } else {
-            result
-        }
+        if result == INF { -1 } else { result }
     }
 }
 

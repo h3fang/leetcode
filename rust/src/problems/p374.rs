@@ -16,7 +16,7 @@ impl Solution {
         let mut right = n;
         while left <= right {
             let mid = left + (right - left) / 2;
-            let r = guess(mid);
+            let r = unsafe { guess(mid) };
             if r == 0 {
                 return mid;
             } else if r == 1 {

@@ -9,11 +9,7 @@ impl Solution {
             sign = -sign;
             n /= 10;
         }
-        if sign == 1 {
-            -sum
-        } else {
-            sum
-        }
+        if sign == 1 { -sum } else { sum }
     }
 }
 

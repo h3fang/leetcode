@@ -3,11 +3,7 @@ pub struct Solution;
 const MOD: i32 = 10_0000_0007;
 
 fn gcd(a: usize, b: usize) -> i32 {
-    if a == 0 {
-        b as i32
-    } else {
-        gcd(b % a, a)
-    }
+    if a == 0 { b as i32 } else { gcd(b % a, a) }
 }
 
 impl Solution {

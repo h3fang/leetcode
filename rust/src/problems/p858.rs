@@ -1,11 +1,7 @@
 pub struct Solution;
 
 fn gcd(a: i32, b: i32) -> i32 {
-    if a == 0 {
-        b
-    } else {
-        gcd(b % a, a)
-    }
+    if a == 0 { b } else { gcd(b % a, a) }
 }
 
 impl Solution {
@@ -14,11 +10,7 @@ impl Solution {
         let lcm = p * q / k;
         let m = lcm / p;
         let n = lcm / q;
-        if n % 2 == 1 {
-            i32::from(m % 2 == 1)
-        } else {
-            2
-        }
+        if n % 2 == 1 { i32::from(m % 2 == 1) } else { 2 }
     }
 }
 

@@ -17,11 +17,7 @@ impl Solution {
                 }
             }
         }
-        if dp[amount] == max {
-            -1
-        } else {
-            dp[amount]
-        }
+        if dp[amount] == max { -1 } else { dp[amount] }
     }
 }
 

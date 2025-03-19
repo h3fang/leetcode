@@ -1,11 +1,7 @@
 pub struct Solution;
 
 fn gcd(a: i32, b: i32) -> i32 {
-    if a == 0 {
-        b
-    } else {
-        gcd(b % a, a)
-    }
+    if a == 0 { b } else { gcd(b % a, a) }
 }
 
 impl Solution {

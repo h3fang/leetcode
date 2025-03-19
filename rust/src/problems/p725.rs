@@ -54,9 +54,11 @@ mod tests {
         let k = 5;
         let result = Solution::split_list_to_parts(head, k);
         assert!(result.len() == k as usize);
-        assert!(result
-            .windows(2)
-            .all(|w| length(w[0].as_ref()).abs_diff(length(w[1].as_ref())) <= 1))
+        assert!(
+            result
+                .windows(2)
+                .all(|w| length(w[0].as_ref()).abs_diff(length(w[1].as_ref())) <= 1)
+        )
     }
 
     #[test]
@@ -65,8 +67,10 @@ mod tests {
         let k = 3;
         let result = Solution::split_list_to_parts(head, k);
         assert!(result.len() == k as usize);
-        assert!(result
-            .windows(2)
-            .all(|w| length(w[0].as_ref()).abs_diff(length(w[1].as_ref())) <= 1))
+        assert!(
+            result
+                .windows(2)
+                .all(|w| length(w[0].as_ref()).abs_diff(length(w[1].as_ref())) <= 1)
+        )
     }
 }

@@ -14,11 +14,7 @@ impl Solution {
         }
         let l = Self::evaluate_tree(n.left.take());
         let r = Self::evaluate_tree(n.right.take());
-        if n.val == 2 {
-            l || r
-        } else {
-            l && r
-        }
+        if n.val == 2 { l || r } else { l && r }
     }
 }
 

@@ -3,11 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn nth_magical_number(n: i32, a: i32, b: i32) -> i32 {
         fn gcd(x: i64, y: i64) -> i64 {
-            if x == 0 {
-                y
-            } else {
-                gcd(y % x, x)
-            }
+            if x == 0 { y } else { gcd(y % x, x) }
         }
 
         let n = n as i64;

@@ -6,11 +6,7 @@ impl Solution {
         let i = nums.iter().position(|&x| x == 1).unwrap();
         let j = nums.iter().position(|&x| x == n as i32).unwrap();
         let steps = (i + n - 1 - j) as i32;
-        if i < j {
-            steps
-        } else {
-            steps - 1
-        }
+        if i < j { steps } else { steps - 1 }
     }
 }
 

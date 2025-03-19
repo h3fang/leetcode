@@ -16,11 +16,7 @@ impl Solution {
         tps.sort_unstable();
         fn diff(t1: i32, t2: i32) -> i32 {
             let r = t2 - t1;
-            if r > 60 * 12 {
-                60 * 24 - r
-            } else {
-                r
-            }
+            if r > 60 * 12 { 60 * 24 - r } else { r }
         }
         let mut min = diff(tps[0], *tps.last().unwrap());
         for w in tps.windows(2) {

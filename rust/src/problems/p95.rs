@@ -34,7 +34,7 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::utils::tree::{null, LeetCodeTreeNodes};
+    use crate::utils::tree::{LeetCodeTreeNodes, null};
 
     use super::*;
 

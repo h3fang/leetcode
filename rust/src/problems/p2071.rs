@@ -92,11 +92,7 @@ impl Solution {
                     }
                 }
             }
-            if left == n {
-                None
-            } else {
-                Some(left)
-            }
+            if left == n { None } else { Some(left) }
         }
 
         fn can_be_done(tasks: &[i32], workers: &[i32], mut pills: i32, strength: i32) -> bool {

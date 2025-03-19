@@ -1,6 +1,6 @@
 pub struct Solution;
 
-use std::collections::{hash_map::Entry, HashMap};
+use std::collections::{HashMap, hash_map::Entry};
 
 impl Solution {
     pub fn check_subarray_sum(nums: Vec<i32>, k: i32) -> bool {

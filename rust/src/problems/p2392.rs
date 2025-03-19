@@ -34,11 +34,7 @@ impl Solution {
                     }
                 }
             }
-            if curr != k {
-                vec![]
-            } else {
-                result
-            }
+            if curr != k { vec![] } else { result }
         }
 
         let k = k as usize;

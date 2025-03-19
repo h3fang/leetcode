@@ -10,11 +10,7 @@ impl Solution {
                 k = k.max(n.abs());
             }
         }
-        if k == i32::MIN {
-            -1
-        } else {
-            k
-        }
+        if k == i32::MIN { -1 } else { k }
     }
 }
 
