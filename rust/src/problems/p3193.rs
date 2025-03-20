@@ -4,7 +4,8 @@ const MOD: i32 = 10_0000_0007;
 
 impl Solution {
     pub fn number_of_permutations(n: i32, requirements: Vec<Vec<i32>>) -> i32 {
-        let mut req = vec![-1; n as usize];
+        let n = n as usize;
+        let mut req = vec![-1; n];
         req[0] = 0;
         let mut m = 0;
         for r in requirements {
@@ -15,21 +16,22 @@ impl Solution {
             return 0;
         }
         let m = m as usize;
-        let n = n as usize;
-        let mut f = vec![vec![0; m + 1]; n];
-        f.iter_mut().for_each(|x| x[0] = 1);
+        let mut f = vec![0; m + 1];
+        f[0] = 1;
         for i in 1..n {
             let r = req[i];
-            for j in 1..=m {
+            for k in 1..=m {
+                f[k] = (f[k] + f[k - 1]) % MOD;
+            }
+            for j in (0..=m).rev() {
                 if r >= 0 && j as i32 != r {
-                    continue;
-                }
-                for k in 0..=j {
-                    f[i][j] = (f[i][j] + f[i - 1][k]) % MOD;
+                    f[j] = 0;
+                } else if j > i.min(j) {
+                    f[j] = (f[j] - f[j - i.min(j) - 1] + MOD) % MOD;
                 }
             }
         }
-        f[n - 1].iter().fold(0, |acc, x| (acc + x) % MOD)
+        f[req[n - 1] as usize]
     }
 }
 
