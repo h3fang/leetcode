@@ -1,6 +1,6 @@
 pub struct Solution;
 
-use std::collections::{HashMap, HashSet, VecDeque};
+use std::collections::{HashMap, VecDeque};
 
 impl Solution {
     pub fn find_all_recipes(
@@ -17,7 +17,6 @@ impl Solution {
                 g.entry(i.as_str()).or_default().push(r);
             }
         }
-        let recipes = recipes.iter().map(|r| r.as_str()).collect::<HashSet<_>>();
         let mut q = supplies.iter().map(|s| s.as_str()).collect::<VecDeque<_>>();
         while let Some(i) = q.pop_front() {
             if let Some(children) = g.get(i) {
@@ -26,9 +25,7 @@ impl Solution {
                     *e -= 1;
                     if *e == 0 {
                         q.push_back(j);
-                        if recipes.contains(j) {
-                            result.push(j.to_string());
-                        }
+                        result.push(j.to_string());
                     }
                 }
             }
