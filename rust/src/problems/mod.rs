@@ -1272,6 +1272,7 @@ pub mod p486;
 pub mod p488;
 pub mod p49;
 pub mod p491;
+pub mod p494;
 pub mod p495;
 pub mod p496;
 pub mod p497;
