@@ -1319,6 +1319,7 @@ pub mod p543;
 pub mod p547;
 pub mod p55;
 pub mod p551;
+pub mod p552;
 pub mod p553;
 pub mod p556;
 pub mod p557;
