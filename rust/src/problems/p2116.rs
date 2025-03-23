@@ -5,47 +5,31 @@ impl Solution {
         if s.len() % 2 != 0 {
             return false;
         }
-        let (mut free, mut left, mut right) = (0, 0, 0);
+        let (mut min, mut max) = (0, 0);
         for (&a, &b) in s.as_bytes().iter().zip(locked.as_bytes()) {
             if b == b'0' {
-                free += 1;
-            } else {
-                match a {
-                    b'(' => left += 1,
-                    b')' => {
-                        if left > 0 {
-                            left -= 1;
-                        } else if free > 0 {
-                            free -= 1;
-                        } else {
-                            return false;
-                        }
-                    }
-                    _ => unreachable!(),
-                }
-            }
-        }
-        for (&a, &b) in s.as_bytes().iter().zip(locked.as_bytes()).rev() {
-            if b == b'0' {
-                right += 1;
+                max += 1;
+                min -= 1;
             } else {
                 match a {
                     b'(' => {
-                        if right == 0 {
-                            return false;
-                        }
-                        left -= 1;
-                        right -= 1;
+                        min += 1;
+                        max += 1;
                     }
-                    b')' => right += 1,
-                    _ => unreachable!(),
+                    _ => {
+                        min -= 1;
+                        max -= 1;
+                    }
                 }
             }
-            if left == 0 {
-                return true;
+            if max < 0 {
+                return false;
+            }
+            if min == -1 {
+                min = 1;
             }
         }
-        false
+        min == 0
     }
 }
 
@@ -72,5 +56,13 @@ mod tests {
     #[test]
     fn case3() {
         assert!(!Solution::can_be_valid(")".to_string(), "0".to_string()));
+    }
+
+    #[test]
+    fn case4() {
+        assert!(!Solution::can_be_valid(
+            "(((())".to_string(),
+            "111111".to_string()
+        ));
     }
 }
