@@ -1168,6 +1168,7 @@ pub mod p349;
 pub mod p3490;
 pub mod p3492;
 pub mod p3493;
+pub mod p3494;
 pub mod p35;
 pub mod p350;
 pub mod p352;
