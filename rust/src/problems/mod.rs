@@ -1435,6 +1435,7 @@ pub mod p721;
 pub mod p722;
 pub mod p724;
 pub mod p725;
+pub mod p726;
 pub mod p728;
 pub mod p729;
 pub mod p73;
