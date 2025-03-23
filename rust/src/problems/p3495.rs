@@ -9,7 +9,7 @@ fn f(x: i32) -> i64 {
         i += 1;
     }
     if y < x {
-        ans += (x - y) * i;
+        ans += (x - y + 1) * i;
     }
     ans
 }
@@ -19,9 +19,8 @@ impl Solution {
         queries
             .iter()
             .map(|q| {
-                let a = f(q[1]);
-                let max = a - f(q[1] - 1);
-                let sum = a - f(q[0] - 1);
+                let max = (33 - q[1].leading_zeros() as i64) / 2;
+                let sum = f(q[1]) - f(q[0] - 1);
                 ((sum + 1) / 2).max(max)
             })
             .sum()
