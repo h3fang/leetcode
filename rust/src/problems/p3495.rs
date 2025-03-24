@@ -8,7 +8,7 @@ fn f(x: i32) -> i64 {
         y *= 4;
         i += 1;
     }
-    if y < x {
+    if y <= x {
         ans += (x - y + 1) * i;
     }
     ans
