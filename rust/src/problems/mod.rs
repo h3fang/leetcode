@@ -1614,6 +1614,7 @@ pub mod p920;
 pub mod p921;
 pub mod p922;
 pub mod p923;
+pub mod p924;
 pub mod p926;
 pub mod p927;
 pub mod p929;
