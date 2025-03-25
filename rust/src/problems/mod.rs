@@ -1622,6 +1622,7 @@ pub mod p927;
 pub mod p928;
 pub mod p929;
 pub mod p93;
+pub mod p930;
 pub mod p931;
 pub mod p933;
 pub mod p934;
