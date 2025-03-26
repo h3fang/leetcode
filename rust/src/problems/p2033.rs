@@ -2,43 +2,13 @@ pub struct Solution;
 
 impl Solution {
     pub fn min_operations(grid: Vec<Vec<i32>>, x: i32) -> i32 {
-        let mut min = i32::MAX;
-        let mut max = i32::MIN;
-        let mut sum: i64 = 0;
-        for &i in grid.iter().flatten() {
-            min = min.min(i);
-            max = max.max(i);
-            sum += i as i64;
+        let mut grid = grid.into_iter().flatten().collect::<Vec<_>>();
+        if grid.iter().any(|y| (y - grid[0]) % x != 0) {
+            return -1;
         }
-
-        for &i in grid.iter().flatten() {
-            if (i - min) % x != 0 {
-                return -1;
-            }
-        }
-
-        let avg = (sum / (grid.len() * grid[0].len()) as i64) as i32;
-        let avg = avg - (avg - min) % x;
-
-        let mut r = i32::MAX;
-
-        for p in (avg..=min).rev().step_by(x as usize) {
-            let c: i32 = grid.iter().flatten().map(|&i| (i - p).abs() / x).sum();
-            if c > r {
-                break;
-            }
-            r = c;
-        }
-
-        for p in (avg + x..=max).step_by(x as usize) {
-            let c: i32 = grid.iter().flatten().map(|&i| (i - p).abs() / x).sum();
-            if c > r {
-                break;
-            }
-            r = c;
-        }
-
-        r
+        grid.sort_unstable();
+        let m = grid[grid.len() / 2];
+        grid.iter().map(|y| (y - m).abs() / x).sum()
     }
 }
 
