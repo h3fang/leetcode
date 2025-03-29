@@ -3,31 +3,20 @@ pub struct Solution;
 impl Solution {
     pub fn longest_cycle(edges: Vec<i32>) -> i32 {
         let n = edges.len();
-        let mut vis = vec![-1; n];
-        let mut result = -1;
-        for node in 0..n {
-            if vis[node] >= 0 {
-                continue;
+        let mut vis = vec![0; n];
+        let (mut ans, mut t) = (-1, 1);
+        for mut node in 0..n as i32 {
+            let t0 = t;
+            while node != -1 && vis[node as usize] == 0 {
+                vis[node as usize] = t;
+                t += 1;
+                node = edges[node as usize];
             }
-            let mut curr = node as i32;
-            while curr != -1 {
-                if vis[curr as usize] == node as i32 {
-                    let mut size = 1;
-                    let mut head = curr;
-                    while edges[head as usize] != curr {
-                        head = edges[head as usize];
-                        size += 1;
-                    }
-                    result = result.max(size);
-                    break;
-                } else if vis[curr as usize] >= 0 {
-                    break;
-                }
-                vis[curr as usize] = node as i32;
-                curr = edges[curr as usize];
+            if node != -1 && vis[node as usize] >= t0 {
+                ans = ans.max(t - vis[node as usize]);
             }
         }
-        result
+        ans
     }
 }
 
