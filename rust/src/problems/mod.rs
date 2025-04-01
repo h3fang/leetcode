@@ -353,6 +353,7 @@ pub mod p1481;
 pub mod p1482;
 pub mod p1483;
 pub mod p1487;
+pub mod p1488;
 pub mod p1489;
 pub mod p149;
 pub mod p1491;
