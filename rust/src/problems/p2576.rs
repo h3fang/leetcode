@@ -9,7 +9,7 @@ impl Solution {
         nums.sort_unstable();
         let (mut l, mut r) = (0, nums.len() / 2);
         while l < r {
-            let m = (r + l + 1) / 2;
+            let m = (r + l).div_ceil(2);
             if check(&nums, m) {
                 l = m;
             } else {

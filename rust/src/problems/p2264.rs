@@ -20,7 +20,7 @@ impl Solution {
             last = c;
         }
         match max {
-            Some(m) => std::iter::repeat(m).take(3).collect(),
+            Some(m) => std::iter::repeat_n(m, 3).collect(),
             None => "".into(),
         }
     }

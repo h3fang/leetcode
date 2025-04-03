@@ -6,7 +6,7 @@ impl Solution {
         factory.sort_unstable();
         let factories: Vec<_> = factory
             .into_iter()
-            .flat_map(|f| std::iter::repeat(f[0]).take(f[1] as usize))
+            .flat_map(|f| std::iter::repeat_n(f[0], f[1] as usize))
             .collect();
         let (m, n) = (robot.len(), factories.len());
         let mut f = vec![vec![0; n + 1]; 2];

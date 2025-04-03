@@ -14,7 +14,7 @@ impl Solution {
             }
         }
         st.into_iter()
-            .flat_map(|(t, n)| std::iter::repeat(t).take(n as usize))
+            .flat_map(|(t, n)| std::iter::repeat_n(t, n as usize))
             .collect()
     }
 }

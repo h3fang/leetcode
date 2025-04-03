@@ -48,7 +48,7 @@ impl Solution {
                 if n / 2 == ones {
                     (n / 2 - (mask & 0xAAAAAAAA).count_ones()) as i32
                 } else {
-                    ((n + 1) / 2 - (mask & 0x55555555).count_ones()) as i32
+                    (n.div_ceil(2) - (mask & 0x55555555).count_ones()) as i32
                 }
             }
         }

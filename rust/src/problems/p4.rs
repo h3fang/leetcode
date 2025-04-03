@@ -10,7 +10,7 @@ impl Solution {
         let (mut median1, mut median2) = (0, 0);
         while left <= right {
             let i = (left + right) / 2;
-            let j = (m + n + 1) / 2 - i;
+            let j = (m + n).div_ceil(2) - i;
             let ni1 = if i == 0 { i32::MIN } else { nums1[i - 1] };
             let ni = if i == m { i32::MAX } else { nums1[i] };
             let nj1 = if j == 0 { i32::MIN } else { nums2[j - 1] };

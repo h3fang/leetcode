@@ -12,7 +12,7 @@ impl Solution {
         let mut c = count.into_values().collect::<Vec<_>>();
         c.sort_unstable();
         let mut sum = 0;
-        let half = (n + 1) / 2;
+        let half = n.div_ceil(2);
         for (i, f) in c.into_iter().rev().enumerate() {
             sum += f;
             if sum >= half {

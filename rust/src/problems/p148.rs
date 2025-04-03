@@ -10,7 +10,7 @@ impl Solution {
         ) -> (Option<Box<ListNode>>, Option<Box<ListNode>>) {
             let mut h = &mut head;
             let mut i = 0;
-            while i < (n + 1) / 2 {
+            while i < n.div_ceil(2) {
                 h = &mut h.as_mut().unwrap().next;
                 i += 1;
             }
@@ -51,7 +51,7 @@ impl Solution {
                 head
             } else {
                 let (h1, h2) = split(head, n);
-                let h1 = sort(h1, (n + 1) / 2);
+                let h1 = sort(h1, n.div_ceil(2));
                 let h2 = sort(h2, n / 2);
                 merge(h1, h2)
             }

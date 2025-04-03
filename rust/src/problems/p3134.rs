@@ -5,7 +5,7 @@ use std::collections::HashMap;
 impl Solution {
     pub fn median_of_uniqueness_array(nums: Vec<i32>) -> i32 {
         let n = nums.len();
-        let median = ((n + 1) * n / 2 + 1) / 2;
+        let median = ((n + 1) * n / 2).div_ceil(2);
 
         let check = |m: usize| {
             let mut k = 0;

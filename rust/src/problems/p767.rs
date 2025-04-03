@@ -14,7 +14,7 @@ impl Solution {
             cnt[i] += 1;
             max = max.max(cnt[i]);
         }
-        if max > (n + 1) / 2 {
+        if max > n.div_ceil(2) {
             return String::new();
         }
         let mut result = vec![0; n];

@@ -6,7 +6,7 @@ impl Solution {
         let mut arr = nums.clone();
         arr.sort_unstable();
         let n = nums.len();
-        let x = (n + 1) / 2;
+        let x = n.div_ceil(2);
         let mut j = x as i32 - 1;
         let mut k = n as i32 - 1;
         for i in (0..n).step_by(2) {

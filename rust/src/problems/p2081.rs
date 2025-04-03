@@ -19,7 +19,7 @@ impl Solution {
                     })
                     .collect::<Vec<_>>()
             } else {
-                let j = (n + 1) / 2;
+                let j = n.div_ceil(2);
                 let min = 10i64.pow(j - 1);
                 (min..10 * min)
                     .map(|num| {

@@ -6,7 +6,7 @@ impl Solution {
         let mut candidates = Vec::with_capacity(5);
         candidates.push(10i64.pow(len as u32) + 1);
         candidates.push(10i64.pow(len as u32 - 1) - 1);
-        let prefix = n[..(len + 1) / 2].parse::<i64>().unwrap();
+        let prefix = n[..len.div_ceil(2)].parse::<i64>().unwrap();
         for i in [prefix, prefix - 1, prefix + 1] {
             let pre = i.to_string();
             let suf = pre.chars().rev().skip(len & 1).collect::<String>();
