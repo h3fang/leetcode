@@ -21,7 +21,7 @@ impl Solution {
                 last_idx = i as i32;
             }
         }
-        let mut result = vec![];
+        let mut result = Vec::with_capacity(max_len as usize);
         while last_idx >= 0 {
             result.push(nums[last_idx as usize]);
             last_idx = dp[last_idx as usize].1;
