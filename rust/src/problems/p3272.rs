@@ -4,12 +4,13 @@ use std::collections::HashSet;
 
 impl Solution {
     pub fn count_good_integers(n: i32, k: i32) -> i64 {
-        let mut seen = HashSet::with_capacity(10usize.pow(n as u32 / 2));
-        let start = 10i32.pow((n as u32 - 1) / 2);
+        let n = n as u32;
+        let mut seen = HashSet::with_capacity(10usize.pow(n.div_ceil(2)));
+        let start = 10i32.pow((n - 1) / 2);
         for x in start..(start * 10) {
             let mut bytes = x.to_string().into_bytes();
             bytes.reserve(n as usize);
-            for i in (n + 1) / 2..n {
+            for i in n.div_ceil(2)..n {
                 bytes.push(bytes[(n - i - 1) as usize]);
             }
             let s = unsafe { std::str::from_utf8_unchecked(&bytes) };
