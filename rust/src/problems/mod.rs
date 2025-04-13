@@ -566,6 +566,7 @@ pub mod p191;
 pub mod p1910;
 pub mod p1911;
 pub mod p1921;
+pub mod p1922;
 pub mod p1926;
 pub mod p1928;
 pub mod p1937;
