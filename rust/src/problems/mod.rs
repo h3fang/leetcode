@@ -385,6 +385,7 @@ pub mod p1534;
 pub mod p1535;
 pub mod p1539;
 pub mod p154;
+pub mod p1542;
 pub mod p1544;
 pub mod p1545;
 pub mod p1547;
