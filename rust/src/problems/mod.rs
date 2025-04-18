@@ -477,6 +477,7 @@ pub mod p1687;
 pub mod p1688;
 pub mod p1689;
 pub mod p169;
+pub mod p1690;
 pub mod p1691;
 pub mod p1694;
 pub mod p1695;
