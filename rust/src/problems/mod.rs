@@ -1249,6 +1249,7 @@ pub mod p3517;
 pub mod p3518;
 pub mod p3519;
 pub mod p352;
+pub mod p3523;
 pub mod p354;
 pub mod p357;
 pub mod p36;
