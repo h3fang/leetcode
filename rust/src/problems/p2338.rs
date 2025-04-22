@@ -4,16 +4,16 @@ const MOD: i64 = 10_0000_0007;
 
 impl Solution {
     pub fn ideal_arrays(n: i32, max_value: i32) -> i32 {
-        let mut b = vec![vec![0; 14]; n as usize + 14];
+        let mut b = vec![[0; 14]; n as usize + 13];
         b[0][0] = 1;
-        for i in 1..n as usize + 14 {
+        for i in 1..n as usize + 13 {
             b[i][0] = 1;
             for j in 1..=i.min(13) {
                 b[i][j] = (b[i - 1][j] + b[i - 1][j - 1]) % MOD;
             }
         }
 
-        let mut factors = vec![vec![]; max_value as usize + 1];
+        let mut exp_of_factors = vec![vec![]; max_value as usize + 1];
         for i in 2..=max_value {
             let mut x = i;
             let mut p = 2;
@@ -24,19 +24,19 @@ impl Solution {
                         c += 1;
                         x /= p;
                     }
-                    factors[i as usize].push(c);
+                    exp_of_factors[i as usize].push(c);
                 }
                 p += 1;
             }
             if x > 1 {
-                factors[i as usize].push(1);
+                exp_of_factors[i as usize].push(1);
             }
         }
 
         let mut result = 0;
         for x in 1..=max_value {
             let mut c = 1;
-            for &k in &factors[x as usize] {
+            for &k in &exp_of_factors[x as usize] {
                 c = (c * b[(n + k - 1) as usize][k as usize]) % MOD;
             }
             result = (result + c) % MOD;
