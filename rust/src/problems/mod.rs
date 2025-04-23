@@ -501,6 +501,7 @@ pub mod p172;
 pub mod p1721;
 pub mod p1725;
 pub mod p1726;
+pub mod p1727;
 pub mod p1728;
 pub mod p173;
 pub mod p1732;
