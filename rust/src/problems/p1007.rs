@@ -9,15 +9,13 @@ impl Solution {
         for (&t, &b) in tops.iter().zip(&bottoms) {
             c_t[t as usize] += 1;
             c_b[b as usize] += 1;
-            if t == b {
-                c_all[t as usize] += 1;
-            } else {
-                c_all[t as usize] += 1;
+            c_all[t as usize] += 1;
+            if t != b {
                 c_all[b as usize] += 1;
             }
         }
         let n = tops.len();
-        for i in 1..=6 {
+        for i in [tops[0] as usize, bottoms[0] as usize] {
             if c_all[i] == n {
                 let c = n - c_t[i].max(c_b[i]);
                 result = result.min(c as i32);
