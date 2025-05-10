@@ -1218,6 +1218,7 @@ pub mod p334;
 pub mod p3340;
 pub mod p3341;
 pub mod p3342;
+pub mod p3343;
 pub mod p335;
 pub mod p3356;
 pub mod p336;
