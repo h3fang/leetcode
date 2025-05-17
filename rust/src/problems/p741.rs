@@ -6,7 +6,7 @@ impl Solution {
         let mut dp = vec![vec![vec![i32::MIN; n]; n]; 2 * n - 1];
         dp[0][0][0] = grid[0][0];
         for k in 1..2 * n - 1 {
-            let a = if k + 1 >= n { k + 1 - n } else { 0 };
+            let a = (k + 1).saturating_sub(n);
             let b = (n - 1).min(k);
             for x1 in a..=b {
                 let y1 = k - x1;

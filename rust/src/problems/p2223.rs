@@ -12,7 +12,7 @@ impl Solution {
                 if i <= r && z[i - l] < r - i + 1 {
                     z[i] = z[i - l];
                 } else {
-                    z[i] = if r + 1 < i { 0 } else { r + 1 - i };
+                    z[i] = (r + 1).saturating_sub(i);
                     while i + z[i] < n && s[z[i]] == s[i + z[i]] {
                         z[i] += 1;
                     }
