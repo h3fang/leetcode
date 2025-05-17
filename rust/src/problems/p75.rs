@@ -4,29 +4,18 @@ impl Solution {
     #[allow(clippy::ptr_arg)]
     pub fn sort_colors(nums: &mut Vec<i32>) {
         let mut left = 0;
-        let mut right = nums.len() - 1;
+        let mut right = nums.len() as i32 - 1;
         let mut i = 0;
-        while left <= right {
-            match nums[i].cmp(&1) {
-                std::cmp::Ordering::Less => {
-                    nums.swap(left, i);
-                    left += 1;
-                    i += 1;
-                }
-                std::cmp::Ordering::Equal => {
-                    i += 1;
-                }
-                std::cmp::Ordering::Greater => {
-                    nums.swap(right, i);
-                    if right == 0 {
-                        break;
-                    }
-                    right -= 1;
-                }
+        while i <= right {
+            while i <= right && nums[i as usize] == 2 {
+                nums.swap(i as usize, right as usize);
+                right -= 1;
             }
-            if i > right {
-                break;
+            if nums[i as usize] == 0 {
+                nums.swap(i as usize, left);
+                left += 1;
             }
+            i += 1;
         }
     }
 }
