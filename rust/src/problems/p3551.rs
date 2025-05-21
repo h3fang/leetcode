@@ -1,7 +1,5 @@
 pub struct Solution;
 
-use std::collections::HashMap;
-
 fn digits_sum(mut x: i32) -> i32 {
     let mut sum = 0;
     while x > 0 {
@@ -15,32 +13,23 @@ impl Solution {
     pub fn min_swaps(nums: Vec<i32>) -> i32 {
         let n = nums.len();
         let mut sums = Vec::with_capacity(n);
-        for &x in &nums {
-            sums.push((digits_sum(x), x));
+        for (i, &x) in nums.iter().enumerate() {
+            sums.push((digits_sum(x), x, i as i32));
         }
         sums.sort_unstable();
-        let mut pos = HashMap::with_capacity(n);
-        for (i, &(_, x)) in sums.iter().enumerate() {
-            pos.insert(x, i);
-        }
-        let mut vis = vec![false; n];
-        let mut ans = 0;
-        for i in 0..n {
-            if vis[i] {
+        let mut cycles = 0;
+        for mut i in 0..n as i32 {
+            if sums[i as usize].2 < 0 {
                 continue;
             }
-            let mut cycles = 0;
-            let mut j = i;
-            while !vis[j] {
-                vis[j] = true;
-                j = *pos.get(&nums[j]).unwrap();
-                cycles += 1;
-            }
-            if cycles > 1 {
-                ans += cycles - 1;
+            cycles += 1;
+            while i >= 0 {
+                let e = &mut sums[i as usize];
+                i = e.2;
+                e.2 = -1;
             }
         }
-        ans
+        n as i32 - cycles
     }
 }
 
