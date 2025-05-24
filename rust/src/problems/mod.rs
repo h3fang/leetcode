@@ -1,5 +1,3 @@
-pub mod c;
-pub mod d;
 pub mod lcp06;
 pub mod lcp24;
 pub mod lcp30;
@@ -1284,6 +1282,7 @@ pub mod p3537;
 pub mod p354;
 pub mod p3545;
 pub mod p3546;
+pub mod p3547;
 pub mod p3548;
 pub mod p3550;
 pub mod p3551;
