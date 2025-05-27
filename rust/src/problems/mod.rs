@@ -1061,6 +1061,7 @@ pub mod p2872;
 pub mod p2873;
 pub mod p2874;
 pub mod p289;
+pub mod p2894;
 pub mod p29;
 pub mod p290;
 pub mod p2900;
