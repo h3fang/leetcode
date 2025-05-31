@@ -10,11 +10,12 @@ impl Solution {
         let mut q = VecDeque::new();
         q.push_back((1, 0));
         while let Some((i, steps)) = q.pop_front() {
-            for d in 1..=6 {
-                let mut j = i + d;
-                if j > n2 {
-                    break;
-                }
+            for (mut j, v) in visited
+                .iter_mut()
+                .enumerate()
+                .take((i + 6).min(n2) + 1)
+                .skip(i + 1)
+            {
                 let mut r = (j - 1) / n;
                 let mut c = (j - 1) % n;
                 if r % 2 == 1 {
@@ -27,8 +28,8 @@ impl Solution {
                 if j == n2 {
                     return steps + 1;
                 }
-                if !visited[j] {
-                    visited[j] = true;
+                if !*v {
+                    *v = true;
                     q.push_back((j, steps + 1));
                 }
             }
