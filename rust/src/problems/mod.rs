@@ -990,6 +990,7 @@ pub mod p2554;
 pub mod p2559;
 pub mod p2560;
 pub mod p2563;
+pub mod p2566;
 pub mod p2569;
 pub mod p2570;
 pub mod p2576;
