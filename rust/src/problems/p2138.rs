@@ -1,17 +1,15 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn divide_string(mut s: String, k: i32, fill: char) -> Vec<String> {
+    pub fn divide_string(s: String, k: i32, fill: char) -> Vec<String> {
         let k = k as usize;
-        let r = s.len() % k;
-        if r > 0 {
-            for _ in 0..k - r {
-                s.push(fill);
-            }
-        }
         s.as_bytes()
             .chunks(k)
-            .map(|g| unsafe { std::str::from_utf8_unchecked(g).to_string() })
+            .map(|g| {
+                let mut s = g.to_vec();
+                s.resize(k, fill as u8);
+                unsafe { String::from_utf8_unchecked(s) }
+            })
             .collect()
     }
 }
