@@ -1321,6 +1321,7 @@ pub mod p3579;
 pub mod p3591;
 pub mod p3592;
 pub mod p3593;
+pub mod p3594;
 pub mod p36;
 pub mod p363;
 pub mod p365;
