@@ -1,72 +1,67 @@
 pub struct Solution;
 
+use std::sync::OnceLock;
+
+static F: OnceLock<[Vec<i64>; 10]> = OnceLock::new();
+
+fn is_k_palindrome(mut x: i64, k: i64) -> bool {
+    if x % k == 0 {
+        return false;
+    }
+    let mut rev = 0;
+    while rev < x / k {
+        rev = rev * k + x % k;
+        x /= k;
+    }
+    rev == x || rev == x / k
+}
+
+fn find_palindromes(x: i64, f: &mut [Vec<i64>]) -> bool {
+    let mut done = true;
+    for (k, f) in f.iter_mut().enumerate().skip(2) {
+        if f.len() < 30 && is_k_palindrome(x, k as i64) {
+            f.push(x);
+        }
+        if f.len() < 30 {
+            done = false;
+        }
+    }
+    if done {
+        for f in f.iter_mut().skip(2) {
+            for i in 1..f.len() {
+                f[i] += f[i - 1];
+            }
+        }
+    }
+    done
+}
+
+fn init() -> [Vec<i64>; 10] {
+    let mut f: [Vec<i64>; 10] = [const { Vec::new() }; 10];
+    f.iter_mut().skip(2).for_each(|f| f.reserve(30));
+    let mut base = 1;
+    loop {
+        for round in 0..2 {
+            for i in base..base * 10 {
+                let mut x = i;
+                let mut i = if round == 0 { i / 10 } else { i };
+                while i > 0 {
+                    x = x * 10 + i % 10;
+                    i /= 10;
+                }
+                if find_palindromes(x, &mut f) {
+                    return f;
+                }
+            }
+        }
+        base *= 10;
+    }
+}
+
 impl Solution {
     pub fn k_mirror(k: i32, n: i32) -> i64 {
-        // all base-10 palindromes of n digits, sorted
-        fn palindromes(n: u32) -> Vec<i64> {
-            if n % 2 == 0 {
-                let j = n / 2;
-                let min = 10i64.pow(j - 1);
-                (min..10 * min)
-                    .map(|num| {
-                        let mut front = num;
-                        let mut back = 0;
-                        while front > 0 {
-                            back = back * 10 + front % 10;
-                            front /= 10;
-                        }
-                        num * min * 10 + back
-                    })
-                    .collect::<Vec<_>>()
-            } else {
-                let j = n.div_ceil(2);
-                let min = 10i64.pow(j - 1);
-                (min..10 * min)
-                    .map(|num| {
-                        let mut front = num / 10;
-                        let mut back = 0;
-                        while front > 0 {
-                            back = back * 10 + front % 10;
-                            front /= 10;
-                        }
-                        num * min + back
-                    })
-                    .collect::<Vec<_>>()
-            }
-        }
-        // base-10 to base-k
-        fn to_base_k(mut n: i64, k: i64) -> Vec<u8> {
-            let mut r = vec![];
-            while n > 0 {
-                r.push((n % k) as u8);
-                n /= k;
-            }
-            r
-        }
-        fn is_palindrome(n: &[u8]) -> bool {
-            for i in 0..n.len() / 2 {
-                if n[i] != n[n.len() - 1 - i] {
-                    return false;
-                }
-            }
-            true
-        }
-
-        let mut n_digits = 1;
-        let mut count = 0;
-        let mut result = 0;
-        loop {
-            for num in palindromes(n_digits) {
-                if is_palindrome(&to_base_k(num, k as i64)) {
-                    result += num;
-                    count += 1;
-                    if count == n {
-                        return result;
-                    }
-                }
-            }
-            n_digits += 1;
-        }
+        let f = F.get_or_init(init);
+        f[k as usize][n as usize - 1]
     }
 }
 
