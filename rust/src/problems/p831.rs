@@ -22,9 +22,9 @@ impl Solution {
             let n = digits.len();
             let digits = unsafe { std::str::from_utf8_unchecked(&digits[n - 4..]) };
             if n == 10 {
-                format!("***-***-{}", digits)
+                format!("***-***-{digits}")
             } else {
-                format!("+{}-***-***-{}", "*".repeat(n - 10), digits)
+                format!("+{}-***-***-{digits}", "*".repeat(n - 10))
             }
         }
         if s.contains('@') {

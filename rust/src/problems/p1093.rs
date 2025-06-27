@@ -47,7 +47,7 @@ mod tests {
     fn assert_close(a: &[f64], b: &[f64]) {
         assert_eq!(a.len(), b.len());
         for (&a, &b) in a.iter().zip(b) {
-            assert!((a - b).abs() < 1e-5, "a = {:.5}, b = {:.5}", a, b);
+            assert!((a - b).abs() < 1e-5, "a = {a:.5}, b = {b:.5}");
         }
     }
 

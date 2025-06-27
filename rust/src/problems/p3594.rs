@@ -118,7 +118,7 @@ mod tests {
     use super::*;
 
     fn assert_close(a: f64, b: f64) {
-        assert!((a - b).abs() < 1e-5, "a = {}, b = {}", a, b);
+        assert!((a - b).abs() < 1e-5, "a = {a:.5}, b = {b:.5}");
     }
 
     #[test]

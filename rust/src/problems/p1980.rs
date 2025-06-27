@@ -11,7 +11,7 @@ impl Solution {
             .collect();
         for i in 0..(1 << n) {
             if !nums.contains(&i) {
-                return format!("{i:00$b}", n);
+                return format!("{i:0n$b}");
             }
         }
         unreachable!();

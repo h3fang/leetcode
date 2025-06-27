@@ -28,27 +28,19 @@ impl Solution {
 mod tests {
     use super::*;
 
+    fn assert_close(a: f64, b: f64) {
+        assert!((a - b).abs() < 1e-5, "a = {a:.5}, b = {b:.5}");
+    }
+
     #[test]
     fn case1() {
-        let expected = 20.0;
         let result = Solution::largest_sum_of_averages(vec![9, 1, 2, 3, 9], 3);
-        assert!(
-            (expected - result).abs() < 1e-5,
-            "expected={}, result={}",
-            expected,
-            result
-        );
+        assert_close(20.0, result);
     }
 
     #[test]
     fn case2() {
-        let expected = 20.5;
         let result = Solution::largest_sum_of_averages(vec![1, 2, 3, 4, 5, 6, 7], 4);
-        assert!(
-            (expected - result).abs() < 1e-5,
-            "expected={}, result={}",
-            expected,
-            result
-        );
+        assert_close(20.5, result);
     }
 }

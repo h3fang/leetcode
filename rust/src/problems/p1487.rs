@@ -10,10 +10,10 @@ impl Solution {
             .map(|n| {
                 if let Some(i) = m.get(&n) {
                     let mut i = i + 1;
-                    let mut r = format!("{}({})", n, i);
+                    let mut r = format!("{n}({i})");
                     while m.contains_key(&r) {
                         i += 1;
-                        r = format!("{}({})", n, i);
+                        r = format!("{n}({i})");
                     }
                     m.insert(n.to_string(), i);
                     m.insert(r.to_string(), 0);

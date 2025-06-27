@@ -4,7 +4,7 @@ impl Solution {
     pub fn score_of_parentheses(s: String) -> i32 {
         fn helper(s: &str) -> i32 {
             let mut balance = 0;
-            for (i, c) in s.chars().enumerate() {
+            for (i, c) in s.char_indices() {
                 match c {
                     '(' => balance += 1,
                     _ => {
