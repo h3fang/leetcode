@@ -1,39 +1,34 @@
 pub struct Solution;
 
+use std::sync::OnceLock;
+
+static F: OnceLock<Vec<i32>> = OnceLock::new();
+
 const MOD: i32 = 10_0000_0007;
 
-fn upper_bound(nums: &[i32], target: i32) -> i32 {
-    let mut l = 0;
-    let mut r = nums.len();
-    while l < r {
-        let m = l + (r - l) / 2;
-        if nums[m] > target {
-            r = m;
-        } else {
-            l = m + 1;
-        }
+fn init() -> Vec<i32> {
+    let mut f = vec![0; 10_0000];
+    f[0] = 1;
+    for i in 1..f.len() {
+        f[i] = (f[i - 1] * 2) % MOD;
     }
-    r as i32
+    f
 }
 
 impl Solution {
     pub fn num_subseq(mut nums: Vec<i32>, target: i32) -> i32 {
         let n = nums.len();
-        let mut f = vec![0; n];
-        f[0] = 1;
-        for i in 1..f.len() {
-            f[i] = (f[i - 1] * 2) % MOD;
-        }
+        let f = F.get_or_init(init);
         nums.sort_unstable();
+        let (mut l, mut r) = (0, n as i32 - 1);
         let mut result = 0;
-        for (i, &min) in nums.iter().enumerate() {
-            if min * 2 > target {
-                break;
+        while l <= r {
+            if nums[l as usize] + nums[r as usize] <= target {
+                result = (result + f[(r - l) as usize]) % MOD;
+                l += 1;
+            } else {
+                r -= 1;
             }
-            let max = target - min;
-            let p = upper_bound(&nums, max) - 1;
-            let a = if p >= i as i32 { f[p as usize - i] } else { 0 };
-            result = (result + a) % MOD;
         }
         result
     }
