@@ -5,9 +5,7 @@ impl Solution {
         let mut c = 0;
         k -= 1;
         for i in (0..(64 - k.leading_zeros())).rev() {
-            if (k >> i) & 1 == 1 {
-                c += operations[i as usize];
-            }
+            c += (k >> i) & (operations[i as usize] as i64);
         }
         (b'a' + (c % 26) as u8) as char
     }
