@@ -3,7 +3,6 @@ pub struct Solution;
 impl Solution {
     pub fn process_str(s: String, mut k: i64) -> char {
         let s = s.as_bytes();
-        let mut st = Vec::with_capacity(s.len());
         let mut len = 0;
         for &b in s {
             match b {
@@ -16,24 +15,25 @@ impl Solution {
                 b'%' => {}
                 _ => len += 1,
             }
-            st.push(len);
         }
         if k >= len {
             return '.';
         }
-        for (i, len) in st.into_iter().enumerate().rev() {
-            match s[i] {
+        for &b in s.iter().rev() {
+            match b {
                 b'#' => {
                     if k >= len / 2 {
                         k -= len / 2;
                     }
+                    len /= 2;
                 }
                 b'%' => k = len - 1 - k,
-                b'*' => {}
+                b'*' => len += 1,
                 c => {
                     if k == len - 1 {
                         return c as char;
                     }
+                    len -= 1;
                 }
             }
         }
