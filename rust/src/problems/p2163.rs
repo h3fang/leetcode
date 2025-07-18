@@ -1,11 +1,11 @@
-use std::{cmp::Reverse, collections::BinaryHeap};
-
 pub struct Solution;
+
+use std::{cmp::Reverse, collections::BinaryHeap};
 
 impl Solution {
     pub fn minimum_difference(nums: Vec<i32>) -> i64 {
         let n = nums.len() / 3;
-        let mut q = BinaryHeap::new();
+        let mut q = BinaryHeap::with_capacity(n);
         let mut sum = 0i64;
         for &e in nums.iter().take(n) {
             q.push(e);
@@ -15,13 +15,12 @@ impl Solution {
         p1.push(sum);
         for &e in nums.iter().skip(n).take(n) {
             q.push(e);
-            sum += e as i64;
-            let e = q.pop().unwrap();
-            sum -= e as i64;
+            let max = q.pop().unwrap();
+            sum += (e - max) as i64;
             p1.push(sum);
         }
 
-        let mut q = BinaryHeap::new();
+        let mut q = BinaryHeap::with_capacity(n);
         sum = 0i64;
         for &e in nums.iter().skip(2 * n) {
             q.push(Reverse(e));
@@ -30,9 +29,8 @@ impl Solution {
         let mut result = p1[n] - sum;
         for (i, &e) in nums.iter().skip(n).take(n).enumerate().rev() {
             q.push(Reverse(e));
-            sum += e as i64;
-            let e = q.pop().unwrap();
-            sum -= e.0 as i64;
+            let min = q.pop().unwrap().0;
+            sum += (e - min) as i64;
             result = result.min(p1[i] - sum);
         }
         result
