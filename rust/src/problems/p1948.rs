@@ -23,16 +23,21 @@ fn generate(t: &mut Trie, m: &mut HashMap<String, usize>) {
     *m.entry(t.name.clone()).or_default() += 1;
 }
 
-fn dfs(t: &Trie, m: &HashMap<String, usize>, path: &mut Vec<String>, ans: &mut Vec<Vec<String>>) {
-    if m.get(&t.name).is_some_and(|&v| v > 1) {
+fn dfs<'a>(
+    t: &'a Trie,
+    m: &HashMap<String, usize>,
+    path: &mut Vec<&'a str>,
+    ans: &mut Vec<Vec<String>>,
+) {
+    if m.get(t.name.as_str()).is_some_and(|&v| v > 1) {
         return;
     }
     if !path.is_empty() {
-        ans.push(path.clone());
+        ans.push(path.iter().map(|s| s.to_string()).collect());
     }
 
     for (s, t) in &t.next {
-        path.push(s.clone());
+        path.push(&s);
         dfs(t, m, path, ans);
         path.pop();
     }
