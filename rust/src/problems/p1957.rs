@@ -4,7 +4,8 @@ impl Solution {
     pub fn make_fancy_string(s: String) -> String {
         let mut t = Vec::with_capacity(s.len());
         for b in s.bytes() {
-            if t.len() >= 2 && t[t.len() - 2] == t[t.len() - 1] && t[t.len() - 1] == b {
+            let n = t.len();
+            if n >= 2 && t[n - 2] == b && t[n - 1] == b {
                 continue;
             }
             t.push(b);
