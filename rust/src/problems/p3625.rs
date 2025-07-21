@@ -48,12 +48,12 @@ impl Solution {
         let mut ans = 0;
 
         let mut f = HashMap::with_capacity(n);
-        for vs in f1.values() {
+        for vs in f1.into_values() {
             if vs.len() == 1 {
                 continue;
             }
             f.clear();
-            for &v in vs {
+            for v in vs {
                 *f.entry(v).or_insert(0) += 1;
             }
             let mut s = 0;
@@ -64,12 +64,12 @@ impl Solution {
         }
 
         let mut f = HashMap::with_capacity(n);
-        for vs in f2.values() {
+        for vs in f2.into_values() {
             if vs.len() == 1 {
                 continue;
             }
             f.clear();
-            for &v in vs {
+            for v in vs {
                 *f.entry(v).or_insert(0) += 1;
             }
             let mut s = 0;
