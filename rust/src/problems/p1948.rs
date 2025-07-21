@@ -37,7 +37,7 @@ fn dfs<'a>(
     }
 
     for (s, t) in &t.next {
-        path.push(&s);
+        path.push(s);
         dfs(t, m, path, ans);
         path.pop();
     }
