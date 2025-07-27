@@ -2,21 +2,16 @@ pub struct Solution;
 
 impl Solution {
     pub fn count_hill_valley(nums: Vec<i32>) -> i32 {
-        let n = nums.len();
-        let (mut ans, mut i, mut prev) = (0, 1, nums[0]);
-        while i < n {
-            let mut j = i + 1;
-            while j < n && nums[j] == nums[i] {
-                j += 1;
+        let (mut ans, mut prev) = (0, 0);
+        for w in nums.windows(2) {
+            if w[0] == w[1] {
+                continue;
             }
-            if j == n {
-                break;
-            }
-            if (prev < nums[i] && nums[i] > nums[j]) || (prev > nums[i] && nums[i] < nums[j]) {
+            let curr = if w[0] > w[1] { 1 } else { -1 };
+            if curr == -prev {
                 ans += 1;
             }
-            prev = nums[i];
-            i = j;
+            prev = curr;
         }
         ans
     }
