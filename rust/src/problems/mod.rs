@@ -1224,6 +1224,7 @@ pub mod p3261;
 pub mod p3264;
 pub mod p3266;
 pub mod p3267;
+pub mod p3268;
 pub mod p3270;
 pub mod p3272;
 pub mod p3274;
