@@ -2,27 +2,17 @@ pub struct Solution;
 
 impl Solution {
     pub fn longest_subarray(nums: Vec<i32>) -> i32 {
-        let mut result = 1;
-        let mut left = 0;
-        let mut max = 0;
-        while left < nums.len() {
-            let mut curr = nums[left];
-            let mut right = left + 1;
-            while right < nums.len() && nums[right] >= curr && curr & nums[right] >= nums[right] {
-                curr &= nums[right];
-                right += 1;
+        let (mut ans, mut curr) = (0, 0);
+        let max = *nums.iter().max().unwrap();
+        for x in nums {
+            if x == max {
+                curr += 1;
+                ans = ans.max(curr);
+            } else {
+                curr = 0;
             }
-            match curr.cmp(&max) {
-                std::cmp::Ordering::Equal => result = result.max(right - left),
-                std::cmp::Ordering::Greater => {
-                    max = curr;
-                    result = right - left;
-                }
-                _ => {}
-            }
-            left = right;
         }
-        result as i32
+        ans
     }
 }
 
