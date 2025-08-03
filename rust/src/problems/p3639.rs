@@ -1,38 +1,29 @@
 pub struct Solution;
 
-fn count(mut order: Vec<i32>, all: usize, k: usize, n: usize) -> bool {
-    order.sort_unstable();
-    let (mut invalid, mut prev) = (0, -1);
-    for i in order.into_iter().chain([n as i32]) {
-        let n = (i - prev - 1) as usize;
-        invalid += n * (n + 1) / 2;
-        if all - invalid < k {
-            return false;
-        }
-        prev = i;
-    }
-    all - invalid >= k
-}
-
 impl Solution {
     pub fn min_time(_s: String, order: Vec<i32>, k: i32) -> i32 {
-        let (n, k) = (order.len(), k as usize);
-        let all = n * (n + 1) / 2;
-        if k > all {
+        let (n, k) = (order.len(), k as i64);
+        let mut count = (n * (n + 1) / 2) as i64;
+        if k > count {
             return -1;
         }
 
-        let (mut l, mut r, mut ans) = (0, n as i32 - 1, -1);
-        while l <= r {
-            let m = (l + r) / 2;
-            if count(order[..=m as usize].to_vec(), all, k, n) {
-                ans = m;
-                r = m - 1;
-            } else {
-                l = m + 1;
+        let mut prev: Vec<i64> = (-1..n as i64).collect();
+        let mut next: Vec<i64> = (1..=n as i64).collect();
+
+        for (t, i) in order.into_iter().enumerate().rev() {
+            let l = prev[i as usize];
+            let r = next[i as usize];
+            count -= (i as i64 - l) * (r - i as i64);
+            if count < k {
+                return t as i32;
             }
+            if l >= 0 {
+                next[l as usize] = r;
+            }
+            prev[r as usize] = l;
         }
-        ans
+        0
     }
 }
 
