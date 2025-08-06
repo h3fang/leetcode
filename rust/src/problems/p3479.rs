@@ -1,28 +1,19 @@
 pub struct Solution;
 
 struct SegmentTree {
+    n: usize,
     tree: Vec<i32>,
 }
 
 impl SegmentTree {
     fn new(v: &[i32]) -> Self {
-        let n = v.len();
-        let mut r = Self {
-            tree: vec![0; 4 * n],
-        };
-        r.build(v, 1, 0, n - 1);
-        r
-    }
-
-    fn build(&mut self, v: &[i32], i: usize, l: usize, r: usize) {
-        if l == r {
-            self.tree[i] = v[l];
-            return;
+        let n = v.len().next_power_of_two();
+        let mut tree = vec![0; 2 * n];
+        tree[n..n + v.len()].copy_from_slice(v);
+        for i in (1..n).rev() {
+            tree[i] = tree[i * 2].max(tree[i * 2 + 1]);
         }
-        let m = (l + r) / 2;
-        self.build(v, i * 2, l, m);
-        self.build(v, i * 2 + 1, m + 1, r);
-        self.tree[i] = self.tree[i * 2].max(self.tree[i * 2 + 1]);
+        Self { n, tree }
     }
 
     fn find_and_replace(&mut self, i: usize, l: usize, r: usize, x: i32) -> i32 {
@@ -45,11 +36,10 @@ impl SegmentTree {
 
 impl Solution {
     pub fn num_of_unplaced_fruits(fruits: Vec<i32>, baskets: Vec<i32>) -> i32 {
-        let n = baskets.len();
         let mut st = SegmentTree::new(&baskets);
         let mut ans = 0;
         for f in fruits {
-            let i = st.find_and_replace(1, 0, n - 1, f);
+            let i = st.find_and_replace(1, 0, st.n - 1, f);
             if i < 0 {
                 ans += 1;
             }
