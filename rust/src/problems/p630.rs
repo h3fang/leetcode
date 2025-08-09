@@ -13,12 +13,12 @@ impl Solution {
             if total + t <= d {
                 total += t;
                 q.push(t);
-            } else if let Some(&tm) = q.peek() {
-                if tm > t {
-                    total -= tm - t;
-                    q.pop();
-                    q.push(t);
-                }
+            } else if let Some(&tm) = q.peek()
+                && tm > t
+            {
+                total -= tm - t;
+                q.pop();
+                q.push(t);
             }
         }
         q.len() as i32

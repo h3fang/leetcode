@@ -20,10 +20,10 @@ impl AuthenticationManager {
     }
 
     pub fn renew(&mut self, token_id: String, current_time: i32) {
-        if let Some(t) = self.map.get_mut(&token_id) {
-            if *t > current_time {
-                *t = self.ttl + current_time;
-            }
+        if let Some(t) = self.map.get_mut(&token_id)
+            && *t > current_time
+        {
+            *t = self.ttl + current_time;
         }
     }
 

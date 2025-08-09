@@ -8,12 +8,11 @@ impl Solution {
             .collect::<Vec<_>>();
         let discount = (100 - discount) as f64 / 100.0;
         for t in tokens.iter_mut() {
-            if t.as_bytes()[0] == b'$' {
-                if let Ok(n) = t[1..].parse::<i64>() {
-                    if n >= 0 {
-                        *t = format!("${:.2}", n as f64 * discount);
-                    }
-                }
+            if t.as_bytes()[0] == b'$'
+                && let Ok(n) = t[1..].parse::<i64>()
+                && n >= 0
+            {
+                *t = format!("${:.2}", n as f64 * discount);
             }
         }
         tokens.join(" ")

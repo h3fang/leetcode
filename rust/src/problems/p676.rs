@@ -37,10 +37,10 @@ impl MagicDictionary {
                 return modified && t.is_end;
             }
             let i = (word[0] - b'a') as usize;
-            if let Some(t) = &t.next[i] {
-                if dfs(t, &word[1..], modified) {
-                    return true;
-                }
+            if let Some(t) = &t.next[i]
+                && dfs(t, &word[1..], modified)
+            {
+                return true;
             }
             if !modified {
                 let o = word[0];
@@ -49,10 +49,10 @@ impl MagicDictionary {
                         continue;
                     }
                     let i = (b - b'a') as usize;
-                    if let Some(t) = &t.next[i] {
-                        if dfs(t, &word[1..], true) {
-                            return true;
-                        }
+                    if let Some(t) = &t.next[i]
+                        && dfs(t, &word[1..], true)
+                    {
+                        return true;
                     }
                 }
             }

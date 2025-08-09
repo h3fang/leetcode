@@ -12,10 +12,8 @@ fn dfs(
     if i == digits.len() {
         return i32::from(sum == 0);
     }
-    if !limit_high {
-        if let Some(&r) = cache.get(&(i, sum)) {
-            return r;
-        }
+    if !limit_high && let Some(&r) = cache.get(&(i, sum)) {
+        return r;
     }
     let hi = if limit_high { digits[i] } else { 9 };
     let mut ans = 0;

@@ -32,10 +32,10 @@ impl Solution {
             for i in 1..=(s.len() - k) {
                 h = (h * 26 - (s[i - 1] as i64 * m) % MODULUS + MODULUS + s[i + k - 1] as i64)
                     % MODULUS;
-                if let Some(sub) = sub_strs.get(&h) {
-                    if *sub == &s[i..i + k] {
-                        return (true, i);
-                    }
+                if let Some(sub) = sub_strs.get(&h)
+                    && *sub == &s[i..i + k]
+                {
+                    return (true, i);
                 }
                 sub_strs.insert(h, &s[i..i + k]);
             }

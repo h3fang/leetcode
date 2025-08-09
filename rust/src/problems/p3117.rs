@@ -9,10 +9,10 @@ impl Solution {
         f[0][0].insert(nums[0], 0);
         for (i, &x) in nums.iter().enumerate().skip(1) {
             for j in 0..m.min(i + 1) {
-                if j > 0 {
-                    if let Some(&y) = f[i - 1][j - 1].get(&and_values[j - 1]) {
-                        f[i][j].insert(x, nums[i - 1] + y);
-                    }
+                if j > 0
+                    && let Some(&y) = f[i - 1][j - 1].get(&and_values[j - 1])
+                {
+                    f[i][j].insert(x, nums[i - 1] + y);
                 }
                 for (and, sum) in f[i - 1][j].clone() {
                     let e = f[i][j].entry(and & x).or_insert(i32::MAX);

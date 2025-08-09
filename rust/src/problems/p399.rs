@@ -71,10 +71,10 @@ impl Solution {
         queries
             .iter()
             .map(|q| {
-                if let Some(&x) = map.get(&q[0]) {
-                    if let Some(&y) = map.get(&q[1]) {
-                        return dsu.get_value(x, y);
-                    }
+                if let Some(&x) = map.get(&q[0])
+                    && let Some(&y) = map.get(&q[1])
+                {
+                    return dsu.get_value(x, y);
                 }
                 -1.0
             })

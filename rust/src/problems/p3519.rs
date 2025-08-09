@@ -18,10 +18,11 @@ impl Input {
         if i == self.high.len() {
             return 1;
         }
-        if !limit_high && !limit_low {
-            if let Some(&r) = self.cache.get(&key) {
-                return r;
-            }
+        if !limit_high
+            && !limit_low
+            && let Some(&r) = self.cache.get(&key)
+        {
+            return r;
         }
         let mut ans = 0;
         let lo = if limit_low { self.low[i] } else { 0 };

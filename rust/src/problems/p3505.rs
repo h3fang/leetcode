@@ -48,11 +48,11 @@ impl LazyHeap {
     fn push(&mut self, x: i64) {
         self.size += 1;
         self.sum += x;
-        if let Some(c) = self.lazy.get_mut(&x) {
-            if *c > 0 {
-                *c -= 1;
-                return;
-            }
+        if let Some(c) = self.lazy.get_mut(&x)
+            && *c > 0
+        {
+            *c -= 1;
+            return;
         }
         self.heap.push(x);
     }

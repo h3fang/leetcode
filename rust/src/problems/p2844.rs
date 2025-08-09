@@ -11,10 +11,10 @@ impl Solution {
                 result = result.min(n - j as i32 - 2);
             }
         }
-        if let Some(i) = num.iter().rposition(|&x| x == b'5') {
-            if let Some(j) = num[..i].iter().rposition(|&x| x == b'2' || x == b'7') {
-                result = result.min(n - j as i32 - 2);
-            }
+        if let Some(i) = num.iter().rposition(|&x| x == b'5')
+            && let Some(j) = num[..i].iter().rposition(|&x| x == b'2' || x == b'7')
+        {
+            result = result.min(n - j as i32 - 2);
         }
         result
     }

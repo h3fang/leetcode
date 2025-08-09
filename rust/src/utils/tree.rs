@@ -125,6 +125,7 @@ pub fn find_node(val: i32, root: Option<&Rc<RefCell<TreeNode>>>) -> Option<Rc<Re
     }
 }
 
+#[allow(dead_code)]
 pub struct LeetCodeTreeNodes {
     pub nums: Vec<i32>,
 }

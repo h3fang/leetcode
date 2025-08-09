@@ -18,12 +18,12 @@ impl Solution {
 
         let mut h = &mut head;
         while let Some(node) = h {
-            if len == n + 1 {
-                if let Some(node_next) = &mut node.next {
-                    let next = node_next.next.take();
-                    node.next = next;
-                    break;
-                }
+            if len == n + 1
+                && let Some(node_next) = &mut node.next
+            {
+                let next = node_next.next.take();
+                node.next = next;
+                break;
             }
             h = &mut node.next;
             len -= 1

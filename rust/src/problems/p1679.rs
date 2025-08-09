@@ -7,12 +7,12 @@ impl Solution {
         let mut m = HashMap::new();
         let mut result = 0;
         for n in nums {
-            if let Some(c) = m.get_mut(&(k - n)) {
-                if *c > 0 {
-                    *c -= 1;
-                    result += 1;
-                    continue;
-                }
+            if let Some(c) = m.get_mut(&(k - n))
+                && *c > 0
+            {
+                *c -= 1;
+                result += 1;
+                continue;
             }
             *m.entry(n).or_insert(0) += 1;
         }

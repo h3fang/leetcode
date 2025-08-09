@@ -102,13 +102,13 @@ impl Solution {
                 let (i, v) = (q[0] as usize, q[1]);
                 let old = nums[i];
                 nums[i] = v;
-                if p[old as usize] {
-                    if let Some(s) = m.get_mut(&old) {
-                        s.remove(&i);
-                        update(&mut seg, s, n, i, -1);
-                        if s.is_empty() {
-                            m.remove(&old);
-                        }
+                if p[old as usize]
+                    && let Some(s) = m.get_mut(&old)
+                {
+                    s.remove(&i);
+                    update(&mut seg, s, n, i, -1);
+                    if s.is_empty() {
+                        m.remove(&old);
                     }
                 }
 

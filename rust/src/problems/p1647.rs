@@ -17,13 +17,13 @@ impl Solution {
         }
         let mut result = 0;
         while let Some(f) = q.pop() {
-            if let Some(&f1) = q.peek() {
-                if f == f1 {
-                    if f > 1 {
-                        q.push(f - 1);
-                    }
-                    result += 1;
+            if let Some(&f1) = q.peek()
+                && f == f1
+            {
+                if f > 1 {
+                    q.push(f - 1);
                 }
+                result += 1;
             }
         }
         result

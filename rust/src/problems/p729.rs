@@ -11,10 +11,10 @@ impl MyCalendar {
     }
 
     pub fn book(&mut self, start: i32, end: i32) -> bool {
-        if let Some((_, &r2)) = self.cal.range(..end).last() {
-            if r2 > start {
-                return false;
-            }
+        if let Some((_, &r2)) = self.cal.range(..end).last()
+            && r2 > start
+        {
+            return false;
         }
         self.cal.insert(start, end);
         true

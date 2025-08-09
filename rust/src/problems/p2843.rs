@@ -24,10 +24,12 @@ impl Input {
         if i == n {
             return i32::from(diff == 0);
         }
-        if start != -1 && !limit_low && !limit_high {
-            if let Some(&r) = self.cache.get(&(i, start, diff)) {
-                return r;
-            }
+        if start != -1
+            && !limit_low
+            && !limit_high
+            && let Some(&r) = self.cache.get(&(i, start, diff))
+        {
+            return r;
         }
         let gap = n - self.low.len() as i8;
         let lb = if i >= gap && limit_low {

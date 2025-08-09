@@ -11,16 +11,16 @@ impl Solution {
             match root {
                 Some(node) => {
                     let n = node.borrow();
-                    if let Some(lb) = lb {
-                        if n.val <= lb {
-                            return false;
-                        }
+                    if let Some(lb) = lb
+                        && n.val <= lb
+                    {
+                        return false;
                     }
 
-                    if let Some(ub) = ub {
-                        if n.val >= ub {
-                            return false;
-                        }
+                    if let Some(ub) = ub
+                        && n.val >= ub
+                    {
+                        return false;
                     }
 
                     dfs(n.left.as_ref(), lb, Some(n.val)) && dfs(n.right.as_ref(), Some(n.val), ub)

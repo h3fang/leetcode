@@ -7,23 +7,23 @@ impl Solution {
         while n > 0 {
             let d = n % 10;
             n /= 10;
-            if let Some(&e) = digits.last() {
-                if e > d {
-                    for (i, &e) in digits.iter().enumerate() {
-                        if e > d {
-                            n = n * 10 + e;
-                            digits[i] = d;
-                            break;
-                        }
+            if let Some(&e) = digits.last()
+                && e > d
+            {
+                for (i, &e) in digits.iter().enumerate() {
+                    if e > d {
+                        n = n * 10 + e;
+                        digits[i] = d;
+                        break;
                     }
-                    for d in digits {
-                        n = n * 10 + d;
-                    }
-                    if n > i32::MAX as i64 {
-                        return -1;
-                    } else {
-                        return n as i32;
-                    }
+                }
+                for d in digits {
+                    n = n * 10 + d;
+                }
+                if n > i32::MAX as i64 {
+                    return -1;
+                } else {
+                    return n as i32;
                 }
             }
             digits.push(d);

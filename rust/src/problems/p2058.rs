@@ -14,20 +14,19 @@ impl Solution {
         let mut min = i32::MAX;
 
         while let Some(n) = h {
-            if let Some(prev) = prev {
-                if (prev.val > n.val && n.next.is_some() && n.val < n.next.as_ref().unwrap().val)
+            if let Some(prev) = prev
+                && ((prev.val > n.val && n.next.is_some() && n.val < n.next.as_ref().unwrap().val)
                     || (prev.val < n.val
                         && n.next.is_some()
-                        && n.val > n.next.as_ref().unwrap().val)
-                {
-                    if first_point == -1 {
-                        first_point = i;
-                    }
-                    if prev_point != -1 {
-                        min = min.min(i - prev_point);
-                    }
-                    prev_point = i;
+                        && n.val > n.next.as_ref().unwrap().val))
+            {
+                if first_point == -1 {
+                    first_point = i;
                 }
+                if prev_point != -1 {
+                    min = min.min(i - prev_point);
+                }
+                prev_point = i;
             }
             prev = Some(n);
             h = n.next.as_ref();

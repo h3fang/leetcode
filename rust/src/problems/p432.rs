@@ -53,10 +53,10 @@ impl AllOne {
 
             let mut cur = usize::MAX;
 
-            if let Some(next) = self.nodes[i].next {
-                if self.nodes[next].count == cnt {
-                    cur = next;
-                }
+            if let Some(next) = self.nodes[i].next
+                && self.nodes[next].count == cnt
+            {
+                cur = next;
             }
             if cur == usize::MAX {
                 cur = self.new_node(cnt);
@@ -76,10 +76,10 @@ impl AllOne {
             self.map.insert(key, cur);
         } else {
             let mut cur = usize::MAX;
-            if let Some(h) = self.head {
-                if self.nodes[h].count == 1 {
-                    cur = h;
-                }
+            if let Some(h) = self.head
+                && self.nodes[h].count == 1
+            {
+                cur = h;
             }
             if cur == usize::MAX {
                 cur = self.new_node(1);
@@ -108,10 +108,10 @@ impl AllOne {
 
         let mut cur = usize::MAX;
 
-        if let Some(prev) = self.nodes[i].prev {
-            if self.nodes[prev].count == cnt {
-                cur = prev;
-            }
+        if let Some(prev) = self.nodes[i].prev
+            && self.nodes[prev].count == cnt
+        {
+            cur = prev;
         }
         if cur == usize::MAX {
             cur = self.new_node(cnt);

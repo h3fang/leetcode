@@ -36,10 +36,10 @@ impl Solution {
                         bytes[i] = alphabet;
                         unsafe {
                             let neighbor = std::str::from_utf8_unchecked(&bytes);
-                            if let Some(&d1) = dist.get(neighbor) {
-                                if d1 == d {
-                                    g.get_mut(neighbor).unwrap().insert(w);
-                                }
+                            if let Some(&d1) = dist.get(neighbor)
+                                && d1 == d
+                            {
+                                g.get_mut(neighbor).unwrap().insert(w);
                             }
                             if let Some(n) = words.get(neighbor) {
                                 if n == &end_word {

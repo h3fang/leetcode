@@ -21,10 +21,10 @@ impl NumberContainers {
     }
 
     pub fn find(&self, number: i32) -> i32 {
-        if let Some(s) = self.n2i.get(&number) {
-            if let Some(&i) = s.iter().next() {
-                return i;
-            }
+        if let Some(s) = self.n2i.get(&number)
+            && let Some(&i) = s.iter().next()
+        {
+            return i;
         }
         -1
     }

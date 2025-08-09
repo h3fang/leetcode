@@ -26,10 +26,10 @@ impl Solution {
                     min = (j - id).abs();
                     r = j;
                 }
-                if let Some(&j) = s.range(..id).next_back() {
-                    if (j - id).abs() <= min {
-                        r = r.min(j);
-                    }
+                if let Some(&j) = s.range(..id).next_back()
+                    && (j - id).abs() <= min
+                {
+                    r = r.min(j);
                 }
                 if r != i32::MAX {
                     result[i as usize] = r;

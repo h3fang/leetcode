@@ -16,13 +16,13 @@ impl Solution {
             if let Some(node) = root {
                 let n = node.borrow();
                 inorder(n.left.as_ref(), prev, first, second);
-                if let Some(p) = prev {
-                    if n.val < p.borrow().val {
-                        if first.is_none() {
-                            *first = Some(p.clone());
-                        }
-                        *second = Some(node.clone());
+                if let Some(p) = prev
+                    && n.val < p.borrow().val
+                {
+                    if first.is_none() {
+                        *first = Some(p.clone());
                     }
+                    *second = Some(node.clone());
                 }
                 *prev = Some(node.clone());
                 inorder(n.right.as_ref(), prev, first, second);
