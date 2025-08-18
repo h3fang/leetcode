@@ -1587,6 +1587,7 @@ pub mod p675;
 pub mod p676;
 pub mod p677;
 pub mod p678;
+pub mod p679;
 pub mod p68;
 pub mod p680;
 pub mod p682;
