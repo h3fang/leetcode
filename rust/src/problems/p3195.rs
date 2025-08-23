@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn minimum_area(grid: Vec<Vec<i32>>) -> i32 {
         let (m, n) = (grid.len(), grid[0].len());
-        let (mut l, mut r, mut t, mut b) = (m as i32, -1, n as i32, -1);
+        let (mut l, mut r, mut t, mut b) = (n as i32, -1, m as i32, -1);
         for (i, row) in grid.iter().enumerate() {
             for (j, &c) in row.iter().enumerate() {
                 if c == 0 {
