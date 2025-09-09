@@ -1,24 +1,24 @@
 pub struct Solution;
 
+const MOD: i64 = 10_0000_0007;
+
 impl Solution {
     pub fn people_aware_of_secret(n: i32, delay: i32, forget: i32) -> i32 {
-        const MOD: i64 = 10_0000_0007;
-        let mut f = vec![0i64; n as usize];
-        let mut aware = 0;
-        f[0] = 1;
-        for i in 0..f.len() {
-            let v = f[i];
-            if i as i32 + delay >= n {
-                aware += v;
+        let (n, delay, forget) = (n as usize, delay as usize, forget as usize);
+        let mut d = vec![0i64; n + 2];
+        d[1] = 1;
+        d[2] = -1;
+        let (mut ans, mut aware) = (0, 0);
+        for i in 1..n + 1 {
+            aware = (aware + d[i] + MOD) % MOD;
+            if i + forget > n {
+                ans = (ans + aware) % MOD;
             }
-            let a = i + delay as usize;
-            let b = (i + forget as usize).min(n as usize);
-            for j in f.iter_mut().take(b).skip(a) {
-                *j = (*j + v) % MOD;
-            }
+            d[(i + delay).min(n + 1)] += aware;
+            d[(i + forget).min(n + 1)] -= aware;
         }
 
-        ((f.last().unwrap() + aware) % MOD) as i32
+        ans as i32
     }
 }
 
