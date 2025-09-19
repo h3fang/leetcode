@@ -18,7 +18,7 @@ impl Solution {
             odd = !odd;
             i += 1;
         }
-        if (nums.len() - result as usize) % 2 != 0 {
+        if !(nums.len() - result as usize).is_multiple_of(2) {
             result += 1;
         }
         result

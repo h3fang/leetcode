@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn min_number_of_frogs(croak_of_frogs: String) -> i32 {
         let s = croak_of_frogs.as_bytes();
-        if s.len() % 5 != 0 {
+        if !s.len().is_multiple_of(5) {
             return -1;
         }
         fn pos(b: u8) -> usize {

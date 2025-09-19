@@ -4,7 +4,7 @@ impl Solution {
     pub fn merge_stones(stones: Vec<i32>, k: i32) -> i32 {
         let k = k as usize;
         let n = stones.len();
-        if (n - 1) % (k - 1) != 0 {
+        if !(n - 1).is_multiple_of(k - 1) {
             return -1;
         }
         let mut dp = vec![vec![i32::MAX / 2; n]; n];

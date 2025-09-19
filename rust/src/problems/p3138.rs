@@ -7,7 +7,7 @@ impl Solution {
         let mut f = [0; 26];
         for len in 1..=n / 2 {
             f[(s[len - 1] - b'a') as usize] += 1;
-            if n % len != 0 {
+            if !n.is_multiple_of(len) {
                 continue;
             }
             if s.chunks_exact(len).skip(1).all(|c| {

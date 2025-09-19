@@ -14,7 +14,7 @@ impl Solution {
                     break;
                 }
                 f[y as usize * x] = false;
-                if y as usize % x == 0 {
+                if (y as usize).is_multiple_of(x) {
                     break;
                 }
             }

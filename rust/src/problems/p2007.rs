@@ -5,7 +5,7 @@ use std::collections::HashMap;
 impl Solution {
     pub fn find_original_array(mut changed: Vec<i32>) -> Vec<i32> {
         let n = changed.len();
-        if n % 2 != 0 {
+        if !n.is_multiple_of(2) {
             return vec![];
         }
         changed.sort_unstable();

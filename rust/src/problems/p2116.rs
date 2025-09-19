@@ -2,7 +2,7 @@ pub struct Solution;
 
 impl Solution {
     pub fn can_be_valid(s: String, locked: String) -> bool {
-        if s.len() % 2 != 0 {
+        if !s.len().is_multiple_of(2) {
             return false;
         }
         let (mut min, mut max) = (0, 0);

@@ -33,7 +33,7 @@ impl RangeFreqQuery {
                 result += self.t[l].get(&value).unwrap_or(&0);
                 l += 1;
             }
-            if r % 2 == 0 {
+            if r.is_multiple_of(2) {
                 result += self.t[r].get(&value).unwrap_or(&0);
                 r -= 1;
             }

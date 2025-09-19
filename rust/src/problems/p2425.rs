@@ -4,7 +4,7 @@ impl Solution {
     pub fn xor_all_nums(nums1: Vec<i32>, nums2: Vec<i32>) -> i32 {
         let n1 = nums1.len();
         let n2 = nums2.len();
-        if n1 % 2 == 0 && n2 % 2 == 0 {
+        if n1.is_multiple_of(2) && n2.is_multiple_of(2) {
             0
         } else {
             let mut result = 0;

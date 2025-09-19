@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn three_equal_parts(arr: Vec<i32>) -> Vec<i32> {
         let ones = arr.iter().sum::<i32>() as usize;
-        if ones % 3 != 0 {
+        if !ones.is_multiple_of(3) {
             return vec![-1, -1];
         }
         if ones == 0 {

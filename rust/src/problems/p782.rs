@@ -32,7 +32,7 @@ impl Solution {
 
         fn get_moves(mask: u32, count: u32, n: u32) -> i32 {
             let ones = mask.count_ones();
-            if n % 2 == 0 {
+            if n.is_multiple_of(2) {
                 if 2 * count != n || 2 * ones != n {
                     return -1;
                 }
