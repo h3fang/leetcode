@@ -1,6 +1,6 @@
-use std::collections::HashMap;
-
 pub struct Solution;
+
+use std::collections::HashMap;
 
 impl Solution {
     pub fn fraction_to_decimal(numerator: i32, denominator: i32) -> String {
@@ -15,18 +15,17 @@ impl Solution {
         let numerator = numerator.abs();
         let denominator = denominator.abs();
         let mut reminder = numerator % denominator;
-        let mut map = HashMap::new();
-        let mut decimal = Vec::new();
+        let mut map = HashMap::with_capacity(10000);
+        let mut decimal = Vec::with_capacity(10000);
         let mut repeating = false;
         let mut start = 0;
-        decimal.reserve(10000);
         while reminder != 0 {
             reminder *= 10;
-            let d = reminder / denominator;
+            let d = (reminder / denominator) as u8 + b'0';
             reminder %= denominator;
 
-            let idx = map.get(&reminder).unwrap_or(&0);
-            if idx > &0 && &decimal[idx - 1] == decimal.last().unwrap() {
+            let idx = map.get(&reminder).cloned().unwrap_or(0);
+            if idx > 0 && decimal[idx - 1] == *decimal.last().unwrap() {
                 repeating = true;
                 decimal.pop();
                 start = idx - 1;
@@ -38,7 +37,7 @@ impl Solution {
         }
 
         let sign = if sign >= 0 { "" } else { "-" };
-        let decimal = decimal.iter().map(|d| d.to_string()).collect::<String>();
+        let decimal = unsafe { String::from_utf8_unchecked(decimal) };
 
         if repeating {
             format!(
