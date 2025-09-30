@@ -2,13 +2,11 @@ pub struct Solution;
 
 impl Solution {
     pub fn triangular_sum(mut nums: Vec<i32>) -> i32 {
-        let mut next = vec![0; nums.len()];
         let mut right = nums.len() - 1;
         while right > 0 {
-            for (i, w) in nums[..=right].windows(2).enumerate() {
-                next[i] = (w[0] + w[1]) % 10;
+            for i in 0..right {
+                nums[i] = (nums[i] + nums[i + 1]) % 10;
             }
-            std::mem::swap(&mut nums, &mut next);
             right -= 1;
         }
         nums[0]
