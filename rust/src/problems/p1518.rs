@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn num_water_bottles(num_bottles: i32, num_exchange: i32) -> i32 {
         if num_bottles >= num_exchange {
-            num_bottles + (num_bottles - num_exchange) / (num_exchange - 1) + 1
+            num_bottles + (num_bottles - 1) / (num_exchange - 1)
         } else {
             num_bottles
         }
