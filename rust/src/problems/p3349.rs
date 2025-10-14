@@ -2,25 +2,17 @@ pub struct Solution;
 
 impl Solution {
     pub fn has_increasing_subarrays(nums: Vec<i32>, k: i32) -> bool {
-        let (n, k) = (nums.len(), k as usize);
-        let mut left = vec![1; n];
-        for i in 1..n {
-            if nums[i - 1] < nums[i] {
-                left[i] = left[i - 1] + 1;
+        let n = nums.len();
+        let (mut max, mut pre, mut cur) = (0, 0, 0);
+        for (i, &x) in nums.iter().enumerate() {
+            cur += 1;
+            if i == n - 1 || x >= nums[i + 1] {
+                max = max.max(cur / 2).max(cur.min(pre));
+                pre = cur;
+                cur = 0;
             }
         }
-        let mut right = 1;
-        for i in (1..n).rev() {
-            if i + 1 < n && nums[i] < nums[i + 1] {
-                right += 1;
-            } else {
-                right = 1;
-            }
-            if right >= k && left[i - 1] >= k {
-                return true;
-            }
-        }
-        false
+        max >= k
     }
 }
 
