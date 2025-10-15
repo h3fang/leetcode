@@ -2,7 +2,7 @@ pub struct Solution;
 
 impl Solution {
     pub fn remove_anagrams(mut words: Vec<String>) -> Vec<String> {
-        let mut counts = words
+        let counts = words
             .iter()
             .map(|w| {
                 let mut count = [0; 26];
@@ -15,14 +15,13 @@ impl Solution {
             .collect::<Vec<_>>();
 
         let mut i = 1;
-        while i < words.len() {
-            if counts[i] == counts[i - 1] {
-                words.remove(i);
-                counts.remove(i);
-            } else {
+        for (j, p) in counts.windows(2).enumerate() {
+            if p[0] != p[1] {
+                words.swap(i, j + 1);
                 i += 1;
             }
         }
+        words.resize(i, String::new());
         words
     }
 }
