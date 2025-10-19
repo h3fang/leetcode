@@ -1,35 +1,38 @@
 pub struct Solution;
 
-use std::collections::{HashSet, VecDeque};
+fn gcd(a: i32, b: i32) -> i32 {
+    if b == 0 { a } else { gcd(b, a % b) }
+}
 
 impl Solution {
     pub fn find_lex_smallest_string(s: String, a: i32, b: i32) -> String {
-        let mut visited = HashSet::new();
-        let mut min = s.to_string();
-        let mut queue = VecDeque::new();
-        queue.push_back(s.to_string());
-        visited.insert(s.to_string());
-        let i = s.len() - b as usize;
-        while let Some(mut curr) = queue.pop_front() {
-            if curr < min {
-                min = curr.to_string();
-            }
+        let mut s = s.into_bytes();
+        s.iter_mut().for_each(|b| *b -= b'0');
+        let n = s.len();
+        let step = gcd(b, n as i32) as usize;
+        let g = gcd(a, 10) as u8;
 
-            let step = format!("{}{}", &curr[i..], &curr[..i]);
-            if visited.insert(step.to_string()) {
-                queue.push_back(step);
+        let f = |t: &mut [u8], start: usize| {
+            let delta = t[start] % g + 10 - t[start];
+            for i in (start..n).step_by(2) {
+                t[i] = (t[i] + delta) % 10;
             }
+        };
 
-            unsafe { curr.as_bytes_mut() }
-                .iter_mut()
-                .skip(1)
-                .step_by(2)
-                .for_each(|c| *c = (*c - b'0' + a as u8) % 10 + b'0');
-            if visited.insert(curr.to_string()) {
-                queue.push_back(curr);
+        let mut ans = vec![u8::MAX];
+
+        for _ in (0..n).step_by(step) {
+            let mut t = s.clone();
+            if step & 1 == 1 {
+                f(&mut t, 0);
             }
+            f(&mut t, 1);
+            ans = ans.min(t);
+            s.rotate_right(step);
         }
-        min
+
+        ans.iter_mut().for_each(|e| *e += b'0');
+        unsafe { String::from_utf8_unchecked(ans) }
     }
 }
 
