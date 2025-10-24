@@ -1,45 +1,43 @@
 pub struct Solution;
 
+fn valid(count: &[i32]) -> bool {
+    count
+        .iter()
+        .enumerate()
+        .all(|(i, &c)| c == 0 || c == i as i32 + 1)
+}
+
+fn bt(n: i32, i: usize, curr: i32, count: &mut [i32], ans: &mut i32) {
+    let k = count.len();
+    if curr > n && valid(count) {
+        *ans = (*ans).min(curr);
+    }
+    if i == k || curr >= *ans {
+        return;
+    }
+    for d in 1..=k {
+        if count[d - 1] >= d as i32 || count[d - 1] as usize + (k - i) < d {
+            continue;
+        }
+
+        count[d - 1] += 1;
+        bt(n, i + 1, curr * 10 + d as i32, count, ans);
+        count[d - 1] -= 1;
+    }
+}
+
 impl Solution {
     pub fn next_beautiful_number(n: i32) -> i32 {
         if n == 0 {
             return 1;
         }
-        let n_digit = (n as f32).log10() as i32 + 1;
 
-        fn bt(i: i32, n_digit: i32, curr: i32, count: &mut [i32], result: &mut Vec<i32>) {
-            if i == n_digit {
-                for (k, c) in count.iter().enumerate() {
-                    if *c > 0 && *c != k as i32 {
-                        return;
-                    }
-                }
-                result.push(curr);
-            } else {
-                for d in 1..=n_digit {
-                    if count[d as usize] >= d || count[d as usize] + (n_digit - i) < d {
-                        continue;
-                    }
+        let k = n.ilog10() as usize + 2;
 
-                    count[d as usize] += 1;
-                    bt(i + 1, n_digit, curr * 10 + d, count, result);
-                    count[d as usize] -= 1;
-                }
-            }
-        }
-
-        for k in [n_digit, n_digit + 1] {
-            let mut count = [0; 10];
-            let mut results = Vec::new();
-            bt(0, k, 0, &mut count, &mut results);
-            for d in results {
-                if d > n {
-                    return d;
-                }
-            }
-        }
-
-        panic!("impossible")
+        let mut count = vec![0; k];
+        let mut ans = i32::MAX;
+        bt(n, 0, 0, &mut count, &mut ans);
+        ans
     }
 }
 
