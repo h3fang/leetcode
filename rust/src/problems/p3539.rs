@@ -48,6 +48,8 @@ impl Solution {
         }
 
         let mut f = vec![vec![vec![vec![0; k + 1]; m / 2 + 1]; m + 1]; n + 1];
+
+        #[allow(clippy::needless_range_loop)]
         for x in 0..=m / 2 {
             let c = x.count_ones() as usize;
             if c <= k {

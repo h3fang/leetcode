@@ -44,10 +44,10 @@ impl Solution {
         }
 
         let mut trees = vec![];
-        for i in 0..forest.len() {
-            for j in 0..forest[0].len() {
-                if forest[i][j] > 1 {
-                    trees.push((forest[i][j], (i as i32, j as i32)));
+        for (i, r) in forest.iter().enumerate() {
+            for (j, &f) in r.iter().enumerate() {
+                if f > 1 {
+                    trees.push((f, (i as i32, j as i32)));
                 }
             }
         }

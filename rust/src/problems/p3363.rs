@@ -17,6 +17,8 @@ impl Solution {
 
         f.iter_mut().for_each(|e| *e = 0);
         f[n - 1] = fruits[n - 1][0];
+
+        #[allow(clippy::needless_range_loop)]
         for i in 1..n - 1 {
             let mut g = vec![0; n + 1];
             for j in (n - 1 - i).max(i + 1)..n {

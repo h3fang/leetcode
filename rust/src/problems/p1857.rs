@@ -27,6 +27,7 @@ impl Solution {
             visited += 1;
             for &y in &g[x] {
                 let y = y as usize;
+                #[allow(clippy::needless_range_loop)]
                 for i in 0..26 {
                     dp[y][i] = dp[y][i].max(dp[x][i]);
                 }

@@ -7,6 +7,7 @@ fn gcd(a: usize, b: usize) -> i32 {
 }
 
 impl Solution {
+    #[allow(clippy::needless_range_loop)]
     pub fn distinct_sequences(n: i32) -> i32 {
         if n == 1 {
             return 6;

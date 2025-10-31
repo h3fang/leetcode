@@ -9,13 +9,9 @@ impl Solution {
         for _ in 1..=n {
             let mut f1 = [[0; 3]; 2];
             for j in 0..2 {
-                for k in 0..3 {
-                    f1[j][0] = (f1[j][0] + f[j][k]) % MOD;
-                }
+                f1[j][0] = f[j].iter().fold(f1[j][0], |acc, &e| (acc + e) % MOD);
             }
-            for k in 0..3 {
-                f1[1][0] = (f1[1][0] + f[0][k]) % MOD;
-            }
+            f1[1][0] = f[0].iter().fold(f1[1][0], |acc, &e| (acc + e) % MOD);
             for j in 0..2 {
                 for k in 0..2 {
                     f1[j][k + 1] = (f1[j][k + 1] + f[j][k]) % MOD;

@@ -13,13 +13,13 @@ fn dfs(g: &[Vec<i32>], present: &[i32], future: &[i32], budget: usize, x: i32) -
         }
     }
     let mut f = vec![[0; 2]; budget + 1];
-    for j in 0..=budget {
-        for k in 0..2 {
+    for (j, r) in f.iter_mut().enumerate() {
+        for (k, e) in r.iter_mut().enumerate() {
             let cost = present[x as usize] / (k as i32 + 1);
             if j as i32 >= cost {
-                f[j][k] = f1[j][0].max(f1[j - cost as usize][1] + future[x as usize] - cost);
+                *e = f1[j][0].max(f1[j - cost as usize][1] + future[x as usize] - cost);
             } else {
-                f[j][k] = f1[j][0];
+                *e = f1[j][0];
             }
         }
     }

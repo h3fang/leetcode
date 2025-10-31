@@ -3,6 +3,7 @@ pub struct Solution;
 const MOD: i64 = 10_0000_0007;
 
 impl Solution {
+    #[allow(clippy::needless_range_loop)]
     pub fn number_of_stable_arrays(zero: i32, one: i32, limit: i32) -> i32 {
         let (zero, one, limit) = (zero as usize, one as usize, limit as usize);
         let mut f = vec![vec![[0; 2]; one + 1]; zero + 1];

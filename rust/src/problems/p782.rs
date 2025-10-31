@@ -12,8 +12,8 @@ impl Solution {
         let mut row_cnt = 1;
         let mut col_cnt = 1;
 
-        for i in 1..n {
-            let row = board[i].iter().fold(0, |acc, &e| (acc << 1) | e as u32);
+        for (i, r) in board.iter().enumerate().skip(1) {
+            let row = r.iter().fold(0, |acc, &e| (acc << 1) | e as u32);
             if row != row0 && row != rev_row0 {
                 return -1;
             }

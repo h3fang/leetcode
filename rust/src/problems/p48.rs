@@ -5,6 +5,8 @@ impl Solution {
     pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
         fn transpose(matrix: &mut [Vec<i32>]) {
             let n = matrix.len();
+
+            #[allow(clippy::needless_range_loop)]
             for i in 0..n {
                 for j in i + 1..n {
                     let v = matrix[i][j];

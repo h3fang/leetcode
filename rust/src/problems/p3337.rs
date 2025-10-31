@@ -46,6 +46,8 @@ impl Solution {
         }
         let a = pow(a, t);
         let mut ans = 0;
+
+        #[allow(clippy::needless_range_loop)]
         for i in 0..26 {
             for j in 0..26 {
                 ans = (ans + a[j][i] * f[j]) % MOD;

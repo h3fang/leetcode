@@ -6,9 +6,7 @@ impl Solution {
     pub fn dices_probability(n: i32) -> Vec<f64> {
         let n = n as usize;
         let mut dp = vec![vec![0.0; 6 * n + 1]; n];
-        for i in 1..=6 {
-            dp[0][i] = ONE;
-        }
+        dp[0][1..=6].iter_mut().for_each(|e| *e = ONE);
         for i in 1..n {
             for j in i + 1..=6 * (i + 1) {
                 for k in 1..=6 {

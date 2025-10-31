@@ -27,9 +27,7 @@ impl Solution {
         }
 
         if matrix[0][0] == 0 {
-            for j in 1..n {
-                matrix[0][j] = 0;
-            }
+            matrix[0].iter_mut().skip(1).for_each(|e| *e = 0);
         }
 
         if first_col {

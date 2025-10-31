@@ -11,6 +11,8 @@ impl Solution {
         let mut f = vec![vec![vec![0; m + 1]; k + 1]; n + 1];
         f[1][1] = vec![1; m + 1];
         f[1][1][0] = 0;
+
+        #[allow(clippy::needless_range_loop)]
         for i in 2..=n {
             for s in 1..=k.min(i) {
                 let mut presum = 0;

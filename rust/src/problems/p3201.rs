@@ -5,6 +5,8 @@ impl Solution {
         let mut f = [[0, 0]; 2];
         for x in nums {
             let x = (x % 2) as usize;
+
+            #[allow(clippy::needless_range_loop)]
             for y in 0..2 {
                 f[y][x] = f[x][y] + 1;
             }

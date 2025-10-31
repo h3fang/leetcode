@@ -13,6 +13,8 @@ impl Solution {
             queue.push((-row[n - 1], i, n - 1));
             row[n - 1] = i32::MAX;
         }
+
+        #[allow(clippy::needless_range_loop)]
         for j in 1..n - 1 {
             queue.push((-height_map[0][j], 0, j));
             height_map[0][j] = i32::MAX;

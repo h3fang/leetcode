@@ -4,6 +4,7 @@ impl Solution {
     pub fn num_special(mut mat: Vec<Vec<i32>>) -> i32 {
         let m = mat.len();
         let n = mat[0].len();
+        #[allow(clippy::needless_range_loop)]
         for i in 0..m {
             let sum = mat[i].iter().sum::<i32>() - i32::from(i == 0);
             if sum > 0 {
