@@ -1040,6 +1040,7 @@ pub mod p263;
 pub mod p264;
 pub mod p2643;
 pub mod p2651;
+pub mod p2654;
 pub mod p2657;
 pub mod p2658;
 pub mod p2679;
