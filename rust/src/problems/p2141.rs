@@ -1,21 +1,18 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn max_run_time(n: i32, batteries: Vec<i32>) -> i64 {
-        let mut left = 0i64;
-        let mut right = batteries.iter().map(|b| *b as i64).sum::<i64>() / n as i64;
-        let mut result = 0;
-        while left <= right {
-            let mid = (left + right) / 2;
-            let total: i64 = batteries.iter().map(|b| (*b as i64).min(mid)).sum();
-            if total >= mid * n as i64 {
-                result = mid;
-                left = mid + 1;
-            } else {
-                right = mid - 1;
+    pub fn max_run_time(n: i32, mut batteries: Vec<i32>) -> i64 {
+        let mut n = n as i64;
+        let mut sum: i64 = batteries.iter().map(|b| *b as i64).sum();
+        batteries.sort_unstable();
+        for b in batteries.into_iter().rev() {
+            if b as i64 <= sum / n {
+                return sum / n;
             }
+            sum -= b as i64;
+            n -= 1;
         }
-        result
+        unreachable!()
     }
 }
 
