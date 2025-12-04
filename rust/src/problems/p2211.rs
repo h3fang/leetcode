@@ -2,31 +2,13 @@ pub struct Solution;
 
 impl Solution {
     pub fn count_collisions(directions: String) -> i32 {
-        let (mut right, mut static_, mut ans) = (0, false, 0);
-        for b in directions.bytes() {
-            match b {
-                b'L' => {
-                    if static_ {
-                        ans += 1;
-                    } else if right > 0 {
-                        ans += 1 + right;
-                        right = 0;
-                        static_ = true;
-                    }
-                }
-                b'R' => {
-                    static_ = false;
-                    right += 1;
-                }
-                b'S' => {
-                    ans += right;
-                    right = 0;
-                    static_ = true;
-                }
-                _ => unreachable!(),
-            }
-        }
-        ans
+        directions
+            .trim_start_matches('L')
+            .trim_end_matches('R')
+            .as_bytes()
+            .iter()
+            .filter(|&&b| b != b'S')
+            .count() as i32
     }
 }
 
