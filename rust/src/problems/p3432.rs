@@ -3,15 +3,11 @@ pub struct Solution;
 impl Solution {
     pub fn count_partitions(nums: Vec<i32>) -> i32 {
         let sum: i32 = nums.iter().sum();
-        let n = nums.len();
-        let (mut left, mut ans) = (0, 0);
-        for x in nums.into_iter().take(n - 1) {
-            left += x;
-            if (sum - left * 2) % 2 == 0 {
-                ans += 1;
-            }
+        if sum % 2 == 0 {
+            nums.len() as i32 - 1
+        } else {
+            0
         }
-        ans
     }
 }
 
