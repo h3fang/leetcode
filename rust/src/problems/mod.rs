@@ -608,6 +608,7 @@ pub mod p1912;
 pub mod p1920;
 pub mod p1921;
 pub mod p1922;
+pub mod p1925;
 pub mod p1926;
 pub mod p1928;
 pub mod p1931;
