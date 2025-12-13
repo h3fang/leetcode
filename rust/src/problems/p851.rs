@@ -51,7 +51,7 @@ mod tests {
 
     #[test]
     fn case2() {
-        let richer = [[0; 0]; 0];
+        let richer: [[i32; 0]; 0] = [];
         let richer = richer.iter().map(|r| r.to_vec()).collect();
         let quiet = vec![0];
         let expected = vec![0];
