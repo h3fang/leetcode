@@ -1,26 +1,33 @@
 pub struct Solution;
 
-fn dfs(g: &[Vec<i32>], present: &[i32], future: &[i32], budget: usize, x: i32) -> Vec<[i32; 2]> {
-    let mut f1 = vec![[0; 2]; budget + 1];
+fn dfs(g: &[Vec<i32>], present: &[i32], future: &[i32], budget: usize, x: i32) -> [Vec<i32>; 2] {
+    let mut f1 = [
+        vec![i32::MIN / 2; budget + 1],
+        vec![i32::MIN / 2; budget + 1],
+    ];
+    f1[0][0] = 0;
+    f1[1][0] = 0;
     for &y in &g[x as usize] {
         let fy = dfs(g, present, future, budget, y);
-        for j in (0..=budget).rev() {
-            for b1 in 0..=j {
-                for k in 0..2 {
-                    f1[j][k] = f1[j][k].max(f1[j - b1][k] + fy[b1][k]);
+        for (k, fy) in fy.into_iter().enumerate() {
+            let mut f = vec![i32::MIN / 2; budget + 1];
+            f[0] = 0;
+            for (bud, &profit) in fy.iter().enumerate() {
+                if profit < 0 {
+                    continue;
+                }
+                for b1 in bud..budget + 1 {
+                    f[b1] = f[b1].max(f1[k][b1 - bud] + profit);
                 }
             }
+            f1[k] = f;
         }
     }
-    let mut f = vec![[0; 2]; budget + 1];
-    for (j, r) in f.iter_mut().enumerate() {
-        for (k, e) in r.iter_mut().enumerate() {
-            let cost = present[x as usize] / (k as i32 + 1);
-            if j as i32 >= cost {
-                *e = f1[j][0].max(f1[j - cost as usize][1] + future[x as usize] - cost);
-            } else {
-                *e = f1[j][0];
-            }
+    let mut f = [f1[0].clone(), f1[0].clone()];
+    for (k, r) in f.iter_mut().enumerate() {
+        let cost = present[x as usize] / (k as i32 + 1);
+        for j in cost as usize..budget + 1 {
+            r[j] = r[j].max(f1[1][j - cost as usize] + future[x as usize] - cost);
         }
     }
     f
@@ -40,7 +47,7 @@ impl Solution {
         }
         let budget = budget as usize;
         let f = dfs(&g, &present, &future, budget, 0);
-        f[budget][0]
+        *f[0].iter().max().unwrap()
     }
 }
 
