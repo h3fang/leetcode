@@ -7,29 +7,25 @@ impl Solution {
             return 0;
         }
         let mut result = 0;
-        for (i, r) in grid.iter().enumerate().skip(1).take(m - 2) {
-            for (j, &c) in r.iter().enumerate().skip(1).take(n - 2) {
-                if c != 5 {
+        for i in 0..m - 2 {
+            for j in 0..n - 2 {
+                if grid[i + 1][j + 1] != 5 {
                     continue;
                 }
-                let mut f = [0; 16];
-                for i in i - 1..=i + 1 {
-                    for j in j - 1..=j + 1 {
-                        f[grid[i][j] as usize] += 1;
+                let mut f = 0u16;
+                let mut sum = [[0; 2]; 2];
+                for (i, r) in grid[i..i + 3].iter().enumerate() {
+                    for (j, c) in r[j..j + 3].iter().enumerate() {
+                        f |= 1 << c;
+                        if i < 2 {
+                            sum[0][i] += c;
+                        }
+                        if j < 2 {
+                            sum[1][j] += c;
+                        }
                     }
                 }
-                if !f[1..=9].iter().all(|&x| x == 1) {
-                    continue;
-                }
-                if c + grid[i][j - 1] + grid[i][j + 1] == 15
-                    && grid[i - 1][j] + grid[i - 1][j - 1] + grid[i - 1][j + 1] == 15
-                    && grid[i + 1][j] + grid[i + 1][j - 1] + grid[i + 1][j + 1] == 15
-                    && grid[i][j] + grid[i + 1][j] + grid[i - 1][j] == 15
-                    && grid[i][j - 1] + grid[i + 1][j - 1] + grid[i - 1][j - 1] == 15
-                    && grid[i][j + 1] + grid[i + 1][j + 1] + grid[i - 1][j + 1] == 15
-                    && grid[i - 1][j - 1] + grid[i][j] + grid[i + 1][j + 1] == 15
-                    && grid[i - 1][j + 1] + grid[i][j] + grid[i + 1][j - 1] == 15
-                {
+                if f == 0b11_1111_1110 && sum.iter().flatten().all(|&x| x == 15) {
                     result += 1;
                 }
             }
