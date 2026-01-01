@@ -1638,6 +1638,7 @@ pub mod p654;
 pub mod p655;
 pub mod p658;
 pub mod p659;
+pub mod p66;
 pub mod p661;
 pub mod p662;
 pub mod p664;
