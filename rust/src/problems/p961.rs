@@ -8,11 +8,8 @@ impl Solution {
         let mut rng = rand::rng();
         loop {
             let i = rng.random_range(0..n);
-            let mut j = rng.random_range(0..n);
-            while j == i {
-                j = rng.random_range(0..n);
-            }
-            if nums[i] == nums[j] {
+            let j = rng.random_range(0..n);
+            if i != j && nums[i] == nums[j] {
                 return nums[i];
             }
         }
