@@ -2,25 +2,21 @@ pub struct Solution;
 
 impl Solution {
     pub fn minimum_delete_sum(s1: String, s2: String) -> i32 {
-        let (s1, s2) = (s1.as_bytes(), s2.as_bytes());
-        let (m, n) = (s1.len(), s2.len());
-        let mut f = vec![vec![0; n + 1]; m + 1];
-        for i in 1..m + 1 {
-            f[i][0] = f[i - 1][0] + s1[i - 1] as i32;
-        }
-        for j in 1..n + 1 {
-            f[0][j] = f[0][j - 1] + s2[j - 1] as i32;
-        }
-        for i in 1..=m {
-            for j in 1..=n {
-                if s1[i - 1] == s2[j - 1] {
-                    f[i][j] = f[i - 1][j - 1];
+        let n = s2.len();
+        let mut f = vec![0; n + 1];
+        for x in s1.bytes() {
+            let mut pre = 0;
+            for (j, y) in s2.bytes().enumerate() {
+                let tmp = f[j + 1];
+                if x == y {
+                    f[j + 1] = pre + x as i32;
                 } else {
-                    f[i][j] = (f[i - 1][j] + s1[i - 1] as i32).min(f[i][j - 1] + s2[j - 1] as i32);
+                    f[j + 1] = tmp.max(f[j]);
                 }
+                pre = tmp;
             }
         }
-        f[m][n]
+        s1.bytes().chain(s2.bytes()).map(|x| x as i32).sum::<i32>() - 2 * f[n]
     }
 }
 
