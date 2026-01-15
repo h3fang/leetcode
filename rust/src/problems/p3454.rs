@@ -72,7 +72,7 @@ impl Solution {
         }
 
         let half = (total + 1) / 2;
-        let i = sums.iter().position(|&s| s >= half).unwrap() - 1;
+        let i = sums.partition_point(|&s| s < half) - 1;
         events[i].0 as f64 + (total - sums[i] * 2) as f64 / (widths[i] as f64 * 2.0)
     }
 }
