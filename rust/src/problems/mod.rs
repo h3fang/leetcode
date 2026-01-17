@@ -1148,6 +1148,7 @@ pub mod p304;
 pub mod p3042;
 pub mod p3043;
 pub mod p3046;
+pub mod p3047;
 pub mod p306;
 pub mod p3065;
 pub mod p3066;
