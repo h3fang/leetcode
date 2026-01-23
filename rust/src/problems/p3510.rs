@@ -1,47 +1,60 @@
 pub struct Solution;
 
-use std::collections::BTreeSet;
+use std::{cmp::Reverse, collections::BinaryHeap};
 
 impl Solution {
     pub fn minimum_pair_removal(nums: Vec<i32>) -> i32 {
         let mut nums: Vec<i64> = nums.into_iter().map(|x| x as i64).collect();
         let n = nums.len();
-        let mut rem: BTreeSet<usize> = (0..n).collect();
-        let mut pairs = BTreeSet::new();
+        let mut pairs: BinaryHeap<_> = BinaryHeap::with_capacity(n);
         let (mut inverted, mut ans) = (0, 0);
         for (i, w) in nums.windows(2).enumerate() {
             if w[0] > w[1] {
                 inverted += 1;
             }
-            pairs.insert((w[0] + w[1], i));
+            pairs.push(Reverse((w[0] + w[1], i)));
         }
+
+        let n = n as i32;
+        let mut left: Vec<i32> = (-1..n).collect();
+        let mut right: Vec<i32> = (1..n + 1).collect();
         while inverted > 0 {
-            let (sum, i) = pairs.pop_first().unwrap();
-            let next = *rem.range(i..).nth(1).unwrap();
+            while let Some(&Reverse((s, i))) = pairs.peek()
+                && (right[i] == n || nums[i] + nums[right[i] as usize] != s)
+            {
+                pairs.pop();
+            }
+
+            let Reverse((sum, i)) = pairs.pop().unwrap();
+            let next = right[i] as usize;
             if nums[i] > nums[next] {
                 inverted -= 1;
             }
-            if let Some(&prev) = rem.range(..i).last() {
+
+            if left[i] >= 0 {
+                let prev = left[i] as usize;
                 if nums[prev] > nums[i] {
                     inverted -= 1;
                 }
                 if nums[prev] > sum {
                     inverted += 1;
                 }
-                pairs.remove(&(nums[prev] + nums[i], prev));
-                pairs.insert((nums[prev] + sum, prev));
+                pairs.push(Reverse((nums[prev] + sum, prev)));
             }
-            if let Some(&next2) = rem.range(i..).nth(2) {
+            let next2 = right[next];
+            if next2 < n {
+                let next2 = next2 as usize;
                 if nums[next] > nums[next2] {
                     inverted -= 1;
                 }
                 if sum > nums[next2] {
                     inverted += 1;
                 }
-                pairs.remove(&(nums[next] + nums[next2], next));
-                pairs.insert((sum + nums[next2], i));
+                pairs.push(Reverse((sum + nums[next2], i)));
             }
-            rem.remove(&next);
+            right[i] = next2;
+            left[next2 as usize] = i as i32;
+            right[next] = n;
             nums[i] = sum;
             ans += 1;
         }
