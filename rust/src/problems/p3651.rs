@@ -21,11 +21,15 @@ impl Solution {
                 }
             }
 
-            let old = suf.clone();
+            let mut changed = false;
             for (i, &x) in min.iter().enumerate().rev() {
-                suf[i] = suf[i + 1].min(x);
+                let new = suf[i + 1].min(x);
+                if suf[i] != new {
+                    suf[i] = new;
+                    changed = true;
+                }
             }
-            if suf == old {
+            if !changed {
                 break;
             }
         }
