@@ -2,26 +2,11 @@ pub struct Solution;
 
 impl Solution {
     pub fn next_greatest_letter(letters: Vec<char>, target: char) -> char {
-        let n = letters.len() as i32;
-        let mut left = 0;
-        let mut right = n - 1;
-        let mut idx = n;
-        while left <= right {
-            let mid = (left + right) / 2;
-            match letters[mid as usize].cmp(&target) {
-                std::cmp::Ordering::Greater => {
-                    idx = mid;
-                    right = mid - 1;
-                }
-                _ => {
-                    left = mid + 1;
-                }
-            }
-        }
-        if idx == n {
+        let i = letters.partition_point(|&c| c <= target);
+        if i == letters.len() {
             letters[0]
         } else {
-            letters[idx as usize]
+            letters[i]
         }
     }
 }
