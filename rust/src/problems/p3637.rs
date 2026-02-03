@@ -2,18 +2,19 @@ pub struct Solution;
 
 impl Solution {
     pub fn is_trionic(nums: Vec<i32>) -> bool {
-        let n = nums.len();
-        for i in 1..n - 2 {
-            for j in i + 1..n - 1 {
-                if nums[..=i].windows(2).all(|w| w[0] < w[1])
-                    && nums[i..=j].windows(2).all(|w| w[0] > w[1])
-                    && nums[j..].windows(2).all(|w| w[0] < w[1])
-                {
-                    return true;
-                }
+        if nums[0] >= nums[1] {
+            return false;
+        }
+        let mut count = 1;
+        for (i, w) in nums.windows(2).enumerate().skip(1) {
+            if w[0] == w[1] {
+                return false;
+            }
+            if (nums[i - 1] < w[0]) != (w[0] < w[1]) {
+                count += 1;
             }
         }
-        false
+        count == 3
     }
 }
 
