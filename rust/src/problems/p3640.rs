@@ -1,52 +1,18 @@
 pub struct Solution;
 
+const MIN: i64 = i64::MIN / 2;
+
 impl Solution {
     pub fn max_sum_trionic(nums: Vec<i32>) -> i64 {
-        let n = nums.len();
-        let (mut ans, mut i) = (i64::MIN, 1);
-        while i < n - 1 {
-            let (mut j, mut sum) = (i, nums[i] as i64);
-
-            // middle
-            while j + 1 < n && nums[j] > nums[j + 1] {
-                sum += nums[j + 1] as i64;
-                j += 1;
-            }
-            if i == j {
-                i += 1;
-                continue;
-            }
-
-            // left
-            let mut l = i - 1;
-            if nums[l] >= nums[i] {
-                i = j;
-                continue;
-            }
-            sum += nums[l] as i64;
-            while l > 0 && nums[l - 1] < nums[l] && nums[l - 1] >= 0 {
-                sum += nums[l - 1] as i64;
-                l -= 1;
-            }
-
-            // right
-            let mut r = j + 1;
-            if r == n || nums[j] >= nums[r] {
-                i = j;
-                continue;
-            }
-            let s1 = nums[r] as i64;
-            let mut s = s1;
-            while r + 1 < n && nums[r] < nums[r + 1] {
-                s += nums[r + 1] as i64;
-                r += 1;
-            }
-            sum += s1.max(s);
-
-            i = r;
-            ans = ans.max(sum);
+        let mut f = [MIN; 4];
+        for w in nums.windows(2) {
+            let (x, y) = (w[0] as i64, w[1] as i64);
+            f[3] = if x < y { y + f[3].max(f[2]) } else { MIN };
+            f[2] = if x > y { y + f[2].max(f[1]) } else { MIN };
+            f[1] = if x < y { y + f[1].max(x) } else { MIN };
+            f[0] = f[0].max(f[3]);
         }
-        ans
+        f[0]
     }
 }
 
