@@ -2,18 +2,13 @@ pub struct Solution;
 
 impl Solution {
     pub fn minimum_deletions(s: String) -> i32 {
-        let mut leftb = 0;
-        let mut righta = s.as_bytes().iter().filter(|&&b| b == b'a').count() as i32;
-        let mut result = righta;
-        for &b in s.as_bytes() {
-            if b == b'b' {
-                leftb += 1;
-            } else if b == b'a' {
-                righta -= 1;
-            }
-            result = result.min(leftb + righta);
+        let (mut f, mut b) = (0, 0);
+        for &x in s.as_bytes() {
+            let x = (x - b'a') as i32;
+            b += x;
+            f = (f + (1 ^ x)).min(b);
         }
-        result
+        f
     }
 }
 
