@@ -11,18 +11,21 @@ impl Solution {
             match root {
                 Some(n) => {
                     let n = n.borrow();
+
                     let left = dfs(n.left.as_ref());
                     if left < 0 {
-                        left
+                        return left;
+                    }
+
+                    let right = dfs(n.right.as_ref());
+                    if right < 0 {
+                        return right;
+                    }
+
+                    if (left - right).abs() < 2 {
+                        1 + left.max(right)
                     } else {
-                        let right = dfs(n.right.as_ref());
-                        if right < 0 {
-                            right
-                        } else if (left - right).abs() < 2 {
-                            1 + left.max(right)
-                        } else {
-                            -1
-                        }
+                        -1
                     }
                 }
                 None => 0,
