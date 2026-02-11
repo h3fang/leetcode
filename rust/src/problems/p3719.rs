@@ -88,7 +88,7 @@ impl Solution {
         let (mut ans, mut sum) = (0, 0);
 
         for (i, &x) in nums.iter().enumerate() {
-            let val = if x % 2 == 1 { 1 } else { -1 };
+            let val = x.rem_euclid(2) * 2 - 1;
             match m.insert(x, i + 1) {
                 Some(j) => t.update(1, 0, n, j, i, -val),
                 None => {
