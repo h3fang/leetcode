@@ -43,13 +43,16 @@ fn longest_balanced_2(s: &[u8], ans: &mut i32) {
 }
 
 fn longest_balanced_3(s: &[u8]) -> i32 {
+    let n = s.len() as i64;
     let mut cnt = [0; 3];
     let mut pre = HashMap::with_capacity(s.len() * 2);
-    pre.insert((0, 0), -1);
+    let hash = |x: i64, y: i64| -> i64 { (x + n) << 20 | (y + n) };
+    pre.insert(hash(0, 0), -1);
+
     let mut ans = 0;
     for (i, &b) in s.iter().enumerate() {
         cnt[(b - b'a') as usize] += 1;
-        let p = (cnt[1] - cnt[0], cnt[2] - cnt[0]);
+        let p = hash(cnt[1] - cnt[0], cnt[2] - cnt[0]);
         if let Some(j) = pre.get(&p) {
             ans = ans.max(i as i32 - j);
         } else {
