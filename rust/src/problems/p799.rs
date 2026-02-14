@@ -2,18 +2,20 @@ pub struct Solution;
 
 impl Solution {
     pub fn champagne_tower(poured: i32, query_row: i32, query_glass: i32) -> f64 {
-        let mut amount = vec![vec![0.0; 101]; 101];
-        amount[0][0] = poured as f64;
-        for r in 0..=query_row as usize {
-            for c in 0..=r {
-                let overflow = (amount[r][c] - 1.0) / 2.0;
+        let mut f = [0.0; 101];
+        f[0] = poured as f64;
+        for r in 1..=query_row as usize {
+            for c in (0..=r).rev() {
+                let overflow = (f[c] - 1.0) / 2.0;
                 if overflow > 0.0 {
-                    amount[r + 1][c] += overflow;
-                    amount[r + 1][c + 1] += overflow;
+                    f[c] = overflow;
+                    f[c + 1] += overflow;
+                } else {
+                    f[c] = 0.0;
                 }
             }
         }
-        amount[query_row as usize][query_glass as usize].min(1.0)
+        f[query_glass as usize].min(1.0)
     }
 }
 
@@ -22,7 +24,7 @@ mod tests {
     use super::*;
 
     fn assert_close(a: f64, b: f64) {
-        assert!((a - b).abs() < 1e-9);
+        assert!((a - b).abs() < 1e-9, "a = {a:.9}, b = {b:.9}");
     }
 
     #[test]
