@@ -2,48 +2,20 @@ pub struct Solution;
 
 impl Solution {
     pub fn add_binary(a: String, b: String) -> String {
-        let mut a = a.into_bytes();
-        let mut b = b.into_bytes();
+        let (mut a, b) = if a.len() < b.len() {
+            (b.into_bytes(), a.into_bytes())
+        } else {
+            (a.into_bytes(), b.into_bytes())
+        };
 
-        if a.len() < b.len() {
-            std::mem::swap(&mut a, &mut b);
+        let (n, mut carry) = (b.len(), 0);
+        for (i, x) in a.iter_mut().rev().enumerate() {
+            let y = if i < b.len() { b[n - 1 - i] - b'0' } else { 0 };
+            carry += *x - b'0' + y;
+            *x = (carry & 1) + b'0';
+            carry /= 2;
         }
-        let mut carry = b'0';
-        for (a, b) in a.iter_mut().rev().zip(b.iter().rev()) {
-            match (*a, *b) {
-                (b'0', b'0') => {
-                    *a = carry;
-                    carry = b'0';
-                }
-                (b'1', b'1') => {
-                    *a = carry;
-                    carry = b'1';
-                }
-                _ => {
-                    if carry == b'0' {
-                        *a = b'1';
-                    } else {
-                        *a = b'0';
-                    }
-                }
-            }
-        }
-
-        for i in (0..(a.len() - b.len())).rev() {
-            match (a[i], carry) {
-                (b'0', _) => {
-                    a[i] = carry;
-                    carry = b'0';
-                    break;
-                }
-                (b'1', b'1') => {
-                    a[i] = b'0';
-                    carry = b'1';
-                }
-                _ => break,
-            }
-        }
-        if carry == b'1' {
+        if carry == 1 {
             a.insert(0, b'1');
         }
         unsafe { String::from_utf8_unchecked(a) }
