@@ -1693,6 +1693,7 @@ pub mod p691;
 pub mod p692;
 pub mod p693;
 pub mod p695;
+pub mod p696;
 pub mod p698;
 pub mod p699;
 pub mod p70;
