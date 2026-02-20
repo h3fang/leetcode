@@ -2,9 +2,9 @@ pub struct Solution;
 
 impl Solution {
     pub fn make_largest_special(s: String) -> String {
-        fn dfs(s: Vec<u8>) -> Vec<u8> {
+        fn dfs(s: &[u8]) -> Vec<u8> {
             if s.len() <= 2 {
-                return s;
+                return s.to_vec();
             }
             let mut count = 0;
             let mut parts = vec![];
@@ -15,7 +15,7 @@ impl Solution {
                 } else {
                     count -= 1;
                     if count == 0 {
-                        let mut s = dfs(s[start + 1..i].to_vec());
+                        let mut s = dfs(&s[start + 1..i]);
                         s.insert(0, b'1');
                         s.push(b'0');
                         parts.push(s);
@@ -26,7 +26,7 @@ impl Solution {
             parts.sort_unstable_by(|a, b| b.cmp(a));
             parts.into_iter().flatten().collect()
         }
-        let r = dfs(s.as_bytes().to_vec());
+        let r = dfs(s.as_bytes());
         unsafe { String::from_utf8_unchecked(r) }
     }
 }
@@ -41,5 +41,10 @@ mod tests {
             "11100100",
             Solution::make_largest_special("11011000".into())
         );
+    }
+
+    #[test]
+    fn case2() {
+        assert_eq!("10", Solution::make_largest_special("10".into()));
     }
 }
