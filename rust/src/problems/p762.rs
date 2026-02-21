@@ -2,14 +2,11 @@ pub struct Solution;
 
 impl Solution {
     pub fn count_prime_set_bits(left: i32, right: i32) -> i32 {
-        let mut primes = [false; 20];
-        for p in [2, 3, 5, 7, 11, 13, 17, 19] {
-            primes[p] = true;
-        }
+        let primes = 0b10100010100010101100;
         let mut result = 0;
         for n in left..=right {
-            let d = n.count_ones() as usize;
-            if primes[d] {
+            let d = n.count_ones();
+            if (primes >> d) & 1 == 1 {
                 result += 1;
             }
         }
