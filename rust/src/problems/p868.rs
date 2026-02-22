@@ -2,14 +2,14 @@ pub struct Solution;
 
 impl Solution {
     pub fn binary_gap(mut n: i32) -> i32 {
-        let mut result = 0;
-        n /= 2 * (n & -n);
+        let (mut result, mut last) = (0, 32);
         while n > 0 {
-            let w = (n & -n).trailing_zeros() + 1;
-            result = result.max(w);
-            n >>= w;
+            let zeros = n.trailing_zeros() as i32;
+            result = result.max(zeros - last);
+            last = zeros;
+            n &= n - 1;
         }
-        result as i32
+        result
     }
 }
 
