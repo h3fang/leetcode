@@ -3,19 +3,13 @@ pub struct Solution;
 impl Solution {
     pub fn binary_gap(mut n: i32) -> i32 {
         let mut result = 0;
-        let mut last = -1;
-        let mut i = 0;
+        n /= 2 * (n & -n);
         while n > 0 {
-            if n & 1 > 0 {
-                if last >= 0 {
-                    result = result.max(i - last);
-                }
-                last = i;
-            }
-            i += 1;
-            n >>= 1;
+            let w = (n & -n).trailing_zeros() + 1;
+            result = result.max(w);
+            n >>= w;
         }
-        result
+        result as i32
     }
 }
 
