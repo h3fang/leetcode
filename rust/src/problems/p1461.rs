@@ -1,27 +1,33 @@
 pub struct Solution;
 
-use std::collections::HashSet;
-
 impl Solution {
     pub fn has_all_codes(s: String, k: i32) -> bool {
-        let mut set = HashSet::new();
-        let s = s.as_bytes();
-        let n = s.len();
-        let k = k as usize;
-        let mut num = 0;
-        if n < k {
+        let (n, k) = (s.len(), k as usize);
+        let mask = (1 << k) - 1;
+        if n < mask + k {
             return false;
         }
+
+        let mut set = vec![false; mask + 1];
+        let s = s.as_bytes();
+        let (mut num, mut count) = (0, 1);
         for b in &s[..k] {
-            num = (num << 1) + (b - b'0') as i32;
+            num = (num << 1) + (b - b'0') as usize;
         }
-        set.insert(num);
-        let mask = (1 << k) - 1;
+        set[num] = true;
+
         for b in &s[k..n] {
-            num = (num << 1) + (b - b'0') as i32;
-            set.insert(num & mask);
+            num = (num << 1) + (b - b'0') as usize;
+            let idx = num & mask;
+            if !set[idx] {
+                set[idx] = true;
+                count += 1;
+            }
+            if count == mask + 1 {
+                return true;
+            }
         }
-        set.len() == mask as usize + 1
+        false
     }
 }
 
