@@ -400,6 +400,7 @@ pub mod p1530;
 pub mod p1531;
 pub mod p1534;
 pub mod p1535;
+pub mod p1536;
 pub mod p1539;
 pub mod p154;
 pub mod p1542;
