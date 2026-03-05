@@ -2,21 +2,12 @@ pub struct Solution;
 
 impl Solution {
     pub fn min_operations(s: String) -> i32 {
-        fn find_operaations(s: &[u8], mut c: u8) -> i32 {
-            let mut result = 0;
-            for &e in s {
-                if e != c {
-                    result += 1;
-                }
-                if c == b'1' {
-                    c = b'0';
-                } else {
-                    c = b'1';
-                }
-            }
-            result
-        }
-        find_operaations(s.as_bytes(), b'1').min(find_operaations(s.as_bytes(), b'0'))
+        let k: usize = s
+            .bytes()
+            .enumerate()
+            .map(|(i, b)| (i % 2).abs_diff((b - b'0') as usize))
+            .sum();
+        k.min(s.len() - k) as i32
     }
 }
 
