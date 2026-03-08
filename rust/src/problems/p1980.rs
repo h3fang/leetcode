@@ -1,20 +1,12 @@
 pub struct Solution;
 
-use std::collections::HashSet;
-
 impl Solution {
     pub fn find_different_binary_string(nums: Vec<String>) -> String {
-        let n = nums.len();
-        let nums: HashSet<u32> = nums
-            .into_iter()
-            .map(|n| u32::from_str_radix(&n, 2).unwrap())
-            .collect();
-        for i in 0..(1 << n) {
-            if !nums.contains(&i) {
-                return format!("{i:0n$b}");
-            }
+        let mut s = Vec::with_capacity(nums.len());
+        for (i, num) in nums.iter().enumerate() {
+            s.push(((num.as_bytes()[i] - b'0') ^ 1) + b'0');
         }
-        unreachable!();
+        unsafe { String::from_utf8_unchecked(s) }
     }
 }
 
