@@ -5,12 +5,8 @@ impl Solution {
         if n == 0 {
             return 1;
         }
-        let num = n as u32;
-        let mut mask = u32::MAX;
-        while mask & num != 0 {
-            mask <<= 1;
-        }
-        ((!num) & !mask) as i32
+        let mask = (1 << (32 - n.leading_zeros())) - 1;
+        n ^ mask
     }
 }
 
