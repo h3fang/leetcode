@@ -1293,6 +1293,7 @@ pub mod p3289;
 pub mod p329;
 pub mod p3291;
 pub mod p3292;
+pub mod p3296;
 pub mod p3297;
 pub mod p3298;
 pub mod p33;
