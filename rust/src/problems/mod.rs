@@ -600,6 +600,7 @@ pub mod p1865;
 pub mod p187;
 pub mod p1870;
 pub mod p1877;
+pub mod p1878;
 pub mod p188;
 pub mod p1884;
 pub mod p1888;
