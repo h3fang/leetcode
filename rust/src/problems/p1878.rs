@@ -1,13 +1,5 @@
 pub struct Solution;
 
-fn diag_sum(presum: &[Vec<i32>], i: usize, j: usize, k: usize) -> i32 {
-    presum[i + k][j + k] - presum[i][j]
-}
-
-fn rdiag_sum(presum: &[Vec<i32>], i: usize, j: usize, k: usize) -> i32 {
-    presum[i + k][j + 1 - k] - presum[i][j + 1]
-}
-
 fn update(f: &mut [i32], v: i32) {
     if v > f[0] {
         f[2] = f[1];
@@ -25,13 +17,13 @@ impl Solution {
     pub fn get_biggest_three(grid: Vec<Vec<i32>>) -> Vec<i32> {
         let (m, n) = (grid.len(), grid[0].len());
 
-        let mut diag = vec![vec![0; n + 1]; m + 1];
-        let mut rdiag = vec![vec![0; n + 1]; m + 1];
+        let mut diag = vec![vec![0; n + 2]; m + 1];
+        let mut rdiag = vec![vec![0; n + 2]; m + 1];
 
         for (i, r) in grid.iter().enumerate() {
             for (j, &v) in r.iter().enumerate() {
                 diag[i + 1][j + 1] = diag[i][j] + v;
-                rdiag[i + 1][j] = rdiag[i][j + 1] + v;
+                rdiag[i + 1][j + 1] = rdiag[i][j + 2] + v;
             }
         }
 
@@ -42,10 +34,11 @@ impl Solution {
                 update(&mut f, v);
                 let max = i.min(m - 1 - i).min(j).min(n - 1 - j);
                 for k in 1..=max {
-                    let len = diag_sum(&diag, i - k, j, k)
-                        + diag_sum(&diag, i, j - k, k)
-                        + rdiag_sum(&rdiag, i + 1 - k, j - 1, k - 1)
-                        + rdiag_sum(&rdiag, i, j + k, k + 1);
+                    let len = diag[i][j + k] - diag[i - k][j] + diag[i + k][j] - diag[i][j - k]
+                        + rdiag[i][j + 2 - k]
+                        - rdiag[i + 1 - k][j + 1]
+                        + rdiag[i + k + 1][j + 1]
+                        - rdiag[i][j + k + 2];
                     update(&mut f, len);
                 }
             }
