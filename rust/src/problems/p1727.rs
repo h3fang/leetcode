@@ -3,28 +3,31 @@ pub struct Solution;
 impl Solution {
     pub fn largest_submatrix(matrix: Vec<Vec<i32>>) -> i32 {
         let n = matrix[0].len();
-        let mut prev = vec![];
+        let mut h = vec![0; n];
+        let mut idx: Vec<usize> = (0..n).collect();
+        let mut non_zero = Vec::with_capacity(n);
         let mut result = 0;
         for row in matrix {
-            let mut curr = vec![];
-            let mut seen = vec![false; n];
-            for (h, col) in prev {
-                if row[col] == 1 {
-                    curr.push((h + 1, col));
-                    seen[col] = true;
+            let mut i = 0;
+            for j in 0..n {
+                let k = idx[j];
+                if row[k] == 0 {
+                    h[k] = 0;
+                    idx[i] = k;
+                    i += 1;
+                } else {
+                    h[k] += 1;
+                    non_zero.push(k);
                 }
             }
-            for col in 0..n {
-                if !seen[col] && row[col] == 1 {
-                    curr.push((1, col));
-                }
+
+            for j in non_zero.drain(..) {
+                idx[i] = j;
+                result = result.max((n - i) * h[j]);
+                i += 1;
             }
-            curr.iter()
-                .enumerate()
-                .for_each(|(i, e)| result = result.max((i as i32 + 1) * e.0));
-            prev = curr;
         }
-        result
+        result as i32
     }
 }
 
