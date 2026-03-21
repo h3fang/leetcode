@@ -34,9 +34,8 @@ impl Solution {
             }
         }
         let mut result = INF;
-        #[allow(clippy::needless_range_loop)]
-        for j in 0..n {
-            result = result.min(dp[m - 1][j][target - 1]);
+        for f in &dp[m - 1] {
+            result = result.min(f[target - 1]);
         }
         if result == INF { -1 } else { result }
     }

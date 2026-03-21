@@ -4,6 +4,8 @@ impl Solution {
     pub fn maximum_energy(energy: Vec<i32>, k: i32) -> i32 {
         let (k, n) = (k as usize, energy.len());
         let mut ans = i32::MIN;
+
+        // false positive clippy warning
         #[allow(clippy::needless_range_loop)]
         for mut i in n - k..n {
             let mut s = 0;

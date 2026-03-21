@@ -1,15 +1,12 @@
-use std::vec;
-
 pub struct Solution;
 
 impl Solution {
-    #[allow(clippy::needless_range_loop)]
     pub fn min_path_sum(grid: Vec<Vec<i32>>) -> i32 {
         let n = grid[0].len();
         let mut dp = [vec![0; n], vec![0; n]];
         dp[0][0] = grid[0][0];
-        for j in 1..n {
-            dp[0][j] = dp[0][j - 1] + grid[0][j];
+        for (j, c) in grid[0].iter().enumerate().skip(1) {
+            dp[0][j] = dp[0][j - 1] + c;
         }
 
         for row in &grid[1..] {

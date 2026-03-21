@@ -18,11 +18,11 @@ impl Solution {
         f.iter_mut().for_each(|e| *e = 0);
         f[n - 1] = fruits[n - 1][0];
 
-        #[allow(clippy::needless_range_loop)]
         for i in 1..n - 1 {
             let mut g = vec![0; n + 1];
-            for j in (n - 1 - i).max(i + 1)..n {
-                g[j] = f[j - 1].max(f[j]).max(f[j + 1]) + fruits[j][i];
+            let start = (n - 1 - i).max(i + 1);
+            for (j, (fruit, g)) in fruits.iter().zip(&mut g).enumerate().skip(start) {
+                *g = f[j - 1].max(f[j]).max(f[j + 1]) + fruit[i];
             }
             f = g;
         }

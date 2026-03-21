@@ -4,13 +4,19 @@ impl Solution {
     pub fn num_special(mut mat: Vec<Vec<i32>>) -> i32 {
         let m = mat.len();
         let n = mat[0].len();
-        #[allow(clippy::needless_range_loop)]
-        for i in 0..m {
+        let sum = mat[0].iter().sum::<i32>() - 1;
+        mat[0]
+            .iter_mut()
+            .filter(|x| **x == 1)
+            .for_each(|x| *x += sum);
+        for i in 1..m {
             let sum = mat[i].iter().sum::<i32>() - i32::from(i == 0);
-            if sum > 0 {
+            if sum > 0
+                && let Ok([a, b]) = mat.get_disjoint_mut([0, i])
+            {
                 for j in 0..n {
-                    if mat[i][j] == 1 {
-                        mat[0][j] += sum;
+                    if b[j] == 1 {
+                        a[j] += sum;
                     }
                 }
             }

@@ -14,12 +14,25 @@ impl Solution {
             row[n - 1] = i32::MAX;
         }
 
-        #[allow(clippy::needless_range_loop)]
-        for j in 1..n - 1 {
-            queue.push((-height_map[0][j], 0, j));
-            height_map[0][j] = i32::MAX;
-            queue.push((-height_map[m - 1][j], m - 1, j));
-            height_map[m - 1][j] = i32::MAX;
+        if let Ok([a, b]) = height_map.get_disjoint_mut([0, m - 1]) {
+            for (j, (a, b)) in a
+                .iter_mut()
+                .zip(b.iter_mut())
+                .enumerate()
+                .skip(1)
+                .take(n - 2)
+            {
+                queue.push((-*a, 0, j));
+                queue.push((-*b, m - 1, j));
+                *a = i32::MAX;
+                *b = i32::MAX;
+            }
+        } else {
+            for (j, h) in height_map[0].iter_mut().enumerate().skip(1).take(n - 2) {
+                queue.push((-*h, 0, j));
+                queue.push((-*h, m - 1, j));
+                *h = i32::MAX;
+            }
         }
 
         let mut result = 0;

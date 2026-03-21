@@ -5,13 +5,11 @@ impl Solution {
     pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
         fn transpose(matrix: &mut [Vec<i32>]) {
             let n = matrix.len();
-
-            #[allow(clippy::needless_range_loop)]
             for i in 0..n {
                 for j in i + 1..n {
-                    let v = matrix[i][j];
-                    matrix[i][j] = matrix[j][i];
-                    matrix[j][i] = v;
+                    if let Ok([a, b]) = matrix.get_disjoint_mut([i, j]) {
+                        (a[j], b[i]) = (b[i], a[j]);
+                    }
                 }
             }
         }

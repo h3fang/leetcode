@@ -12,14 +12,15 @@ impl Solution {
         f[1][1] = vec![1; m + 1];
         f[1][1][0] = 0;
 
-        #[allow(clippy::needless_range_loop)]
         for i in 2..=n {
-            for s in 1..=k.min(i) {
-                let mut presum = 0;
-                for j in 1..=m {
-                    f[i][s][j] = ((f[i - 1][s][j] as i64 * j as i64) % MOD) as i32;
-                    f[i][s][j] = (f[i][s][j] + presum) % MOD as i32;
-                    presum = (presum + f[i - 1][s - 1][j]) % MOD as i32;
+            if let Ok([a, b]) = f.get_disjoint_mut([i, i - 1]) {
+                for s in 1..=k.min(i) {
+                    let mut presum = 0;
+                    for j in 1..=m {
+                        a[s][j] = ((b[s][j] as i64 * j as i64) % MOD) as i32;
+                        a[s][j] = (a[s][j] + presum) % MOD as i32;
+                        presum = (presum + b[s - 1][j]) % MOD as i32;
+                    }
                 }
             }
         }

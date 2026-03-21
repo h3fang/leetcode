@@ -27,9 +27,10 @@ impl Solution {
             visited += 1;
             for &y in &g[x] {
                 let y = y as usize;
-                #[allow(clippy::needless_range_loop)]
-                for i in 0..26 {
-                    dp[y][i] = dp[y][i].max(dp[x][i]);
+                if let Ok([x, y]) = dp.get_disjoint_mut([x, y]) {
+                    for i in 0..26 {
+                        y[i] = y[i].max(x[i]);
+                    }
                 }
                 indegree[y] -= 1;
                 if indegree[y] == 0 {

@@ -1,7 +1,6 @@
 pub struct Solution;
 
 impl Solution {
-    #[allow(clippy::needless_range_loop, clippy::manual_memcpy)]
     pub fn diagonal_sort(mut mat: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
         let m = mat.len();
         let n = mat[0].len();

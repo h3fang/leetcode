@@ -6,6 +6,7 @@ impl Solution {
         for x in nums {
             let x = (x % 2) as usize;
 
+            // false positive clippy warning
             #[allow(clippy::needless_range_loop)]
             for y in 0..2 {
                 f[y][x] = f[x][y] + 1;

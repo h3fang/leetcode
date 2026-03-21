@@ -49,11 +49,10 @@ impl Solution {
 
         let mut f = vec![vec![vec![vec![0; k + 1]; m / 2 + 1]; m + 1]; n + 1];
 
-        #[allow(clippy::needless_range_loop)]
-        for x in 0..=m / 2 {
+        for (x, f) in f[n][0][0..=m / 2].iter_mut().enumerate() {
             let c = x.count_ones() as usize;
             if c <= k {
-                f[n][0][x][c] = 1;
+                f[c] = 1;
             }
         }
 

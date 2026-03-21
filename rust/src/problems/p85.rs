@@ -1,7 +1,6 @@
 pub struct Solution;
 
 impl Solution {
-    #[allow(clippy::needless_range_loop)]
     pub fn maximal_rectangle(matrix: Vec<Vec<char>>) -> i32 {
         let m = matrix.len();
         if m == 0 {
@@ -14,24 +13,23 @@ impl Solution {
 
         let mut result = 0;
         let mut heights = vec![0; n + 1];
-        for i in 0..m {
+        for row in matrix {
             let mut stack = vec![(-1i32, -1i32)];
-            for j in 0..=n {
+            for (j, h) in heights.iter_mut().enumerate() {
                 if j < n {
-                    if matrix[i][j] == '1' {
-                        heights[j] += 1;
+                    if row[j] == '1' {
+                        *h += 1;
                     } else {
-                        heights[j] = 0;
+                        *h = 0;
                     }
                 }
 
-                let h = heights[j];
-                while h < stack.last().unwrap().1 {
+                while *h < stack.last().unwrap().1 {
                     let hi = stack.pop().unwrap().1;
                     let width = j as i32 - stack.last().unwrap().0 - 1;
                     result = result.max(hi * width);
                 }
-                stack.push((j as i32, h));
+                stack.push((j as i32, *h));
             }
         }
 

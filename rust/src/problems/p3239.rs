@@ -14,10 +14,9 @@ impl Solution {
 
         let mut col = 0;
 
-        #[allow(clippy::needless_range_loop)]
-        for j in 0..n {
-            for i in 0..m / 2 {
-                if grid[i][j] != grid[m - 1 - i][j] {
+        for i in 0..m / 2 {
+            for (j, &a) in grid[i].iter().enumerate() {
+                if a != grid[m - 1 - i][j] {
                     col += 1;
                 }
             }

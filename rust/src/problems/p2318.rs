@@ -7,20 +7,22 @@ fn gcd(a: usize, b: usize) -> i32 {
 }
 
 impl Solution {
-    #[allow(clippy::needless_range_loop)]
     pub fn distinct_sequences(n: i32) -> i32 {
         if n == 1 {
             return 6;
         }
         let n = n as usize;
         let mut f = vec![vec![vec![0; 6]; 6]; n + 1];
-        for i in 0..6 {
-            for j in 0..6 {
+        for (i, f) in f[2].iter_mut().enumerate() {
+            for (j, f) in f.iter_mut().enumerate() {
                 if i != j && gcd(i + 1, j + 1) == 1 {
-                    f[2][i][j] = 1;
+                    *f = 1;
                 }
             }
         }
+
+        // to complex to fix
+        #[allow(clippy::needless_range_loop)]
         for k in 2..n {
             for c in 0..6 {
                 for b in 0..6 {
