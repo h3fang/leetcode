@@ -1121,6 +1121,7 @@ pub mod p29;
 pub mod p290;
 pub mod p2900;
 pub mod p2901;
+pub mod p2906;
 pub mod p2914;
 pub mod p2918;
 pub mod p292;
