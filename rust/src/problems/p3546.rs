@@ -2,29 +2,28 @@ pub struct Solution;
 
 impl Solution {
     pub fn can_partition_grid(grid: Vec<Vec<i32>>) -> bool {
-        let mut presum = Vec::with_capacity(grid.len());
+        let total: i64 = grid.iter().flatten().map(|&v| v as i64).sum();
+        let mut sum = 0;
 
         for r in &grid {
-            let sum: i64 = r.iter().map(|&e| e as i64).sum();
-            presum.push(*presum.last().unwrap_or(&0) + sum);
-        }
-        let total = *presum.last().unwrap();
-        for &s in &presum {
-            if 2 * s == total {
+            sum += r.iter().map(|&e| e as i64).sum::<i64>();
+            if sum * 2 == total {
                 return true;
+            }
+            if sum * 2 > total {
+                break;
             }
         }
 
-        presum.clear();
-        presum.reserve(grid[0].len());
+        sum = 0;
 
         for i in 0..grid[0].len() {
-            let sum: i64 = grid.iter().map(|r| r[i] as i64).sum();
-            presum.push(*presum.last().unwrap_or(&0) + sum);
-        }
-        for &s in &presum {
-            if 2 * s == total {
+            sum += grid.iter().map(|r| r[i] as i64).sum::<i64>();
+            if sum * 2 == total {
                 return true;
+            }
+            if sum * 2 > total {
+                break;
             }
         }
 
