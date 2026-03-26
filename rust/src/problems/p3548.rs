@@ -21,7 +21,9 @@ fn check_rows(grid: &[Vec<i32>]) -> bool {
         for &x in &grid[i] {
             nums.insert(x);
         }
-        let x = (2 * s - total) as i32;
+        let Ok(x) = i32::try_from(2 * s - total) else {
+            continue;
+        };
         if i == 0 {
             if n > 1 && x == grid[0][0] || x == grid[0][n - 1] {
                 return true;
@@ -56,7 +58,9 @@ fn check_cols(grid: &[Vec<i32>]) -> bool {
         for r in grid {
             nums.insert(r[j]);
         }
-        let x = (2 * s - total) as i32;
+        let Ok(x) = i32::try_from(2 * s - total) else {
+            continue;
+        };
         if j == 0 {
             if m > 1 && x == grid[0][j] || x == grid[m - 1][j] {
                 return true;
