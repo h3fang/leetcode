@@ -2,24 +2,20 @@ pub struct Solution;
 
 impl Solution {
     pub fn min_cost(
-        mut start_pos: Vec<i32>,
+        start_pos: Vec<i32>,
         home_pos: Vec<i32>,
         row_costs: Vec<i32>,
         col_costs: Vec<i32>,
     ) -> i32 {
         let mut result = 0;
-        let dh = (home_pos[0] - start_pos[0]).signum();
-        let dw = (home_pos[1] - start_pos[1]).signum();
 
-        while start_pos != home_pos {
-            if start_pos[0] != home_pos[0] {
-                start_pos[0] += dh;
-                result += row_costs[start_pos[0] as usize];
+        for (i, costs) in [row_costs, col_costs].iter().enumerate() {
+            let min = home_pos[i].min(start_pos[i]) as usize;
+            let max = home_pos[i].max(start_pos[i]) as usize;
+            for c in &costs[min..=max] {
+                result += c;
             }
-            if start_pos[1] != home_pos[1] {
-                start_pos[1] += dw;
-                result += col_costs[start_pos[1] as usize];
-            }
+            result -= costs[start_pos[i] as usize];
         }
 
         result
