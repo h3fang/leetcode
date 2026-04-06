@@ -4,11 +4,12 @@ use std::collections::HashSet;
 
 impl Solution {
     pub fn robot_sim(commands: Vec<i32>, obstacles: Vec<Vec<i32>>) -> i32 {
+        let hash = |x: i32, y: i32| -> i32 { ((x + 30000) << 16) | (y + 30000) };
         let (mut x, mut y, mut d) = (0, 0, 0);
         let mut result = 0;
         let obs = obstacles
             .into_iter()
-            .map(|o| (o[0], o[1]))
+            .map(|o| hash(o[0], o[1]))
             .collect::<HashSet<_>>();
         let dir = [(0, 1), (1, 0), (0, -1), (-1, 0)];
         for c in commands {
@@ -20,7 +21,7 @@ impl Solution {
                     for _ in 1..=c {
                         let x1 = x + dx;
                         let y1 = y + dy;
-                        if obs.contains(&(x1, y1)) {
+                        if obs.contains(&hash(x1, y1)) {
                             break;
                         }
                         x = x1;
