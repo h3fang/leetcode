@@ -655,6 +655,7 @@ pub mod p198;
 pub mod p1980;
 pub mod p1984;
 pub mod p199;
+pub mod p1992;
 pub mod p1993;
 pub mod p1994;
 pub mod p1995;
