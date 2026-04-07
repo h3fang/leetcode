@@ -17,7 +17,7 @@ impl Robot {
         }
     }
 
-    pub fn r#move(&mut self, num: i32) {
+    pub fn step(&mut self, num: i32) {
         self.p = (self.p + num) % self.total;
         self.moved = true;
     }
@@ -58,16 +58,16 @@ mod tests {
     #[test]
     fn case1() {
         let mut robot = Robot::new(6, 3);
-        robot.r#move(2);
-        robot.r#move(2);
+        robot.step(2);
+        robot.step(2);
         assert_eq!(vec![4, 0], robot.get_pos());
         assert_eq!("East".to_string(), robot.get_dir());
-        robot.r#move(2);
-        robot.r#move(1);
-        robot.r#move(4);
+        robot.step(2);
+        robot.step(1);
+        robot.step(4);
         assert_eq!(vec![1, 2], robot.get_pos());
         assert_eq!("West".to_string(), robot.get_dir());
-        robot.r#move(3);
+        robot.step(3);
         assert_eq!(vec![0, 0], robot.get_pos());
         assert_eq!("South".to_string(), robot.get_dir());
     }
