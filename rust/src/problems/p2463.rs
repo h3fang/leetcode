@@ -1,26 +1,43 @@
 pub struct Solution;
 
+use std::collections::VecDeque;
+
 impl Solution {
     pub fn minimum_total_distance(mut robot: Vec<i32>, mut factory: Vec<Vec<i32>>) -> i64 {
         robot.sort_unstable();
         factory.sort_unstable();
-        let factories: Vec<_> = factory
-            .into_iter()
-            .flat_map(|f| std::iter::repeat_n(f[0], f[1] as usize))
-            .collect();
-        let (m, n) = (robot.len(), factories.len());
-        let mut f = vec![vec![0; n + 1]; 2];
-        for i in (0..m).rev() {
-            if i < m - 1 {
-                f[1][n] = i64::MAX / 2;
+        let m = robot.len();
+        let mut f = vec![i64::MAX / 2; m + 1];
+        f[0] = 0;
+        let mut q = VecDeque::with_capacity(m + 1);
+        for e in factory {
+            let (position, limit) = (e[0], e[1]);
+            let mut sum = 0;
+            q.clear();
+            q.push_back((0, 0));
+
+            for (j, &r) in robot.iter().enumerate() {
+                let j = j + 1;
+                sum += (r - position).abs() as i64;
+
+                let v = f[j] - sum;
+                while let Some(e) = q.back()
+                    && e.1 >= v
+                {
+                    q.pop_back();
+                }
+                q.push_back((j, v));
+
+                while let Some(e) = q.front()
+                    && e.0 + (limit as usize) < j
+                {
+                    q.pop_front();
+                }
+
+                f[j] = sum + q.front().unwrap().1;
             }
-            f[0][n] = i64::MAX / 2;
-            for j in (0..n).rev() {
-                f[0][j] = (f[1][j + 1] + (robot[i] - factories[j]).abs() as i64).min(f[0][j + 1]);
-            }
-            f.swap(0, 1);
         }
-        f[1][0]
+        f[m]
     }
 }
 
