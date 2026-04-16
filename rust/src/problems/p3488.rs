@@ -5,24 +5,23 @@ use std::collections::HashMap;
 impl Solution {
     pub fn solve_queries(nums: Vec<i32>, queries: Vec<i32>) -> Vec<i32> {
         let n = nums.len();
-        let mut m: HashMap<i32, i32> = HashMap::new();
+        let mut m: HashMap<i32, i32> = HashMap::with_capacity(2 * n);
         let mut left = vec![0; n];
+        let mut right = vec![0; n];
         for i in -(n as i32)..n as i32 {
             if i >= 0 {
-                left[i as usize] = m[&nums[i as usize]];
+                let j = m[&nums[i as usize]];
+                left[i as usize] = j;
+                if j >= 0 {
+                    right[j as usize] = i;
+                } else {
+                    right[(j + n as i32) as usize] = i + n as i32;
+                }
             }
             let j = (i + n as i32) as usize;
             m.insert(nums[j % n], i);
         }
 
-        m.clear();
-        let mut right = vec![0; n];
-        for i in (0..n * 2).rev() {
-            if i < n {
-                right[i] = m[&nums[i]];
-            }
-            m.insert(nums[i % n], i as i32);
-        }
         queries
             .into_iter()
             .map(|q| {
