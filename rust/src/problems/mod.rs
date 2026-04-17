@@ -1511,6 +1511,7 @@ pub mod p3740;
 pub mod p3741;
 pub mod p375;
 pub mod p376;
+pub mod p3761;
 pub mod p377;
 pub mod p378;
 pub mod p38;
