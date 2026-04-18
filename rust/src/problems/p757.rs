@@ -6,8 +6,7 @@ impl Solution {
         let mut intersections = vec![vec![]; intervals.len()];
         let mut result = 0;
         for (i, iv) in intervals.iter().enumerate().rev() {
-            let mut e = iv[0];
-            for _ in intersections[i].len()..2 {
+            for (e, _) in (iv[0]..).zip(intersections[i].len()..2) {
                 result += 1;
                 for j in (0..i).rev() {
                     if intervals[j][1] < e {
@@ -15,7 +14,6 @@ impl Solution {
                     }
                     intersections[j].push(e);
                 }
-                e += 1;
             }
         }
         result

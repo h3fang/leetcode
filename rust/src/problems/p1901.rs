@@ -22,7 +22,7 @@ impl Solution {
             }
         }
         let j = max_index(&mat[l as usize]) as i32;
-        vec![l, j as i32]
+        vec![l, j]
     }
 }
 

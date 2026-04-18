@@ -15,6 +15,7 @@ impl Solution {
             } else {
                 let slots = row.len() - 1;
                 let spaces = max_width as usize - row_width;
+                #[allow(clippy::manual_checked_ops)]
                 if slots == 0 {
                     ans.push(row[0].to_string() + &" ".repeat(spaces));
                 } else {

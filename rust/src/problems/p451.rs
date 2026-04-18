@@ -11,7 +11,7 @@ impl Solution {
             .enumerate()
             .filter(|e| e.1 > 0)
             .collect::<Vec<_>>();
-        freq.sort_unstable_by(|a, b| b.1.cmp(&a.1));
+        freq.sort_unstable_by_key(|b| std::cmp::Reverse(b.1));
         freq.into_iter()
             .map(|(b, c)| (b as u8 as char).to_string().repeat(c))
             .collect()

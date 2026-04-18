@@ -60,7 +60,7 @@ impl Solution {
                     }
                 }
                 accounts[i].resize(1, "".to_string());
-                accounts[i].extend(emails.into_iter());
+                accounts[i].extend(emails);
             }
             if done {
                 break;

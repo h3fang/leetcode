@@ -9,10 +9,8 @@ impl Solution {
                 b'|' => {
                     inside = !inside;
                 }
-                b'*' => {
-                    if !inside {
-                        result += 1;
-                    }
+                b'*' if !inside => {
+                    result += 1;
                 }
                 _ => {}
             }
