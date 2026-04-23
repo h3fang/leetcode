@@ -1085,6 +1085,7 @@ pub mod p2605;
 pub mod p2611;
 pub mod p2612;
 pub mod p2614;
+pub mod p2615;
 pub mod p2616;
 pub mod p263;
 pub mod p264;
