@@ -6,8 +6,8 @@ impl Solution {
         if grid.iter().any(|y| (y - grid[0]) % x != 0) {
             return -1;
         }
-        grid.sort_unstable();
-        let m = grid[grid.len() / 2];
+        let idx = grid.len() / 2;
+        let m = *grid.select_nth_unstable(idx).1;
         grid.iter().map(|y| (y - m).abs() / x).sum()
     }
 }
