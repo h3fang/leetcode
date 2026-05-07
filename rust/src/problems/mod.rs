@@ -1510,6 +1510,7 @@ pub mod p3651;
 pub mod p3652;
 pub mod p3653;
 pub mod p3655;
+pub mod p3660;
 pub mod p3661;
 pub mod p3666;
 pub mod p367;
