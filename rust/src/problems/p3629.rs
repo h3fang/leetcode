@@ -1,6 +1,9 @@
 pub struct Solution;
 
-use std::{collections::VecDeque, sync::OnceLock};
+use std::{
+    collections::{HashMap, VecDeque},
+    sync::OnceLock,
+};
 
 const MAX: usize = 100_0001;
 
@@ -22,19 +25,18 @@ impl Solution {
     pub fn min_jumps(nums: Vec<i32>) -> i32 {
         let p = PRIME_FACTORS.get_or_init(prime_factors);
         let n = nums.len();
-        let m = *nums.iter().max().unwrap();
-        let mut pos = vec![vec![]; m as usize + 1];
+        let mut groups: HashMap<i32, Vec<u32>> = HashMap::with_capacity(n + 1);
         for (i, &x) in nums.iter().enumerate() {
-            for &y in &p[x as usize] {
-                pos[y as usize].push(i);
+            if p[x as usize].len() == 1 {
+                groups.entry(x).or_default().push(i as u32);
             }
         }
         let mut vis = vec![false; n];
         let mut q = VecDeque::with_capacity(n);
-        q.push_back((0, 0));
-        vis[0] = true;
+        q.push_back((0, n - 1));
+        vis[n - 1] = true;
         while let Some((d, i)) = q.pop_front() {
-            if i == n - 1 {
+            if i == 0 {
                 return d;
             }
             if i > 0 && !vis[i - 1] {
@@ -45,14 +47,16 @@ impl Solution {
                 vis[i + 1] = true;
                 q.push_back((d + 1, i + 1));
             }
-            let p = &mut pos[nums[i] as usize];
-            for &j in p.iter() {
-                if !vis[j] {
-                    vis[j] = true;
-                    q.push_back((d + 1, j));
+            for p in &p[nums[i] as usize] {
+                if let Some(g) = groups.get_mut(p) {
+                    for j in g.drain(..) {
+                        if !vis[j as usize] {
+                            vis[j as usize] = true;
+                            q.push_back((d + 1, j as usize));
+                        }
+                    }
                 }
             }
-            p.clear();
         }
         n as i32 - 1
     }
