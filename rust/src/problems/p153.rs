@@ -2,14 +2,11 @@ pub struct Solution;
 
 impl Solution {
     pub fn find_min(nums: Vec<i32>) -> i32 {
-        let mut left = 0;
-        let mut right = nums.len() - 1;
-        while left <= right {
+        let n = nums.len();
+        let (mut left, mut right) = (0, n - 1);
+        while left < right {
             let mid = left + (right - left) / 2;
-            if nums[left] <= nums[right] {
-                return nums[left];
-            } else if nums[mid] < nums[left] {
-                left += 1;
+            if nums[mid] < nums[n - 1] {
                 right = mid;
             } else {
                 left = mid + 1;
