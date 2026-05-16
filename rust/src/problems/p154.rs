@@ -2,18 +2,14 @@ pub struct Solution;
 
 impl Solution {
     pub fn find_min(nums: Vec<i32>) -> i32 {
-        let mut left = 0;
-        let mut right = nums.len() - 1;
+        let (mut left, mut right) = (0, nums.len() - 1);
+
         while left < right {
-            if nums[left] < nums[right] {
-                break;
-            } else {
-                let mid = left + (right - left) / 2;
-                if nums[mid] > nums[right] {
-                    left = mid + 1;
-                } else {
-                    right -= 1;
-                }
+            let mid = left + (right - left) / 2;
+            match nums[mid].cmp(&nums[right]) {
+                std::cmp::Ordering::Less => right = mid,
+                std::cmp::Ordering::Equal => right -= 1,
+                std::cmp::Ordering::Greater => left = mid + 1,
             }
         }
 
