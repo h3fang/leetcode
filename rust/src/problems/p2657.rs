@@ -2,20 +2,13 @@ pub struct Solution;
 
 impl Solution {
     pub fn find_the_prefix_common_array(a: Vec<i32>, b: Vec<i32>) -> Vec<i32> {
-        let mut f = [0u64; 3];
-        let mut count = 0;
+        let (mut x, mut y) = (0u64, 0u64);
         a.into_iter()
             .zip(b)
-            .map(|(x, y)| {
-                f[0] |= 1 << x;
-                f[1] |= 1 << y;
-                for z in [x, y] {
-                    if f[2] & (1 << z) == 0 && f[0] & (1 << z) > 0 && f[1] & (1 << z) > 0 {
-                        f[2] |= 1 << z;
-                        count += 1;
-                    }
-                }
-                count
+            .map(|(a, b)| {
+                x |= 1 << a;
+                y |= 1 << b;
+                (x & y).count_ones() as i32
             })
             .collect()
     }
