@@ -2,39 +2,30 @@ pub struct Solution;
 
 impl Solution {
     pub fn search(nums: Vec<i32>, target: i32) -> i32 {
-        fn binary(nums: &[i32], target: i32, mut left: i32, mut right: i32) -> i32 {
-            while left <= right {
-                let mid = left + (right - left) / 2;
-                match nums[mid as usize].cmp(&target) {
-                    std::cmp::Ordering::Less => {
-                        if nums[left as usize] < nums[right as usize] {
-                            left = mid + 1;
-                        } else {
-                            let r1 = binary(nums, target, left, mid - 1);
-                            if r1 != -1 {
-                                return r1;
-                            }
-                            return binary(nums, target, mid + 1, right);
-                        }
-                    }
-                    std::cmp::Ordering::Equal => return mid,
-                    std::cmp::Ordering::Greater => {
-                        if nums[left as usize] < nums[right as usize] {
-                            right = mid - 1;
-                        } else {
-                            let r1 = binary(nums, target, left, mid - 1);
-                            if r1 != -1 {
-                                return r1;
-                            }
-                            return binary(nums, target, mid + 1, right);
-                        }
-                    }
-                }
+        let n = nums.len();
+        let last = nums[n - 1];
+        let check = |i: usize| {
+            if nums[i] > last {
+                target > last && nums[i] >= target
+            } else {
+                target > last || nums[i] >= target
             }
+        };
+
+        let (mut left, mut right) = (0, nums.len() - 1);
+        while left < right {
+            let m = (right - left) / 2 + left;
+            if check(m) {
+                right = m;
+            } else {
+                left = m + 1;
+            }
+        }
+        if nums[left] == target {
+            left as i32
+        } else {
             -1
         }
-
-        binary(&nums, target, 0, nums.len() as i32 - 1)
     }
 }
 
