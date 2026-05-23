@@ -2,17 +2,16 @@ pub struct Solution;
 
 impl Solution {
     pub fn check(nums: Vec<i32>) -> bool {
-        let mut i = 0;
-        for (j, w) in nums.windows(2).enumerate() {
+        let mut valid = nums[0] >= nums[nums.len() - 1];
+        for w in nums.windows(2) {
             if w[0] > w[1] {
-                i = j + 1;
-                break;
+                if !valid {
+                    return false;
+                }
+                valid = false;
             }
         }
-        if i == 0 {
-            return true;
-        }
-        nums[nums.len() - 1] <= nums[0] && nums[i + 1..].windows(2).all(|w| w[0] <= w[1])
+        true
     }
 }
 
