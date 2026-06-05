@@ -13,7 +13,7 @@ fn digits(mut x: i32) -> Vec<i8> {
 struct State {
     n1: Vec<i8>,
     n2: Vec<i8>,
-    cache: Vec<Vec<[[i32; 10]; 3]>>,
+    cache: Vec<[[(i32, i32); 10]; 3]>,
 }
 
 impl State {
@@ -21,25 +21,24 @@ impl State {
         let n1 = digits(num1);
         let n2 = digits(num2);
         let n = n2.len();
-        let cache = vec![vec![[[-1; 10]; 3]; n]; n];
+        let cache = vec![[[(0, 0); 10]; 3]; n];
         Self { n1, n2, cache }
     }
 
     fn dfs(
         &mut self,
         i: usize,
-        waviness: i32,
         last_dir: i8,
-        last_d: i8,
+        last_digit: i8,
         limit_low: bool,
         limit_high: bool,
-    ) -> i32 {
+    ) -> (i32, i32) {
         if i == self.n2.len() {
-            return waviness;
+            return (0, 1);
         }
 
-        let r = self.cache[i][waviness as usize][(last_dir + 1) as usize][last_d as usize];
-        if !limit_low && !limit_high && r >= 0 {
+        let r = self.cache[i][(last_dir + 1) as usize][last_digit as usize];
+        if !limit_low && !limit_high && r.1 > 0 {
             return r;
         }
 
@@ -51,33 +50,40 @@ impl State {
         };
         let high = if limit_high { self.n2[i] } else { 9 };
 
-        let mut ans = 0;
+        let (mut waviness, mut count) = (0, 0);
         let is_num = !limit_low || i > diff;
-        for d in low..=high {
-            let dir = if is_num { (d - last_d).signum() } else { 0 };
-            let w = waviness + i32::from(dir * last_dir < 0);
-            ans += self.dfs(
+        for digit in low..=high {
+            let dir = if is_num {
+                (digit - last_digit).signum()
+            } else {
+                0
+            };
+            let (sub_wave, sub_count) = self.dfs(
                 i + 1,
-                w,
                 dir,
-                d,
-                limit_low && d == low,
-                limit_high && d == high,
+                digit,
+                limit_low && digit == low,
+                limit_high && digit == high,
             );
+            waviness += sub_wave;
+            count += sub_count;
+            if dir * last_dir < 0 {
+                waviness += sub_count;
+            }
         }
 
         if !limit_low && !limit_high {
-            self.cache[i][waviness as usize][(last_dir + 1) as usize][last_d as usize] = ans;
+            self.cache[i][(last_dir + 1) as usize][last_digit as usize] = (waviness, count);
         }
 
-        ans
+        (waviness, count)
     }
 }
 
 impl Solution {
     pub fn total_waviness(num1: i32, num2: i32) -> i32 {
         let mut s = State::new(num1, num2);
-        s.dfs(0, 0, 0, 0, true, true)
+        s.dfs(0, 0, 0, true, true).0
     }
 }
 
