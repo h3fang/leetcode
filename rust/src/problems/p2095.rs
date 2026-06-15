@@ -4,23 +4,21 @@ pub struct Solution;
 
 impl Solution {
     pub fn delete_middle(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        let mut n = 0;
-        let mut h = head.as_ref();
-        while let Some(node) = h {
-            n += 1;
-            h = node.next.as_ref();
-        }
-        n /= 2;
-        let mut dummy = ListNode { val: 0, next: head };
-        let mut prev = &mut dummy.next;
-        while n > 0 {
-            prev = &mut prev.as_mut().unwrap().next;
-            n -= 1;
-        }
-        let next = prev.as_mut().unwrap().next.take();
-        *prev = next;
+        let mut fast: *const Option<Box<ListNode>> = &head;
+        let mut dummy = Some(Box::new(ListNode { val: 0, next: head }));
+        let mut slow = &mut dummy;
 
-        dummy.next
+        while let Some(n) = unsafe { (*fast).as_ref() }
+            && let Some(nn) = &n.next
+        {
+            fast = &nn.next;
+            slow = &mut slow.as_mut().unwrap().next;
+        }
+
+        let mid = slow.as_mut().unwrap();
+        let next = mid.next.take().unwrap().next.take();
+        mid.next = next;
+        dummy.unwrap().next
     }
 }
 
