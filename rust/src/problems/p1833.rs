@@ -1,15 +1,21 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn max_ice_cream(mut costs: Vec<i32>, mut coins: i32) -> i32 {
-        costs.sort_unstable();
-        costs
-            .into_iter()
-            .take_while(|c| {
-                coins -= c;
-                coins >= 0
-            })
-            .count() as i32
+    pub fn max_ice_cream(costs: Vec<i32>, mut coins: i32) -> i32 {
+        let mut count = vec![0; 10_0001];
+        for c in costs {
+            count[c as usize] += 1;
+        }
+        let mut ans = 0;
+        for (cost, count) in count.into_iter().enumerate().skip(1) {
+            if cost as i32 * count >= coins {
+                ans += coins / (cost as i32);
+                break;
+            }
+            coins -= cost as i32 * count;
+            ans += count;
+        }
+        ans
     }
 }
 
