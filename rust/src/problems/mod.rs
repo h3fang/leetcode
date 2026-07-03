@@ -1515,6 +1515,7 @@ pub mod p3612;
 pub mod p3613;
 pub mod p3614;
 pub mod p3615;
+pub mod p3620;
 pub mod p3622;
 pub mod p3623;
 pub mod p3624;
