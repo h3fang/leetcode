@@ -1,15 +1,15 @@
 pub struct Solution;
 
-use std::sync::OnceLock;
-
 const MOD: i64 = 10_0000_0007;
 
-static POW10: OnceLock<Vec<i64>> = OnceLock::new();
+static POW10: [i64; 10_0001] = init_pow10();
 
-fn init() -> Vec<i64> {
-    let mut p = vec![1; 10_0001];
-    for i in 1..p.len() {
+const fn init_pow10() -> [i64; 10_0001] {
+    let mut p = [1; 10_0001];
+    let mut i = 1;
+    while i < 10_0001 {
         p[i] = (p[i - 1] * 10) % MOD;
+        i += 1;
     }
     p
 }
@@ -32,15 +32,13 @@ impl Solution {
             nonzero[i + 1] = nonzero[i] + u32::from(d > 0);
         }
 
-        let pow10 = POW10.get_or_init(init);
-
         queries
             .iter()
             .map(|q| {
                 let (l, r) = (q[0] as usize, q[1] as usize);
                 let sum = sum[r + 1] - sum[l];
                 let len = nonzero[r + 1] - nonzero[l];
-                let x = (pre[r + 1] - (pre[l] * pow10[len as usize]) % MOD + MOD) % MOD;
+                let x = (pre[r + 1] - (pre[l] * POW10[len as usize]) % MOD + MOD) % MOD;
                 ((sum * x) % MOD) as i32
             })
             .collect()
