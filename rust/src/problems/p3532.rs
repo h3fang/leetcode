@@ -1,46 +1,5 @@
 pub struct Solution;
 
-use std::cmp::Ordering;
-
-struct Dsu {
-    parent: Vec<usize>,
-    size: Vec<u32>,
-}
-
-impl Dsu {
-    fn new(n: usize) -> Self {
-        Self {
-            parent: (0..n).collect(),
-            size: vec![1; n],
-        }
-    }
-
-    fn find(&mut self, x: usize) -> usize {
-        if self.parent[x] != x {
-            self.parent[x] = self.find(self.parent[x]);
-        }
-        self.parent[x]
-    }
-
-    fn union(&mut self, x: usize, y: usize) {
-        let (px, py) = (self.find(x), self.find(y));
-        if px == py {
-            return;
-        }
-
-        match self.size[px].cmp(&self.size[py]) {
-            Ordering::Less => {
-                self.parent[px] = py;
-                self.size[py] += self.size[px];
-            }
-            _ => {
-                self.parent[py] = px;
-                self.size[px] += self.size[py];
-            }
-        }
-    }
-}
-
 impl Solution {
     pub fn path_existence_queries(
         n: i32,
@@ -48,19 +7,18 @@ impl Solution {
         max_diff: i32,
         queries: Vec<Vec<i32>>,
     ) -> Vec<bool> {
-        let mut dsu = Dsu::new(n as usize);
-        let mut l = 0;
-        for (r, &x) in nums.iter().enumerate() {
-            while l < r && (nums[l] - x).abs() > max_diff {
-                l += 1;
-            }
+        let mut id = vec![0; n as usize];
 
-            dsu.union(l, r);
+        for (i, w) in nums.windows(2).enumerate() {
+            id[i + 1] = id[i];
+            if w[1] - w[0] > max_diff {
+                id[i + 1] += 1;
+            }
         }
 
         queries
             .into_iter()
-            .map(|q| dsu.find(q[0] as usize) == dsu.find(q[1] as usize))
+            .map(|q| id[q[0] as usize] == id[q[1] as usize])
             .collect()
     }
 }
