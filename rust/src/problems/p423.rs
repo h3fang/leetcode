@@ -27,7 +27,7 @@ impl Solution {
         let eight = freq[b'g' as usize];
         if eight > 0 {
             result.extend(vec!['8'; eight]);
-            for b in [b'e', b'i', b'h', b't'] {
+            for b in *b"eiht" {
                 freq[b as usize] -= eight;
             }
         }
@@ -35,7 +35,7 @@ impl Solution {
         let three = freq[b'h' as usize];
         if three > 0 {
             result.extend(vec!['3'; three]);
-            for b in [b't', b'r', b'e', b'e'] {
+            for b in *b"tree" {
                 freq[b as usize] -= three;
             }
         }
@@ -43,7 +43,7 @@ impl Solution {
         let four = freq[b'u' as usize];
         if four > 0 {
             result.extend(vec!['4'; four]);
-            for b in [b'f', b'o', b'r'] {
+            for b in *b"for" {
                 freq[b as usize] -= four;
             }
         }
@@ -51,7 +51,7 @@ impl Solution {
         let one = freq[b'o' as usize];
         if one > 0 {
             result.extend(vec!['1'; one]);
-            for b in [b'n', b'e'] {
+            for b in *b"ne" {
                 freq[b as usize] -= one;
             }
         }
@@ -59,7 +59,7 @@ impl Solution {
         let five = freq[b'f' as usize];
         if five > 0 {
             result.extend(vec!['5'; five]);
-            for b in [b'i', b'v', b'e'] {
+            for b in *b"ive" {
                 freq[b as usize] -= five;
             }
         }
@@ -67,7 +67,7 @@ impl Solution {
         let six = freq[b'x' as usize];
         if six > 0 {
             result.extend(vec!['6'; six]);
-            for b in [b's', b'i'] {
+            for b in *b"si" {
                 freq[b as usize] -= six;
             }
         }

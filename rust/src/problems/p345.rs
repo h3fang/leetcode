@@ -1,6 +1,6 @@
 pub struct Solution;
 
-const VOWELS: [u8; 5] = [b'a', b'e', b'i', b'o', b'u'];
+const VOWELS: [u8; 5] = *b"aeiou";
 
 impl Solution {
     pub fn reverse_vowels(mut s: String) -> String {

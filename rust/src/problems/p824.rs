@@ -6,9 +6,7 @@ impl Solution {
             .split_ascii_whitespace()
             .enumerate()
             .map(|(i, w)| {
-                let s = if [b'a', b'e', b'i', b'o', b'u']
-                    .contains(&w.as_bytes()[0].to_ascii_lowercase())
-                {
+                let s = if b"aeiou".contains(&w.as_bytes()[0].to_ascii_lowercase()) {
                     w.to_string()
                 } else {
                     w[1..].to_string() + &w[..1]

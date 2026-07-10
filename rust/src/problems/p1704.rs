@@ -6,7 +6,7 @@ impl Solution {
         let n = s.len() / 2;
         let count = |s: &[u8]| {
             s.iter()
-                .filter(|&b| [b'a', b'e', b'i', b'o', b'u'].contains(&b.to_ascii_lowercase()))
+                .filter(|&b| b"aeiou".contains(&b.to_ascii_lowercase()))
                 .count()
         };
         count(&s[..n]) == count(&s[n..])

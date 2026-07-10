@@ -4,7 +4,7 @@ impl Solution {
     pub fn count_binary_substrings(s: String) -> i32 {
         let (mut pre, mut cur) = (0, 0);
         let (mut last, mut ans) = (b'#', 0);
-        for b in s.bytes().chain([b'#']) {
+        for b in s.bytes().chain(*b"#") {
             if b != last {
                 ans += pre.min(cur);
                 (pre, cur) = (cur, 1);

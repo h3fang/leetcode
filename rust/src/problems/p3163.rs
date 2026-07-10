@@ -4,7 +4,7 @@ impl Solution {
     pub fn compressed_string(word: String) -> String {
         let mut result = Vec::with_capacity(word.len());
         let (mut prev, mut c) = (word.as_bytes()[0], 1u8);
-        for b in word.bytes().skip(1).chain([b'!']) {
+        for b in word.bytes().skip(1).chain(*b"!") {
             if b == prev {
                 if c == 9 {
                     result.extend([b'0' + c, b]);
