@@ -2,29 +2,26 @@ pub struct Solution;
 
 impl Solution {
     pub fn sequential_digits(low: i32, high: i32) -> Vec<i32> {
-        fn sequential(len: i32, start: i32, low: i32, high: i32) -> Option<i32> {
-            if start + len > 10 {
-                return None;
+        let mut ans = Vec::with_capacity(36);
+        let (mut x0, mut pow10, mut len) = (12, 10, 2);
+
+        while x0 <= high {
+            pow10 *= 10;
+            let mut x = x0;
+            for i in len..10 {
+                if x > high {
+                    return ans;
+                }
+                if x >= low {
+                    ans.push(x);
+                }
+                x = x * 10 + i + 1 - (i + 1 - len) * pow10;
             }
-            let num = (start..start + len).fold(0, |acc, n| acc * 10 + n);
-            if num >= low && num <= high {
-                Some(num)
-            } else {
-                None
-            }
+            len += 1;
+            x0 = x0 * 10 + len;
         }
 
-        let mut result = vec![];
-        let l1 = low.to_string().len();
-        let l2 = high.to_string().len();
-        for len in l1..=l2 {
-            for start in 1..=9 {
-                if let Some(n) = sequential(len as i32, start, low, high) {
-                    result.push(n);
-                }
-            }
-        }
-        result
+        ans
     }
 }
 
