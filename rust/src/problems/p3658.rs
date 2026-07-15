@@ -1,17 +1,8 @@
 pub struct Solution;
 
-fn gcd(mut a: i32, mut b: i32) -> i32 {
-    while a != 0 {
-        (a, b) = (b % a, a);
-    }
-    b
-}
-
 impl Solution {
     pub fn gcd_of_odd_even_sums(n: i32) -> i32 {
-        let odd = (1 + 1 + 2 * (n - 1)) * n / 2;
-        let even = odd + n;
-        gcd(odd, even)
+        n
     }
 }
 
