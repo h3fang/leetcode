@@ -1,69 +1,76 @@
 pub struct Solution;
 
-fn comb(mut n: usize, x: usize, k: usize) -> usize {
-    let (m, mut ans) = (x.min(n - x), 1);
-    for i in 1..=m {
-        ans = ans * n / i;
-        if ans >= k {
-            return k;
-        }
-        n -= 1;
-    }
-    ans
-}
-
-fn perm(f: &[i32], k: usize, mut m: usize) -> usize {
-    let mut ans = 1;
-    for &x in f {
-        if x == 0 {
-            continue;
-        }
-        let x = x as usize;
-        ans *= comb(m, x, k);
-        if ans >= k {
-            return k;
-        }
-        m -= x;
-    }
-    ans
-}
-
 impl Solution {
     pub fn smallest_palindrome(mut s: String, k: i32) -> String {
         let n = s.len();
         let m = n / 2;
+        let k = k as usize;
 
-        let mut f = [0; 26];
-        for &b in &s.as_bytes()[..m] {
-            f[(b - b'a') as usize] += 1;
+        let freq = {
+            let mut f = [0; 26];
+            for &b in &s.as_bytes()[..m] {
+                f[(b - b'a') as usize] += 1;
+            }
+            f
+        };
+
+        let mut cnt = [0; 26];
+
+        let (mut i, mut j, mut perm) = (m as i64 - 1, 25, 1);
+
+        while i >= 0 && perm < k {
+            while cnt[j] == freq[j] {
+                j -= 1;
+            }
+            cnt[j] += 1;
+            perm = perm * (m - i as usize) / cnt[j];
+
+            i -= 1;
         }
 
-        let mut k = k as usize;
-
-        if perm(&f, k, m) < k {
+        if perm < k {
             return String::new();
         }
 
         let ans = unsafe { s.as_bytes_mut() };
+        let mut pos = 0;
 
-        for i in 0..m {
-            for j in 0..26 {
-                if f[j] == 0 {
-                    continue;
-                }
-                f[j] -= 1;
-                let total = perm(&f, k, m - i - 1);
-                if total >= k {
-                    let c = j as u8 + b'a';
-                    ans[i] = c;
-                    ans[n - i - 1] = c;
-                    break;
-                } else {
-                    k -= total;
-                    f[j] += 1;
-                }
+        for (k, c) in cnt.iter().enumerate().take(j + 1) {
+            let b = b'a' + k as u8;
+            for _ in 0..freq[k] - c {
+                ans[pos] = b;
+                pos += 1;
             }
         }
+
+        let (mut i, j0, mut k) = ((i + 1) as usize, j, k);
+
+        while i < m {
+            for (j, c) in cnt.iter_mut().enumerate().skip(j0) {
+                if *c == 0 {
+                    continue;
+                }
+
+                let p = perm * *c / (m - i);
+
+                if p >= k {
+                    ans[pos] = b'a' + j as u8;
+                    pos += 1;
+                    *c -= 1;
+                    perm = p;
+                    break;
+                }
+
+                k -= p;
+            }
+
+            i += 1;
+        }
+
+        for i in 0..n / 2 {
+            ans[n - i - 1] = ans[i];
+        }
+
         s
     }
 }
