@@ -8,16 +8,12 @@ impl Solution {
             freq[(b - b'a') as usize] += 1;
         }
         freq.sort_unstable_by_key(|e| -e);
-        let mut result = 0;
-        for (i, c) in freq.chunks(8).enumerate() {
-            for &f in c {
-                if f == 0 {
-                    return result;
-                }
-                result += (i as i32 + 1) * f;
-            }
-        }
-        result
+        let p = freq.partition_point(|&e| e > 0);
+        freq[..p]
+            .chunks(8)
+            .enumerate()
+            .map(|(i, c)| c.iter().sum::<i32>() * (i as i32 + 1))
+            .sum()
     }
 }
 
