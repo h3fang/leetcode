@@ -2,25 +2,14 @@ pub struct Solution;
 
 impl Solution {
     pub fn stone_game_iii(stone_value: Vec<i32>) -> String {
-        let n = stone_value.len();
-        let mut ss = vec![0; n];
-        ss[n - 1] = stone_value[n - 1];
-        for i in (0..n - 1).rev() {
-            ss[i] = ss[i + 1] + stone_value[i];
+        let mut suf = 0;
+        let mut f = (0, 0, 0);
+        for &s in stone_value.iter().rev() {
+            suf += s;
+            f = (suf - f.0.min(f.1).min(f.2), f.0, f.1);
         }
-        let mut f = vec![0; n + 1];
-        for i in (0..n).rev() {
-            let mut best = f[i + 1];
-            for (j, &e) in f.iter().enumerate().skip(i + 2) {
-                if j > i + 3 {
-                    break;
-                }
-                best = best.min(e);
-            }
-            f[i] = ss[i] - best;
-        }
-        let total = stone_value.iter().sum::<i32>();
-        match (f[0] * 2).cmp(&total) {
+
+        match (2 * f.0).cmp(&suf) {
             std::cmp::Ordering::Less => "Bob".to_string(),
             std::cmp::Ordering::Equal => "Tie".to_string(),
             std::cmp::Ordering::Greater => "Alice".to_string(),
