@@ -7,7 +7,7 @@ impl Solution {
         let mut sum = 0;
         for i in (0..n).rev() {
             sum += piles[i];
-            for m in 1..=n {
+            for m in 1..(i / 2) + 2 {
                 if i + 2 * m >= n {
                     dp[i][m] = sum;
                 } else {
