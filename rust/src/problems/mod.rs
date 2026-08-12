@@ -820,6 +820,7 @@ pub mod p2185;
 pub mod p2187;
 pub mod p219;
 pub mod p2191;
+pub mod p2192;
 pub mod p2196;
 pub mod p2197;
 pub mod p22;
