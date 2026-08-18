@@ -17,13 +17,19 @@ impl Solution {
             }
         }
         dfs(root, &mut tree);
+        let n = tree.len();
         queries
             .into_iter()
             .map(|q| {
-                let i = tree.partition_point(|&x| x <= q);
-                let a = if i == 0 { -1 } else { tree[i - 1] };
                 let i = tree.partition_point(|&x| x < q);
-                let b = if i == tree.len() { -1 } else { tree[i] };
+                let a = if i < n && tree[i] == q {
+                    q
+                } else if i == 0 {
+                    -1
+                } else {
+                    tree[i - 1]
+                };
+                let b = if i == n { -1 } else { tree[i] };
                 vec![a, b]
             })
             .collect()
