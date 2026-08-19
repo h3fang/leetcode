@@ -1058,6 +1058,7 @@ pub mod p2481;
 pub mod p2482;
 pub mod p2483;
 pub mod p2485;
+pub mod p2486;
 pub mod p2488;
 pub mod p2490;
 pub mod p2491;
