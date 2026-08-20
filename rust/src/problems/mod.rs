@@ -1078,6 +1078,7 @@ pub mod p2516;
 pub mod p2517;
 pub mod p2520;
 pub mod p2523;
+pub mod p2525;
 pub mod p2528;
 pub mod p2532;
 pub mod p2535;
