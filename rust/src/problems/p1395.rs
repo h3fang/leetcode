@@ -1,13 +1,9 @@
 pub struct Solution;
 
-fn lowbit(x: i32) -> i32 {
-    x & (-x)
-}
-
 fn update(arr: &mut [i32], mut x: i32, v: i32) {
     while x < arr.len() as i32 {
         arr[x as usize] += v;
-        x += lowbit(x);
+        x += x.isolate_lowest_one();
     }
 }
 
@@ -15,7 +11,7 @@ fn query(arr: &[i32], mut x: i32) -> i32 {
     let mut result = 0;
     while x > 0 {
         result += arr[x as usize];
-        x -= lowbit(x);
+        x -= x.isolate_lowest_one();
     }
     result
 }

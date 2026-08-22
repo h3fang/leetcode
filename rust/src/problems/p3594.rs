@@ -91,7 +91,7 @@ impl Solution {
                 }
                 let mut s = ((total - 1) ^ left ^ sub) as i64;
                 while s > 0 {
-                    let lb = (s & (-s)) as usize;
+                    let lb = s.isolate_lowest_one() as usize;
                     let t2 = max_time[lb] * mul[s1];
                     let s2 = (s1 + t2.floor() as usize) % m;
                     let time = time + t1 + t2;

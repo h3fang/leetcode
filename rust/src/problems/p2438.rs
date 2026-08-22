@@ -6,7 +6,7 @@ impl Solution {
     pub fn product_queries(mut n: i32, queries: Vec<Vec<i32>>) -> Vec<i32> {
         let mut powers = Vec::with_capacity(31);
         while n > 0 {
-            let lb = n & (-n);
+            let lb = n.isolate_lowest_one();
             powers.push(lb as i64);
             n ^= lb;
         }

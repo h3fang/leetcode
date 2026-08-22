@@ -8,7 +8,7 @@ struct Bit {
 
 fn lowbit(x: usize) -> usize {
     let x = x as isize;
-    (x & (-x)) as usize
+    x.isolate_lowest_one() as usize
 }
 
 impl Bit {

@@ -35,7 +35,7 @@ impl Bit {
         i += 1;
         while i < self.tree.len() as i64 {
             self.tree[i as usize] += delta;
-            i += i & (-i);
+            i += i.isolate_lowest_one();
         }
     }
 }

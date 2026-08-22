@@ -10,7 +10,7 @@ impl NumArray {
         for (i, x) in nums.iter().enumerate() {
             t[i + 1] += x;
             let j = i as i32 + 1;
-            let j = (j + (j & -j)) as usize;
+            let j = (j + j.isolate_lowest_one()) as usize;
             if j <= n {
                 t[j] += t[i + 1];
             }
@@ -24,7 +24,7 @@ impl NumArray {
         let mut i = index + 1;
         while i < self.t.len() as i32 {
             self.t[i as usize] += d;
-            i += i & -i;
+            i += i.isolate_lowest_one();
         }
     }
 
@@ -32,7 +32,7 @@ impl NumArray {
         let mut sum = 0;
         while i > 0 {
             sum += self.t[i as usize];
-            i -= i & -i;
+            i -= i.isolate_lowest_one();
         }
         sum
     }

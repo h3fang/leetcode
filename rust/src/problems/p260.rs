@@ -3,7 +3,7 @@ pub struct Solution;
 impl Solution {
     pub fn single_number(nums: Vec<i32>) -> Vec<i32> {
         let xor = nums.iter().fold(0, |acc, e| acc ^ *e);
-        let last_one = xor & -xor;
+        let last_one = xor.isolate_lowest_one();
         let mut n1 = 0;
         for n in nums {
             if n & last_one == 0 {

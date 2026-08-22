@@ -11,14 +11,10 @@ impl Bit {
         Self { a: vec![0; n] }
     }
 
-    fn low_bit(x: i32) -> i32 {
-        x & (-x)
-    }
-
     fn update(&mut self, mut i: usize, v: i32) {
         while i < self.a.len() {
             self.a[i] += v;
-            i += Self::low_bit(i as i32) as usize;
+            i += i.isolate_lowest_one();
         }
     }
 
@@ -26,7 +22,7 @@ impl Bit {
         let mut result = 0;
         while x > 0 {
             result += self.a[x as usize];
-            x -= Self::low_bit(x);
+            x -= x.isolate_lowest_one();
         }
         result
     }

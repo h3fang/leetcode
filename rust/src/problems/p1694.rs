@@ -11,13 +11,14 @@ impl Solution {
         let n = num.len();
         match n % 3 {
             1 => {
-                let mut r =
-                    num.chunks_exact(3)
-                        .fold(String::with_capacity(num.len() * 2), |mut acc, w| {
-                            acc.push_str(unsafe { std::str::from_utf8_unchecked(w) });
-                            acc.push('-');
-                            acc
-                        });
+                let mut r = num.as_chunks::<3>().0.iter().fold(
+                    String::with_capacity(num.len() * 2),
+                    |mut acc, w| {
+                        acc.push_str(unsafe { std::str::from_utf8_unchecked(w) });
+                        acc.push('-');
+                        acc
+                    },
+                );
                 r.pop();
                 let a = r.pop().unwrap();
                 r.push('-');

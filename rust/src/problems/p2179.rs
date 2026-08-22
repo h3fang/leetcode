@@ -23,7 +23,7 @@ impl Bit {
     fn update(&mut self, mut i: i32, delta: i32) {
         while i < self.tree.len() as i32 {
             self.tree[i as usize] += delta;
-            i += i & (-i);
+            i += i.isolate_lowest_one();
         }
     }
 }

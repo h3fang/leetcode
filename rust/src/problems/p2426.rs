@@ -16,7 +16,7 @@ impl Bit {
         let mut result = 0;
         while x > 0 {
             result += self.tree[x as usize];
-            x -= x & (-x);
+            x -= x.isolate_lowest_one();
         }
         result
     }
@@ -25,7 +25,7 @@ impl Bit {
         x += 3 * OFFSET;
         while x < self.tree.len() as i32 {
             self.tree[x as usize] += 1;
-            x += x & (-x);
+            x += x.isolate_lowest_one();
         }
     }
 }

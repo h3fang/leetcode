@@ -7,7 +7,7 @@ impl Solution {
                 *x = -1;
             } else {
                 let y = !*x;
-                *x ^= (y & -y) >> 1;
+                *x ^= y.isolate_lowest_one() >> 1;
             }
         }
         nums

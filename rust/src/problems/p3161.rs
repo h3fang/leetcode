@@ -17,7 +17,7 @@ impl Bit {
         let n = self.tree.len() as i32;
         while i < n {
             self.tree[i as usize] = self.tree[i as usize].max(v);
-            i += i & (-i);
+            i += i.isolate_lowest_one();
         }
     }
 

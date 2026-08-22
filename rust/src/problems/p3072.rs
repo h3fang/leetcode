@@ -16,7 +16,7 @@ impl BinaryIndexedTree {
     fn add(&mut self, mut v: i32) {
         while v < self.vals.len() as i32 {
             self.vals[v as usize] += 1;
-            v += v & -v;
+            v += v.isolate_lowest_one();
         }
     }
 

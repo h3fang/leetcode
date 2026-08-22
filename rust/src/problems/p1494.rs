@@ -11,7 +11,7 @@ impl Solution {
         }
         dp[0] = 0;
         for i in 1..m as i32 {
-            need[i as usize] = need[(i & (i - 1)) as usize] | need[(i & (-i)) as usize];
+            need[i as usize] = need[(i & (i - 1)) as usize] | need[i.isolate_lowest_one() as usize];
             if need[i as usize] | i != i {
                 continue;
             }
