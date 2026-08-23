@@ -1100,6 +1100,7 @@ pub mod p2558;
 pub mod p2559;
 pub mod p2560;
 pub mod p2561;
+pub mod p2562;
 pub mod p2563;
 pub mod p2566;
 pub mod p2569;
