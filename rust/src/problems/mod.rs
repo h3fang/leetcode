@@ -1111,6 +1111,7 @@ pub mod p2574;
 pub mod p2575;
 pub mod p2576;
 pub mod p2577;
+pub mod p2578;
 pub mod p2579;
 pub mod p258;
 pub mod p2582;
