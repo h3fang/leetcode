@@ -618,6 +618,7 @@ pub mod p1865;
 pub mod p187;
 pub mod p1870;
 pub mod p1871;
+pub mod p1872;
 pub mod p1877;
 pub mod p1878;
 pub mod p188;
