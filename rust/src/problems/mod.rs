@@ -1114,6 +1114,7 @@ pub mod p2577;
 pub mod p2578;
 pub mod p2579;
 pub mod p258;
+pub mod p2580;
 pub mod p2582;
 pub mod p2591;
 pub mod p2593;
