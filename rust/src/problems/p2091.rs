@@ -4,34 +4,28 @@ impl Solution {
     pub fn minimum_deletions(nums: Vec<i32>) -> i32 {
         let mut min = i32::MAX;
         let mut max = i32::MIN;
-        let mut i_min = -1;
-        let mut i_max = -1;
+        let mut i = -1;
+        let mut j = -1;
 
-        for (i, &n) in nums.iter().enumerate() {
+        for (k, &n) in nums.iter().enumerate() {
             if n < min {
                 min = n;
-                i_min = i as i32;
+                i = k as i32;
             }
 
             if n > max {
                 max = n;
-                i_max = i as i32;
+                j = k as i32;
             }
         }
 
         let n = nums.len() as i32;
+        let (i, j) = if i < j { (i, j) } else { (j, i) };
 
-        if i_max == i_min {
-            (i_min + 1).min(n - i_min)
-        } else {
-            if i_min > i_max {
-                std::mem::swap(&mut i_min, &mut i_max);
-            }
-            let c1 = i_min + 1 + (n - i_max);
-            let c2 = i_max + 1;
-            let c3 = n - i_min;
-            c1.min(c2.min(c3))
-        }
+        let a = n - i;
+        let b = j + 1;
+        let c = n - (j - i - 1);
+        a.min(b).min(c)
     }
 }
 
