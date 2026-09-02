@@ -3,24 +3,27 @@ pub struct Solution;
 impl Solution {
     pub fn find_minimum_time(mut tasks: Vec<Vec<i32>>) -> i32 {
         tasks.sort_unstable_by_key(|t| t[1]);
-        let mut time = [false; 2001];
+        let mut s = Vec::with_capacity(tasks.len());
+        s.push((-1, -1, 0));
         for t in tasks {
-            let mut r = t[2]
-                - time[t[0] as usize..=t[1] as usize]
-                    .iter()
-                    .filter(|&&e| e)
-                    .count() as i32;
-            for e in time[t[0] as usize..=t[1] as usize].iter_mut().rev() {
-                if r <= 0 {
-                    break;
-                }
-                if !*e {
-                    *e = true;
-                    r -= 1;
-                }
+            let i = s.partition_point(|e| e.0 < t[0]);
+            let (_, r, d) = s[i - 1];
+            let mut duration = t[2] - (s.last().unwrap().2 - d);
+            if t[0] <= r {
+                duration -= r - t[0] + 1;
             }
+
+            if duration <= 0 {
+                continue;
+            }
+
+            while duration >= t[1] - s.last().unwrap().1 {
+                let (l, r, _) = s.pop().unwrap();
+                duration += r - l + 1;
+            }
+            s.push((t[1] - duration + 1, t[1], s.last().unwrap().2 + duration));
         }
-        time.into_iter().filter(|&e| e).count() as i32
+        s.last().unwrap().2
     }
 }
 
