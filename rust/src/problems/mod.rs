@@ -1259,6 +1259,7 @@ pub mod p3047;
 pub mod p306;
 pub mod p3065;
 pub mod p3066;
+pub mod p3067;
 pub mod p3068;
 pub mod p3069;
 pub mod p307;
