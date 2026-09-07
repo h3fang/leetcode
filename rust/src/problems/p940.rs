@@ -5,21 +5,15 @@ const MOD: i32 = 10_0000_0007;
 impl Solution {
     pub fn distinct_subseq_ii(s: String) -> i32 {
         let s = s.as_bytes();
-        let mut f = vec![1; s.len()];
-        let mut last = [-1; 26];
-        for (i, b) in s.iter().enumerate() {
+        let mut ans = 0;
+        let mut f = [0; 26];
+        for b in s {
             let k = (b - b'a') as usize;
-            for &j in &last {
-                if j != -1 {
-                    f[i] = (f[i] + f[j as usize]) % MOD;
-                }
-            }
-            last[k] = i as i32;
+            let prev = f[k];
+            f[k] = (ans + 1) % MOD;
+            ans = ((ans + f[k] - prev) % MOD + MOD) % MOD;
         }
-        last.iter()
-            .filter(|&&k| k != -1)
-            .map(|&k| f[k as usize])
-            .fold(0, |acc, e| (acc + e) % MOD)
+        ans
     }
 }
 
