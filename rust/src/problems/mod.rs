@@ -1510,6 +1510,7 @@ pub mod p3474;
 pub mod p3477;
 pub mod p3479;
 pub mod p3480;
+pub mod p3483;
 pub mod p3484;
 pub mod p3487;
 pub mod p3488;
