@@ -1,29 +1,27 @@
 pub struct Solution;
 
+fn convert(img: &[Vec<i32>]) -> Vec<i32> {
+    img.iter()
+        .map(|row| row.iter().fold(0, |acc, x| (acc << 1) | x))
+        .collect()
+}
+
+fn overlap(img1: &[i32], img2: &[i32], di: i32, dj: i32) -> i32 {
+    let mut ans = 0;
+    let l1 = 0.max(-di) as usize;
+    let l2 = 0.max(di) as usize;
+    for (&r1, &r2) in img1[l1..].iter().zip(&img2[l2..]) {
+        let r1 = if dj >= 0 { r1 >> dj } else { r1 << dj.abs() };
+        ans += (r1 & r2).count_ones();
+    }
+    ans as i32
+}
+
 impl Solution {
     pub fn largest_overlap(img1: Vec<Vec<i32>>, img2: Vec<Vec<i32>>) -> i32 {
-        fn get_pixel(img: &[Vec<i32>], i: i32, j: i32) -> i32 {
-            let n = img.len() as i32;
-            if i < 0 || j < 0 || i >= n || j >= n {
-                0
-            } else {
-                img[i as usize][j as usize]
-            }
-        }
-
-        fn overlap(img1: &[Vec<i32>], img2: &[Vec<i32>], di: i32, dj: i32) -> i32 {
-            let mut result = 0;
-            for (i, row) in img2.iter().enumerate() {
-                for (j, &p) in row.iter().enumerate() {
-                    if p == 1 && p == get_pixel(img1, i as i32 + di, j as i32 + dj) {
-                        result += 1;
-                    }
-                }
-            }
-            result
-        }
-
         let n = img1.len() as i32;
+        let img1 = convert(&img1);
+        let img2 = convert(&img2);
         let mut result = 0;
         for di in -(n - 1)..=(n - 1) {
             for dj in -(n - 1)..=(n - 1) {
