@@ -1053,6 +1053,7 @@ pub mod p2466;
 pub mod p2467;
 pub mod p2469;
 pub mod p2471;
+pub mod p2472;
 pub mod p2475;
 pub mod p2476;
 pub mod p2477;
