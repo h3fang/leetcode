@@ -368,6 +368,7 @@ pub mod p1470;
 pub mod p1472;
 pub mod p1473;
 pub mod p1475;
+pub mod p1477;
 pub mod p148;
 pub mod p1480;
 pub mod p1481;
