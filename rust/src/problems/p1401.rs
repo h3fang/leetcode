@@ -10,17 +10,9 @@ impl Solution {
         x2: i32,
         y2: i32,
     ) -> bool {
-        let x_min = if (x1..=x2).contains(&x_center) {
-            0
-        } else {
-            (x1 - x_center).abs().min((x2 - x_center).abs())
-        };
-        let y_min = if (y1..=y2).contains(&y_center) {
-            0
-        } else {
-            (y1 - y_center).abs().min((y2 - y_center).abs())
-        };
-        x_min * x_min + y_min * y_min <= radius * radius
+        let x = x1.max(x2.min(x_center));
+        let y = y1.max(y2.min(y_center));
+        (x - x_center) * (x - x_center) + (y - y_center) * (y - y_center) <= radius * radius
     }
 }
 
