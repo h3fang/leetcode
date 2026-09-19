@@ -15,14 +15,12 @@ impl Solution {
             }
         }
 
-        let mut valid: Vec<(i32, i32)> = Vec::new();
+        let mut valid: Vec<(i32, i32)> = Vec::with_capacity(26);
 
-        for &(l_c, r_c) in &pos {
-            if l_c == -1 {
+        for &(mut l, mut r) in &pos {
+            if l == -1 {
                 continue;
             }
-            let mut l = l_c;
-            let mut r = r_c;
             let mut nl = l;
             let mut nr = l;
 
@@ -32,21 +30,11 @@ impl Solution {
                 let c = bytes[i as usize];
                 let (l_t, r_t) = pos[(c - b'a') as usize];
 
-                if l_t < l {
-                    l = l_t;
-                }
+                l = l_t.min(l);
+                r = r_t.max(r);
 
-                if r_t > r {
-                    r = r_t;
-                }
-
-                if i == nl {
-                    nl -= 1;
-                }
-
-                if i == nr {
-                    nr += 1;
-                }
+                nl -= i32::from(i == nl);
+                nr += i32::from(i == nr);
             }
 
             valid.push((l, r));
@@ -59,9 +47,9 @@ impl Solution {
 
         for (left, right) in valid {
             if left > end {
-                ans.push(
-                    String::from_utf8(bytes[left as usize..(right as usize + 1)].to_vec()).unwrap(),
-                );
+                let sub = bytes[left as usize..(right as usize + 1)].to_vec();
+                let sub = unsafe { String::from_utf8_unchecked(sub) };
+                ans.push(sub);
                 end = right;
             }
         }
