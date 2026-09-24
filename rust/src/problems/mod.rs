@@ -1221,6 +1221,7 @@ pub mod p2784;
 pub mod p2785;
 pub mod p2786;
 pub mod p2787;
+pub mod p2788;
 pub mod p279;
 pub mod p2799;
 pub mod p28;
