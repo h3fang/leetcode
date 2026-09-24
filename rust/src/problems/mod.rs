@@ -1208,6 +1208,7 @@ pub mod p275;
 pub mod p2751;
 pub mod p2760;
 pub mod p2762;
+pub mod p2765;
 pub mod p2766;
 pub mod p2769;
 pub mod p2770;
