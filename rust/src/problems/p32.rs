@@ -1,28 +1,32 @@
 pub struct Solution;
 
+fn solve(s: impl Iterator<Item = u8>, c: u8) -> i32 {
+    let (mut l, mut r) = (0, 0);
+    let mut ans = 0;
+
+    for b in s {
+        if b == c {
+            l += 1;
+        } else {
+            r += 1;
+        }
+
+        if l == r {
+            ans = ans.max(l * 2);
+        }
+
+        if r > l {
+            r = 0;
+            l = 0;
+        }
+    }
+
+    ans
+}
+
 impl Solution {
     pub fn longest_valid_parentheses(s: String) -> i32 {
-        let s = s.as_bytes();
-        let n = s.len();
-        let mut dp = vec![0; n];
-        let mut result = 0;
-        for i in 1..n {
-            if s[i] == b'(' {
-                continue;
-            }
-            if s[i - 1] == b'(' {
-                dp[i] = if i >= 2 { dp[i - 2] } else { 0 } + 2;
-            } else if i > dp[i - 1] && s[i - 1 - dp[i - 1]] == b'(' {
-                let prev = if i >= 2 + dp[i - 1] {
-                    dp[i - 2 - dp[i - 1]]
-                } else {
-                    0
-                };
-                dp[i] = dp[i - 1] + prev + 2;
-            }
-            result = result.max(dp[i]);
-        }
-        result as i32
+        solve(s.bytes(), b'(').max(solve(s.bytes().rev(), b')'))
     }
 }
 
