@@ -1283,6 +1283,7 @@ pub mod p292;
 pub mod p2920;
 pub mod p2923;
 pub mod p2924;
+pub mod p2928;
 pub mod p2929;
 pub mod p2931;
 pub mod p2940;
