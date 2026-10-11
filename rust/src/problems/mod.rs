@@ -1216,6 +1216,7 @@ pub mod p2769;
 pub mod p2770;
 pub mod p2771;
 pub mod p2772;
+pub mod p2778;
 pub mod p2779;
 pub mod p278;
 pub mod p2780;
