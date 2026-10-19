@@ -1,15 +1,16 @@
 pub struct Solution;
 
 impl Solution {
-    pub fn target_indices(mut nums: Vec<i32>, target: i32) -> Vec<i32> {
-        nums.sort_unstable();
-        let l = nums.partition_point(|x| *x < target);
-        let r = nums.partition_point(|x| *x <= target);
-        if l == nums.len() {
-            vec![]
-        } else {
-            (l as i32..r as i32).collect()
+    pub fn target_indices(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let (mut less, mut equal) = (0, 0);
+        for x in nums {
+            if x < target {
+                less += 1;
+            } else if x == target {
+                equal += 1;
+            }
         }
+        (less..less + equal).collect()
     }
 }
 
