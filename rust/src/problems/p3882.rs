@@ -1,24 +1,40 @@
 pub struct Solution;
 
+use std::collections::HashSet;
+
 impl Solution {
     pub fn min_cost(grid: Vec<Vec<i32>>) -> i32 {
+        let m = grid.len();
         let n = grid[0].len();
-        let mut f = vec![[false; 1024]; n];
-        f[0][0] = true;
 
-        for r in grid {
-            for (j, &c) in r.iter().enumerate() {
-                let mut next = [false; 1024];
-                for (k, &a) in f[j].iter().enumerate() {
-                    if a || (j > 0 && f[j - 1][k]) {
-                        next[k ^ c as usize] = true;
-                    }
+        let mut ans = 1024;
+
+        let mut vis = HashSet::with_capacity(m * n * 1024);
+        let mut q = Vec::with_capacity(m * n * 1024);
+        q.push((0i16, 0i16, 0i16));
+
+        let (m, n) = (m as i16, n as i16);
+
+        while let Some((i, j, xor)) = q.pop() {
+            let xor = xor ^ grid[i as usize][j as usize] as i16;
+
+            if (i, j) == (m - 1, n - 1) && xor < ans {
+                ans = xor;
+                if ans == 0 {
+                    break;
                 }
-                f[j] = next;
+                continue;
+            }
+
+            if i + 1 < m && vis.insert((i + 1, j, xor)) {
+                q.push((i + 1, j, xor));
+            }
+            if j + 1 < n && vis.insert((i, j + 1, xor)) {
+                q.push((i, j + 1, xor));
             }
         }
 
-        f[n - 1].iter().position(|&e| e).unwrap() as i32
+        ans as i32
     }
 }
 
