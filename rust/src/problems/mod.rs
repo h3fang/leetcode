@@ -1720,6 +1720,7 @@ pub mod p3727;
 pub mod p373;
 pub mod p3731;
 pub mod p3734;
+pub mod p3736;
 pub mod p3737;
 pub mod p3739;
 pub mod p374;
