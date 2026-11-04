@@ -118,14 +118,16 @@ impl Solution {
     pub fn min_operations(nums: Vec<i32>, x: i32, k: i32) -> i64 {
         let (n, x, k) = (nums.len(), x as usize, k as usize);
         let w = min_op_for_sliding_window(&nums, x);
-        let mut f = vec![vec![0; n + 1]; k + 1];
+        let mut f = vec![0; n + 1];
+        let mut g = vec![0; n + 1];
         for i in 1..=k {
-            f[i][i * x - 1] = i64::MAX;
+            g[i * x - 1] = i64::MAX;
             for j in i * x..=(n - (k - i) * x) {
-                f[i][j] = f[i][j - 1].min(f[i - 1][j - x] + w[j - x]);
+                g[j] = g[j - 1].min(f[j - x] + w[j - x]);
             }
+            (f, g) = (g, f);
         }
-        f[k][n]
+        f[n]
     }
 }
 
