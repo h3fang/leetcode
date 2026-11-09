@@ -1,8 +1,7 @@
+pub struct Solution;
+
 use std::cmp::Reverse;
 use std::collections::{BTreeSet, BinaryHeap};
-use std::ops::Bound::{Included, Unbounded};
-
-pub struct Solution;
 
 impl Solution {
     pub fn busiest_servers(k: i32, arrival: Vec<i32>, load: Vec<i32>) -> Vec<i32> {
@@ -10,7 +9,7 @@ impl Solution {
         let mut busy: BinaryHeap<(Reverse<i32>, i32)> = BinaryHeap::new();
         let mut reqs = vec![0; k as usize];
         for (i, &arr) in arrival.iter().enumerate() {
-            while !busy.is_empty() && busy.peek().unwrap().0.0 <= arr {
+            while busy.peek().is_some_and(|(Reverse(t), _)| *t <= arr) {
                 let (_, idx) = busy.pop().unwrap();
                 idle.insert(idx);
             }
@@ -18,7 +17,7 @@ impl Solution {
                 continue;
             }
             let j = *idle
-                .range((Included(i as i32 % k), Unbounded))
+                .range((i as i32 % k)..)
                 .next()
                 .unwrap_or_else(|| idle.iter().next().unwrap());
 
