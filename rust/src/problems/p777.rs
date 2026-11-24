@@ -26,10 +26,7 @@ impl Solution {
             i += 1;
             j += 1;
         }
-        if s[i..].iter().any(|&e| e != b'X') || e[j..].iter().any(|&e| e != b'X') {
-            return false;
-        }
-        true
+        !(s[i..].iter().any(|&e| e != b'X') || e[j..].iter().any(|&e| e != b'X'))
     }
 }
 

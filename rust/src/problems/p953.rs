@@ -21,10 +21,7 @@ impl Solution {
                     Ordering::Greater => return false,
                 }
             }
-            if a.len() > b.len() {
-                return false;
-            }
-            true
+            a.len() <= b.len()
         })
     }
 }

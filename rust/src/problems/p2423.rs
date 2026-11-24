@@ -22,14 +22,10 @@ impl Solution {
             return false;
         }
         let s = m.into_iter().collect::<Vec<_>>();
-        if (s[0].0 - s[1].0 == 1 && s[0].1 == 1)
+        (s[0].0 - s[1].0 == 1 && s[0].1 == 1)
             || (s[1].0 - s[0].0 == 1 && s[1].1 == 1)
             || (s[0].0 == 1 && s[0].1 == 1)
             || (s[1].0 == 1 && s[1].1 == 1)
-        {
-            return true;
-        }
-        false
     }
 }
 
