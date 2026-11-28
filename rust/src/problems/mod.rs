@@ -1782,6 +1782,7 @@ pub mod p394;
 pub mod p3942;
 pub mod p3943;
 pub mod p3946;
+pub mod p3947;
 pub mod p396;
 pub mod p3963;
 pub mod p397;
